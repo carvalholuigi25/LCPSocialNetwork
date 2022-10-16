@@ -1,0 +1,247 @@
+// User Profile Page styles
+
+#profile {
+    background-color: silver;
+    color: black;
+
+    .sideright {
+        .subside {
+            height: auto !important;
+            min-height: 100% !important;
+            max-height: 100% !important;
+            padding: 0 !important;
+        }
+
+        .btn {
+            border-radius: 25px !important;
+        }
+    }
+
+    .blkprofile {
+        display: block;
+        position: relative;
+        border-radius: 15px;
+        padding: 0;
+        background-color: silver;
+        color: black;
+
+        .imgprofilecover {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: inherit;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .blkprofilebody {
+            background-color: white;
+            color: black;
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-radius: 0 0 0 0;
+            padding: 5px 15px;
+            margin: -26px 0px;
+            top: auto;
+            bottom: auto;
+            left: 0;
+            right: 0;
+            transform: translate(0, -50%);
+
+            .blkprofilebodyleft {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                text-align: left;
+                margin-left: 3rem;
+            }
+
+            .blkprofilebodyright {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: flex-end;
+                text-align: right;
+            }
+
+            .imguser {
+                display: block;
+                position: absolute;
+                top: -25px;
+                left: 15px;
+                right: auto;
+                bottom: auto;
+                width: 50px;
+                height: 50px;
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+                background-color: silver;
+                border-color: silver;
+                padding: 5px;
+            }
+
+            .username {
+                margin-left: 15px;
+            }
+
+            .input-group {
+                display: inline-block;
+                
+                .btn {
+                    border-radius: 25px;
+                    padding: 8px 15px;
+
+                    &.btneditprofile {
+                        background-color: orange;
+                        border-color: orange;
+                        color: black;
+
+                        &:hover, &:active, &:focus, &:visited, &:focus-visible, &:focus-within {
+                            background-color: black;
+                            border-color: black;
+                            color: orange;
+                        }
+                    }
+                    
+                    &.btnreportuser {
+                        background-color: red;
+                        border-color: red;
+                        color: black;
+
+                        &:hover, &:active, &:focus, &:visited, &:focus-visible, &:focus-within {
+                            background-color: black;
+                            border-color: black;
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+
+        .blkprofilefooter {
+            position: relative;
+            display: block;
+            color: black;
+            padding: 0px 15px;
+            margin-top: 0;
+            background-color: white;
+            border-radius: 0 0 15px 15px;
+            border-top: 1px solid gainsboro;
+
+            .separator {
+                border: 0;
+                border-top: 1px solid black;
+            }
+
+            .navprofileshlinks {
+                border: 0;
+
+                .nav-item {
+                    border: 0;
+                    padding: 1px 5px;
+                    margin: -2px 0px 0px 0px;
+
+                    a {
+                        border: 0;
+                        border-radius: 0;
+                        text-decoration: none;
+                        color: black;  
+                        font-weight: normal;
+
+                        &.active {
+                            border-top: 1px solid black;
+                            color: black;
+                            font-weight: bold;
+                        }
+
+                        &:hover, &:active, &:focus, &:visited, &:focus-visible, &:focus-within {
+                            text-decoration: underline !important;
+                            font-weight: bold !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media all and (min-width: 993px) {
+        .blkprofile {
+            .navprofileshlinks {
+                text-align: left;
+                justify-content: flex-start;
+                align-items: center;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding-top: 1px;
+            }
+        }
+    }
+
+    @media all and (max-width: 992px) {
+        .blkprofile {
+            margin-top: 15px;
+
+            .blkprofilebody {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 15px 15px;
+                margin: -40px auto;
+                
+                .imguser {
+                    left: auto;
+                    right: auto;
+                }
+
+                .blkprofilebodyleft {
+                    margin: 0px 0px;
+
+                    .username {
+                        margin: 15px 0px;
+                    }
+                }
+
+                .blkprofilebodyright {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                }
+            }
+
+            .blkprofilefooter {
+                margin-top: 15px;
+            }
+
+            .btneditprofile, .btnreportuser {
+                font-size: 12px;
+                line-height: 12px;
+            }
+
+            .navprofileshlinks {
+                margin: 0 auto;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                overflow-x: hidden;
+                overflow-y: hidden;
+                padding-top: 1px;
+            }
+        }
+    }
+}

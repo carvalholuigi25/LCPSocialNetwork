@@ -1,0 +1,48 @@
+[2022-09-25 15:26:10.166 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-25 15:26:10.270 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-25 15:26:10.270 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-25 15:26:10.272 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-25 15:26:10.272 +01:00  INF]  Hosting environment: Production
+[2022-09-25 15:26:10.272 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-25 15:26:11.326 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-25 15:26:11.738 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 421.6676ms
+[2022-09-25 15:26:11.744 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-25 15:26:11.744 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger-ui/custom.css - -
+[2022-09-25 15:26:11.749 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 5.0615ms
+[2022-09-25 15:26:11.755 +01:00  INF]  The file /swagger-ui/custom.css was not modified
+[2022-09-25 15:26:11.756 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger-ui/custom.css - - - 304 - text/css 11.1338ms
+[2022-09-25 15:26:11.766 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-25 15:26:11.785 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 19.6907ms
+[2022-09-25 15:26:11.929 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-25 15:26:12.244 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 314.6215ms
+[2022-09-25 15:26:25.647 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone - -
+[2022-09-25 15:26:25.679 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-25 15:26:25.707 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-25 15:26:25.795 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-25 15:26:25.804 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 91.9059ms
+[2022-09-25 15:26:25.804 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-25 15:26:25.804 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone - - - 200 - application/json;+charset=utf-8 157.8545ms
+[2022-09-25 15:26:47.777 +01:00  INF]  Application is shutting down...
+[2022-09-25 15:33:52.326 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-25 15:33:52.414 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-25 15:33:52.414 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-25 15:33:52.416 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-25 15:33:52.416 +01:00  INF]  Hosting environment: Production
+[2022-09-25 15:33:52.416 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-25 15:33:59.606 +01:00  INF]  Application is shutting down...
+[2022-09-25 15:35:48.779 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-25 15:35:48.868 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-25 15:35:48.868 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-25 15:35:48.871 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-25 15:35:48.872 +01:00  INF]  Hosting environment: Production
+[2022-09-25 15:35:48.872 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-25 15:35:55.425 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/ - -
+[2022-09-25 15:35:56.014 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/ - - - 404 0 - 596.4195ms
+[2022-09-25 15:35:59.003 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-25 15:35:59.058 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 55.2003ms
+[2022-09-25 15:35:59.107 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger-ui/custom.css - -
+[2022-09-25 15:35:59.121 +01:00  INF]  The file /swagger-ui/custom.css was not modified
+[2022-09-25 15:35:59.123 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger-ui/custom.css - - - 304 - text/css 15.8647ms
+[2022-09-25 15:35:59.215 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-25 15:35:59.427 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 211.2997ms
+[2022-09-25 15:36:12.498 +01:00  INF]  Application is shutting down...

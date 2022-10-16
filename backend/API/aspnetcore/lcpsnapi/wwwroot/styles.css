@@ -1,0 +1,32 @@
+﻿* {
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+html, body { scroll-behavior: smooth; }
+
+body {
+    background: linear-gradient(180deg, #11ff01, #04c4fd);
+    color: black;
+    min-height: 100vh;
+    max-height: 100%;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.colcentered, .colcenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-height: 100%;
+}
+
+a {
+    color: black;
+}

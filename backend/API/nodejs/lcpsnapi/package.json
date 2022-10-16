@@ -1,0 +1,17 @@
+{
+  "name": "lcpsnapi",
+  "version": "1.0.0",
+  "description": "lcp sn api (njs version)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lcp",
+    "sn",
+    "api",
+    "njs"
+  ],
+  "author": "luigi carvalho (luiscarvalho239@gmail.com)",
+  "license": "ISC"
+}

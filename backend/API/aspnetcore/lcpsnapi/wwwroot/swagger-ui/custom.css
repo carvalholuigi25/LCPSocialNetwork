@@ -1,0 +1,34 @@
+﻿body {
+    background: #ffa50085;
+    color: black;
+}
+
+#swagger-ui .swagger-ui .topbar {
+    background: orange;
+    color: black;
+}
+
+#swagger-ui .swagger-ui .scheme-container {
+    background: orange;
+}
+
+#swagger-ui .swagger-ui .modal-ux .modal-ux-header {
+    background: orange;
+}
+
+#swagger-ui .swagger-ui .modal-ux .modal-ux-content {
+    background: #ffa50085;
+}
+
+#swagger-ui .swagger-ui .btn.authorize {
+    color: green;
+    border-color: inherit;
+}
+
+#swagger-ui .swagger-ui .btn.authorize svg {
+    fill: green;
+}
+
+#swagger-ui .swagger-ui .opblock .opblock-section-header {
+    background: orange;
+}

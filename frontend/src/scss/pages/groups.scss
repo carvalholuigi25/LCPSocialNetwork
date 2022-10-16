@@ -1,0 +1,214 @@
+// Groups Page styles
+#groups {
+    background-color: silver;
+    color: black;
+
+    .blklistgroups {
+        display: block;
+        position: relative;
+        background-color: silver;
+        color: black;
+        padding: 0;
+        border-radius: 15px;
+
+        &[data-group=games] {
+            background-color: limegreen;
+            color: black;
+
+            .ico {
+                i, .bi {
+                    background-color: limegreen;
+                }
+            }
+        }
+
+        &[data-group=programmingandit] {
+            background-color: #0d6efd;
+            color: black;
+            
+            .ico {
+                i, .bi {
+                    background-color: #0d6efd;
+                }
+            }
+        }
+
+        &[data-group=movies] {
+            background-color: gold;
+            color: black;
+
+            .ico {
+                i, .bi {
+                    background-color: gold;
+                }
+            }
+        }
+
+        .blklistgroupsheader {
+            border-radius: 15px 15px 0 0;
+
+            .cover {
+                display: block;
+                width: auto;
+                height: 20vh;
+                max-width: 100%;
+                max-height: 100%;
+                background-color: transparent;
+                color: inherit;
+                border-radius: 15px 15px 0 0;
+
+                i, .bi {
+                    font-size: 5rem;
+                    text-align: center;
+                    margin: 0 auto;
+                    display: block;
+                    position: relative;
+                    top: 50%;
+                    left: auto;
+                    right: auto;
+                    bottom: 0;
+                    transform: translate(0, -50%);
+                }
+            }
+
+            .ico {
+                display: block;
+                width: 50px;
+                height: 50px;
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 50%;
+                color: inherit;
+                font-size: 2rem;
+                margin-left: 1rem;
+                margin-right: auto;
+                text-align: center;
+            }
+        }
+
+        .blklistgroupsbody {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            padding: 15px;
+            background: silver;
+            border-radius: 0 0 15px 15px;
+
+            .blklistgroupsbodycolm {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+                margin: 15px auto;
+            }
+
+            .blklistgroupsbodycol1 {
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                text-align: left;
+
+                .title { padding: 0; }
+
+                .ico {
+                    position: absolute;
+                    display: block;
+                    top: -3rem;
+                    left: 0;
+                    right: auto;
+                    bottom: auto;
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                    max-height: 100%;
+                    border-radius: 50%;
+                    color: inherit;
+                    font-size: 2rem;
+                    margin-left: 2rem;
+                    margin-right: 2rem;
+                    text-align: center;
+                    transform: translate(-50%, -50%);
+
+                    .bi {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid;
+                        border-radius: inherit;
+                        padding: 15px;
+                        width: 50px;
+                        height: 50px;
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
+                }
+            }
+
+            .blklistgroupsbodycol2 {
+                position: relative;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                text-align: right;
+
+                .roleuser { padding: 0; }
+            }
+
+            .blklistgroupsmembers {
+                display: block;
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+                text-align: left;
+            }
+
+            .input-group {
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: stretch;
+                width: 100%;
+                max-width: 100%;
+
+                .btn {
+                    border-radius: 25px;
+                    width: 50%;
+                    max-width: 100%;
+                    padding: 10px 15px;
+                    margin: 0px 15px;
+
+                    &.btnjoin {
+                        background-color: rgb(0, 134, 0);
+                        border-color: rgb(0, 134, 0);
+                        color: lime;
+                    }
+
+                    &.btnleave {
+                        background-color: rgb(134, 0, 0);
+                        border-color: rgb(134, 0, 0);
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+
+    @media all and (min-width: 993px) {
+        .blkgroups {
+            height: calc(100vh - 12vh);
+        }
+    }
+
+    @media all and (max-width: 992px) {
+        .blkgroups {
+            height: calc(100vh - 50vh);
+        }
+    }
+}

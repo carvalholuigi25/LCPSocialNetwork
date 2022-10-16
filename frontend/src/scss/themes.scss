@@ -1,0 +1,654 @@
+.theme {
+    &.dark {
+        $bgcolor: black;
+        $altbgcolor: rgb(15, 15, 15);
+        $color: white;
+
+        &#mainhome, &#main, &#dashboard, 
+        &#about, &#chat, &#friends,
+        &#groups, &#images, &#login, 
+        &#notifications, &#posts, &#privacypolicy,
+        &#profile, &#register, &#resetaccount,
+        &#settings, &#termsofservice, &#videos {
+            background-color: $bgcolor;
+            color: $color;
+
+            .form-check-input {
+                cursor: pointer;
+                background-color: $color !important;
+                border-color: $color !important;
+
+                &:checked {
+                    background-color: $color !important;
+                    border-color: $bgcolor !important;
+                }
+            }
+
+            .dropdown {
+                color: $color !important;
+                
+                .btn, .dropdown-menu {
+                    background-color: $bgcolor !important;
+                    border-color: $bgcolor !important;
+                    color: $color !important;
+                }
+
+                .dropdown-item {
+                    color: $color !important;
+
+                    &:hover, &:visited, &:active, 
+                    &:focus, &:focus-visible, &:focus-within {
+                        background-color: $altbgcolor !important;
+                        border-color: $altbgcolor !important;
+                        color: $color !important;
+                    }
+                }
+            }
+
+            .colm1 {
+                background-color: $bgcolor !important;
+            }
+
+            .colm2 {
+                .btn {
+                    background-color: $altbgcolor !important;
+                    border-color: $altbgcolor !important;
+                    color: $color !important;
+
+                    &:hover {
+                        background-color: inherit !important;
+                        border-color: inherit !important;
+                        color: $color !important;
+                    }
+                }
+            }
+
+            input, textarea {
+                &::placeholder {
+                    color: $color !important;
+                }
+            }
+
+            .mynavbarblk, #mynavbarblk {
+                .navbar {
+                    background-color: $altbgcolor !important;
+                    color: $color !important;
+
+                    .btn {
+                        background-color: transparent;
+                        color: $color;
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color: $bgcolor !important;
+                            border-color: $bgcolor !important;
+                            color: $color !important;
+                        }
+                    }
+
+                    input {
+                        color: $bgcolor !important;
+                    }
+
+                    a, p {
+                        color: $color !important;
+                    }
+
+                    .mynotifications, .mypm, .myfriendreqs {
+                        background-color: $bgcolor !important;
+                        border-color: $bgcolor !important;
+                        color: $color !important;
+
+                        .counter {
+                            background-color: $color !important;
+                            color: $bgcolor !important;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color: $color !important;
+                            border-color: $color !important;
+                            color: $bgcolor !important;
+                        }
+                    }
+
+                    .myprofile {
+                        .imgavatar {
+                            background-color: $color !important;
+                            color: $bgcolor !important;
+                        }
+                    }
+                }
+            }
+
+            .sideleft, .sidecenter, .sideright {
+                .subside {
+                    background-color: $altbgcolor !important;
+                    color: $color !important;
+
+                    .blkavatar {
+                        .avatarcover {
+                            background-color: $bgcolor !important;
+                            background-blend-mode: luminosity !important;
+                        }
+                        .avatarimg {
+                            background-color: $color !important;
+                            color: $bgcolor !important;
+                        }
+                    }
+
+                    .blklinks {
+                        .btn {
+                            background-color: $bgcolor !important;
+                            border-color: $color !important;
+                            color: $color !important;
+
+                            &:hover {
+                                cursor: pointer;
+                                background-color: $color !important;
+                                border-color: $color !important;
+                                color: $bgcolor !important;
+
+                                i {
+                                    color: $bgcolor !important;
+                                }
+                            }
+
+                            i {
+                                color: $color !important;
+                            }
+                        }
+                    }
+
+                    .sublinksfooter {
+                        .btn {
+                            background-color: $altbgcolor !important;
+                            border-color: $color !important;
+                            color: $color !important;
+
+                            &:hover, &:active, 
+                            &:focus, &:focus-visible, &:focus-within {
+                                background-color: $color !important;
+                                border-color: $altbgcolor !important;
+                                color: $altbgcolor !important;
+                            }
+                        }
+                        
+                        a {
+                            color: $color !important;
+                        }
+                    }
+                }
+            }
+
+            .blkstories {
+                background-color: $bgcolor !important;
+                color: $color !important;
+
+                .authorstories {
+                    .imgauthorstories {
+                        background-color: $color !important;
+                        border-color: $color !important;
+                    }
+                }
+            }
+
+            .blkpostsender {
+                background-color: $altbgcolor !important;
+                color: $color !important;
+
+                .imguser {
+                    background-color: $color !important;
+                    border-color: $color !important;
+                }
+
+                form {
+                    input, textarea {
+                        color: $color !important;
+                        border: 0;
+                        background-color: transparent !important;
+                    }
+                }
+
+                select {
+                    border-color: inherit !important;
+                    color: inherit !important;
+                    box-shadow: none;
+                    -webkit-box-shadow: 3px 3px 3px 1px $color !important; 
+                    box-shadow: 3px 3px 3px 1px $color !important;
+                    
+                    option {
+                        background-color: $altbgcolor !important;
+                        color: $color !important;
+                    }
+
+                    &:hover, &:active, &:focus, 
+                    &:visited, &:focus-visible, &:focus-within {
+                        box-shadow: none;
+                        -webkit-box-shadow: 3px 3px 3px 1px $bgcolor !important; 
+                        box-shadow: 3px 3px 3px 1px $bgcolor !important;
+                    }
+                }
+
+                .btn {
+                    background-color: $bgcolor !important;
+                    border-color: inherit !important;  
+                    color: $color !important;
+                    box-shadow: none;
+                    -webkit-box-shadow: 3px 3px 3px 1px $color !important; 
+                    box-shadow: 3px 3px 3px 1px $color !important;
+
+                    &:hover, &:active, &:focus, 
+                    &:visited, &:focus-visible, &:focus-within {
+                        background-color: $color !important;
+                        border-color: inherit !important;  
+                        color: $bgcolor !important;
+                        box-shadow: none;
+                        -webkit-box-shadow: 3px 3px 3px 1px $bgcolor !important; 
+                        box-shadow: 3px 3px 3px 1px $bgcolor !important;
+                    }
+                }
+            }
+
+            .blkpostercomments {
+                background: $altbgcolor !important;
+                color: $color !important;
+
+                form {
+                    input, textarea {
+                        background-color: $altbgcolor !important;
+                        color: $color !important;
+                    }
+                }
+            }
+
+            .blkpostcomments {
+                border: 1px solid $color !important;
+                box-shadow: 1px 1px 5px 1px $color !important;
+            }
+
+            .blkpost, .blkpostcomments {
+                background-color: $altbgcolor !important;
+                color: $color !important;
+
+                a, i, p {
+                    color: inherit !important;
+                }
+
+                hr {
+                    color: $color !important;
+                }
+
+                .btn {
+                    background-color: $bgcolor !important;
+                    border-color: $color !important;
+                    color: $color !important;
+
+                    &:hover, &:active, &:focus, 
+                    &:visited, &:focus-visible, &:focus-within {
+                        background-color: $color !important;
+                        border-color: inherit !important;  
+                        color: $bgcolor !important;   
+                    }
+                }
+
+                .imguser {
+                    background-color: $color !important;
+                    border-color: $color !important;
+                }
+
+                .dropdown {
+                    background-color: transparent !important;
+                    border-color: $bgcolor !important;
+                    color: $color !important;
+                }
+                    
+                .dropdown-menu {
+                    background-color: $bgcolor !important;
+                    border-color: $bgcolor !important;
+                    color: $color !important;
+
+                    .dropdown-item {
+                        color: $color !important;
+
+                        &:hover, &:active, &:focus, 
+                        &:visited, &:focus-visible, &:focus-within {
+                            background-color: $color !important;
+                            border-color: inherit !important;  
+                            color: $bgcolor !important;   
+                        }
+                    }
+                }
+
+                .links {
+                    a {
+                        &:hover {
+                            text-decoration: underline !important;
+                        }
+                    }
+                }
+
+                .actionlinks {
+                    .blkreactlist {
+                        background-color: $bgcolor !important;
+                        border-color: $color !important;
+                        color: $color !important;
+
+                        a, img, i, .icoreact {
+                            color: $color !important;
+
+                            &:hover, &:active, &:visited, &:focus, &:focus-visible, &:focus-within {
+                                color: #0d6efd !important;
+                            }
+                        }
+                    }
+
+                    .btn {
+                        box-shadow: none;
+                        -webkit-box-shadow: 3px 3px 3px 1px $color !important; 
+                        box-shadow: 3px 3px 3px 1px $color !important;
+
+                        &:hover, &:active, &:focus, 
+                        &:visited, &:focus-visible, &:focus-within {
+                            box-shadow: none;
+                            -webkit-box-shadow: 3px 3px 3px 1px $bgcolor !important; 
+                            box-shadow: 3px 3px 3px 1px $bgcolor !important;
+                        }
+                    }
+                }
+            }
+
+            .blkblogposts {
+                background-color: $altbgcolor !important;
+                color: $color !important;
+
+                .title {
+                    color: $color !important;
+                }
+
+                .listblogposts {
+                    color: $color !important;
+                }
+            }
+
+            .blkadvertisment, .blkads {
+                color: $color !important;
+
+                .titleadvertisment, .titleads {
+                    color: $color !important;
+                }
+            }
+
+            .blkmembersstatus {
+                color: $color !important;
+
+                .title {
+                    color: $color !important;
+                }
+
+                .imgmember {
+                    background-color: $color !important;
+                    border-color: $color !important;
+                }
+
+                .name {
+                    color: $color !important;
+                }
+
+                a {
+                    color: $color !important;
+
+                    &:hover, &:active, &:focus,
+                    &:focus-visible, &:focus-visible, &:visited {
+                        color: $color !important;
+                    }
+                }
+            }
+
+            .blklistfriends {
+                background-color: $bgcolor !important;
+                border-color: $color !important;
+                color: $color !important;
+
+                .blklistfriendsheader {
+                    color: $color !important;
+                }
+
+                .blklistfriendsbody {
+                    color: $color !important;
+                }
+            }
+
+            .blklistgroups {
+                border-color: $bgcolor !important;
+                color: $bgcolor !important;
+
+                .blklistgroupsheader {
+                    color: $bgcolor !important;
+
+                    .cover, .ico {
+                        color: $bgcolor !important;
+
+                        i, .bi {
+                            color: $bgcolor !important;
+                        }
+                    }
+                }
+
+                .blklistgroupsbody {
+                    background-color: $bgcolor !important;
+                    border-color: $bgcolor !important;
+                    color: $color !important;
+
+                    .cover, .ico {
+                        color: $bgcolor !important;
+
+                        i, .bi {
+                            color: $bgcolor !important;
+                        }
+                    }
+                }
+            }
+
+            .modal {
+                color: $color !important;
+
+                .modal-content {
+                    background-color: $bgcolor !important;
+                    border-color: $bgcolor !important;
+                }
+
+                .modal-header, .modal-footer {
+                    background-color: $bgcolor !important;
+                    color: $color !important;
+                }
+
+                .modal-body {
+                    background-color: $altbgcolor !important;
+                    color: $color !important;
+                }
+                
+                .modal-header, .modal-body, .modal-footer {
+                    .btn {
+                        color: $color !important;
+
+                        &:hover {
+                            background-color: $color !important;
+                            border-color: $bgcolor !important;
+                            color: $bgcolor !important;
+                        }
+                    }
+
+                    .btn-close {
+                        background: transparent url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23fff%27%3e%3cpath d=%27M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z%27/%3e%3c/svg%3e") center/1em auto no-repeat;
+                    }
+                }
+            }
+
+            .blkabout {
+                background-color: $altbgcolor !important;
+                color: $color !important;
+            
+                .title {
+                    color: $color;
+                }
+            
+                .text {
+                    color: $color;
+                }
+            }
+            
+            .blkfriends {
+                background-color: $altbgcolor !important;
+                color: $color !important;
+            
+                .table-responsive {
+                    .table {
+                        .imguser {
+                            background-color: $color !important;
+                            border-color: $bgcolor !important;
+                        }
+            
+                        .titleuser {
+                            color: $color !important;
+                        }
+                    }
+                }
+            }
+            
+            .blkgroups {
+                background-color: $altbgcolor !important;
+                color: $color !important;
+            
+                .listgroups {
+                    li, .grp {
+                        .grpico {
+                            &.grpgamesico {
+                                background-color: $bgcolor !important;
+                                border-color: $bgcolor !important;
+                                color: $color !important;
+                            }
+            
+                            &.grpprogitico {
+                                background-color: $bgcolor !important;
+                                border-color: $bgcolor !important;
+                                color: $color !important;
+                            }
+            
+                            &.grpmoviesico {
+                                background-color: $bgcolor !important;
+                                border-color: $bgcolor !important;
+                                color: $color !important;
+                            }
+                        }
+
+                        .grptitle {
+                            color: $color;
+                        }
+                    }
+                }
+            }
+            
+            .blkprofile {
+                background-color: $bgcolor;
+                color: $color;
+            
+                .imgprofilecover {
+                    background-color: $bgcolor;
+                }
+            
+                .blkprofilebody {
+                    background-color: $bgcolor;
+                    color: $color;
+            
+                    .blkprofilebodyleft {
+                        color: $color;
+                    }
+            
+                    .blkprofilebodyright {
+                        color: $color;
+                    }
+            
+                    .input-group {
+                        .btn {
+                            &.btneditprofile {
+                                background-color: $altbgcolor;
+                                border-color: $altbgcolor;
+                                color: $color;
+            
+                                &:hover, &:active, &:focus, &:visited, &:focus-visible, &:focus-within {
+                                    background-color: $color;
+                                    border-color: $color;
+                                    color: $altbgcolor;
+                                }
+                            }
+                            
+                            &.btnreportuser {
+                                background-color: $altbgcolor;
+                                border-color: $altbgcolor;
+                                color: $color;
+            
+                                &:hover, &:active, &:focus, &:visited, &:focus-visible, &:focus-within {
+                                    background-color: $color;
+                                    border-color: $color;
+                                    color: $altbgcolor;
+                                }
+                            }
+                        }
+                    }
+                }
+            
+                .blkprofilefooter {
+                    background-color: $altbgcolor !important;
+                    border-color: $color !important;
+                    color: $color !important;
+            
+                    .separator {
+                        border: 0;
+                        border-top: 2px solid $altbgcolor;
+                    }
+            
+                    .navprofileshlinks {
+                        .nav-item {
+                            a {
+                                background-color: transparent;
+                                border-color: $color !important;
+                                color: $color !important;  
+            
+                                &.active {
+                                    border: 0;
+                                    border-top: 2px solid $color !important;
+                                    color: $color !important;
+                                }
+            
+                                &:hover, &:active, &:focus, &:visited, &:focus-visible, &:focus-within {
+                                    text-decoration: underline !important;
+                                    font-weight: bold !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .blkpabout {
+                background: $altbgcolor !important;
+                border-color: $altbgcolor !important;
+                color: $color !important;
+              
+                .txtpabout {
+                  color: $color !important;
+                }
+            }
+
+            .mycopyrightblk, #mycopyrightblk {
+                background-color: $altbgcolor !important;
+                color: $color !important;
+
+                * {
+                    color: $color !important;
+                }
+            }
+        }
+    }
+}

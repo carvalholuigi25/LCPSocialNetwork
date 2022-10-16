@@ -1,0 +1,74 @@
+[2022-09-21 15:09:46.708 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-21 15:09:46.834 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-21 15:09:46.835 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-21 15:09:46.837 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-21 15:09:46.837 +01:00  INF]  Hosting environment: Development
+[2022-09-21 15:09:46.837 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-21 15:09:47.567 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-21 15:09:47.838 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 273.1462ms
+[2022-09-21 15:09:47.861 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-21 15:09:47.861 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-21 15:09:47.865 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 3.5271ms
+[2022-09-21 15:09:47.909 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 47.6609ms
+[2022-09-21 15:09:48.017 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-21 15:09:48.246 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 229.2268ms
+[2022-09-21 15:09:54.449 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users - -
+[2022-09-21 15:09:54.486 +01:00  INF]  Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (superadmin|admin)
+[2022-09-21 15:09:54.488 +01:00  INF]  AuthenticationScheme: Bearer was challenged.
+[2022-09-21 15:09:54.489 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users - - - 401 0 - 40.1934ms
+[2022-09-21 15:10:23.052 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users/1 - -
+[2022-09-21 15:10:23.059 +01:00  INF]  Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+[2022-09-21 15:10:23.060 +01:00  INF]  AuthenticationScheme: Bearer was challenged.
+[2022-09-21 15:10:23.060 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users/1 - - - 401 0 - 8.0875ms
+[2022-09-21 15:10:39.957 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/token - -
+[2022-09-21 15:10:39.961 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi)'
+[2022-09-21 15:10:39.983 +01:00  INF]  Route matched with {action = "GetUserTokens", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[lcpsnapi.Classes.UsersToken]]] GetUserTokens() on controller lcpsnapi.Controllers.TokenController (lcpsnapi).
+[2022-09-21 15:10:43.137 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[lcpsnapi.Classes.UsersToken, lcpsnapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-09-21 15:10:43.149 +01:00  INF]  Executed action lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi) in 3160.7237ms
+[2022-09-21 15:10:43.150 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi)'
+[2022-09-21 15:10:43.153 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/token - - - 200 - application/json;+charset=utf-8 3196.6270ms
+[2022-09-21 15:11:06.689 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users - -
+[2022-09-21 15:11:06.946 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi)'
+[2022-09-21 15:11:06.949 +01:00  INF]  Route matched with {action = "GetUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[lcpsnapi.Classes.Users]]] GetUser() on controller lcpsnapi.Controllers.UsersController (lcpsnapi).
+[2022-09-21 15:11:06.952 +01:00  INF]  Users executing...
+[2022-09-21 15:11:07.041 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[lcpsnapi.Classes.Users, lcpsnapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-09-21 15:11:07.064 +01:00  INF]  Executed action lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi) in 114.3117ms
+[2022-09-21 15:11:07.064 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi)'
+[2022-09-21 15:11:07.065 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users - - - 200 - application/json;+charset=utf-8 375.1726ms
+[2022-09-21 15:13:23.615 +01:00  INF]  Application is shutting down...
+[2022-09-21 15:13:56.294 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-21 15:13:56.466 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-21 15:13:56.466 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-21 15:13:56.469 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-21 15:13:56.469 +01:00  INF]  Hosting environment: Development
+[2022-09-21 15:13:56.469 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-21 15:13:56.923 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-21 15:13:57.185 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 264.1624ms
+[2022-09-21 15:13:57.196 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-21 15:13:57.197 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-21 15:13:57.201 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 3.9700ms
+[2022-09-21 15:13:57.215 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 18.4300ms
+[2022-09-21 15:13:57.398 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-21 15:13:57.641 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 242.4302ms
+[2022-09-21 15:14:17.730 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/token - -
+[2022-09-21 15:14:17.769 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi)'
+[2022-09-21 15:14:17.786 +01:00  INF]  Route matched with {action = "GetUserTokens", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[lcpsnapi.Classes.UsersToken]]] GetUserTokens() on controller lcpsnapi.Controllers.TokenController (lcpsnapi).
+[2022-09-21 15:14:19.662 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[lcpsnapi.Classes.UsersToken, lcpsnapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-09-21 15:14:19.682 +01:00  INF]  Executed action lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi) in 1889.5192ms
+[2022-09-21 15:14:19.683 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi)'
+[2022-09-21 15:14:19.688 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/token - - - 200 - application/json;+charset=utf-8 1957.7844ms
+[2022-09-21 15:14:34.886 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users - -
+[2022-09-21 15:14:35.061 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi)'
+[2022-09-21 15:14:35.063 +01:00  INF]  Route matched with {action = "GetUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[lcpsnapi.Classes.Users]]] GetUser() on controller lcpsnapi.Controllers.UsersController (lcpsnapi).
+[2022-09-21 15:14:35.148 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[lcpsnapi.Classes.Users, lcpsnapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-09-21 15:14:35.162 +01:00  INF]  Executed action lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi) in 98.6562ms
+[2022-09-21 15:14:35.162 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi)'
+[2022-09-21 15:14:35.163 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users - - - 200 - application/json;+charset=utf-8 276.9858ms
+[2022-09-21 15:16:05.141 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users - -
+[2022-09-21 15:16:05.143 +01:00  INF]  Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (superadmin|admin)
+[2022-09-21 15:16:05.146 +01:00  INF]  AuthenticationScheme: Bearer was challenged.
+[2022-09-21 15:16:05.146 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users - - - 401 0 - 5.3399ms
+[2022-09-21 15:16:49.113 +01:00  INF]  Application is shutting down...

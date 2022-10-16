@@ -1,0 +1,32 @@
+﻿@page
+@model lcpsnapi.Pages.IndexModel
+
+@{
+    DateTime dtn = DateTime.UtcNow;
+    ViewBag.Title = "Home";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="colcenter">
+    <h2>Welcome to LCP Social Network API!</h2>
+    <p>Hello world!</p>
+    <p>The time on the server is @dtn</p>
+
+    <ol>
+        <li>
+            <a href="/swagger/index.html">Swagger API</a>
+        </li>
+        <li>
+            <a href="/contacts">Contacts</a>
+        </li>
+        <li>
+            <a href="/license">License</a>
+        </li>
+        <li>
+            <a href="/terms">Terms and Conditions</a>
+        </li>
+        <li>
+            <a href="/privacypolicy">Privacy Policy</a>
+        </li>
+    </ol>
+</div>

@@ -1,0 +1,342 @@
+[2022-09-23 14:10:04.993 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 14:10:05.105 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 14:10:05.105 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 14:10:05.107 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 14:10:05.107 +01:00  INF]  Hosting environment: Development
+[2022-09-23 14:10:05.107 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 14:10:05.787 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 14:10:06.032 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 249.3919ms
+[2022-09-23 14:10:06.065 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-23 14:10:06.065 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-23 14:10:06.068 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 3.5012ms
+[2022-09-23 14:10:06.081 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 15.8909ms
+[2022-09-23 14:10:06.221 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 14:10:06.452 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 231.4006ms
+[2022-09-23 14:10:16.948 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/weather/Braga/pt - -
+[2022-09-23 14:10:17.010 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetWeather (lcpsnapi)'
+[2022-09-23 14:10:17.035 +01:00  INF]  Route matched with {action = "GetWeather", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetWeather(System.String, System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 14:10:17.523 +01:00  INF]  Executing OkObjectResult, writing value of type 'lcpsnapi.Classes.WeatherRoot'.
+[2022-09-23 14:10:17.536 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetWeather (lcpsnapi) in 493.5859ms
+[2022-09-23 14:10:17.536 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetWeather (lcpsnapi)'
+[2022-09-23 14:10:17.537 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/weather/Braga/pt - - - 200 - application/json;+charset=utf-8 588.9506ms
+[2022-09-23 14:10:44.505 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/weather/Los Angeles/us/ca - -
+[2022-09-23 14:10:44.507 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetWeatherWithState (lcpsnapi)'
+[2022-09-23 14:10:44.511 +01:00  INF]  Route matched with {action = "GetWeatherWithState", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetWeatherWithState(System.String, System.String, System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 14:10:44.829 +01:00  INF]  Executing OkObjectResult, writing value of type 'lcpsnapi.Classes.WeatherRoot'.
+[2022-09-23 14:10:44.830 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetWeatherWithState (lcpsnapi) in 318.987ms
+[2022-09-23 14:10:44.830 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetWeatherWithState (lcpsnapi)'
+[2022-09-23 14:10:44.830 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/weather/Los Angeles/us/ca - - - 200 - application/json;+charset=utf-8 325.3151ms
+[2022-09-23 14:11:04.954 +01:00  INF]  Application is shutting down...
+[2022-09-23 14:15:48.432 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 14:15:48.538 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 14:15:48.538 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 14:15:48.540 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 14:15:48.541 +01:00  INF]  Hosting environment: Development
+[2022-09-23 14:15:48.541 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 14:15:57.197 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/ - -
+[2022-09-23 14:15:57.830 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/ - - - 404 0 - 643.3673ms
+[2022-09-23 14:16:01.144 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 14:16:01.200 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 56.0929ms
+[2022-09-23 14:16:01.353 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 14:16:01.542 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 189.5818ms
+[2022-09-23 14:16:31.241 +01:00  INF]  Application is shutting down...
+[2022-09-23 14:35:35.868 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 14:35:35.981 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 14:35:35.981 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 14:35:35.984 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 14:35:35.985 +01:00  INF]  Hosting environment: Development
+[2022-09-23 14:35:35.985 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 14:35:36.834 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 14:35:37.132 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 301.9565ms
+[2022-09-23 14:35:37.160 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-23 14:35:37.161 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-23 14:35:37.165 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 4.0476ms
+[2022-09-23 14:35:37.349 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 189.7142ms
+[2022-09-23 14:35:37.442 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 14:35:37.678 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 236.0509ms
+[2022-09-23 14:35:55.901 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 14:35:55.947 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 45.8600ms
+[2022-09-23 14:35:56.158 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/favicon.ico - -
+[2022-09-23 14:35:56.205 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/favicon.ico - - - 404 0 - 47.1014ms
+[2022-09-23 14:36:15.994 +01:00  INF]  Application is shutting down...
+[2022-09-23 14:41:50.451 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 14:41:50.671 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 14:41:50.671 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 14:41:50.674 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 14:41:50.674 +01:00  INF]  Hosting environment: Development
+[2022-09-23 14:41:50.674 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 14:41:58.206 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/ - -
+[2022-09-23 14:41:58.374 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/ - - - 404 0 - 171.2892ms
+[2022-09-23 14:42:03.089 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 14:42:03.156 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 66.6720ms
+[2022-09-23 14:42:03.340 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 14:42:03.533 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 193.6687ms
+[2022-09-23 14:42:11.338 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Attachments - -
+[2022-09-23 14:42:11.370 +01:00  INF]  Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (user|editor|moderator|admin|superadmin)
+[2022-09-23 14:42:11.374 +01:00  INF]  AuthenticationScheme: Bearer was challenged.
+[2022-09-23 14:42:11.374 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Attachments - - - 401 0 - 36.1426ms
+[2022-09-23 14:42:32.631 +01:00  INF]  Application is shutting down...
+[2022-09-23 17:25:55.054 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 17:25:55.237 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 17:25:55.237 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 17:25:55.240 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 17:25:55.240 +01:00  INF]  Hosting environment: Development
+[2022-09-23 17:25:55.240 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 17:25:56.039 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 17:25:56.380 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 343.1823ms
+[2022-09-23 17:25:56.401 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-23 17:25:56.401 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-23 17:25:56.405 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 4.1738ms
+[2022-09-23 17:25:56.455 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 54.1339ms
+[2022-09-23 17:25:56.572 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 17:25:56.805 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 232.8996ms
+[2022-09-23 17:26:18.382 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone/lisbon - -
+[2022-09-23 17:26:18.452 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:26:18.485 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:26:18.575 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:26:18.582 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 92.1382ms
+[2022-09-23 17:26:18.582 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:26:18.583 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone/lisbon - - - 200 - application/json;+charset=utf-8 200.4588ms
+[2022-09-23 17:26:23.212 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone/Lisbon - -
+[2022-09-23 17:26:23.216 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:26:23.216 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:26:23.233 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:26:23.233 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 15.3865ms
+[2022-09-23 17:26:23.234 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:26:23.234 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone/Lisbon - - - 200 - application/json;+charset=utf-8 21.6000ms
+[2022-09-23 17:26:26.371 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone/London - -
+[2022-09-23 17:26:26.374 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:26:26.374 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:26:26.374 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:26:26.374 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 0.4298ms
+[2022-09-23 17:26:26.374 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:26:26.375 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone/London - - - 200 - application/json;+charset=utf-8 3.1179ms
+[2022-09-23 17:27:59.795 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone/Europe - -
+[2022-09-23 17:27:59.795 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:27:59.795 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:27:59.796 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:27:59.796 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 0.3486ms
+[2022-09-23 17:27:59.796 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:27:59.796 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone/Europe - - - 200 - application/json;+charset=utf-8 0.9637ms
+[2022-09-23 17:28:05.285 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone/Europe%2FLondon - -
+[2022-09-23 17:28:05.286 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:28:05.286 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:28:05.286 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:28:05.286 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 0.3563ms
+[2022-09-23 17:28:05.286 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:28:05.286 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone/Europe%2FLondon - - - 200 - application/json;+charset=utf-8 0.8865ms
+[2022-09-23 17:28:10.338 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone/Europe%2F%2FLondon - -
+[2022-09-23 17:28:10.338 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:28:10.338 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:28:10.339 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:28:10.339 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 0.3912ms
+[2022-09-23 17:28:10.339 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:28:10.339 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone/Europe%2F%2FLondon - - - 200 - application/json;+charset=utf-8 0.9528ms
+[2022-09-23 17:28:35.721 +01:00  INF]  Application is shutting down...
+[2022-09-23 17:28:41.009 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 17:28:41.121 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 17:28:41.121 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 17:28:41.124 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 17:28:41.124 +01:00  INF]  Hosting environment: Development
+[2022-09-23 17:28:41.124 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 17:28:41.559 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 17:28:41.739 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 181.0785ms
+[2022-09-23 17:28:41.749 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-23 17:28:41.749 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-23 17:28:41.752 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 2.3678ms
+[2022-09-23 17:28:41.763 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 13.9062ms
+[2022-09-23 17:28:41.921 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 17:28:42.017 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/favicon-32x32.png - -
+[2022-09-23 17:28:42.030 +01:00  INF]  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+[2022-09-23 17:28:42.031 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/favicon-32x32.png - - - 200 628 image/png 14.5086ms
+[2022-09-23 17:28:42.106 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 185.4058ms
+[2022-09-23 17:29:12.495 +01:00  INF]  Application is shutting down...
+[2022-09-23 17:29:22.927 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 17:29:23.040 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 17:29:23.040 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 17:29:23.042 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 17:29:23.043 +01:00  INF]  Hosting environment: Development
+[2022-09-23 17:29:23.043 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 17:29:23.477 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 17:29:23.652 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 176.8346ms
+[2022-09-23 17:29:23.663 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-23 17:29:23.663 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-23 17:29:23.667 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 3.6133ms
+[2022-09-23 17:29:23.679 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 16.2803ms
+[2022-09-23 17:29:23.807 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 17:29:23.994 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 186.7901ms
+[2022-09-23 17:29:29.884 +01:00  INF]  Application is shutting down...
+[2022-09-23 17:29:44.956 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 17:29:45.075 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 17:29:45.076 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 17:29:45.079 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 17:29:45.079 +01:00  INF]  Hosting environment: Development
+[2022-09-23 17:29:45.079 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 17:29:45.489 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 17:29:45.670 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 181.8532ms
+[2022-09-23 17:29:45.678 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-23 17:29:45.678 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-23 17:29:45.681 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 3.2033ms
+[2022-09-23 17:29:45.693 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.7902ms
+[2022-09-23 17:29:45.824 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 17:29:46.016 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 191.3011ms
+[2022-09-23 17:29:53.110 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone - -
+[2022-09-23 17:29:53.145 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:29:53.176 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:29:53.226 +01:00  INF]  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[2022-09-23 17:29:53.237 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 53.6114ms
+[2022-09-23 17:29:53.237 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:29:53.237 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone - - - 400 - application/problem+json;+charset=utf-8 126.4588ms
+[2022-09-23 17:30:07.653 +01:00  INF]  Application is shutting down...
+[2022-09-23 17:30:12.844 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 17:30:12.953 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 17:30:12.953 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 17:30:12.955 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 17:30:12.955 +01:00  INF]  Hosting environment: Development
+[2022-09-23 17:30:12.955 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 17:30:13.552 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 17:30:13.774 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 227.9196ms
+[2022-09-23 17:30:13.795 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-23 17:30:13.795 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-23 17:30:13.799 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 4.3358ms
+[2022-09-23 17:30:13.814 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 18.8966ms
+[2022-09-23 17:30:13.941 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 17:30:14.160 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 218.6207ms
+[2022-09-23 17:30:18.555 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone - -
+[2022-09-23 17:30:18.590 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:30:18.618 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:30:18.702 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:30:18.712 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 88.0253ms
+[2022-09-23 17:30:18.712 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:30:18.713 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone - - - 200 - application/json;+charset=utf-8 157.7033ms
+[2022-09-23 17:30:55.572 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone?tz=Lisboa - -
+[2022-09-23 17:30:55.575 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:30:55.575 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:30:55.615 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:30:55.616 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 41.2946ms
+[2022-09-23 17:30:55.616 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:30:55.616 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone?tz=Lisboa - - - 200 - application/json;+charset=utf-8 44.8777ms
+[2022-09-23 17:32:24.816 +01:00  INF]  Application is shutting down...
+[2022-09-23 17:33:09.375 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 17:33:09.472 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 17:33:09.472 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 17:33:09.474 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 17:33:09.474 +01:00  INF]  Hosting environment: Development
+[2022-09-23 17:33:09.474 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 17:33:17.243 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/ - -
+[2022-09-23 17:33:17.528 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/ - - - 404 0 - 293.1569ms
+[2022-09-23 17:33:21.710 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 17:33:21.777 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 67.3149ms
+[2022-09-23 17:33:21.952 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 17:33:22.182 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 230.0444ms
+[2022-09-23 17:33:35.593 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/timezone - -
+[2022-09-23 17:33:35.599 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:33:35.627 +01:00  INF]  Route matched with {action = "GetMyTimezone", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IList`1[System.TimeZoneInfo]]] GetMyTimezone(System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-23 17:33:35.712 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.TimeZoneInfo, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-09-23 17:33:35.720 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi) in 88.6395ms
+[2022-09-23 17:33:35.721 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetMyTimezone (lcpsnapi)'
+[2022-09-23 17:33:35.721 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/timezone - - - 200 - application/json;+charset=utf-8 127.2162ms
+[2022-09-23 17:34:22.132 +01:00  INF]  Application is shutting down...
+[2022-09-23 18:05:57.840 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 18:05:57.952 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 18:05:57.952 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 18:05:57.955 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 18:05:57.955 +01:00  INF]  Hosting environment: Development
+[2022-09-23 18:05:57.955 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 18:05:59.508 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 18:05:59.882 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 380.0694ms
+[2022-09-23 18:05:59.896 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-23 18:05:59.900 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 3.2829ms
+[2022-09-23 18:05:59.904 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-23 18:05:59.969 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 64.5195ms
+[2022-09-23 18:06:00.115 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 18:06:00.364 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 248.8293ms
+[2022-09-23 18:06:23.268 +01:00  INF]  Request starting HTTP/2 POST https://localhost:7099/api/Users application/json 573
+[2022-09-23 18:06:23.274 +01:00  INF]  CORS policy execution successful.
+[2022-09-23 18:06:23.328 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.UsersController.PostUsers (lcpsnapi)'
+[2022-09-23 18:06:23.354 +01:00  INF]  Route matched with {action = "PostUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[lcpsnapi.Classes.Users]] PostUsers(lcpsnapi.Classes.Users) on controller lcpsnapi.Controllers.UsersController (lcpsnapi).
+[2022-09-23 18:06:25.145 +01:00  INF]  Executing ObjectResult, writing value of type 'lcpsnapi.Classes.Users'.
+[2022-09-23 18:06:25.160 +01:00  INF]  Executed action lcpsnapi.Controllers.UsersController.PostUsers (lcpsnapi) in 1799.3084ms
+[2022-09-23 18:06:25.160 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.UsersController.PostUsers (lcpsnapi)'
+[2022-09-23 18:06:25.163 +01:00  INF]  Request finished HTTP/2 POST https://localhost:7099/api/Users application/json 573 - 200 - application/json;+charset=utf-8 1895.5097ms
+[2022-09-23 18:06:56.641 +01:00  INF]  Request starting HTTP/2 POST https://localhost:7099/api/Users application/json 598
+[2022-09-23 18:06:56.643 +01:00  INF]  CORS policy execution successful.
+[2022-09-23 18:06:56.644 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.UsersController.PostUsers (lcpsnapi)'
+[2022-09-23 18:06:56.644 +01:00  INF]  Route matched with {action = "PostUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[lcpsnapi.Classes.Users]] PostUsers(lcpsnapi.Classes.Users) on controller lcpsnapi.Controllers.UsersController (lcpsnapi).
+[2022-09-23 18:06:56.715 +01:00  INF]  Executing ObjectResult, writing value of type 'lcpsnapi.Classes.Users'.
+[2022-09-23 18:06:56.715 +01:00  INF]  Executed action lcpsnapi.Controllers.UsersController.PostUsers (lcpsnapi) in 70.8237ms
+[2022-09-23 18:06:56.715 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.UsersController.PostUsers (lcpsnapi)'
+[2022-09-23 18:06:56.715 +01:00  INF]  Request finished HTTP/2 POST https://localhost:7099/api/Users application/json 598 - 200 - application/json;+charset=utf-8 75.0463ms
+[2022-09-23 18:07:13.814 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users - -
+[2022-09-23 18:07:13.848 +01:00  INF]  Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (superadmin|admin)
+[2022-09-23 18:07:13.852 +01:00  INF]  AuthenticationScheme: Bearer was challenged.
+[2022-09-23 18:07:13.852 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users - - - 401 0 - 38.5693ms
+[2022-09-23 18:07:46.488 +01:00  INF]  Request starting HTTP/2 POST https://localhost:7099/api/token/months/1 application/json 52
+[2022-09-23 18:07:46.488 +01:00  INF]  CORS policy execution successful.
+[2022-09-23 18:07:46.488 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.TokenController.Post (lcpsnapi)'
+[2022-09-23 18:07:46.496 +01:00  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(lcpsnapi.Classes.UsersTokenLogin, TokenUnitTime, Int32) on controller lcpsnapi.Controllers.TokenController (lcpsnapi).
+[2022-09-23 18:07:47.044 +01:00  INF]  Executing OkObjectResult, writing value of type '<>f__AnonymousType4`3[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Security.Claims.Claim[], System.Security.Claims, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]'.
+[2022-09-23 18:07:47.049 +01:00  INF]  Executed action lcpsnapi.Controllers.TokenController.Post (lcpsnapi) in 553.2903ms
+[2022-09-23 18:07:47.049 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.TokenController.Post (lcpsnapi)'
+[2022-09-23 18:07:47.051 +01:00  INF]  Request finished HTTP/2 POST https://localhost:7099/api/token/months/1 application/json 52 - 200 - application/json;+charset=utf-8 563.0174ms
+[2022-09-23 18:08:07.470 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users - -
+[2022-09-23 18:08:07.576 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi)'
+[2022-09-23 18:08:07.577 +01:00  INF]  Route matched with {action = "GetUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[lcpsnapi.Classes.Users]]] GetUser() on controller lcpsnapi.Controllers.UsersController (lcpsnapi).
+[2022-09-23 18:08:07.587 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[lcpsnapi.Classes.Users, lcpsnapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-09-23 18:08:07.587 +01:00  INF]  Executed action lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi) in 9.9674ms
+[2022-09-23 18:08:07.587 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi)'
+[2022-09-23 18:08:07.588 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users - - - 200 - application/json;+charset=utf-8 117.5367ms
+[2022-09-23 18:08:43.653 +01:00  INF]  Request starting HTTP/2 POST https://localhost:7099/api/token/months/1 application/json 51
+[2022-09-23 18:08:43.654 +01:00  INF]  CORS policy execution successful.
+[2022-09-23 18:08:43.654 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.TokenController.Post (lcpsnapi)'
+[2022-09-23 18:08:43.654 +01:00  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(lcpsnapi.Classes.UsersTokenLogin, TokenUnitTime, Int32) on controller lcpsnapi.Controllers.TokenController (lcpsnapi).
+[2022-09-23 18:08:43.677 +01:00  INF]  Executing OkObjectResult, writing value of type '<>f__AnonymousType4`3[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Security.Claims.Claim[], System.Security.Claims, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]'.
+[2022-09-23 18:08:43.678 +01:00  INF]  Executed action lcpsnapi.Controllers.TokenController.Post (lcpsnapi) in 24.2464ms
+[2022-09-23 18:08:43.678 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.TokenController.Post (lcpsnapi)'
+[2022-09-23 18:08:43.679 +01:00  INF]  Request finished HTTP/2 POST https://localhost:7099/api/token/months/1 application/json 51 - 200 - application/json;+charset=utf-8 25.1513ms
+[2022-09-23 18:09:05.285 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users - -
+[2022-09-23 18:09:05.286 +01:00  INF]  Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (superadmin|admin)
+[2022-09-23 18:09:05.287 +01:00  INF]  AuthenticationScheme: Bearer was forbidden.
+[2022-09-23 18:09:05.287 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users - - - 403 0 - 2.5993ms
+[2022-09-23 18:09:25.354 +01:00  INF]  Application is shutting down...
+[2022-09-23 18:12:01.765 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 18:12:01.869 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 18:12:01.869 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 18:12:01.872 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 18:12:01.872 +01:00  INF]  Hosting environment: Development
+[2022-09-23 18:12:01.872 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 18:12:06.675 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/ - -
+[2022-09-23 18:12:07.426 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/ - - - 404 0 - 758.8874ms
+[2022-09-23 18:12:09.646 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 18:12:09.713 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 67.2637ms
+[2022-09-23 18:12:09.926 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 18:12:10.175 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 249.4705ms
+[2022-09-23 18:12:48.158 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Achievements - -
+[2022-09-23 18:12:48.166 +01:00  INF]  Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (user|editor|moderator|admin|superadmin)
+[2022-09-23 18:12:48.170 +01:00  INF]  AuthenticationScheme: Bearer was challenged.
+[2022-09-23 18:12:48.171 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Achievements - - - 401 0 - 12.8556ms
+[2022-09-23 18:13:16.072 +01:00  INF]  Application is shutting down...
+[2022-09-23 18:14:53.741 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-23 18:14:53.850 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-23 18:14:53.850 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-23 18:14:53.853 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-23 18:14:53.854 +01:00  INF]  Hosting environment: Development
+[2022-09-23 18:14:53.854 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-23 18:15:00.389 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/ - -
+[2022-09-23 18:15:00.541 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/ - - - 404 0 - 157.6370ms
+[2022-09-23 18:15:02.650 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-23 18:15:02.703 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 53.0011ms
+[2022-09-23 18:15:02.864 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-23 18:15:03.162 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 297.7465ms
+[2022-09-23 18:15:22.448 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/token - -
+[2022-09-23 18:15:22.453 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi)'
+[2022-09-23 18:15:22.471 +01:00  INF]  Route matched with {action = "GetUserTokens", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[lcpsnapi.Classes.UsersToken]]] GetUserTokens() on controller lcpsnapi.Controllers.TokenController (lcpsnapi).
+[2022-09-23 18:15:24.961 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[lcpsnapi.Classes.UsersToken, lcpsnapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-09-23 18:15:24.972 +01:00  INF]  Executed action lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi) in 2494.5911ms
+[2022-09-23 18:15:24.972 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi)'
+[2022-09-23 18:15:24.976 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/token - - - 200 - application/json;+charset=utf-8 2527.4378ms
+[2022-09-23 18:15:57.880 +01:00  INF]  Application is shutting down...

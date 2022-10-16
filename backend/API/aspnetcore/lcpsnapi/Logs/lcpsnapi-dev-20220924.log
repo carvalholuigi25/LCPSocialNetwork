@@ -1,0 +1,252 @@
+[2022-09-24 13:50:02.618 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-24 13:50:03.153 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-24 13:50:03.154 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-24 13:50:03.156 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-24 13:50:03.156 +01:00  INF]  Hosting environment: Development
+[2022-09-24 13:50:03.156 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-24 13:50:03.479 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 13:50:03.910 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 13:50:03.914 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 440.9062ms
+[2022-09-24 13:50:03.915 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 4.6070ms
+[2022-09-24 13:50:03.931 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 13:50:03.992 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 60.9956ms
+[2022-09-24 13:50:04.105 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 13:50:04.354 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 248.9834ms
+[2022-09-24 13:50:17.182 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/weather/Braga/pt/metric/pt - -
+[2022-09-24 13:50:17.552 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetWeather (lcpsnapi)'
+[2022-09-24 13:50:17.581 +01:00  INF]  Route matched with {action = "GetWeather", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetWeather(System.String, System.String, System.String, System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-24 13:50:18.191 +01:00  INF]  Executing OkObjectResult, writing value of type 'lcpsnapi.Classes.WeatherRoot'.
+[2022-09-24 13:50:18.207 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetWeather (lcpsnapi) in 620.1632ms
+[2022-09-24 13:50:18.207 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetWeather (lcpsnapi)'
+[2022-09-24 13:50:18.208 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/weather/Braga/pt/metric/pt - - - 200 - application/json;+charset=utf-8 1025.7379ms
+[2022-09-24 13:50:50.451 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/misc/weather/Los Angeles/us/metric/en/ca - -
+[2022-09-24 13:50:50.454 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.MiscController.GetWeatherWithState (lcpsnapi)'
+[2022-09-24 13:50:50.459 +01:00  INF]  Route matched with {action = "GetWeatherWithState", controller = "Misc"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetWeatherWithState(System.String, System.String, System.String, System.String, System.String) on controller lcpsnapi.Controllers.MiscController (lcpsnapi).
+[2022-09-24 13:50:50.651 +01:00  INF]  Executing OkObjectResult, writing value of type 'lcpsnapi.Classes.WeatherRoot'.
+[2022-09-24 13:50:50.652 +01:00  INF]  Executed action lcpsnapi.Controllers.MiscController.GetWeatherWithState (lcpsnapi) in 192.7509ms
+[2022-09-24 13:50:50.652 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.MiscController.GetWeatherWithState (lcpsnapi)'
+[2022-09-24 13:50:50.652 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/misc/weather/Los Angeles/us/metric/en/ca - - - 200 - application/json;+charset=utf-8 201.3327ms
+[2022-09-24 13:51:15.862 +01:00  INF]  Application is shutting down...
+[2022-09-24 14:01:39.077 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-24 14:01:39.172 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-24 14:01:39.172 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-24 14:01:39.175 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-24 14:01:39.175 +01:00  INF]  Hosting environment: Development
+[2022-09-24 14:01:39.175 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-24 14:01:46.565 +01:00  INF]  Request starting HTTP/1.1 GET http://localhost:5017/ - -
+[2022-09-24 14:01:46.761 +01:00  INF]  Request finished HTTP/1.1 GET http://localhost:5017/ - - - 307 0 - 209.2470ms
+[2022-09-24 14:01:46.915 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/ - -
+[2022-09-24 14:01:46.950 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/ - - - 404 0 - 34.7826ms
+[2022-09-24 14:01:49.674 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 14:01:49.725 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 51.0764ms
+[2022-09-24 14:01:49.894 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 14:01:50.084 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 189.8819ms
+[2022-09-24 14:02:34.030 +01:00  INF]  Application is shutting down...
+[2022-09-24 14:17:55.145 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-24 14:17:55.254 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-24 14:17:55.254 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-24 14:17:55.257 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-24 14:17:55.257 +01:00  INF]  Hosting environment: Development
+[2022-09-24 14:17:55.257 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-24 14:17:56.753 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 14:17:57.200 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 456.0418ms
+[2022-09-24 14:17:57.212 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 14:17:57.216 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 4.2232ms
+[2022-09-24 14:17:57.221 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 14:17:57.262 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 41.5471ms
+[2022-09-24 14:17:57.383 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 14:17:57.795 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 411.1790ms
+[2022-09-24 14:18:05.415 +01:00  INF]  Application is shutting down...
+[2022-09-24 17:30:19.175 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-24 17:30:19.311 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-24 17:30:19.311 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-24 17:30:19.313 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-24 17:30:19.313 +01:00  INF]  Hosting environment: Development
+[2022-09-24 17:30:19.313 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-24 17:30:21.156 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 17:30:21.577 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 428.1119ms
+[2022-09-24 17:30:21.581 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 17:30:21.587 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 5.9352ms
+[2022-09-24 17:30:21.597 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 17:30:21.625 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 27.0505ms
+[2022-09-24 17:30:21.766 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 17:30:22.007 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 241.0352ms
+[2022-09-24 17:30:25.762 +01:00  INF]  Application is shutting down...
+[2022-09-24 17:39:01.881 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-24 17:39:01.990 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-24 17:39:01.990 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-24 17:39:01.992 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-24 17:39:01.992 +01:00  INF]  Hosting environment: Development
+[2022-09-24 17:39:01.992 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-24 17:39:02.591 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 17:39:02.877 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 291.3406ms
+[2022-09-24 17:39:02.891 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 17:39:02.894 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 3.5949ms
+[2022-09-24 17:39:02.902 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 17:39:02.920 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 17.1209ms
+[2022-09-24 17:39:03.121 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 17:39:03.553 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 432.4298ms
+[2022-09-24 17:39:16.001 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/token - -
+[2022-09-24 17:39:16.337 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi)'
+[2022-09-24 17:39:16.354 +01:00  INF]  Route matched with {action = "GetUserTokens", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[lcpsnapi.Classes.UsersToken]]] GetUserTokens() on controller lcpsnapi.Controllers.TokenController (lcpsnapi).
+[2022-09-24 17:39:18.321 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[lcpsnapi.Classes.UsersToken, lcpsnapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-09-24 17:39:18.334 +01:00  INF]  Executed action lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi) in 1974.7594ms
+[2022-09-24 17:39:18.334 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.TokenController.GetUserTokens (lcpsnapi)'
+[2022-09-24 17:39:18.341 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/token - - - 200 - application/json;+charset=utf-8 2339.0762ms
+[2022-09-24 17:39:44.755 +01:00  INF]  Request starting HTTP/2 POST https://localhost:7099/api/token/months/1 application/json 52
+[2022-09-24 17:39:44.762 +01:00  INF]  CORS policy execution successful.
+[2022-09-24 17:39:44.790 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.TokenController.Post (lcpsnapi)'
+[2022-09-24 17:39:44.808 +01:00  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[lcpsnapi.Classes.UsersTokenInfo]] Post(lcpsnapi.Classes.UsersTokenLogin, TokenUnitTime, Int32) on controller lcpsnapi.Controllers.TokenController (lcpsnapi).
+[2022-09-24 17:39:44.910 +01:00  INF]  Executed action lcpsnapi.Controllers.TokenController.Post (lcpsnapi) in 101.8641ms
+[2022-09-24 17:39:44.911 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.TokenController.Post (lcpsnapi)'
+[2022-09-24 17:39:45.028 +01:00  ERR]  System.NullReferenceException: Object reference not set to an instance of an object.
+   at lcpsnapi.Helpers.TokenHelpers.GetUser(String uname, String password) in C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\Helpers\TokenHelpers.cs:line 196
+   at lcpsnapi.Helpers.TokenHelpers.GenerateToken(UsersTokenLogin _userData, TokenUnitTime unitTime, Int32 unitTimeVal) in C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\Helpers\TokenHelpers.cs:line 77
+   at lcpsnapi.Controllers.TokenController.Post(UsersTokenLogin _userData, TokenUnitTime unitTime, Int32 unitTimeVal) in C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\Controllers\TokenController.cs:line 51
+   at lambda_method104(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at lcpsnapi.Middlewares.ExceptionHandlingMiddleware.Invoke(HttpContext context) in C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\Middlewares\ExceptionHandlingMiddleware.cs:line 20
+[2022-09-24 17:39:45.118 +01:00  INF]  Request finished HTTP/2 POST https://localhost:7099/api/token/months/1 application/json 52 - 500 - application/json 363.6355ms
+[2022-09-24 17:45:29.041 +01:00  INF]  Application is shutting down...
+[2022-09-24 18:12:18.628 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-24 18:12:18.747 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-24 18:12:18.747 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-24 18:12:18.752 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-24 18:12:18.752 +01:00  INF]  Hosting environment: Development
+[2022-09-24 18:12:18.752 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-24 18:12:18.969 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 18:12:19.219 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 253.8489ms
+[2022-09-24 18:12:19.236 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 18:12:19.242 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 6.3852ms
+[2022-09-24 18:12:19.252 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 18:12:19.321 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 68.8949ms
+[2022-09-24 18:12:19.468 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 18:12:19.758 +01:00  ERR]  Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - lcpsnapi.Controllers.TokenController.GenDateExpOnly (lcpsnapi). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at lcpsnapi.Middlewares.ExceptionHandlingMiddleware.Invoke(HttpContext context) in C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\Middlewares\ExceptionHandlingMiddleware.cs:line 20
+[2022-09-24 18:12:19.845 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 500 - application/json 376.7763ms
+[2022-09-24 18:13:14.963 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 18:13:14.970 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 6.8685ms
+[2022-09-24 18:13:14.993 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/swagger-ui.css - -
+[2022-09-24 18:13:14.993 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/swagger-ui-bundle.js - -
+[2022-09-24 18:13:14.994 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/swagger-ui-standalone-preset.js - -
+[2022-09-24 18:13:14.995 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 18:13:14.996 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 1.3383ms
+[2022-09-24 18:13:14.998 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 18:13:15.008 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 9.3209ms
+[2022-09-24 18:13:15.043 +01:00  INF]  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+[2022-09-24 18:13:15.043 +01:00  INF]  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+[2022-09-24 18:13:15.043 +01:00  INF]  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+[2022-09-24 18:13:15.043 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/swagger-ui-standalone-preset.js - - - 200 339486 application/javascript 48.9974ms
+[2022-09-24 18:13:15.043 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/swagger-ui-bundle.js - - - 200 1096145 application/javascript 49.7926ms
+[2022-09-24 18:13:15.043 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/swagger-ui.css - - - 200 143943 text/css 50.0774ms
+[2022-09-24 18:13:15.263 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 18:13:15.296 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/favicon-32x32.png - -
+[2022-09-24 18:13:15.297 +01:00  INF]  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+[2022-09-24 18:13:15.297 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/favicon-32x32.png - - - 200 628 image/png 0.8152ms
+[2022-09-24 18:13:15.304 +01:00  ERR]  Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - lcpsnapi.Controllers.TokenController.GenDateExpOnly (lcpsnapi). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at lcpsnapi.Middlewares.ExceptionHandlingMiddleware.Invoke(HttpContext context) in C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\Middlewares\ExceptionHandlingMiddleware.cs:line 20
+[2022-09-24 18:13:15.305 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 500 - application/json 41.7970ms
+[2022-09-24 18:13:53.398 +01:00  INF]  Application is shutting down...
+[2022-09-24 18:13:58.581 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-24 18:13:58.687 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-24 18:13:58.687 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-24 18:13:58.689 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-24 18:13:58.689 +01:00  INF]  Hosting environment: Development
+[2022-09-24 18:13:58.689 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-24 18:13:59.224 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 18:13:59.402 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 179.5391ms
+[2022-09-24 18:13:59.408 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 18:13:59.408 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 18:13:59.411 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 1.9820ms
+[2022-09-24 18:13:59.423 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 14.5253ms
+[2022-09-24 18:13:59.536 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 18:13:59.690 +01:00  ERR]  Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - lcpsnapi.Controllers.TokenController.GenDateExpOnly (lcpsnapi). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at lcpsnapi.Middlewares.ExceptionHandlingMiddleware.Invoke(HttpContext context) in C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\Middlewares\ExceptionHandlingMiddleware.cs:line 20
+[2022-09-24 18:13:59.768 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 500 - application/json 232.3307ms
+[2022-09-24 18:14:02.976 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 18:14:02.985 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 9.1125ms
+[2022-09-24 18:14:03.010 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/swagger-ui.css - -
+[2022-09-24 18:14:03.010 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/swagger-ui-bundle.js - -
+[2022-09-24 18:14:03.013 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 18:14:03.013 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/swagger-ui-standalone-preset.js - -
+[2022-09-24 18:14:03.014 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 0.5962ms
+[2022-09-24 18:14:03.016 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 18:14:03.040 +01:00  INF]  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+[2022-09-24 18:14:03.040 +01:00  INF]  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+[2022-09-24 18:14:03.040 +01:00  INF]  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+[2022-09-24 18:14:03.040 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/swagger-ui-standalone-preset.js - - - 200 339486 application/javascript 27.1249ms
+[2022-09-24 18:14:03.041 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/swagger-ui-bundle.js - - - 200 1096145 application/javascript 30.1384ms
+[2022-09-24 18:14:03.041 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/swagger-ui.css - - - 200 143943 text/css 30.1104ms
+[2022-09-24 18:14:03.047 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 31.5151ms
+[2022-09-24 18:14:03.163 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 18:14:03.184 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/favicon-32x32.png - -
+[2022-09-24 18:14:03.187 +01:00  INF]  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+[2022-09-24 18:14:03.188 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/favicon-32x32.png - - - 200 628 image/png 3.9085ms
+[2022-09-24 18:14:03.202 +01:00  ERR]  Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - lcpsnapi.Controllers.TokenController.GenDateExpOnly (lcpsnapi). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at lcpsnapi.Middlewares.ExceptionHandlingMiddleware.Invoke(HttpContext context) in C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\Middlewares\ExceptionHandlingMiddleware.cs:line 20
+[2022-09-24 18:14:03.203 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 500 - application/json 39.6828ms
+[2022-09-24 18:14:53.807 +01:00  INF]  Application is shutting down...
+[2022-09-24 18:15:35.700 +01:00  INF]  User profile is available. Using 'C:\Users\Luis\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-09-24 18:15:35.807 +01:00  INF]  Now listening on: https://localhost:7099
+[2022-09-24 18:15:35.807 +01:00  INF]  Now listening on: http://localhost:5017
+[2022-09-24 18:15:35.809 +01:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-09-24 18:15:35.809 +01:00  INF]  Hosting environment: Development
+[2022-09-24 18:15:35.809 +01:00  INF]  Content root path: C:\Users\Luis\Documents\projects\LCPSocialNetwork\backend\API\aspnetcore\lcpsnapi\
+[2022-09-24 18:15:37.404 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/index.html - -
+[2022-09-24 18:15:37.688 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/index.html - - - 200 - text/html;charset=utf-8 289.1485ms
+[2022-09-24 18:15:37.706 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - -
+[2022-09-24 18:15:37.708 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 2.2890ms
+[2022-09-24 18:15:37.712 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/_vs/browserLink - -
+[2022-09-24 18:15:37.737 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 25.3801ms
+[2022-09-24 18:15:38.025 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - -
+[2022-09-24 18:15:38.312 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 286.4716ms
+[2022-09-24 18:16:17.647 +01:00  INF]  Request starting HTTP/2 POST https://localhost:7099/api/token/months/1 application/json 52
+[2022-09-24 18:16:17.653 +01:00  INF]  CORS policy execution successful.
+[2022-09-24 18:16:17.976 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.TokenController.Post (lcpsnapi)'
+[2022-09-24 18:16:17.998 +01:00  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[lcpsnapi.Classes.UsersTokenInfo]] Post(lcpsnapi.Classes.UsersTokenLogin, TokenUnitTime, Int32) on controller lcpsnapi.Controllers.TokenController (lcpsnapi).
+[2022-09-24 18:16:20.967 +01:00  INF]  Executing ObjectResult, writing value of type 'lcpsnapi.Classes.UsersTokenInfo'.
+[2022-09-24 18:16:20.982 +01:00  INF]  Executed action lcpsnapi.Controllers.TokenController.Post (lcpsnapi) in 2977.5378ms
+[2022-09-24 18:16:20.982 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.TokenController.Post (lcpsnapi)'
+[2022-09-24 18:16:20.986 +01:00  INF]  Request finished HTTP/2 POST https://localhost:7099/api/token/months/1 application/json 52 - 200 - application/json;+charset=utf-8 3339.2670ms
+[2022-09-24 18:17:00.968 +01:00  INF]  Request starting HTTP/2 GET https://localhost:7099/api/Users - -
+[2022-09-24 18:17:01.023 +01:00  INF]  Executing endpoint 'lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi)'
+[2022-09-24 18:17:01.025 +01:00  INF]  Route matched with {action = "GetUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[lcpsnapi.Classes.Users]]] GetUser() on controller lcpsnapi.Controllers.UsersController (lcpsnapi).
+[2022-09-24 18:17:01.040 +01:00  INF]  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[lcpsnapi.Classes.Users, lcpsnapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-09-24 18:17:01.053 +01:00  INF]  Executed action lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi) in 27.6791ms
+[2022-09-24 18:17:01.053 +01:00  INF]  Executed endpoint 'lcpsnapi.Controllers.UsersController.GetUser (lcpsnapi)'
+[2022-09-24 18:17:01.053 +01:00  INF]  Request finished HTTP/2 GET https://localhost:7099/api/Users - - - 200 - application/json;+charset=utf-8 85.2415ms
+[2022-09-24 18:17:43.763 +01:00  INF]  Application is shutting down...
