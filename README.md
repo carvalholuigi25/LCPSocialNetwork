@@ -1,5 +1,7 @@
 # LCPSocialNetwork
 
+![LCPSocialNetwork](https://raw.githubusercontent.com/carvalholuigi25/LCPSocialNetwork/master/lcpsn.svg "LCP Social Network Logo")
+
 LCP SN (Luigi Carvalho Projects Social Network) is a private social network website, which consists to promove comunication and interaction socially and virtual between users, moderators and administrators of this website.
                             
 Examples: 
