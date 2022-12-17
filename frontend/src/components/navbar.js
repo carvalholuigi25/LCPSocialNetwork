@@ -5,7 +5,9 @@ function Navbar() {
         document.querySelector('#mynavbarblk').innerHTML = `
             <nav class="navbar navbar-expand-lg navbar-light bg-light my-col-top">
                 <div class="container max-container">
-                    <a class="navbar-brand" href="/index.html">LCP Social Network</a>
+                    <a class="navbar-brand" href="/index.html">
+                        <img src="assets/images/logo.svg" class="img-fluid img-logo" loading="lazy" style="width: 100%; height: 40px;" />
+                    </a>
                     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navPageLinks" aria-controls="navPageLinks" aria-expanded="false"
                         aria-label="Toggle navigation">
