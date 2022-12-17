@@ -1,2 +1,5 @@
 node_modules
 package-lock.json
+.npmrc
+frontend/.npmrc
+frontend/package-lock.json
