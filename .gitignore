@@ -8,3 +8,5 @@ backend/API/aspnetcore/lcpsnapi/obj/
 backend/API/nodejs/node_modules
 backend/API/nodejs/package-lock.json
 backend/API/nodejs/.npmrc
+frontend/dist
+dist
