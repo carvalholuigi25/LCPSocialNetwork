@@ -1,5 +1,6 @@
 import { Users } from '../classes/users';
 
+const apiUrl = "http://localhost:5000";
 //sources: 
 // https://stackoverflow.com/a/42118921
 // https://webpack.js.org/guides/asset-modules/
@@ -9,15 +10,22 @@ function importAll(r) {
 }
 
 async function fetchingData(url = "/api/users/auth/login", method = "GET", body = null) {
-    var mymthd = method == method.toLowerCase() ? method.toLowerCase() : method.toUpperCase();
     var myHeaders = new Headers();
     var myInit = { 
         method: method,
-        headers: myHeaders,
         mode: 'cors',
-        cache: 'default',
-        body: mymthd != 'GET' || mymthd != 'get' ? body : null
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers:  {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: method != "GET" ? JSON.stringify(body) : null
     };
+
+    console.log(myInit);
 
     const [resp] = await Promise.all([
         fetch(url, myInit)
@@ -29,32 +37,52 @@ async function fetchingData(url = "/api/users/auth/login", method = "GET", body 
 
 function doLogin() {
     if(document.querySelector('#formlog')) {
-        var formlog = document.forms.formlog;
-        var formData = new FormData(formlog);
+        document.querySelector('#formlog').onsubmit = function(e) {
+            e.preventDefault();
 
-        fetchingData("/api/users/auth/login", "POST", formData).then(([authusers]) => {
-            console.log(authusers);
-            console.log("User logged in!");
-            localStorage.setItem("login", authusers);
-            setTimeout(() => {
-                window.location.href = "/pages/main.html";
-            }, 1000 * 1);
-        }).catch(err => console.log("Failed to login: " + err));
+            var formData = {
+                username: document.querySelector('#formlog #username').value,
+                password: document.querySelector('#formlog #password').value
+            };
+    
+            fetchingData(`${apiUrl}/api/users/auth/login`, "POST", formData).then(([authusers]) => {
+                console.log(authusers);
+                console.log("User logged in!");
+                localStorage.setItem("login", JSON.stringify(authusers));
+                if(localStorage.getItem("login")) {
+                    setTimeout(() => {
+                        window.location.href = "/pages/main.html";
+                    }, 1000 * 1);
+                }
+            }).catch(err => console.log("Failed to login: " + err));
+        };
     }
 }
 
 function doReg() {
     if(document.querySelector('#formreg')) {
-        var formreg = document.forms.formreg;
-        var formData = new FormData(formreg);
+        document.querySelector('#formlog').onsubmit = function(e) {
+            e.preventDefault();
 
-        fetchingData("/api/users/auth/register", "POST", formData).then(([authusers]) => {
-            console.log(authusers);
-            console.log("User registered!");
-            setTimeout(() => {
-                window.location.href = "/pages/login.html";
-            }, 1000 * 1);
-        }).catch(err => console.log("Failed to register: " + err));
+            var formData = {
+                username: document.querySelector('#formreg #username').value,
+                email: document.querySelector('#formreg #email').value,
+                password: document.querySelector('#formreg #password').value,
+                firstname: document.querySelector('#formreg #firstname').value,
+                lastname: document.querySelector('#formreg #lastname').value,
+                datebirthday: document.querySelector('#formreg #datebirthday').value,
+                avatar: document.querySelector('#formreg #avatar').value,
+                cover: document.querySelector('#formreg #cover').value
+            };
+
+            fetchingData(`${apiUrl}/api/users/auth/register`, "POST", formData).then(([authusers]) => {
+                console.log(authusers);
+                console.log("User registered!");
+                setTimeout(() => {
+                    window.location.href = "/pages/login.html";
+                }, 1000 * 1);
+            }).catch(err => console.log("Failed to register: " + err));
+        };
     }
 }
 

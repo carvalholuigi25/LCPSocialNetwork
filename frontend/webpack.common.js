@@ -13,6 +13,14 @@ module.exports = {
         use: ["html-loader"]
       },
       {
+        test: /\.tsx?$/i,
+        use: ["ts-loader"],
+        exclude: /node_modules/,
+        generator: {
+          filename: 'classes/[name][ext][query]'
+        }
+      },
+      {
         test: /\.(woff|woff2|ttf|eot)$/i,
         type: 'asset/resource',
         generator: {
@@ -48,5 +56,8 @@ module.exports = {
         }
       }
     ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   }
 };
