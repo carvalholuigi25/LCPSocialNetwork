@@ -3,10 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace lcpsnapi.Migrations
 {
+    /// <inheritdoc />
     public partial class InitialCreation : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -249,8 +253,8 @@ namespace lcpsnapi.Migrations
                 columns: new[] { "Id", "Country", "Cover", "DateBirthday", "DateRegistered", "Displayname", "Email", "FirstName", "Image", "InfoId", "LastName", "Password", "Pin", "PrivacyStatus", "Role", "Status", "TypeFriend", "Username", "UsersTokenId" },
                 values: new object[,]
                 {
-                    { 1, "Portugal", "/assets/images/users/c_luigi.png", "1996-06-04T00:00:00", "2022-08-19T10:30:00", "Luis Carvalho", "luiscarvalho239@gmail.com", "Luis", "/assets/images/users/luigi.png", null, "Carvalho", "1234", "1234", 0, 0, 1, 0, "luigicar96", null },
-                    { 2, "Italy", "/assets/images/users/c_guest.png", "1995-05-03T00:00:00", "2022-08-31T15:50:00", "Guest Convidado", "guest@localhost.loc", "Guest", "/assets/images/users/guest.png", null, "Convidado", "1234", "1234", 1, 4, 0, 0, "guest", null }
+                    { 1, "Portugal", "/assets/images/users/c_luigi.png", "1996-06-04T00:00:00", "2022-08-19T10:30:00", "Luis Carvalho", "luiscarvalho239@gmail.com", "Luis", "/assets/images/users/luigi.png", null, "Carvalho", "$2a$11$gitGW.zdbowemGY6T0LhleKYg3RlbvQ8jsibOVbbkb7M2GW5EVGHG", "$2a$11$GkZfBLl9Z/fbJegZesqcb.e4hYuJhA56B3irnqgs6ARa19fHAOFpC", 0, 0, 1, 0, "luigicar96", null },
+                    { 2, "Italy", "/assets/images/users/c_guest.png", "1995-05-03T00:00:00", "2022-08-31T15:50:00", "Guest Convidado", "guest@localhost.loc", "Guest", "/assets/images/users/guest.png", null, "Convidado", "$2a$11$1O7p.sl40VE8FTB2B32tEOdMq.LzBXo9BwCfh.I69Q2v0DLZW6tO6", "$2a$11$QjcgWGg0OPZ4dljuzXI3o.NgyTDIx84OORCfBFOgFCOiCvjndy6.u", 1, 5, 0, 0, "guest", null }
                 });
 
             migrationBuilder.InsertData(
@@ -258,8 +262,8 @@ namespace lcpsnapi.Migrations
                 columns: new[] { "UsersTokenId", "DateCreated", "DateExp", "Displayname", "Email", "Password", "Pin", "Token", "Username", "UsersId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 12, 20, 15, 26, 6, 297, DateTimeKind.Utc).AddTicks(7975), "20/01/2023 15:26:06", "Luis Carvalho", "luiscarvalho239@gmail.com", null, null, "", "luigicar96", 1 },
-                    { 2, new DateTime(2022, 12, 20, 15, 26, 6, 297, DateTimeKind.Utc).AddTicks(8082), "20/01/2023 15:26:06", "Guest Convidado", "guest@localhost.loc", null, null, "", "guest", 2 }
+                    { 1, new DateTime(2022, 12, 20, 17, 28, 52, 13, DateTimeKind.Utc).AddTicks(2726), "20/01/2023 17:28:52", "Luis Carvalho", "luiscarvalho239@gmail.com", "$2a$11$.ox/2AEi7OqTsawayH3wzeiCtV9NA6/YqJZ1Ca34c5rMdQ8oQvX9i", "$2a$11$XOnjpkXyPqtaaCl4SXT8/.qBpPqdXiK9mLmVIE3oSr4AIfDR1FRhK", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsb2NhbGhvc3QiLCJqdGkiOiI3YWNiZDE1MS03MzYyLTQ1OGItYTkwYS0wYWY1NDk5MTY5MjUiLCJpYXQiOiIyMC8xMi8yMDIyIDE3OjI4OjUyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imx1aWdpY2FyOTYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJzdXBlcmFkbWluIiwiZXhwIjoxNjc0MjM1NzMyLCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJsb2NhbGhvc3QifQ.95CKS4qlbh2kd-kWKOmHFsqexVwoWQY0Fbup8DyRaaI", "luigicar96", 1 },
+                    { 2, new DateTime(2022, 12, 20, 17, 28, 52, 351, DateTimeKind.Utc).AddTicks(6631), "20/01/2023 17:28:52", "Guest Convidado", "guest@localhost.loc", "$2a$11$WV2hIQ4lBTmn0v3wuCIZhexDWIC18L.LAIiHn0EWU8Y.0wWhdyoIO", "$2a$11$o3FM4DOWzReBwWvcf3MT5uN171Dr/UasngkcS26mhhIEcEJbo9hx2", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsb2NhbGhvc3QiLCJqdGkiOiIzMzVkYTY3Yy0zMzdmLTQwMjItOGZkNy03MzQ1NDJhMDFjM2UiLCJpYXQiOiIyMC8xMi8yMDIyIDE3OjI4OjUyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imd1ZXN0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiZ3Vlc3QiLCJleHAiOjE2NzQyMzU3MzIsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.gYBfAaO9PPr8ltBfLkBq0DXHLBBBrX2uxADFNSztLns", "guest", 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -283,6 +287,7 @@ namespace lcpsnapi.Migrations
                 column: "InfoId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

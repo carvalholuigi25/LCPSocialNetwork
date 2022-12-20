@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using static lcpsnapi.Classes.Enums;
+using BC = BCrypt.Net.BCrypt;
+using Microsoft.EntityFrameworkCore;
 using lcpsnapi.Classes;
-using static lcpsnapi.Classes.Enums;
+using lcpsnapi.Functions;
 
 namespace lcpsnapi.Context
 {
@@ -21,9 +23,9 @@ namespace lcpsnapi.Context
                     {
                         Id = 1,
                         Username = "luigicar96",
-                        Password = "1234",
                         Email = "luiscarvalho239@gmail.com",
-                        Pin = "1234",
+                        Password = BC.HashPassword("luigi1234", 11),
+                        Pin = BC.HashPassword("1234", 11),
                         FirstName = "Luis",
                         LastName = "Carvalho",
                         Displayname = "Luis Carvalho",
@@ -43,16 +45,16 @@ namespace lcpsnapi.Context
                     {
                         Id = 2,
                         Username = "guest",
-                        Password = "1234",
                         Email = "guest@localhost.loc",
-                        Pin = "1234",
+                        Password = BC.HashPassword("guest1234", 11),
+                        Pin = BC.HashPassword("1234", 11),
                         FirstName = "Guest",
                         LastName = "Convidado",
                         Displayname = "Guest Convidado",
                         Country = "Italy",
                         Image = "/assets/images/users/guest.png",
                         Cover = "/assets/images/users/c_guest.png",
-                        Role = UserRole.user,
+                        Role = UserRole.guest,
                         TypeFriend = TypeFriend.friend,
                         Status = UserStatus.offline,
                         PrivacyStatus = UserPrivacyStatus.privatetxt,
@@ -70,12 +72,12 @@ namespace lcpsnapi.Context
                         UsersTokenId = 1,
                         Username = "luigicar96",
                         Email = "luiscarvalho239@gmail.com",
-                        Password = null,
-                        Pin = null,
+                        Password = BC.HashPassword("luigi1234", 11),
+                        Pin = BC.HashPassword("1234", 11),
                         Displayname = "Luis Carvalho",
                         DateCreated = DateTime.UtcNow,
                         DateExp = DateTime.UtcNow.AddMonths(1).ToString(),
-                        Token = "",
+                        Token = MyGenTokens.GenTokenOnly("luigicar96", UserRole.superadmin, TokenUnitTime.months, 1),
                         UsersId = 1
                     },
                     new UsersToken
@@ -83,12 +85,12 @@ namespace lcpsnapi.Context
                         UsersTokenId = 2,
                         Username = "guest",
                         Email = "guest@localhost.loc",
-                        Password = null,
-                        Pin = null,
+                        Password = BC.HashPassword("guest1234", 11),
+                        Pin = BC.HashPassword("1234", 11),
                         Displayname = "Guest Convidado",
                         DateCreated = DateTime.UtcNow,
                         DateExp = DateTime.UtcNow.AddMonths(1).ToString(),
-                        Token = "",
+                        Token = MyGenTokens.GenTokenOnly("guest", UserRole.guest, TokenUnitTime.months, 1),
                         UsersId = 2
                     }
                 };

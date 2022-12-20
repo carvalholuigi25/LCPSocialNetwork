@@ -12,17 +12,18 @@ using lcpsnapi.Context;
 namespace lcpsnapi.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20221220152606_InitialCreation")]
+    [Migration("20221220172852_InitialCreation")]
     partial class InitialCreation
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "7.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("lcpsnapi.Classes.Achievements", b =>
                 {
@@ -30,7 +31,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<DateTime?>("DateAchUnlocked")
                         .HasColumnType("datetime2");
@@ -67,7 +68,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("AttachmentId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("AttachmentId"));
 
                     b.Property<string>("Cover")
                         .HasColumnType("nvarchar(max)");
@@ -115,7 +116,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("FriendsId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("FriendsId"));
 
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
@@ -184,7 +185,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("InfoId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("InfoId"));
 
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
@@ -235,7 +236,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("MediaId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("MediaId"));
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -287,7 +288,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("PostId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("PostId"));
 
                     b.Property<string>("DateCreated")
                         .HasColumnType("nvarchar(max)");
@@ -336,7 +337,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<DateTime?>("DateT")
                         .HasColumnType("datetime2");
@@ -367,7 +368,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
@@ -442,8 +443,8 @@ namespace lcpsnapi.Migrations
                             FirstName = "Luis",
                             Image = "/assets/images/users/luigi.png",
                             LastName = "Carvalho",
-                            Password = "1234",
-                            Pin = "1234",
+                            Password = "$2a$11$gitGW.zdbowemGY6T0LhleKYg3RlbvQ8jsibOVbbkb7M2GW5EVGHG",
+                            Pin = "$2a$11$GkZfBLl9Z/fbJegZesqcb.e4hYuJhA56B3irnqgs6ARa19fHAOFpC",
                             PrivacyStatus = 0,
                             Role = 0,
                             Status = 1,
@@ -462,10 +463,10 @@ namespace lcpsnapi.Migrations
                             FirstName = "Guest",
                             Image = "/assets/images/users/guest.png",
                             LastName = "Convidado",
-                            Password = "1234",
-                            Pin = "1234",
+                            Password = "$2a$11$1O7p.sl40VE8FTB2B32tEOdMq.LzBXo9BwCfh.I69Q2v0DLZW6tO6",
+                            Pin = "$2a$11$QjcgWGg0OPZ4dljuzXI3o.NgyTDIx84OORCfBFOgFCOiCvjndy6.u",
                             PrivacyStatus = 1,
-                            Role = 4,
+                            Role = 5,
                             Status = 0,
                             TypeFriend = 0,
                             Username = "guest"
@@ -478,7 +479,7 @@ namespace lcpsnapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("UsersTokenId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("UsersTokenId"));
 
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
@@ -515,22 +516,26 @@ namespace lcpsnapi.Migrations
                         new
                         {
                             UsersTokenId = 1,
-                            DateCreated = new DateTime(2022, 12, 20, 15, 26, 6, 297, DateTimeKind.Utc).AddTicks(7975),
-                            DateExp = "20/01/2023 15:26:06",
+                            DateCreated = new DateTime(2022, 12, 20, 17, 28, 52, 13, DateTimeKind.Utc).AddTicks(2726),
+                            DateExp = "20/01/2023 17:28:52",
                             Displayname = "Luis Carvalho",
                             Email = "luiscarvalho239@gmail.com",
-                            Token = "",
+                            Password = "$2a$11$.ox/2AEi7OqTsawayH3wzeiCtV9NA6/YqJZ1Ca34c5rMdQ8oQvX9i",
+                            Pin = "$2a$11$XOnjpkXyPqtaaCl4SXT8/.qBpPqdXiK9mLmVIE3oSr4AIfDR1FRhK",
+                            Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsb2NhbGhvc3QiLCJqdGkiOiI3YWNiZDE1MS03MzYyLTQ1OGItYTkwYS0wYWY1NDk5MTY5MjUiLCJpYXQiOiIyMC8xMi8yMDIyIDE3OjI4OjUyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imx1aWdpY2FyOTYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJzdXBlcmFkbWluIiwiZXhwIjoxNjc0MjM1NzMyLCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJsb2NhbGhvc3QifQ.95CKS4qlbh2kd-kWKOmHFsqexVwoWQY0Fbup8DyRaaI",
                             Username = "luigicar96",
                             UsersId = 1
                         },
                         new
                         {
                             UsersTokenId = 2,
-                            DateCreated = new DateTime(2022, 12, 20, 15, 26, 6, 297, DateTimeKind.Utc).AddTicks(8082),
-                            DateExp = "20/01/2023 15:26:06",
+                            DateCreated = new DateTime(2022, 12, 20, 17, 28, 52, 351, DateTimeKind.Utc).AddTicks(6631),
+                            DateExp = "20/01/2023 17:28:52",
                             Displayname = "Guest Convidado",
                             Email = "guest@localhost.loc",
-                            Token = "",
+                            Password = "$2a$11$WV2hIQ4lBTmn0v3wuCIZhexDWIC18L.LAIiHn0EWU8Y.0wWhdyoIO",
+                            Pin = "$2a$11$o3FM4DOWzReBwWvcf3MT5uN171Dr/UasngkcS26mhhIEcEJbo9hx2",
+                            Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsb2NhbGhvc3QiLCJqdGkiOiIzMzVkYTY3Yy0zMzdmLTQwMjItOGZkNy03MzQ1NDJhMDFjM2UiLCJpYXQiOiIyMC8xMi8yMDIyIDE3OjI4OjUyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imd1ZXN0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiZ3Vlc3QiLCJleHAiOjE2NzQyMzU3MzIsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.gYBfAaO9PPr8ltBfLkBq0DXHLBBBrX2uxADFNSztLns",
                             Username = "guest",
                             UsersId = 2
                         });

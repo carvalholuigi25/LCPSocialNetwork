@@ -1,17 +1,23 @@
 ﻿using lcpsnapi.Classes;
 using lcpsnapi.Context;
+using lcpsnapi.Functions;
 using lcpsnapi.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using BC = BCrypt.Net.BCrypt;
 
 namespace lcpsnapi.Repositories
 {
-    public class UsersRepository : IUsers
+    public class UsersRepository : ControllerBase, IUsers
     {
         private readonly MyDBContext _dbContext;
+        private readonly IUsersToken _IUsersToken;
+        private readonly int Salt = 11;
 
-        public UsersRepository(MyDBContext dbContext)
+        public UsersRepository(MyDBContext dbContext, IUsersToken iUsersToken)
         {
             _dbContext = dbContext;
+            _IUsersToken = iUsersToken;
         }
 
         public List<Users>? GetUsers()
@@ -50,6 +56,8 @@ namespace lcpsnapi.Repositories
         {
             try
             {
+                user.Password = BC.HashPassword(user.Password, Salt);
+                user.Pin = BC.HashPassword(user.Pin, Salt);
                 _dbContext.User?.Add(user);
                 _dbContext.SaveChanges();
             }
@@ -63,6 +71,8 @@ namespace lcpsnapi.Repositories
         {
             try
             {
+                user.Password = BC.HashPassword(user.Password, Salt);
+                user.Pin = BC.HashPassword(user.Pin, Salt);
                 _dbContext.Entry(user).State = EntityState.Modified;
                 _dbContext.SaveChanges();
             }
@@ -93,6 +103,75 @@ namespace lcpsnapi.Repositories
             {
                 throw new Exception("Failed to delete current users data by id");
             }
+        }
+
+        public async Task<ActionResult<UsersToken?>> DoUserLog([FromBody] UsersTokenLogin? users)
+        {
+            #nullable disable
+            var usersdata = await Task.FromResult(GetUsers());
+            var res = users != null ? usersdata?.Where(x => x.Username == users.Username || x.Email == users.Email).ToList() : null;
+
+            if (res == null)
+            {
+                return BadRequest("The user does not exist in our database, please create new one.");
+            }
+
+            if(!CheckIfPasswordIsValid(users.Password, res[0].Password))
+            {
+                return BadRequest("The password does not match to his user's password.");
+            }
+
+            return new UsersToken()
+            {
+                UsersTokenId = res[0].UsersTokenId,
+                Username = res[0].Username,
+                Email = res[0].Email,
+                Password = BC.HashPassword(res[0].Password, 11),
+                Pin = res[0].Pin,
+                Displayname = res[0].Displayname,
+                UsersId = res[0].Id,
+                DateCreated = Convert.ToDateTime(res[0].DateRegistered),
+                Token = MyGenTokens.GenTokenOnly(res[0].Username, res[0].Role.Value, Enums.TokenUnitTime.months, 1)
+            };
+            #nullable enable
+        }
+
+        public async Task<ActionResult<UsersToken?>> DoUserReg([FromBody] UsersToken? users, Enums.UserRole? role = Enums.UserRole.user)
+        {
+            if (CheckUsersIfNull(users?.UsersId))
+            {
+                return BadRequest("The user already exists in our database!");
+            }
+
+            AddUsers(new Users()
+            {
+                Username = users?.Username,
+                Email = users?.Email,
+                Password = BC.HashPassword(users?.Password, 11),
+                Pin = BC.HashPassword(users?.Pin, 11),
+                Displayname = users?.Displayname,
+                Role = role
+            });
+
+            _IUsersToken.AddUsersToken(new UsersToken()
+            {
+                Username = users?.Username,
+                Email = users?.Email,
+                Password = BC.HashPassword(users?.Password, 11),
+                Pin = BC.HashPassword(users?.Pin, 11),
+                Displayname = users?.Displayname,
+                Token = null,
+                DateExp = new DateTime().ToString(),
+                DateCreated = new DateTime(),
+                UsersId = users?.UsersId
+            });
+
+            return await Task.FromResult(users);
+        }
+
+        public bool CheckIfPasswordIsValid(string password, string hashedpassword)
+        {
+            return BC.Verify(password, hashedpassword);
         }
 
         public bool CheckUsers(int id)
