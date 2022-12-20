@@ -17,9 +17,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Helpers\**" />
     <Compile Remove="wwwroot\swagger-ui\v3\**" />
+    <Content Remove="Helpers\**" />
     <Content Remove="wwwroot\swagger-ui\v3\**" />
+    <EmbeddedResource Remove="Helpers\**" />
     <EmbeddedResource Remove="wwwroot\swagger-ui\v3\**" />
+    <None Remove="Helpers\**" />
     <None Remove="wwwroot\swagger-ui\v3\**" />
   </ItemGroup>
 
@@ -68,7 +72,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Logs\" />
   </ItemGroup>
 
