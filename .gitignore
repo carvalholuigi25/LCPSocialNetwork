@@ -10,3 +10,5 @@ backend/API/nodejs/package-lock.json
 backend/API/nodejs/.npmrc
 frontend/dist
 dist
+/backend/API/aspnetcore/lcpsnapi/.vs/lcpsnapi/FileContentIndex/43b8ffef-bdaf-4e36-931f-c104c7e6f642.vsidx
+/backend/API/aspnetcore/lcpsnapi/.vs/lcpsnapi/FileContentIndex/43b8ffef-bdaf-4e36-931f-c104c7e6f642.vsidx
