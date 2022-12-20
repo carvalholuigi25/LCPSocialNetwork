@@ -10,5 +10,6 @@ namespace lcpsnapi.Interfaces
         public void UpdateUsers(Users user);
         public Users DeleteUsers(int id);
         public bool CheckUsers(int id);
+        public bool CheckUsersIfNull(int? id);
     }
 }

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
+    "net7.0-windows10.0.22621": {
       "Humanizer/2.14.1": {
         "type": "package",
         "dependencies": {
@@ -12248,7 +12248,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
+    "net7.0-windows10.0.22621": [
       "Humanizer >= 2.14.1",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.9",
       "Microsoft.EntityFrameworkCore >= 6.0.9",
@@ -12271,31 +12271,37 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Luis\\.nuget\\packages\\": {}
+    "C:\\Users\\Luis\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Luis\\Documents\\projects\\LCPSocialNetwork\\backend\\API\\aspnetcore\\lcpsnapi\\lcpsnapi.csproj",
+      "projectUniqueName": "C:\\Users\\Luis\\Documents\\projects\\websites\\LCPSocialNetwork\\backend\\API\\aspnetcore\\lcpsnapi\\lcpsnapi.csproj",
       "projectName": "lcpsnapi",
-      "projectPath": "c:\\Users\\Luis\\Documents\\projects\\LCPSocialNetwork\\backend\\API\\aspnetcore\\lcpsnapi\\lcpsnapi.csproj",
+      "projectPath": "C:\\Users\\Luis\\Documents\\projects\\websites\\LCPSocialNetwork\\backend\\API\\aspnetcore\\lcpsnapi\\lcpsnapi.csproj",
       "packagesPath": "C:\\Users\\Luis\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Luis\\Documents\\projects\\LCPSocialNetwork\\backend\\API\\aspnetcore\\lcpsnapi\\obj\\",
+      "outputPath": "C:\\Users\\Luis\\Documents\\projects\\websites\\LCPSocialNetwork\\backend\\API\\aspnetcore\\lcpsnapi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\Luis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net7.0-windows10.0.22621.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0-windows10.0.22621": {
+          "targetAlias": "net7.0-windows10.0.22621.0",
           "projectReferences": {}
         }
       },
@@ -12306,8 +12312,8 @@
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net7.0-windows10.0.22621": {
+        "targetAlias": "net7.0-windows10.0.22621.0",
         "dependencies": {
           "Humanizer": {
             "target": "Package",
@@ -12401,15 +12407,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.Windows.SDK.NET.Ref",
+            "version": "[10.0.22621.28, 10.0.22621.28]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
           },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
+          },
+          "Microsoft.Windows.SDK.NET.Ref": {
+            "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100-rc.1.22431.12\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -258,8 +258,8 @@ namespace lcpsnapi.Migrations
                 columns: new[] { "UsersTokenId", "DateCreated", "DateExp", "Displayname", "Email", "Password", "Pin", "Token", "Username", "UsersId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 9, 24, 16, 32, 0, 165, DateTimeKind.Utc).AddTicks(3804), "24/10/2022 16:32:00", "Luis Carvalho", "luiscarvalho239@gmail.com", null, null, "", "luigicar96", 1 },
-                    { 2, new DateTime(2022, 9, 24, 16, 32, 0, 165, DateTimeKind.Utc).AddTicks(3870), "24/10/2022 16:32:00", "Guest Convidado", "guest@localhost.loc", null, null, "", "guest", 2 }
+                    { 1, new DateTime(2022, 12, 20, 15, 26, 6, 297, DateTimeKind.Utc).AddTicks(7975), "20/01/2023 15:26:06", "Luis Carvalho", "luiscarvalho239@gmail.com", null, null, "", "luigicar96", 1 },
+                    { 2, new DateTime(2022, 12, 20, 15, 26, 6, 297, DateTimeKind.Utc).AddTicks(8082), "20/01/2023 15:26:06", "Guest Convidado", "guest@localhost.loc", null, null, "", "guest", 2 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -104,5 +104,15 @@ namespace lcpsnapi.Repositories
 
             return _dbContext.User.Any(e => e.Id == id);
         }
+
+        public bool CheckUsersIfNull(int? id)
+        {
+            if (_dbContext.User == null)
+            {
+                throw new ArgumentException("User has not been found...");
+            }
+
+            return _dbContext.User.Any(e => e.Id == id);
+        }
     }
 }

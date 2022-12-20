@@ -2,7 +2,7 @@ import '../scss/dep_styles.scss';
 import '../scss/styles.scss';
 import * as bootstrap from 'bootstrap';
 import * as comp from '../components/index';
-import { importAll } from '../scripts/my_functions';
+import { importAll, doLogin, doReg } from '../scripts/my_functions';
 
 // importAll(require.context('../assets/fonts', true, /\.(woff|woff2|ttf|eot)$/));
 importAll(require.context('../assets/files', true, /\.(7z|zip|rar)$/));
@@ -13,6 +13,9 @@ importAll(require.context('../assets/icons', true, /\.ico$/));
 comp.Navbar();
 comp.Footer();
 comp.toggleTheme();
+
+doLogin();
+doReg();
 
 if(document.querySelector('#reqmsg')) {
     document.querySelector('#reqmsg').innerHTML = `

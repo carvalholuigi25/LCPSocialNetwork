@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Dc0Oo2KpxuBeb7In/ka6YmnsC/sX+QuQ97Rv4L04CapgBUtwH21sF0QXpMJs9MMG3T8EnalCMaBSnnSePBXOMQ==",
+  "dgSpecHash": "ObD581M8YcZSHrG+9rBzMS3wKmhoL/ZhgtXEOChvZXUNsIq1mcoOdvd4xItil0+UHRW9PKLMnCAYGGLxwNnvbw==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Luis\\Documents\\projects\\LCPSocialNetwork\\backend\\API\\aspnetcore\\lcpsnapi\\lcpsnapi.csproj",
+  "projectFilePath": "C:\\Users\\Luis\\Documents\\projects\\websites\\LCPSocialNetwork\\backend\\API\\aspnetcore\\lcpsnapi\\lcpsnapi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luis\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Luis\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -245,7 +245,8 @@
     "C:\\Users\\Luis\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\Luis\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\Luis\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\Luis\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\Luis\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\Luis\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22621.28\\microsoft.windows.sdk.net.ref.10.0.22621.28.nupkg.sha512"
   ],
   "logs": []
 }

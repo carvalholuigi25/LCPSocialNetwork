@@ -12,7 +12,7 @@ using lcpsnapi.Context;
 namespace lcpsnapi.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20220924163200_InitialCreation")]
+    [Migration("20221220152606_InitialCreation")]
     partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -515,8 +515,8 @@ namespace lcpsnapi.Migrations
                         new
                         {
                             UsersTokenId = 1,
-                            DateCreated = new DateTime(2022, 9, 24, 16, 32, 0, 165, DateTimeKind.Utc).AddTicks(3804),
-                            DateExp = "24/10/2022 16:32:00",
+                            DateCreated = new DateTime(2022, 12, 20, 15, 26, 6, 297, DateTimeKind.Utc).AddTicks(7975),
+                            DateExp = "20/01/2023 15:26:06",
                             Displayname = "Luis Carvalho",
                             Email = "luiscarvalho239@gmail.com",
                             Token = "",
@@ -526,8 +526,8 @@ namespace lcpsnapi.Migrations
                         new
                         {
                             UsersTokenId = 2,
-                            DateCreated = new DateTime(2022, 9, 24, 16, 32, 0, 165, DateTimeKind.Utc).AddTicks(3870),
-                            DateExp = "24/10/2022 16:32:00",
+                            DateCreated = new DateTime(2022, 12, 20, 15, 26, 6, 297, DateTimeKind.Utc).AddTicks(8082),
+                            DateExp = "20/01/2023 15:26:06",
                             Displayname = "Guest Convidado",
                             Email = "guest@localhost.loc",
                             Token = "",

@@ -24,7 +24,9 @@ namespace lcpsnapi.Context
         {
             if (!ob.IsConfigured)
             {
+                #nullable disable
                 ob.UseSqlServer(this.configuration.GetConnectionString("MyDBConn"));
+                #nullable enable
             }
         }
 
