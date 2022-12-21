@@ -6,6 +6,7 @@ comp.Navbar();
 comp.Sidebars();
 comp.Footer();
 comp.toggleTheme();
+comp.Profile();
 comp.MyFriendsRequests();
 comp.MyPrivateMessages();
 comp.MyNotifications();

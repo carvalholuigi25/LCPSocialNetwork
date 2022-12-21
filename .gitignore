@@ -3,11 +3,10 @@ package-lock.json
 .npmrc
 frontend/.npmrc
 frontend/package-lock.json
+# frontend/dist
 backend/API/nodejs/node_modules
 backend/API/nodejs/package-lock.json
 backend/API/nodejs/.npmrc
-frontend/dist
-dist
 /backend/API/aspnetcore/lcpsnapi/.vs/
 /backend/API/aspnetcore/lcpsnapi/bin/
 /backend/API/aspnetcore/lcpsnapi/obj/
