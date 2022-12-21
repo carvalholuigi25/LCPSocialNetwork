@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "server": "node index.js",
+    "server_api": "cd ..\\backend\\API\\aspnetcore\\lcpsnapi && dotnet run",
     "start": "set NODE_ENV=development & webpack-dev-server --config webpack.dev.js --open",
     "start_prod": "set NODE_ENV=production & webpack serve --config webpack.prod.js --open",
     "build": "set NODE_ENV=production & webpack --config webpack.prod.js",
-    "start_all": "concurrently \"npm run server\" \"npm run start\"",
-    "start_all_p": "concurrently \"npm run server\" \"npm run start_prod\"",
-    "build_all": "concurrently \"npm run server\" \"npm run build\"",
+    "start_all": "concurrently \"npm run server\" \"npm run server_api\" \"npm run start\"",
+    "start_all_p": "concurrently \"npm run server\" \"npm run server_api\" \"npm run start_prod\"",
+    "build_all": "concurrently \"npm run server\" \"npm run server_api\" \"npm run build\"",
     "rem_dist": "rd /s /q dist",
     "rem_dist_n_do_build": "rd /s /q dist & npm run build",
     "rem_n_ins_nm": "rd /s /q node_modules & del /f package-lock.json & npm install"
