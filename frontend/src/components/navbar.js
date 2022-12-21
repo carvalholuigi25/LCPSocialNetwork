@@ -1,7 +1,55 @@
 const bootstrap = require('bootstrap');
+const { doLogout } = require('../scripts/my_functions');
 
 function Navbar() {
     if(document.querySelector('#mynavbarblk')) {
+        var userdetails = localStorage.getItem("login");
+        var useractionlinks = "";
+
+        if(userdetails) {
+            userdetails = userdetails != null ?? JSON.stringify(userdetails);
+            userdetails.image = userdetails.image.indexOf("/assets/images/") === -1 ? "../assets/images/" + userdetails.image : userdetails.image;
+
+            useractionlinks = `
+            <li class="nav-item">
+                <div class="myfriendreqs" id="myfriendreqs">
+                    <i class="bi bi-people-fill"></i>
+                    <span class="counter">0</span>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="mypm" id="mypm">
+                    <i class="bi bi-chat-fill"></i>
+                    <span class="counter">0</span>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="mynotifications" id="mynotifications">
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="counter">0</span>
+                </div>
+            </li>
+            <li class="nav-item ms-1">
+                <div class="myprofile">
+                    <a href="pages/profile.html?id=${userdetails.id}" target="_self">
+                        <img src="${userdetails.image}" alt="${userdetails.username}" class="img-fluid imgavatar" width="50" height="50" />
+                        <span class="uname ms-1" id="uname">${userdetails.username}</span>
+                    </a>
+                    <a href="#" id="logoutlnk" class="logoutlnk">
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </li>`;
+        } else {
+            useractionlinks = `
+            <li class="nav-item">
+                <a href="pages/login.html" target="_self">
+                    <i class="bi bi-person-fill-lock"></i>
+                    <span>Login</span>
+                </a>
+            </li>`;
+        }
+
         document.querySelector('#mynavbarblk').innerHTML = `
             <nav class="navbar navbar-expand-lg navbar-light bg-light my-col-top">
                 <div class="container max-container">
@@ -21,36 +69,14 @@ function Navbar() {
                             </button>
                         </form>
                         <ul class="navbar-nav nvuseractions ms-auto">
-                            <li class="nav-item">
-                                <div class="myfriendreqs" id="myfriendreqs">
-                                    <i class="bi bi-people-fill"></i>
-                                    <span class="counter">0</span>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="mypm" id="mypm">
-                                    <i class="bi bi-chat-fill"></i>
-                                    <span class="counter">0</span>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="mynotifications" id="mynotifications">
-                                    <i class="bi bi-bell-fill"></i>
-                                    <span class="counter">0</span>
-                                </div>
-                            </li>
-                            <li class="nav-item ms-1">
-                                <div class="myprofile">
-                                    <a href="pages/profile.html" target="_self">
-                                        <img src="../assets/images/guest.png" alt="Guest" class="img-fluid imgavatar" width="50" height="50" />
-                                    </a>
-                                </div>
-                            </li>
+                           ${useractionlinks}
                         </ul>
                     </div>
                 </div>
             </nav>
         `;
+
+        doLogout();
 
         if(document.querySelector('#myfriendreqs')) {
             document.querySelector('#myfriendreqs').onclick = function() {

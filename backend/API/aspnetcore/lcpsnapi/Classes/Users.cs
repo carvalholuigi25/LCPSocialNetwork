@@ -84,6 +84,8 @@ namespace lcpsnapi.Classes
         public string? Displayname { get; set; }
         public string? Email { get; set; }
         public string? Pin { get; set; }
+        public string? Image { get; set; }
+        public string? Cover { get; set; }
         public string? Token { get; set; }
         public string? DateExp { get; set; }
         public DateTime? DateCreated { get; set; }

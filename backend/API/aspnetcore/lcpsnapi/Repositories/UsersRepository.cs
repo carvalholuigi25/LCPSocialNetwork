@@ -129,6 +129,8 @@ namespace lcpsnapi.Repositories
                 Password = BC.HashPassword(res[0].Password, 11),
                 Pin = res[0].Pin,
                 Displayname = res[0].Displayname,
+                Cover = res[0].Cover,
+                Image = res[0].Image,
                 UsersId = res[0].Id,
                 DateCreated = Convert.ToDateTime(res[0].DateRegistered),
                 Token = MyGenTokens.GenTokenOnly(res[0].Username, res[0].Role.Value, Enums.TokenUnitTime.months, 1)
@@ -150,6 +152,8 @@ namespace lcpsnapi.Repositories
                 Password = BC.HashPassword(users?.Password, 11),
                 Pin = BC.HashPassword(users?.Pin, 11),
                 Displayname = users?.Displayname,
+                Image = users?.Image,
+                Cover = users?.Cover,
                 Role = role
             });
 
@@ -160,6 +164,8 @@ namespace lcpsnapi.Repositories
                 Password = BC.HashPassword(users?.Password, 11),
                 Pin = BC.HashPassword(users?.Pin, 11),
                 Displayname = users?.Displayname,
+                Image = users?.Image,
+                Cover = users?.Cover,
                 Token = null,
                 DateExp = new DateTime().ToString(),
                 DateCreated = new DateTime(),
