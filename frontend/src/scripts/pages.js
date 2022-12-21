@@ -3,6 +3,7 @@ import * as bootstrap from 'bootstrap';
 import * as comp from '../components/index';
 
 comp.Navbar();
+comp.Sidebars();
 comp.Footer();
 comp.toggleTheme();
 comp.MyFriendsRequests();

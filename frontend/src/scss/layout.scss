@@ -194,6 +194,23 @@ a {
 }
 
 .myprofile {
+    a {
+        text-decoration: none;
+        
+        img {
+            text-decoration: none;
+        }
+
+        .uname, #uname {
+            text-decoration: none;
+
+            &:hover, &:active, &:visited, 
+            &:focus, &:focus-visible,  &:focus-within {
+                text-decoration: underline;
+            }
+        }
+    }
+
     a > img, img {
       width: 50px;
       height: 50px;
@@ -202,7 +219,19 @@ a {
       border: 0;
       border-radius: 50%;
       padding: 5px;
-      background-color: silver;
+      object-fit: cover;
+      object-position: center center;
+    }
+    
+    a > img[src="guest.png"], img[src="guest.png"],
+    a > img[src="/guest.png"], img[src="/guest.png"],
+    a > img[src="/images/guest.png"], img[src="/images/guest.png"],
+    a > img[src="/users/images/guest.png"], img[src="/users/images/guest.png"],
+    a > img[src="../assets/images/guest.png"], img[src="../assets/images/guest.png"],
+    a > img[src="/assets/images/guest.png"], img[src="/assets/images/guest.png"],
+    a > img[src="/assets/images/users/guest.png"], img[src="/assets/images/users/guest.png"],
+    a > img.guest, img.guest {
+        background-color: silver;
     }
 }
 
@@ -335,11 +364,20 @@ a {
             bottom: 0;
             left: 50%;
             right: auto;
-            background: silver;
             padding: 5px;
             transform: translate(-50%, 50%);
             width: 60px;
             height: 60px;
+            object-fit: cover;
+            object-position: center center;
+        }
+        .avatarimg[src="guest.png"],
+        .avatarimg[src="/guest.png"],
+        .avatarimg[src="/images/guest.png"],
+        .avatarimg[src="/assets/images/guest.png"],
+        .avatarimg[src="/assets/images/users/guest.png"],
+        .avatarimg.guest {
+            background-color: silver;
         }
     }
 

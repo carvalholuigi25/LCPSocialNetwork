@@ -60,7 +60,9 @@ function getFormLogin() {
                     <input type="reset" class="btn btn-secondary btnclear ms-1" value="Clear" />
                     <input type="submit" class="btn btn-primary btnenter" value="Enter" />
                 </div>
-            </form>`;
+            </form>
+            <a href="/pages/register.html" class="btn btn-primary mt-3">Register</a>
+            <a href="/pages/main.html" class="btn btn-primary mt-3">Enter without login</a>`;
         }
         else 
         {
@@ -69,6 +71,7 @@ function getFormLogin() {
                 <i class="bi bi-exclamation-warning" style="font-size: 4rem;"></i>
                 <h1 class="warningtitle mt-3">Warning</h1>
                 <p class="warningmsg mt-3">User has already logged in!</p>
+                <a href="/pages/main.html" class="btn btn-primary btnback mt-3">Back</a>
             </div>`;
         }
     }
@@ -133,13 +136,15 @@ function getFormReg() {
                     <input type="reset" class="btn btn-secondary btnclear ms-1" value="Clear" />
                     <input type="submit" class="btn btn-primary btnreg" value="Register" />
                 </div>
-            </form>`;
+            </form>
+            <a href="/pages/login.html" class="btn btn-primary mt-3">Back to login</a>`;
         } else {
             document.querySelector('#mformreg').innerHTML = `
             <div class="warnblk d-flex flex-column justify-content-center align-items-center mt-3 mb-3">
                 <i class="bi bi-exclamation-warning" style="font-size: 4rem;"></i>
                 <h1 class="warningtitle mt-3">Warning</h1>
                 <p class="warningmsg mt-3">User has already registered and logged in!</p>
+                <a href="/pages/login.html" class="btn btn-primary btnback mt-3">Back</a>
             </div>`;
         }
     }
@@ -209,7 +214,10 @@ function doLogout() {
                 localStorage.removeItem("login");
             }
 
-            alert("Logged out!");
+            setTimeout(() => {
+                alert("Logged out!");
+                window.location.href = "/index.html";
+            }, 1000 * 1);
         };
     }
 }

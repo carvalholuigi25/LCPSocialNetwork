@@ -7,8 +7,12 @@ function Navbar() {
         var useractionlinks = "";
 
         if(userdetails) {
-            userdetails = userdetails != null ?? JSON.stringify(userdetails);
-            userdetails.image = userdetails.image.indexOf("/assets/images/") === -1 ? "../assets/images/" + userdetails.image : userdetails.image;
+            var jspdata = JSON.parse(userdetails);
+            var myid = userdetails && jspdata != null ?  jspdata.usersId :  0;
+            var myimage = userdetails && jspdata != null ? jspdata.image :  "../assets/images/guest.png";
+            var mydisplayname = userdetails && jspdata != null ? jspdata.displayname : "Guest";
+
+            myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
 
             useractionlinks = `
             <li class="nav-item">
@@ -31,9 +35,9 @@ function Navbar() {
             </li>
             <li class="nav-item ms-1">
                 <div class="myprofile">
-                    <a href="pages/profile.html?id=${userdetails.id}" target="_self">
-                        <img src="${userdetails.image}" alt="${userdetails.username}" class="img-fluid imgavatar" width="50" height="50" />
-                        <span class="uname ms-1" id="uname">${userdetails.username}</span>
+                    <a href="pages/profile.html?id=${myid}" target="_self">
+                        <img src="${myimage}" alt="${mydisplayname}" class="img-fluid imgavatar" width="50" height="50" />
+                        <span class="uname" id="uname">${mydisplayname}</span>
                     </a>
                     <a href="#" id="logoutlnk" class="logoutlnk">
                         <span>Logout</span>
@@ -53,7 +57,7 @@ function Navbar() {
         document.querySelector('#mynavbarblk').innerHTML = `
             <nav class="navbar navbar-expand-lg navbar-light bg-light my-col-top">
                 <div class="container max-container">
-                    <a class="navbar-brand" href="/index.html">
+                    <a class="navbar-brand" href="${userdetails ? "pages/main.html" : "/index.html"}">
                         <img src="assets/images/logo.svg" class="img-fluid img-logo" loading="lazy" style="width: 100%; height: 40px;" />
                     </a>
                     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
