@@ -156,6 +156,24 @@ function getPages(isProd = false) {
       year: year
     }),
     new HtmlWebpackPlugin({
+      title: ptitle + " - Post Edit",
+      filename: "pages/post/edit.html",
+      template: "./src/pages/post/edit.ejs",
+      chunks: ['pages'],
+      minify: optmini,
+      base: getBase(),
+      year: year
+    }),
+    new HtmlWebpackPlugin({
+      title: ptitle + " - Post Delete",
+      filename: "pages/post/delete.html",
+      template: "./src/pages/post/delete.ejs",
+      chunks: ['pages'],
+      minify: optmini,
+      base: getBase(),
+      year: year
+    }),
+    new HtmlWebpackPlugin({
       title: ptitle + " - Register",
       filename: "pages/register.html",
       template: "./src/pages/register.ejs",

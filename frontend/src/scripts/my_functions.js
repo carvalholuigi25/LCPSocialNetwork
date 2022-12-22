@@ -68,7 +68,7 @@ function getFormLogin() {
         {
             document.querySelector('#mformlog').innerHTML = `
             <div class="warnblk d-flex flex-column justify-content-center align-items-center mt-3 mb-3">
-                <i class="bi bi-exclamation-warning" style="font-size: 4rem;"></i>
+                <i class="bi bi-exclamation-circle-fill" style="font-size: 4rem;"></i>
                 <h1 class="warningtitle mt-3">Warning</h1>
                 <p class="warningmsg mt-3">User has already logged in!</p>
                 <a href="/pages/main.html" class="btn btn-primary btnback mt-3">Back</a>
@@ -141,7 +141,7 @@ function getFormReg() {
         } else {
             document.querySelector('#mformreg').innerHTML = `
             <div class="warnblk d-flex flex-column justify-content-center align-items-center mt-3 mb-3">
-                <i class="bi bi-exclamation-warning" style="font-size: 4rem;"></i>
+                <i class="bi bi-exclamation-circle-fill" style="font-size: 4rem;"></i>
                 <h1 class="warningtitle mt-3">Warning</h1>
                 <p class="warningmsg mt-3">User has already registered and logged in!</p>
                 <a href="/pages/login.html" class="btn btn-primary btnback mt-3">Back</a>

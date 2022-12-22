@@ -37,6 +37,23 @@ a {
     max-width: 100% !important;
 }
 
+body.fixednav {
+    position: relative;
+    padding-top: 75px;
+
+    .mynavbarblk, #mynavbarblk {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        z-index: 1000;
+    }
+}
+
 .mynavbarblk, #mynavbarblk {
     .navbar {
         margin: 0px auto 15px auto;
@@ -531,9 +548,21 @@ a {
                 max-height: 100%;
                 object-fit: cover;
                 border-radius: 50%;
-                background-color: silver;
-                border-color: silver;
                 padding: 5px;
+                background-color: transparent;
+                border-color: transparent;
+
+                &[src="guest.png"],
+                &[src="/guest.png"],
+                &[src="/images/guest.png"],
+                &[src="/users/images/guest.png"],
+                &[src="../assets/images/guest.png"],
+                &[src="/assets/images/guest.png"],
+                &[src="/assets/images/users/guest.png"],
+                &.guest {
+                    background-color: silver;
+                    border-color: silver;
+                }
             }
 
             .titleuser {
@@ -688,9 +717,21 @@ a {
             max-height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            background-color: silver;
-            border-color: silver;
             padding: 5px;
+            background-color: transparent;
+            border-color: transparent;
+
+            &[src="guest.png"],
+            &[src="/guest.png"],
+            &[src="/images/guest.png"],
+            &[src="/users/images/guest.png"],
+            &[src="../assets/images/guest.png"],
+            &[src="/assets/images/guest.png"],
+            &[src="/assets/images/users/guest.png"],
+            &.guest {
+                background-color: silver;
+                border-color: silver;
+            }
         }
 
         .username {
@@ -828,8 +869,27 @@ a {
 
     .imguser {
         border-radius: 50%;
-        background: silver;
         padding: 5px;
+        width: 50px;
+        height: 50px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        background-color: transparent;
+        border-color: transparent;
+
+        &[src="guest.png"],
+        &[src="/guest.png"],
+        &[src="/images/guest.png"],
+        &[src="/users/images/guest.png"],
+        &[src="../assets/images/guest.png"],
+        &[src="/assets/images/guest.png"],
+        &[src="/assets/images/users/guest.png"],
+        &.guest {
+            background-color: silver;
+            border-color: silver;
+        }
     }
 
     .blkposterbodycontainer {
@@ -938,8 +998,22 @@ a {
         max-height: 100%;
         border-radius: 50%;
         padding: 5px;
-        background-color: silver;
-        border-color: silver;
+        object-fit: cover;
+        object-position: center center;
+        background-color: transparent;
+        border-color: transparent;
+
+        &[src="guest.png"],
+        &[src="/guest.png"],
+        &[src="/images/guest.png"],
+        &[src="/users/images/guest.png"],
+        &[src="../assets/images/guest.png"],
+        &[src="/assets/images/guest.png"],
+        &[src="/assets/images/users/guest.png"],
+        &.guest {
+            background-color: silver;
+            border-color: silver;
+        }
     }
 
     .dropdown-toggle {

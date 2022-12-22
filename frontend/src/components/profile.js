@@ -1,3 +1,73 @@
+function ProfileSidebarLeft() {
+    if(document.querySelector('#myprofilesbleft')) {
+        document.querySelector('#myprofilesbleft').innerHTML = `
+            <div class="blkabout">
+                <h3 class="title">About</h3>
+                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam alias quidem porro explicabo itaque animi, exercitationem illum quisquam pariatur obcaecati possimus quam numquam harum consectetur. Quam reiciendis voluptatibus suscipit voluptas.</p>
+            </div>
+            
+            <div class="blkfriends">
+                <h3 class="title">Friends (2)</h3>
+                <div class="table-responsive mt-3">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="/assets/images/guest.png" width="50" height="50" alt="John Doe" class="img-fluid imguser guest">
+                                    <p class="titleuser mt-3">John Doe</p>
+                                </td>
+                                <td>
+                                    <img src="/assets/images/guest.png" width="50" height="50" alt="Mary Doe" class="img-fluid imguser guest">
+                                    <p class="titleuser mt-3">Mary Doe</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="blkgroups">
+                <h3 class="title">Groups (3)</h3>
+                <ul class="listgroups">
+                    <li class="grp grpgames">
+                        <i class="bi bi-controller grpico grpgamesico"></i>
+                        <a href="pages/groups.html#games" class="grptitle">Games</a>
+                    </li>
+                    <li class="grp grpprogramingandit">
+                        <i class="bi bi-laptop grpico grpprogitico"></i>
+                        <a href="pages/groups.html#progandit" class="grptitle">Programming & IT</a>
+                    </li>
+                    <li class="grp grpmovies">
+                        <i class="bi bi-film grpico grpmoviesico"></i>
+                        <a href="pages/groups.html#movies" class="grptitle">Movies</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mblklinksfooter">
+                <div class="blklinksfooter">
+                    <div class="sublinksfooter">
+                        <a href="pages/main.html" class="btn btn-primary btnreturntonfeed" id="btnreturntonfeed">
+                            <i class="bi bi-newspaper"></i>
+                            <span class="ms-1">Return to my newsfeed</span>
+                        </a>
+                    </div>
+                    <div class="sublinksfooter mt-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="togThemeDarkMode">
+                            <label class="form-check-label" for="togThemeDarkMode">Toggle dark mode</label>
+                        </div>
+                    </div>
+                    <div class="sublinksfooter mt-3">
+                        <a href="pages/privacy_policy.html">Privacy Policy</a>
+                        <a href="pages/about.html">About</a>
+                        <a href="pages/terms_of_service.html">Terms of Service</a>
+                    </div>
+                </div>
+            </div>`;
+    }
+}
+
 function Profile() {
     if(document.querySelector('#myprofileblk')) {
         var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
@@ -59,4 +129,4 @@ function Profile() {
     }
 }
 
-export { Profile }
+export { ProfileSidebarLeft, Profile }

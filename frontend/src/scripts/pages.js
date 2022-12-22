@@ -5,8 +5,13 @@ import * as comp from '../components/index';
 comp.Navbar();
 comp.Sidebars();
 comp.Footer();
+comp.ProfileSidebarLeft();
 comp.toggleTheme();
 comp.Profile();
+comp.Friends();
+comp.Stories();
+comp.PostSender();
+comp.Posts();
 comp.MyFriendsRequests();
 comp.MyPrivateMessages();
 comp.MyNotifications();
@@ -15,6 +20,14 @@ comp.MyShares();
 comp.MySharePost();
 comp.EditMyPost();
 comp.DelMyPost();
+
+var isfixednav = false;
+
+if(isfixednav && !document.body.classList.contains('fixednav')) {
+    document.body.classList.add("fixednav");
+} else {
+    document.body.classList.remove("fixednav");
+}
 
 if(document.querySelector('#btnclear')) {
     document.querySelector('#btnclear').onclick = function(e) {

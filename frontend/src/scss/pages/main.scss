@@ -260,12 +260,27 @@
                 left: 0;
                 right: 0;
                 bottom: 15px;
-                background: silver;
                 border-radius: 50%;
                 width: 50px;
                 height: 50px;
                 margin: 15px auto;
                 padding: 5px;
+                background-color: transparent;
+                border-color: transparent;
+                object-fit: cover;
+                object-position: center center;
+
+                &[src="guest.png"],
+                &[src="/guest.png"],
+                &[src="/images/guest.png"],
+                &[src="/users/images/guest.png"],
+                &[src="../assets/images/guest.png"],
+                &[src="/assets/images/guest.png"],
+                &[src="/assets/images/users/guest.png"],
+                &.guest {
+                    background-color: silver;
+                    border-color: silver;
+                }
             }
         }
     }
@@ -321,8 +336,23 @@
 
         .imguser {
             border-radius: 50%;
-            background: silver;
             padding: 5px;
+            background-color: transparent;
+            border-color: transparent;
+            object-fit: cover;
+            object-position: center center;
+
+            &[src="guest.png"],
+            &[src="/guest.png"],
+            &[src="/images/guest.png"],
+            &[src="/users/images/guest.png"],
+            &[src="../assets/images/guest.png"],
+            &[src="/assets/images/guest.png"],
+            &[src="/assets/images/users/guest.png"],
+            &.guest {
+                background-color: silver;
+                border-color: silver;
+            }
         }
 
         .blkposterbodycontainer {
@@ -431,8 +461,22 @@
             max-height: 100%;
             border-radius: 50%;
             padding: 5px;
-            background-color: silver;
-            border-color: silver;
+            background-color: transparent;
+            border-color: transparent;
+            object-fit: cover;
+            object-position: center center;
+
+            &[src="guest.png"],
+            &[src="/guest.png"],
+            &[src="/images/guest.png"],
+            &[src="/users/images/guest.png"],
+            &[src="../assets/images/guest.png"],
+            &[src="/assets/images/guest.png"],
+            &[src="/assets/images/users/guest.png"],
+            &.guest {
+                background-color: silver;
+                border-color: silver;
+            }
         }
 
         .dropdown-toggle {
