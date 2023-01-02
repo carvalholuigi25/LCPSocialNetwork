@@ -80,25 +80,31 @@ body.fixednav {
 
     .usersreslist, #usersreslist {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        align-items: stretch;
         text-align: left;
         position: absolute;
         top: 4rem;
-        left: auto;
+        left: 50%;
         right: auto;
         bottom: auto;
         width: 50vw;
         height: auto;
         max-width: 100vw;
-        max-height: 18vh;
+        max-height: 100vh;
         overflow: auto;
-        background: #0b4daf;
-        color: white;
+        background: white;
+        color: black;
+        border: 1px solid #0d6efd;
         z-index: 9999;
         padding: 10px 15px;
         border-radius: 25px;
+        margin: 0 10px;
+        transform: translate(-50%, 0%);
+        box-shadow: none;
+        -webkit-box-shadow: 3px 3px 3px 1px rgb(0 0 0 / 50%);
+        box-shadow: 3px 3px 3px 1px rgb(0 0 0 / 50%);
 
         .img-avatar {
             width: 50px;
@@ -115,6 +121,8 @@ body.fixednav {
             margin-bottom: 0px;
             margin-left: auto;
             margin-right: auto;
+            width: 100%;
+            max-width: 100%;
         }
 
         .btnclose, #btnclose {
@@ -126,6 +134,7 @@ body.fixednav {
             margin: 0;
             display: block;
             float: right;
+            color: white;
         }
     }
 }
@@ -336,7 +345,7 @@ body.fixednav {
 
 .hide, .hidden { display: none !important; }
 .show, .shown { display: block !important; }
-.showing { display: inherit !important; }
+.showin, .showing { display: inherit !important; }
 .text-truncate {
     display: block;
     overflow: hidden;
@@ -1265,11 +1274,16 @@ body.fixednav {
 
 @media all and (max-width: 992px) {
     .usersreslist, #usersreslist {
-        left: 0 !important;
-        right: 0 !important;
+        left: auto !important;
+        right: auto !important;
         top: 7rem !important;
         bottom: auto !important;
         width: 100% !important;
+        height: 25vh !important;
+        max-width: 100% !important;
+        max-height: 100vh !important;
+        transform: translate(0%, 0%) !important;
+        margin: 15px -15px !important;
     }
 
     .myprofile .dropdown-menu {
