@@ -27,6 +27,10 @@
 .t-center { text-align: center; }
 .t-right { text-align: right; }
 
+.float-left { float: left; }
+.float-center { float: none; }
+.float-right { float: right; }
+
 a {
     color: inherit;
     text-decoration: inherit;
@@ -82,13 +86,13 @@ body.fixednav {
         text-align: left;
         position: absolute;
         top: 4rem;
-        left: 30.2rem;
+        left: auto;
         right: auto;
         bottom: auto;
-        width: auto;
+        width: 50vw;
         height: auto;
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 100vw;
+        max-height: 18vh;
         overflow: auto;
         background: #0b4daf;
         color: white;
@@ -103,6 +107,25 @@ body.fixednav {
             object-fit: cover;
             object-position: center center;
             text-decoration: none;
+        }
+
+        .srchresblk, #srchresblk {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btnclose, #btnclose {
+            position: absolute;
+            top: 5px;
+            left: auto;
+            right: 15px;
+            bottom: auto;
+            margin: 0;
+            display: block;
+            float: right;
         }
     }
 }
@@ -1246,6 +1269,7 @@ body.fixednav {
         right: 0 !important;
         top: 7rem !important;
         bottom: auto !important;
+        width: 100% !important;
     }
 
     .myprofile .dropdown-menu {

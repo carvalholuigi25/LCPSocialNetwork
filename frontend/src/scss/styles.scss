@@ -18,6 +18,10 @@ body {
 
 .max-container { max-width: 100% !important; }
 
+.float-left { float: left; }
+.float-center { float: none; }
+.float-right { float: right; }
+
 figcaption { font-style: italic; }
 
 .btn { width: auto !important; max-width: 100%; }
