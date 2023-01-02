@@ -73,6 +73,38 @@ body.fixednav {
             color: inherit;
         }
     }
+
+    .usersreslist, #usersreslist {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        position: absolute;
+        top: 4rem;
+        left: 30.2rem;
+        right: auto;
+        bottom: auto;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        overflow: auto;
+        background: #0b4daf;
+        color: white;
+        z-index: 9999;
+        padding: 10px 15px;
+        border-radius: 25px;
+
+        .img-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            object-fit: cover;
+            object-position: center center;
+            text-decoration: none;
+        }
+    }
 }
 
 .mycopyrightblk, #mycopyrightblk {
@@ -165,6 +197,7 @@ body.fixednav {
 .nvuseractions {
     flex-direction: row !important;
     justify-content: center !important;
+    align-items: center !important;
 }
 
 .mynotifications, .mypm, .myfriendreqs {
@@ -211,6 +244,7 @@ body.fixednav {
 }
 
 .myprofile {
+    position: relative;
     a {
         text-decoration: none;
         
@@ -229,7 +263,7 @@ body.fixednav {
     }
 
     a > img, img {
-      width: 50px;
+      min-width: 50px;
       height: 50px;
       max-width: 100%;
       max-height: 100%;
@@ -249,6 +283,13 @@ body.fixednav {
     a > img[src="/assets/images/users/guest.png"], img[src="/assets/images/users/guest.png"],
     a > img.guest, img.guest {
         background-color: silver;
+    }
+
+    .dropdown-menu {
+        width: 100% !important;
+        max-width: 100% !important;
+        left: auto !important;
+        right: -12px !important;
     }
 }
 
@@ -270,8 +311,9 @@ body.fixednav {
 
 // Start of page layout styles
 
-.hidden { display: none !important; }
-.shown { display: block !important; }
+.hide, .hidden { display: none !important; }
+.show, .shown { display: block !important; }
+.showing { display: inherit !important; }
 .text-truncate {
     display: block;
     overflow: hidden;
@@ -1199,6 +1241,22 @@ body.fixednav {
 }
 
 @media all and (max-width: 992px) {
+    .usersreslist, #usersreslist {
+        left: 0 !important;
+        right: 0 !important;
+        top: 7rem !important;
+        bottom: auto !important;
+    }
+
+    .myprofile .dropdown-menu {
+        position: absolute !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        left: auto !important;
+        right: -12px !important;
+        z-index: 100001;
+    }
+
     .blkgroups {
         height: calc(100vh - 50vh);
     }

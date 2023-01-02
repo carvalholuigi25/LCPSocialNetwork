@@ -86,6 +86,7 @@ namespace lcpsnapi.Classes
         public string? Pin { get; set; }
         public string? Image { get; set; }
         public string? Cover { get; set; }
+        public string? Role { get; set; } = UserRole.user.ToString();
         public string? Token { get; set; }
         public string? DateExp { get; set; }
         public DateTime? DateCreated { get; set; }

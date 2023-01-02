@@ -177,9 +177,11 @@ function Posts() {
         <div class="blkpost">
             <div class="blkpostheader">
                 <div class="blkphleft">
-                    <img src="${myimage}" width="50" height="50" class="img-fluid imguser">
+                    <a href="pages/profile.html?id=${myid}">
+                        <img src="${myimage}" width="50" height="50" class="img-fluid imguser" />
+                    </a>
                     <div class="blkphtext ms-2">
-                        <span class="text-truncate">${mydisplayname}</span>
+                        <span class="text-truncate"><a href="pages/profile.html?id=${myid}">${mydisplayname}</a></span>
                         <div class="blkphtextrow">
                             <a href="${location.pathname}?id=${myid}#status"><i class="bi bi-globe"></i> Public</a>
                             <a href="${location.pathname}?id=${myid}#datetime" class="ms-3"><i class="bi bi-calendar-date"></i> 2022-09-02 14:38:00</a>

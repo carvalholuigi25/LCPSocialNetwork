@@ -131,6 +131,7 @@ namespace lcpsnapi.Repositories
                 Displayname = res[0].Displayname,
                 Cover = res[0].Cover,
                 Image = res[0].Image,
+                Role = res[0].Role.ToString(),
                 UsersId = res[0].Id,
                 DateCreated = Convert.ToDateTime(res[0].DateRegistered),
                 Token = MyGenTokens.GenTokenOnly(res[0].Username, res[0].Role.Value, Enums.TokenUnitTime.months, 1)

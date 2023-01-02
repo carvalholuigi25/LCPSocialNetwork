@@ -4,6 +4,7 @@ export * from '../components/footer';
 export * from '../components/friends';
 export * from '../components/profile';
 export * from '../components/posts';
+export * from '../components/search';
 export * from '../components/stories';
 export * from '../components/toggleTheme';
 export * from '../components/modals';

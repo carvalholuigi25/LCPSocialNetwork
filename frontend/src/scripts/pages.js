@@ -9,6 +9,7 @@ comp.ProfileSidebarLeft();
 comp.toggleTheme();
 comp.Profile();
 comp.Friends();
+comp.Search();
 comp.Stories();
 comp.PostSender();
 comp.Posts();

@@ -33,15 +33,19 @@ function Navbar() {
                     <span class="counter">0</span>
                 </div>
             </li>
-            <li class="nav-item ms-1">
+            <li class="nav-item dropdown ms-auto me-0">
                 <div class="myprofile">
-                    <a href="pages/profile.html?id=${myid}" target="_self">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="${myimage}" alt="${mydisplayname}" class="img-fluid imgavatar" width="50" height="50" />
-                        <span class="uname" id="uname">${mydisplayname}</span>
                     </a>
-                    <a href="#" id="logoutlnk" class="logoutlnk">
-                        <span>Logout</span>
-                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                            <a class="dropdown-item" href="pages/profile.html?id=${myid}">
+                                <span class="uname" id="uname">${mydisplayname}</span>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item logoutlnk" id="logoutlnk" href="#">Logout</a></li>
+                    </ul>
                 </div>
             </li>`;
         } else {
@@ -66,8 +70,9 @@ function Navbar() {
                         <span class="bi bi-list"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navPageLinks">
-                        <form action="pages/search.html" method="get" class="frmsearch d-flex ms-auto me-0 p-0 w-auto" role="search">
-                            <input class="form-control w-100 mw-100" type="search" placeholder="Search" aria-label="Search">
+                        <div class="usersreslist hidden" id="usersreslist"></div>
+                        <form action="pages/search.html" method="get" class="frmsearch d-flex ms-auto me-0 p-0 w-auto" id="frmsearch" role="search">
+                            <input class="form-control inpsearch w-100 mw-100" id="inpsearch" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-primary btnsearch" type="submit">
                                 <i class="bi bi-search"></i>
                             </button>

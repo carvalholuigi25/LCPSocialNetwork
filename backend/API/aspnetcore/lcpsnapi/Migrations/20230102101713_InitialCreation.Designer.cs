@@ -12,7 +12,7 @@ using lcpsnapi.Context;
 namespace lcpsnapi.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20221221095747_InitialCreation")]
+    [Migration("20230102101713_InitialCreation")]
     partial class InitialCreation
     {
         /// <inheritdoc />
@@ -443,8 +443,8 @@ namespace lcpsnapi.Migrations
                             FirstName = "Luis",
                             Image = "/assets/images/users/luigi.png",
                             LastName = "Carvalho",
-                            Password = "$2a$11$eqSXx1Uv1PNm6wnIW61ORekwcwesE9ZsF0Sp.AjZqoRNGZxSXLgJu",
-                            Pin = "$2a$11$lkGIwr/SlJptgfDvc8TEz.OAFnUu2b.0KoxDqTJ3JFukXZaghb7lS",
+                            Password = "$2a$11$CshvIuxyoupMpxbFS5QckecbULI1iETxEt86jCzb/5KTdesOfVHgK",
+                            Pin = "$2a$11$N2PIbdB0naM9hDZQgdwOvuoxlZ6XJoccG/tXF2UOlvh1c2mB9R8Xe",
                             PrivacyStatus = 0,
                             Role = 0,
                             Status = 1,
@@ -463,8 +463,8 @@ namespace lcpsnapi.Migrations
                             FirstName = "Guest",
                             Image = "/assets/images/users/guest.png",
                             LastName = "Convidado",
-                            Password = "$2a$11$PO64o7Mcc./Qq5/GoCIfceldgux5XvJ6a8v.SQjhBQSvmpUqqI9Iu",
-                            Pin = "$2a$11$sozDdcVFZKn8LMBftVBvSul5nFLXmgWnsBkQ47tPonFEFfshrUYXK",
+                            Password = "$2a$11$woMdHR0LZtlrPhA8EDNALOss8uBx2PvIvogfEYJZdGACtjBvlGYba",
+                            Pin = "$2a$11$A0cy/lwir7gTKTzdSumEbeaL.Y67UZgADKagaJ0UOvoLeKz0Z8y92",
                             PrivacyStatus = 1,
                             Role = 5,
                             Status = 0,
@@ -505,6 +505,9 @@ namespace lcpsnapi.Migrations
                     b.Property<string>("Pin")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
@@ -523,14 +526,15 @@ namespace lcpsnapi.Migrations
                         {
                             UsersTokenId = 1,
                             Cover = "/assets/images/users/c_luigi.png",
-                            DateCreated = new DateTime(2022, 12, 21, 9, 57, 46, 993, DateTimeKind.Utc).AddTicks(392),
-                            DateExp = "21/01/2023 09:57:46",
+                            DateCreated = new DateTime(2023, 1, 2, 10, 17, 13, 74, DateTimeKind.Utc).AddTicks(669),
+                            DateExp = "02/02/2023 10:17:13",
                             Displayname = "Luis Carvalho",
                             Email = "luiscarvalho239@gmail.com",
                             Image = "/assets/images/users/luigi.png",
-                            Password = "$2a$11$lkZItdRaUkoJKQQ994OTOu96MlCc7KMe7kkZBkC9r7MtO9TdU9Sv6",
-                            Pin = "$2a$11$snGzTIYW9Tmf4A01bHEFKelE33IgHjEY1lvyhNRKNmsC/xEYEoBn2",
-                            Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsb2NhbGhvc3QiLCJqdGkiOiJjOWU0Zjc4OC02OWVjLTRlZTYtYWFiNi0wNTYwOGQyZTdlMDEiLCJpYXQiOiIyMS8xMi8yMDIyIDA5OjU3OjQ2IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imx1aWdpY2FyOTYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJzdXBlcmFkbWluIiwiZXhwIjoxNjc0Mjk1MDY2LCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJsb2NhbGhvc3QifQ.J8ZyrDOIaDbe0Oz4rvuROV3oAMvgk0epljpDnbG2EIY",
+                            Password = "$2a$11$sdcqIJIZL5KY9t9zKvB1Lefx2NTBfxMcwmRSUfrsVtEorsOB9pnAy",
+                            Pin = "$2a$11$sRLrLVYyLn6VUkpKxBXgNObQi.zR41F7ptuDY3ybE3O4wRSnJqNbS",
+                            Role = "superadmin",
+                            Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsb2NhbGhvc3QiLCJqdGkiOiJmNjgyZTA1ZC04NWQyLTQzNjAtYTM0OC0yZDIxMzg2ZDM2ZDAiLCJpYXQiOiIwMi8wMS8yMDIzIDEwOjE3OjEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imx1aWdpY2FyOTYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJzdXBlcmFkbWluIiwiZXhwIjoxNjc1MzMzMDMzLCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJsb2NhbGhvc3QifQ.UNReiu7AgAIbVi18rlzVIbf3oVVnr7aGxbGJCf8j6cs",
                             Username = "luigicar96",
                             UsersId = 1
                         },
@@ -538,14 +542,15 @@ namespace lcpsnapi.Migrations
                         {
                             UsersTokenId = 2,
                             Cover = "/assets/images/users/c_guest.png",
-                            DateCreated = new DateTime(2022, 12, 21, 9, 57, 47, 330, DateTimeKind.Utc).AddTicks(3700),
-                            DateExp = "21/01/2023 09:57:47",
+                            DateCreated = new DateTime(2023, 1, 2, 10, 17, 13, 476, DateTimeKind.Utc).AddTicks(6103),
+                            DateExp = "02/02/2023 10:17:13",
                             Displayname = "Guest Convidado",
                             Email = "guest@localhost.loc",
                             Image = "/assets/images/users/guest.png",
-                            Password = "$2a$11$IV7/z51X3ZJc5mFAPL1.M.TUnGry6e9ZyHoK/xRgv/yXdSMWt5YeO",
-                            Pin = "$2a$11$3CHEaz4fPMDMaFqev7W1ouvDVyVgPT4YrpYhptHGO1GTjpTDWyyuK",
-                            Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsb2NhbGhvc3QiLCJqdGkiOiJkZjU0YzM2OS1kZjBmLTQ0NmUtYTkzOS0zODIyZGQ1Y2QzM2MiLCJpYXQiOiIyMS8xMi8yMDIyIDA5OjU3OjQ3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imd1ZXN0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiZ3Vlc3QiLCJleHAiOjE2NzQyOTUwNjcsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.S_RK8bIw_Sx0DiqLCwMpUVy6UD3inqbJHhrMKB3WJCU",
+                            Password = "$2a$11$FKw0zlz7WjRasGvNa98vD.f8IKyGxzTUFFy760IEha3IAnHB0jWzq",
+                            Pin = "$2a$11$gVgaMqk7r.xLeEoQYKrZReNQYZE6RmYvmQW.t1hbuExXAtzuZ6egS",
+                            Role = "guest",
+                            Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsb2NhbGhvc3QiLCJqdGkiOiI0ZTY5NjBjYy03MmQ1LTQ0MTYtOWExMy1hY2ExYzBjMjgwZDIiLCJpYXQiOiIwMi8wMS8yMDIzIDEwOjE3OjEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imd1ZXN0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiZ3Vlc3QiLCJleHAiOjE2NzUzMzMwMzMsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.zYf2UZuet_kbvno9JBcVt7ExuCyIHsJ2ITo4gg7nB_E",
                             Username = "guest",
                             UsersId = 2
                         });

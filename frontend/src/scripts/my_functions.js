@@ -5,6 +5,10 @@ const headht = isSSL == 1 ? "https" : "http";
 const port = isSSL == 1 ? 5001 : 5000;
 const apiUrl = `${headht}://localhost:${port}`;
 
+function getMyApiUrl() {
+    return apiUrl;
+}
+
 //sources: 
 // https://stackoverflow.com/a/42118921
 // https://webpack.js.org/guides/asset-modules/
@@ -13,7 +17,7 @@ function importAll(r) {
     return r.keys().map(r);
 }
 
-async function fetchingData(url = "/api/users/auth/login", method = "GET", body = null) {
+async function fetchingData(url = "/api/users/auth/login", method = "GET", body = null, token = null) {
     var myHeaders = new Headers();
     var myInit = { 
         method: method,
@@ -21,6 +25,7 @@ async function fetchingData(url = "/api/users/auth/login", method = "GET", body 
         cache: 'no-cache',
         credentials: 'same-origin',
         headers:  {
+            'Authorization': token != null ? 'Bearer ' + token : null,
             'Content-Type': 'application/json'
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -162,7 +167,7 @@ function doLogin() {
                 password: document.querySelector('#formlog #password').value
             };
     
-            fetchingData(`${apiUrl}/api/users/auth/login`, "POST", formData).then(([authusers]) => {
+            fetchingData(`${apiUrl}/api/users/auth/login`, "POST", formData, null).then(([authusers]) => {
                 var jspdata = JSON.stringify(authusers);
                 localStorage.setItem("login", jspdata);
                 alert("User logged in!");
@@ -195,7 +200,7 @@ function doReg() {
                 image: document.querySelector('#formreg #image').value
             };
 
-            fetchingData(`${apiUrl}/api/users/auth/register`, "POST", formData).then(([authusers]) => {
+            fetchingData(`${apiUrl}/api/users/auth/register`, "POST", formData, null).then(([authusers]) => {
                 alert("User registered!");
                 setTimeout(() => {
                     window.location.href = "/pages/login.html";
@@ -265,4 +270,4 @@ function doPrevCover() {
     }
 }
 
-export { importAll, doLogin, doReg, doLogout, doReqMsgForFields, doPrevAvatar, doPrevCover }
+export { getMyApiUrl, importAll, fetchingData, doLogin, doReg, doLogout, doReqMsgForFields, doPrevAvatar, doPrevCover }
