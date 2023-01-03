@@ -109,32 +109,33 @@ namespace lcpsnapi.Repositories
         {
             #nullable disable
             var usersdata = await Task.FromResult(GetUsers());
-            var res = users != null ? usersdata?.Where(x => x.Username == users.Username || x.Email == users.Email).ToList() : null;
+            var res = users != null ? usersdata?.FirstOrDefault(x => x.Username == users.Username || x.Email == users.Email) : null;
 
             if (res == null)
             {
                 return BadRequest("The user does not exist in our database, please create new one.");
             }
 
-            if(!CheckIfPasswordIsValid(users.Password, res[0].Password))
+            if(!CheckIfPasswordIsValid(users.Password, res.Password))
             {
                 return BadRequest("The password does not match to his user's password.");
             }
 
             return new UsersToken()
             {
-                UsersTokenId = res[0].UsersTokenId,
-                Username = res[0].Username,
-                Email = res[0].Email,
-                Password = BC.HashPassword(res[0].Password, 11),
-                Pin = res[0].Pin,
-                Displayname = res[0].Displayname,
-                Cover = res[0].Cover,
-                Image = res[0].Image,
-                Role = res[0].Role.ToString(),
-                UsersId = res[0].Id,
-                DateCreated = Convert.ToDateTime(res[0].DateRegistered),
-                Token = MyGenTokens.GenTokenOnly(res[0].Username, res[0].Role.Value, Enums.TokenUnitTime.months, 1)
+                UsersTokenId = res.UsersTokenId ?? res.Id,
+                Username = res.Username,
+                Email = res.Email,
+                Password = BC.HashPassword(res.Password, 11),
+                Pin = res.Pin,
+                Displayname = res.Displayname,
+                Cover = res.Cover,
+                Image = res.Image,
+                Role = res.Role.ToString(),
+                UsersId = res.Id,
+                DateCreated = Convert.ToDateTime(res.DateRegistered),
+                DateExp = MyGenTokens.GenDateExpOnly(Enums.TokenUnitTime.months, 1).ToString("yyyy-MM-ddTHH:mm:ss"),
+                Token = MyGenTokens.GenTokenOnly(res.Username, res.Role.Value, Enums.TokenUnitTime.months, 1)
             };
             #nullable enable
         }
