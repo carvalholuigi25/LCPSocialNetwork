@@ -450,6 +450,22 @@
                 }
             }
 
+            .usersreslist {
+                background-color: $altbgcolor !important;
+                border-color: $color !important;
+                color: $color !important;
+
+                .img-avatar[src*="guest"], .guest, #guest {
+                    background-color: $color !important;
+                    border-color: $color !important;
+                }
+
+                * {
+                    color: $color !important;
+                    border-color: $color !important;
+                }
+            }
+
             .modal {
                 color: $color !important;
 

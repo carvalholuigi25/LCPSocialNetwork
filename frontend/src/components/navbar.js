@@ -44,7 +44,18 @@ function Navbar() {
                                 <span class="uname" id="uname">${mydisplayname}</span>
                             </a>
                         </li>
-                        <li><a class="dropdown-item logoutlnk" id="logoutlnk" href="#">Logout</a></li>
+                        <li>
+                            <a class="dropdown-item settingslnk" href="pages/settings.html">
+                                <i class="bi bi-gear me-1"></i>
+                                Settings
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item logoutlnk" id="logoutlnk" href="#">
+                                <i class="bi bi-door-closed me-1"></i>
+                                Logout
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>`;
