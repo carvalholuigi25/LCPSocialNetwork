@@ -20,15 +20,8 @@ function DoFilter(srchval, data, typem = "all") {
         case "role":
             res = data.filter(x => x.role.toLowerCase().includes(srchval.toLowerCase()));
             break;
-        case "all":
         default:
-            res = data.filter(x => 
-                x.id == parseInt(srchval, 0) ||
-                x.username.includes(srchval) || 
-                x.email.includes(srchval) || 
-                x.displayname.includes(srchval) ||
-                x.role.includes(srchval)
-            );
+            res = data.filter(x => x.displayname.toLowerCase().includes(srchval.toLowerCase()));
     }
 
     return res;
@@ -59,7 +52,7 @@ function DoSearch(srchval, isFocusIn = false) {
         }
 
         setTimeout(() => {
-            fetchingData(`${apiUrl}/api/users`, "GET", null, mylogin.token).then(([users]) => {
+            fetchingData(`${apiUrl}/api/users`, "GET", null, mylogin.token, true).then(([users]) => {
                 var musers = srchval.length >= 1 ? DoFilter(srchval, users, "all") : users;
                 var usersres = JSON.parse(JSON.stringify(musers));
                 var uid = 0; var uname = ""; var uavatar = ""; var userlinks = "";
