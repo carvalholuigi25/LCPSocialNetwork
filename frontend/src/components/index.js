@@ -8,3 +8,4 @@ export * from '../components/search';
 export * from '../components/stories';
 export * from '../components/toggleTheme';
 export * from '../components/modals';
+export * from '../components/notifications';

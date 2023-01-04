@@ -10,6 +10,7 @@ importAll(require.context('../assets/images', true, /\.(svg|png|jpe?g|gif|webp)$
 importAll(require.context('../assets/videos', true, /\.(mp4|mov|flv)$/));
 importAll(require.context('../assets/icons', true, /\.ico$/));
 
+comp.SetNotifications();
 comp.Navbar();
 comp.Footer();
 comp.toggleTheme();

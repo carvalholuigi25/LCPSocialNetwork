@@ -1,3 +1,4 @@
+import * as comp from '../components/index';
 import { Users } from '../classes/users';
 
 const isSSL = 1;
@@ -17,7 +18,7 @@ function importAll(r) {
     return r.keys().map(r);
 }
 
-async function fetchingData(url = "/api/users/auth/login", method = "GET", body = null, token = null) {
+async function fetchingData(url = "/api/users/auth/login", method = "GET", body = null, token = null, isFetchReqParallel = false) {
     var myHeaders = new Headers();
     var myInit = { 
         method: method,
@@ -36,12 +37,27 @@ async function fetchingData(url = "/api/users/auth/login", method = "GET", body 
 
     // console.log(myInit);
 
-    const [resp] = await Promise.all([
-        fetch(url, myInit)
-    ]);
+    if(isFetchReqParallel) {
+        const [resp] = await Promise.all([
+            fetch(url, myInit)
+        ]);
 
-     const aresp = await resp.json();
-     return [aresp];
+        if (!resp.ok) {
+            const message = `An error has occured: ${resp.status}`;
+            console.log(message);
+        }
+    
+        const aresp = await resp.json();
+        return [aresp];
+    } else {
+        const resp = await fetch(url, myInit);
+        if (!resp.ok) {
+            const message = `An error has occured: ${resp.status}`;
+            console.log(message);
+        }
+        const aresp = await resp.json();
+        return aresp;
+    }
 }
 
 function getFormLogin() {
@@ -167,15 +183,15 @@ function doLogin() {
                 password: document.querySelector('#formlog #password').value
             };
     
-            fetchingData(`${apiUrl}/api/users/auth/login`, "POST", formData, null).then(([authusers]) => {
+            fetchingData(`${apiUrl}/api/users/auth/login`, "POST", formData, null, false).then((authusers) => {
                 var jspdata = JSON.stringify(authusers);
                 localStorage.setItem("login", jspdata);
-                alert("User logged in!");
+                comp.GetNotifications("blksubnotifications", "text-bg-success", "bi-check-lg", "User " + formData.username + " has been logged in!", true, 1000);
                 
                 if(localStorage.getItem("login")) {
                     setTimeout(() => {
                         window.location.href = "/pages/main.html";
-                    }, 1000 * 1);
+                    }, 1000);
                 }
             }).catch(err => console.log("Failed to login: " + err));
         };
@@ -200,11 +216,12 @@ function doReg() {
                 image: document.querySelector('#formreg #image').value
             };
 
-            fetchingData(`${apiUrl}/api/users/auth/register`, "POST", formData, null).then(([authusers]) => {
-                alert("User registered!");
+            fetchingData(`${apiUrl}/api/users/auth/register`, "POST", formData, null, false).then((authusers) => {
+                comp.GetNotifications("blksubnotifications", "text-bg-success", "bi-check-lg", "User " + formData.username + " registered!", true, 1000);
+
                 setTimeout(() => {
                     window.location.href = "/pages/login.html";
-                }, 1000 * 1);
+                }, 1000);
             }).catch(err => console.log("Failed to register: " + err));
         };
     }
@@ -214,15 +231,15 @@ function doLogout() {
     if(document.querySelector('#logoutlnk')) {
         document.querySelector('#logoutlnk').onclick = function(e) {
             e.preventDefault();
+            comp.GetNotifications("blksubnotifications", "text-bg-success", "bi-check-lg", "User " + JSON.parse(localStorage.getItem('login')).username + " has been logout!", true, 1000);
 
             if(localStorage.getItem("login")) {
                 localStorage.removeItem("login");
             }
 
             setTimeout(() => {
-                alert("Logged out!");
                 window.location.href = "/index.html";
-            }, 1000 * 1);
+            }, 1000);
         };
     }
 }

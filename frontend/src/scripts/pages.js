@@ -2,6 +2,7 @@ import '../scss/dep_styles.scss';
 import * as bootstrap from 'bootstrap';
 import * as comp from '../components/index';
 
+comp.SetNotifications();
 comp.Navbar();
 comp.Sidebars();
 comp.Footer();

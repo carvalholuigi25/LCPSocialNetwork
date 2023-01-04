@@ -466,6 +466,22 @@
                 }
             }
 
+            .blknotifications, #blknotifications {
+                background-color: $altbgcolor !important;
+                border-color: $altbgcolor !important;
+                color: $color !important;
+
+                .toast[class*="bg"] {
+                    background-color: $altbgcolor !important;
+                    border: 1px solid $bgcolor !important;
+                    color: $color !important;
+                }
+        
+                * {
+                    color: $color !important;
+                }
+            }
+
             .modal {
                 color: $color !important;
 
