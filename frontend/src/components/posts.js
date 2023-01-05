@@ -1,78 +1,89 @@
+import { fetchingData, getMyApiUrl } from "../scripts/my_functions";
+import { doActionBtnModals, getMyQueryVal } from "./geral";
+
 function PostSender() {
     if(document.querySelector('#mypostsenderblk')) {
+        var mycover = ""; var myimage = ""; var mydisplayname = "";
         var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
-        var myid = userdetails ?  userdetails.usersId :  0;
-        var myimage = userdetails ? userdetails.image : "../assets/images/guest.png";
-        var mydisplayname = userdetails ? userdetails.displayname : "Guest";
+        var myid = getMyQueryVal().id ? getMyQueryVal().id : (userdetails ?  userdetails.usersId :  0);
+        var apiUrl = getMyApiUrl();
 
-        myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
+        fetchingData(`${apiUrl}/api/users/${myid}`, "GET", null, userdetails.token, true).then(([users]) => {
+            if(users.data != null && users.length > 0) {
+                var usersres = users.data != null && users.length > 0 ? JSON.parse(JSON.stringify(users)).data : null;
+                mycover = usersres ? usersres.cover : "../assets/images/c_guest.png";
+                myimage = usersres ? usersres.image : "../assets/images/guest.png";
+                mydisplayname = usersres ? usersres.displayname : "Guest";
+        
+                mycover = mycover.indexOf('/users') !== -1 ? mycover.replace('/users', '') : mycover;
+                myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
 
-        document.querySelector('#mypostsenderblk').innerHTML = `
-        <div class="blkpostsender">
-            <div class="blkpostsenderheader">
-                <img src="${myimage}" width="50" height="50" class="img-fluid imguser">
-                <form action="" method="post" class="formposter ms-2" id="formposter">
-                    <textarea name="text" id="text" cols="1" rows="3" placeholder="What you are thinking this time, ${mydisplayname}?"></textarea>
-                    <!-- <input type="text" name="text" id="text" placeholder="What you are thinking this time, ${mydisplayname}?" /> -->
-                </form>
-            </div>
-            <div class="blkpostsenderbody">
-                <div class="blkposterbodycontainer mt-3">
-                    <div class="input-group t-left d-block">
-                        <button class="btn btn-primary btnimages">
-                            <i class="bi bi-images"></i>
-                            <span class="ms-1">Images</span>
-                        </button>
-                        <button class="btn btn-primary btnvideos">
-                            <i class="bi bi-camera-video"></i>
-                            <span class="ms-1">Videos</span>
-                        </button>
-                        <button class="btn btn-primary btnemojis">
-                            <i class="bi bi-emoji-smile"></i>
-                            <span class="ms-1">Emojis</span>
-                        </button>
+                document.querySelector('#mypostsenderblk').innerHTML = `
+                <div class="blkpostsender">
+                    <div class="blkpostsenderheader">
+                        <img src="${myimage}" width="50" height="50" class="img-fluid imguser">
+                        <form action="" method="post" class="formposter ms-2" id="formposter">
+                            <textarea name="text" id="text" cols="1" rows="3" placeholder="What you are thinking this time, ${mydisplayname}?"></textarea>
+                            <!-- <input type="text" name="text" id="text" placeholder="What you are thinking this time, ${mydisplayname}?" /> -->
+                        </form>
                     </div>
-                    <div class="input-group t-right d-block">
-                        <div class="dropdown selstatus">
-                            <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-globe me-1"></i>
-                            Public
-                            </button>
-                            <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="${location.pathname}?id=${myid}#public">
+                    <div class="blkpostsenderbody">
+                        <div class="blkposterbodycontainer mt-3">
+                            <div class="input-group t-left d-block">
+                                <button class="btn btn-primary btnimages">
+                                    <i class="bi bi-images"></i>
+                                    <span class="ms-1">Images</span>
+                                </button>
+                                <button class="btn btn-primary btnvideos">
+                                    <i class="bi bi-camera-video"></i>
+                                    <span class="ms-1">Videos</span>
+                                </button>
+                                <button class="btn btn-primary btnemojis">
+                                    <i class="bi bi-emoji-smile"></i>
+                                    <span class="ms-1">Emojis</span>
+                                </button>
+                            </div>
+                            <div class="input-group t-right d-block">
+                                <div class="dropdown selstatus">
+                                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-globe me-1"></i>
                                     Public
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="${location.pathname}?id=${myid}#private">
-                                    <i class="bi bi-lock me-1"></i>
-                                    Private
-                                </a>
-                            </li>
-                            </ul>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="${location.pathname}?id=${myid}#public">
+                                            <i class="bi bi-globe me-1"></i>
+                                            Public
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="${location.pathname}?id=${myid}#private">
+                                            <i class="bi bi-lock me-1"></i>
+                                            Private
+                                        </a>
+                                    </li>
+                                    </ul>
+                                </div>
+                                <button type="reset" class="btn btn-secondary btnclear" id="btnclear">
+                                    <i class="bi bi-x-circle"></i>
+                                    <span class="ms-1">Clear</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btnpost" id="btnpost">
+                                    <i class="bi bi-plus-circle"></i>
+                                    <span class="ms-1">Post</span>
+                                </button>
+                            </div>
                         </div>
-                        <button type="reset" class="btn btn-secondary btnclear" id="btnclear">
-                            <i class="bi bi-x-circle"></i>
-                            <span class="ms-1">Clear</span>
-                        </button>
-                        <button type="button" class="btn btn-primary btnpost" id="btnpost">
-                            <i class="bi bi-plus-circle"></i>
-                            <span class="ms-1">Post</span>
-                        </button>
                     </div>
-                </div>
-            </div>
-        </div>`;
+                </div>`;
+
+                doActionBtnModals();
+            }
+        });
     }
 }
 
-function GetFormPostComment() {
-    var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
-    var myid = userdetails ?  userdetails.usersId :  0;
-    var myusername = userdetails ?  userdetails.username :  "guest";
-
+function GetFormPostComment(myid, myusername) {
     return `
     <form action="" method="post" class="frmpostercomment" id="frmpostercomment">
         <h4 class="d-block" style="font-size: 1rem; font-weight: bold;">Leave a comment</h4>
@@ -112,19 +123,12 @@ function GetFormPostComment() {
     </form>`;
 }
 
-function PostsComments() {
-    var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
-    var myid = userdetails ?  userdetails.usersId :  0;
-    var myimage = userdetails ? userdetails.image : "../assets/images/guest.png";
-    var mydisplayname = userdetails ? userdetails.displayname : "Guest";
-
-    myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
-
+function PostsComments(myid, mydisplayname, myimage) {
     return `
     <hr>
     <h3>Comments</h3>
     <div class="blkpostercomments mt-3 mb-3">
-        ${GetFormPostComment()}
+        ${GetFormPostComment(myid, mydisplayname)}
     </div>
     <div class="blkpostcomments mt-3">
         <div class="blkpostcommentsheader">
@@ -166,121 +170,133 @@ function PostsComments() {
 
 function Posts() {
     if(document.querySelector('#mypostsblk')) {
+        var mycover = ""; var myimage = ""; var mydisplayname = "";
         var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
-        var myid = userdetails ?  userdetails.usersId :  0;
-        var myimage = userdetails ? userdetails.image : "../assets/images/guest.png";
-        var mydisplayname = userdetails ? userdetails.displayname : "Guest";
+        var myid = getMyQueryVal().id ? getMyQueryVal().id : (userdetails ?  userdetails.usersId :  0);
+        var apiUrl = getMyApiUrl();
 
-        myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
+        fetchingData(`${apiUrl}/api/users/${myid}`, "GET", null, userdetails.token, true).then(([users]) => {
+            if(users.data != null && users.length > 0) {
+                var usersres = users.data != null && users.length > 0 ? JSON.parse(JSON.stringify(users)).data : null;
+                mycover = usersres ? usersres.cover : "../assets/images/c_guest.png";
+                myimage = usersres ? usersres.image : "../assets/images/guest.png";
+                mydisplayname = usersres ? usersres.displayname : "Guest";
+        
+                mycover = mycover.indexOf('/users') !== -1 ? mycover.replace('/users', '') : mycover;
+                myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
 
-        document.querySelector('#mypostsblk').innerHTML = `
-        <div class="blkpost">
-            <div class="blkpostheader">
-                <div class="blkphleft">
-                    <a href="pages/profile.html?id=${myid}">
-                        <img src="${myimage}" width="50" height="50" class="img-fluid imguser" />
-                    </a>
-                    <div class="blkphtext ms-2">
-                        <span class="text-truncate"><a href="pages/profile.html?id=${myid}">${mydisplayname}</a></span>
-                        <div class="blkphtextrow">
-                            <a href="${location.pathname}?id=${myid}#status"><i class="bi bi-globe"></i> Public</a>
-                            <a href="${location.pathname}?id=${myid}#datetime" class="ms-3"><i class="bi bi-calendar-date"></i> 2022-09-02 14:38:00</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="blkphright">
-                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-three-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                        <a class="dropdown-item btneditpost" id="btneditpost" href="pages/post/edit.html?id=${myid}">
-                            <i class="bi bi-pen"></i>
-                            Edit
-                        </a>
-                        </li>
-                        <li>
-                        <a class="dropdown-item btndelpost" id="btndelpost" href="pages/post/delete.html?id=${myid}">
-                            <i class="bi bi-trash"></i>
-                            Delete
-                        </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="blkpostbody">
-                <img src="/assets/images/default.webp" alt="Default image post" class="imgpost" />
-                <p class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident amet ea porro tenetur commodi dolor soluta similique. Ratione asperiores tempora assumenda nisi eaque pariatur, sed illum beatae doloribus? Perspiciatis, nostrum?</p>
-                <div class="links p-3 d-block">
-                    <a href="pages/profile.html?id=${myid}#reacts" id="myreactsstats" class="myreactsstats">
-                        0 reacts
-                    </a>
-                    <a href="pages/profile.html?id=${myid}#shares" id="mysharesstats" class="mysharesstats ms-2">
-                        0 shares
-                    </a>
-                    <a href="pages/profile.html?id=${myid}#comments" id="mycommentsstats" class="mycommentsstats ms-2">
-                        0 comments
-                    </a>
-                </div>
-                <div class="actionlinks input-group p-3">
-                    <div class="colactionlinks t-left">
-                        <div class="blkreactlist hidden" id="blkreactlist">
-                            <div class="sreactgrp" id="sreactgrp">
-                                <div class="reactgrp reactlike">
-                                    <a href="pages/profile.html?id=${myid}#react#like">
-                                        <i class="bi bi-hand-thumbs-up-fill"></i>
-                                    </a>
-                                </div>
-                                <div class="reactgrp reactdislike">
-                                    <a href="pages/profile.html?id=${myid}#react#dislike">
-                                        <i class="bi bi-hand-thumbs-down-fill"></i>
-                                    </a>
-                                </div>
-                                <div class="reactgrp reactsad">
-                                    <a href="pages/profile.html?id=${myid}#react#sad">
-                                        <i class="bi bi-emoji-frown-fill"></i>
-                                    </a>
-                                </div>
-                                <div class="reactgrp reactangry">
-                                    <a href="pages/profile.html?id=${myid}#react#angry">
-                                        <i class="bi bi-emoji-angry-fill"></i>
-                                    </a>
-                                </div>
-                                <div class="reactgrp reactlaugh">
-                                    <a href="pages/profile.html?id=${myid}#react#laugh">
-                                        <i class="bi bi-emoji-laughing-fill"></i>
-                                    </a>
-                                </div>
-                                <div class="reactgrp reactdisgusting">
-                                    <a href="pages/profile.html?id=${myid}#react#disgusting">
-                                        <i class="bi bi-emoji-dizzy-fill"></i>
-                                    </a>
+                document.querySelector('#mypostsblk').innerHTML = `
+                <div class="blkpost">
+                    <div class="blkpostheader">
+                        <div class="blkphleft">
+                            <a href="pages/profile.html?id=${myid}">
+                                <img src="${myimage}" width="50" height="50" class="img-fluid imguser" />
+                            </a>
+                            <div class="blkphtext ms-2">
+                                <span class="text-truncate"><a href="pages/profile.html?id=${myid}">${mydisplayname}</a></span>
+                                <div class="blkphtextrow">
+                                    <a href="${location.pathname}?id=${myid}#status"><i class="bi bi-globe"></i> Public</a>
+                                    <a href="${location.pathname}?id=${myid}#datetime" class="ms-3"><i class="bi bi-calendar-date"></i> 2022-09-02 14:38:00</a>
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary btnshreact" id="btnshreact">
-                            <i class="bi bi-emoji-smile"></i>
-                            React
-                        </button>
+                        <div class="blkphright">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item btneditpost" id="btneditpost" href="pages/post/edit.html?id=${myid}">
+                                        <i class="bi bi-pen"></i>
+                                        Edit
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item btndelpost" id="btndelpost" href="pages/post/delete.html?id=${myid}">
+                                        <i class="bi bi-trash"></i>
+                                        Delete
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="colactionlinks t-center">
-                        <button class="btn btn-primary btnshcomments" id="btnshcomments">
-                            <i class="bi bi-chat-square-dots"></i>
-                            Comment
-                        </button>
+                    <div class="blkpostbody">
+                        <img src="/assets/images/default.webp" alt="Default image post" class="imgpost" />
+                        <p class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident amet ea porro tenetur commodi dolor soluta similique. Ratione asperiores tempora assumenda nisi eaque pariatur, sed illum beatae doloribus? Perspiciatis, nostrum?</p>
+                        <div class="links p-3 d-block">
+                            <a href="pages/profile.html?id=${myid}#reacts" id="myreactsstats" class="myreactsstats">
+                                0 reacts
+                            </a>
+                            <a href="pages/profile.html?id=${myid}#shares" id="mysharesstats" class="mysharesstats ms-2">
+                                0 shares
+                            </a>
+                            <a href="pages/profile.html?id=${myid}#comments" id="mycommentsstats" class="mycommentsstats ms-2">
+                                0 comments
+                            </a>
+                        </div>
+                        <div class="actionlinks input-group p-3">
+                            <div class="colactionlinks t-left">
+                                <div class="blkreactlist hidden" id="blkreactlist">
+                                    <div class="sreactgrp" id="sreactgrp">
+                                        <div class="reactgrp reactlike">
+                                            <a href="pages/profile.html?id=${myid}#react#like">
+                                                <i class="bi bi-hand-thumbs-up-fill"></i>
+                                            </a>
+                                        </div>
+                                        <div class="reactgrp reactdislike">
+                                            <a href="pages/profile.html?id=${myid}#react#dislike">
+                                                <i class="bi bi-hand-thumbs-down-fill"></i>
+                                            </a>
+                                        </div>
+                                        <div class="reactgrp reactsad">
+                                            <a href="pages/profile.html?id=${myid}#react#sad">
+                                                <i class="bi bi-emoji-frown-fill"></i>
+                                            </a>
+                                        </div>
+                                        <div class="reactgrp reactangry">
+                                            <a href="pages/profile.html?id=${myid}#react#angry">
+                                                <i class="bi bi-emoji-angry-fill"></i>
+                                            </a>
+                                        </div>
+                                        <div class="reactgrp reactlaugh">
+                                            <a href="pages/profile.html?id=${myid}#react#laugh">
+                                                <i class="bi bi-emoji-laughing-fill"></i>
+                                            </a>
+                                        </div>
+                                        <div class="reactgrp reactdisgusting">
+                                            <a href="pages/profile.html?id=${myid}#react#disgusting">
+                                                <i class="bi bi-emoji-dizzy-fill"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btnshreact" id="btnshreact">
+                                    <i class="bi bi-emoji-smile"></i>
+                                    React
+                                </button>
+                            </div>
+                            <div class="colactionlinks t-center">
+                                <button class="btn btn-primary btnshcomments" id="btnshcomments">
+                                    <i class="bi bi-chat-square-dots"></i>
+                                    Comment
+                                </button>
+                            </div>
+                            <div class="colactionlinks t-right">
+                                <button class="btn btn-primary btnshshares" id="btnshshares">
+                                    <i class="bi bi-share"></i>
+                                    Share
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="colactionlinks t-right">
-                        <button class="btn btn-primary btnshshares" id="btnshshares">
-                            <i class="bi bi-share"></i>
-                            Share
-                        </button>
+                    <div class="blkpostfooter hidden">
+                        ${PostsComments(myid, mydisplayname, myimage)}
                     </div>
-                </div>
-            </div>
-            <div class="blkpostfooter hidden">
-                ${PostsComments()}
-            </div>
-        </div>`;
+                </div>`;
+
+                doActionBtnModals();
+            }
+        });
     }
 }
 

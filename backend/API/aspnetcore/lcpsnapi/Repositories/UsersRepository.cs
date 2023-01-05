@@ -32,23 +32,24 @@ namespace lcpsnapi.Repositories
             }
         }
 
-        public Users GetUsersDetails(int id)
+        public ActionResult<Users> GetUsersDetails(int id)
         {
             try
             {
                 Users? user = _dbContext.User?.Find(id);
+                var len = _dbContext.User?.Where(x => x.Id == id).Count() ?? 0;
                 if (user != null)
                 {
-                    return user;
+                    return Ok(new { data = user, msg = "Succesfully fetched user info (id: "+id+")", length = len });
                 }
                 else
                 {
-                    throw new ArgumentException("Cannot get the user");
+                    return Ok(new { data = "", msg = "Cannot get the user",  length = len });
                 }
             }
             catch
             {
-                throw new Exception("Failed to retrieve users data by id");
+                return Ok(new { data = "", msg = "Failed to retrieve users data by id", length = 0 });
             }
         }
 

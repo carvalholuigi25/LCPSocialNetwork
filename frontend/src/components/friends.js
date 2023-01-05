@@ -7,11 +7,11 @@ function Friends() {
                     <a href="pages/profile.html?id=2#edit" class="editprofilelistfriends">
                         <i class="bi bi-pen"></i>
                     </a>
-                    <img src="assets/images/default.webp" alt="John Doe Cover" class="coverlistfriends">
-                    <img src="assets/images/guest.png" alt="John Doe Avatar" class="imglistfriends guest">
+                    <img src="assets/images/default.webp" alt="Luigi Carvalho Cover" class="coverlistfriends">
+                    <img src="assets/images/luigi.png" alt="Luigi Carvalho Avatar" class="imglistfriends">
                 </div>
                 <div class="blklistfriendsbody">
-                    <h3 class="name">John Doe</h3>
+                    <h3 class="name">Luigi Carvalho</h3>
                     <div class="blklistfriendsbodymcol">
                         <div class="blklistfriendsbodycol1">
                             <span>Friend(s): 1</span>
@@ -33,11 +33,11 @@ function Friends() {
                     <a href="pages/profile.html?id=3#edit" class="editprofilelistfriends">
                         <i class="bi bi-pen"></i>
                     </a>
-                    <img src="assets/images/default.webp" alt="Mary Doe Cover" class="coverlistfriends">
-                    <img src="assets/images/guest.png" alt="Mary Doe Avatar" class="imglistfriends guest">
+                    <img src="assets/images/default.webp" alt="Guest Cover" class="coverlistfriends">
+                    <img src="assets/images/guest.png" alt="Guest Avatar" class="imglistfriends guest">
                 </div>
                 <div class="blklistfriendsbody">
-                    <h3 class="name">Mary Doe</h3>
+                    <h3 class="name">Guest Convidado</h3>
                     <div class="blklistfriendsbodymcol">
                         <div class="blklistfriendsbodycol1">
                             <span>Friend(s): 1</span>

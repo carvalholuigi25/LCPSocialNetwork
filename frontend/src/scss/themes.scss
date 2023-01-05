@@ -13,6 +13,12 @@
             background-color: $bgcolor;
             color: $color;
 
+            .blkpprivacypolicy, .blkptermsofservice {
+                * {
+                    color: $color;
+                }
+            }
+
             .form-check-input {
                 cursor: pointer;
                 background-color: $color !important;
@@ -113,7 +119,7 @@
                     }
 
                     .myprofile {
-                        .imgavatar {
+                        .imgavatar[src*="guest"] {
                             background-color: $color !important;
                             color: $bgcolor !important;
                         }
@@ -131,7 +137,7 @@
                             background-color: $bgcolor !important;
                             background-blend-mode: luminosity !important;
                         }
-                        .avatarimg {
+                        .avatarimg[src*="guest"] {
                             background-color: $color !important;
                             color: $bgcolor !important;
                         }
@@ -186,7 +192,7 @@
                 color: $color !important;
 
                 .authorstories {
-                    .imgauthorstories {
+                    .imgauthorstories[src*="guest"] {
                         background-color: $color !important;
                         border-color: $color !important;
                     }
@@ -197,7 +203,7 @@
                 background-color: $altbgcolor !important;
                 color: $color !important;
 
-                .imguser {
+                .imguser[src*="guest"] {
                     background-color: $color !important;
                     border-color: $color !important;
                 }
@@ -292,7 +298,7 @@
                     }
                 }
 
-                .imguser {
+                .imguser[src*="guest"] {
                     background-color: $color !important;
                     border-color: $color !important;
                 }
@@ -386,7 +392,7 @@
                     color: $color !important;
                 }
 
-                .imgmember {
+                .imgmember[src*="guest"] {
                     background-color: $color !important;
                     border-color: $color !important;
                 }
@@ -536,7 +542,7 @@
             
                 .table-responsive {
                     .table {
-                        .imguser {
+                        .imguser[src*="guest"] {
                             background-color: $color !important;
                             border-color: $bgcolor !important;
                         }

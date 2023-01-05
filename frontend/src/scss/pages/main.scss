@@ -100,14 +100,7 @@
                 object-fit: cover;
                 object-position: center center;
             }
-            .avatarimg[src="guest.png"],
-            .avatarimg[src="/guest.png"],
-            .avatarimg[src="/images/guest.png"],
-            .avatarimg[src="/users/images/guest.png"],
-            .avatarimg[src="../assets/images/guest.png"],
-            .avatarimg[src="/assets/images/guest.png"],
-            .avatarimg[src="/assets/images/users/guest.png"],
-            .avatarimg.guest {
+            .avatarimg[src*="guest"], .guest {
                 background-color: silver;
             }
         }
@@ -270,13 +263,7 @@
                 object-fit: cover;
                 object-position: center center;
 
-                &[src="guest.png"],
-                &[src="/guest.png"],
-                &[src="/images/guest.png"],
-                &[src="/users/images/guest.png"],
-                &[src="../assets/images/guest.png"],
-                &[src="/assets/images/guest.png"],
-                &[src="/assets/images/users/guest.png"],
+                &[src*="guest"],
                 &.guest {
                     background-color: silver;
                     border-color: silver;
@@ -342,13 +329,7 @@
             object-fit: cover;
             object-position: center center;
 
-            &[src="guest.png"],
-            &[src="/guest.png"],
-            &[src="/images/guest.png"],
-            &[src="/users/images/guest.png"],
-            &[src="../assets/images/guest.png"],
-            &[src="/assets/images/guest.png"],
-            &[src="/assets/images/users/guest.png"],
+            &[src*="guest"],
             &.guest {
                 background-color: silver;
                 border-color: silver;
@@ -466,13 +447,7 @@
             object-fit: cover;
             object-position: center center;
 
-            &[src="guest.png"],
-            &[src="/guest.png"],
-            &[src="/images/guest.png"],
-            &[src="/users/images/guest.png"],
-            &[src="../assets/images/guest.png"],
-            &[src="/assets/images/guest.png"],
-            &[src="/assets/images/users/guest.png"],
+            &[src*="guest"],
             &.guest {
                 background-color: silver;
                 border-color: silver;

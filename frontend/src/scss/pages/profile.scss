@@ -93,13 +93,7 @@
                 border-color: transparent;
                 padding: 5px;
                 
-                &[src="guest.png"],
-                &[src="/guest.png"],
-                &[src="/images/guest.png"],
-                &[src="/users/images/guest.png"],
-                &[src="../assets/images/guest.png"],
-                &[src="/assets/images/guest.png"],
-                &[src="/assets/images/users/guest.png"],
+                &[src*="guest"],
                 &.guest {
                     background-color: silver;
                     border-color: silver;

@@ -322,13 +322,7 @@ body.fixednav {
       object-position: center center;
     }
     
-    a > img[src="guest.png"], img[src="guest.png"],
-    a > img[src="/guest.png"], img[src="/guest.png"],
-    a > img[src="/images/guest.png"], img[src="/images/guest.png"],
-    a > img[src="/users/images/guest.png"], img[src="/users/images/guest.png"],
-    a > img[src="../assets/images/guest.png"], img[src="../assets/images/guest.png"],
-    a > img[src="/assets/images/guest.png"], img[src="/assets/images/guest.png"],
-    a > img[src="/assets/images/users/guest.png"], img[src="/assets/images/users/guest.png"],
+    a > img[src*="guest"], img[src*="guest"],
     a > img.guest, img.guest {
         background-color: silver;
     }
@@ -338,6 +332,23 @@ body.fixednav {
         max-width: 100% !important;
         left: auto !important;
         right: -12px !important;
+    }
+}
+
+.myprofileblk {
+    .warnblk, #warnblk {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        text-align: center;
+        margin: 0 auto;
+        min-height: 137vh;
+
+        h1 {
+            font-size: 2rem;
+        }
     }
 }
 
@@ -455,6 +466,7 @@ body.fixednav {
 
     .blkavatar {
         position: relative;
+
         .avatarcover {
             width: 100%;
             height: 200px;
@@ -478,12 +490,9 @@ body.fixednav {
             object-fit: cover;
             object-position: center center;
         }
-        .avatarimg[src="guest.png"],
-        .avatarimg[src="/guest.png"],
-        .avatarimg[src="/images/guest.png"],
-        .avatarimg[src="/assets/images/guest.png"],
-        .avatarimg[src="/assets/images/users/guest.png"],
-        .avatarimg.guest {
+
+        .avatarimg[src*="guest"],
+        .guest {
             background-color: silver;
         }
     }
@@ -609,6 +618,14 @@ body.fixednav {
     }
 }
 
+.blkmembersstatus {
+    .imgmember[src*="guest"] {
+        background-color: silver;
+        border-color: silver;
+        padding: 5px;
+    }
+}
+
 .blkfriends {
     display: block;
     position: relative;
@@ -642,13 +659,7 @@ body.fixednav {
                 background-color: transparent;
                 border-color: transparent;
 
-                &[src="guest.png"],
-                &[src="/guest.png"],
-                &[src="/images/guest.png"],
-                &[src="/users/images/guest.png"],
-                &[src="../assets/images/guest.png"],
-                &[src="/assets/images/guest.png"],
-                &[src="/assets/images/users/guest.png"],
+                &[src*="guest"],
                 &.guest {
                     background-color: silver;
                     border-color: silver;
@@ -811,13 +822,7 @@ body.fixednav {
             background-color: transparent;
             border-color: transparent;
 
-            &[src="guest.png"],
-            &[src="/guest.png"],
-            &[src="/images/guest.png"],
-            &[src="/users/images/guest.png"],
-            &[src="../assets/images/guest.png"],
-            &[src="/assets/images/guest.png"],
-            &[src="/assets/images/users/guest.png"],
+            &[src*="guest"],
             &.guest {
                 background-color: silver;
                 border-color: silver;
@@ -969,13 +974,7 @@ body.fixednav {
         background-color: transparent;
         border-color: transparent;
 
-        &[src="guest.png"],
-        &[src="/guest.png"],
-        &[src="/images/guest.png"],
-        &[src="/users/images/guest.png"],
-        &[src="../assets/images/guest.png"],
-        &[src="/assets/images/guest.png"],
-        &[src="/assets/images/users/guest.png"],
+        &[src*="guest"],
         &.guest {
             background-color: silver;
             border-color: silver;
@@ -1093,13 +1092,7 @@ body.fixednav {
         background-color: transparent;
         border-color: transparent;
 
-        &[src="guest.png"],
-        &[src="/guest.png"],
-        &[src="/images/guest.png"],
-        &[src="/users/images/guest.png"],
-        &[src="../assets/images/guest.png"],
-        &[src="/assets/images/guest.png"],
-        &[src="/assets/images/users/guest.png"],
+        &[src*="guest"],
         &.guest {
             background-color: silver;
             border-color: silver;
@@ -1384,6 +1377,12 @@ body.fixednav {
             * {
                 text-align: center !important;
             }
+        }
+    }
+
+    .myprofileblk {
+        .warnblk, #warnblk {
+            min-height: 100% !important;
         }
     }
 }

@@ -1,3 +1,6 @@
+import { fetchingData, getMyApiUrl } from "../scripts/my_functions";
+import { getMyQueryVal } from "./geral";
+
 function ProfileSidebarLeft() {
     if(document.querySelector('#myprofilesbleft')) {
         document.querySelector('#myprofilesbleft').innerHTML = `
@@ -13,12 +16,12 @@ function ProfileSidebarLeft() {
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="/assets/images/guest.png" width="50" height="50" alt="John Doe" class="img-fluid imguser guest">
-                                    <p class="titleuser mt-3">John Doe</p>
+                                    <img src="/assets/images/luigi.png" width="50" height="50" alt="Luigi Carvalho" class="img-fluid imguser">
+                                    <p class="titleuser mt-3">Luigi Carvalho</p>
                                 </td>
                                 <td>
-                                    <img src="/assets/images/guest.png" width="50" height="50" alt="Mary Doe" class="img-fluid imguser guest">
-                                    <p class="titleuser mt-3">Mary Doe</p>
+                                    <img src="/assets/images/guest.png" width="50" height="50" alt="Guest Convidado" class="img-fluid imguser guest">
+                                    <p class="titleuser mt-3">Guest Convidado</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -70,62 +73,76 @@ function ProfileSidebarLeft() {
 
 function Profile() {
     if(document.querySelector('#myprofileblk')) {
+        var mycover = ""; var myimage = ""; var mydisplayname = "";
         var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
-        var myid = userdetails ?  userdetails.usersId :  0;
-        var mycover = userdetails ? userdetails.cover : "../assets/images/c_guest.png";
-        var myimage = userdetails ? userdetails.image : "../assets/images/guest.png";
-        var mydisplayname = userdetails ? userdetails.displayname : "Guest";
+        var myid = getMyQueryVal().id ? getMyQueryVal().id : (userdetails ?  userdetails.usersId :  0);
+        var apiUrl = getMyApiUrl();
 
-        mycover = mycover.indexOf('/users') !== -1 ? mycover.replace('/users', '') : mycover;
-        myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
-
-        document.querySelector('#myprofileblk').innerHTML = `
-            <div class="blkprofile">
-                <img src="${mycover}" alt="${mydisplayname}'s Cover" class="imgprofilecover" id="imgprofilecover" />
-                <div class="blkprofilebody">
-                    <img src="${myimage}" width="50" height="50" class="img-fluid imguser">
-                    <div class="blkprofilebodyleft">
-                        <span class="username">${mydisplayname}</span>
-                    </div>
-                    <div class="blkprofilebodyright">
-                        <div class="input-group">
-                            <a href="pages/profile/edit.html?id=${myid}" class="btn btn-warning btneditprofile">
-                                <i class="bi bi-pen"></i>
-                                <span class="ms-1">Edit profile</span>
-                            </a>
-                            <a href="pages/profile/report.html?id=${myid}" class="btn btn-error btnreportuser">
-                                <i class="bi bi-exclamation-circle-fill"></i>
-                                <span class="ms-1">Report this user</span>
-                            </a>
+        fetchingData(`${apiUrl}/api/users/${myid}`, "GET", null, userdetails.token, true).then(([users]) => {
+            if(users.data != null && users.length > 0) {
+                var usersres = users.data != null && users.length > 0 ? JSON.parse(JSON.stringify(users)).data : null;
+                mycover = usersres ? usersres.cover : "../assets/images/c_guest.png";
+                myimage = usersres ? usersres.image : "../assets/images/guest.png";
+                mydisplayname = usersres ? usersres.displayname : "Guest";
+        
+                mycover = mycover.indexOf('/users') !== -1 ? mycover.replace('/users', '') : mycover;
+                myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
+        
+                document.querySelector('#myprofileblk').innerHTML = `
+                <div class="blkprofile">
+                    <img src="${mycover}" alt="${mydisplayname}'s Cover" class="imgprofilecover" id="imgprofilecover" />
+                    <div class="blkprofilebody">
+                        <img src="${myimage}" width="50" height="50" class="img-fluid imguser">
+                        <div class="blkprofilebodyleft">
+                            <span class="username">${mydisplayname}</span>
+                        </div>
+                        <div class="blkprofilebodyright">
+                            <div class="input-group">
+                                <a href="pages/profile/edit.html?id=${myid}" class="btn btn-warning btneditprofile">
+                                    <i class="bi bi-pen"></i>
+                                    <span class="ms-1">Edit profile</span>
+                                </a>
+                                <a href="pages/profile/report.html?id=${myid}" class="btn btn-error btnreportuser">
+                                    <i class="bi bi-exclamation-circle-fill"></i>
+                                    <span class="ms-1">Report this user</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="blkprofilefooter">
-                    <ul class="nav nav-tabs navprofileshlinks">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="pages/profile.html?id=${myid}#posts">Posts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/profile.html?id=${myid}#images">Images</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/profile.html?id=${myid}#videos">Videos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/profile.html?id=${myid}#about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/profile.html?id=${myid}#events">Events</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/profile.html?id=${myid}#activity">Activity</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/profile.html?id=${myid}#friends">Friends</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>`;
+                    <div class="blkprofilefooter">
+                        <ul class="nav nav-tabs navprofileshlinks">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="pages/profile.html?id=${myid}#posts">Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/profile.html?id=${myid}#images">Images</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/profile.html?id=${myid}#videos">Videos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/profile.html?id=${myid}#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/profile.html?id=${myid}#events">Events</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/profile.html?id=${myid}#activity">Activity</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/profile.html?id=${myid}#friends">Friends</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>`;
+            } else {
+                document.querySelector('#myprofileblk').innerHTML = `
+                <div class="warnblk">
+                    <i class="bi bi-exclamation-circle" style="color: red; font-size: 4rem"></i>
+                    <h1>Error: This user profile has not been found!</h1>
+                </div>`;
+            }
+        }).catch(err => console.log("Error while fetching current user data: " + err));
     }
 }
 
