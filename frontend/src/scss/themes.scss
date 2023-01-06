@@ -19,6 +19,20 @@
                 }
             }
 
+            .mypostsblk {
+                background: $bgcolor !important;
+                color: $color !important;
+            }
+
+            .warnblk {
+                background: $altbgcolor !important;
+                color: $color !important;
+
+                * {
+                    color: $color !important;
+                }
+            }
+
             .form-check-input {
                 cursor: pointer;
                 background-color: $color !important;

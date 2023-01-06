@@ -202,7 +202,7 @@ function doReg() {
     getFormReg();
 
     if(document.querySelector('#formreg')) {
-        document.querySelector('#formlog').onsubmit = function(e) {
+        document.querySelector('#formreg').onsubmit = function(e) {
             e.preventDefault();
 
             var formData = {

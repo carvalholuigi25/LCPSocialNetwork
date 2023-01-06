@@ -1,4 +1,5 @@
 export * from '../components/geral';
+export * from '../components/crud';
 export * from '../components/navbar';
 export * from '../components/sidebars';
 export * from '../components/footer';

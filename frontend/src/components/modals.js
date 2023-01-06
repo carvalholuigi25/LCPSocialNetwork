@@ -155,7 +155,7 @@ function MySharePost() {
     }
 }
 
-function EditMyPost() {
+function EditMyPost(id = 1) {
     if(document.querySelector('#blkmodaleditmypost')) {
         document.querySelector('#blkmodaleditmypost').innerHTML = `
             <div class="modaleditmypost modal fade" id="modaleditmypost" tabindex="-1" aria-labelledby="modaleditmypostlbl" aria-hidden="true">
@@ -169,7 +169,7 @@ function EditMyPost() {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Do you want edit this post (id: 1)?</p>
+                            <p>Do you want edit this post (id: ${id})?</p>
                         </div>
                         <div class="modal-footer bg-info">
                             <button type="button" class="btn btn-info" data-bs-dismiss="modal">Yes</button>
@@ -182,7 +182,7 @@ function EditMyPost() {
     }
 }
 
-function DelMyPost() {
+function DelMyPost(id = 1) {
     if(document.querySelector('#blkmodaldelmypost')) {
         document.querySelector('#blkmodaldelmypost').innerHTML = `
             <div class="modaldelmypost modal fade" id="modaldelmypost" tabindex="-1" aria-labelledby="modaldelmypostlbl" aria-hidden="true">
@@ -196,7 +196,7 @@ function DelMyPost() {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Do you want delete this post (id: 1)?</p>
+                            <p>Do you want delete this post (id: ${id})?</p>
                         </div>
                         <div class="modal-footer bg-warning">
                             <button type="button" class="btn btn-info" data-bs-dismiss="modal">Yes</button>
