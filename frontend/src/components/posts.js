@@ -5,7 +5,8 @@ function PostSender() {
     if(document.querySelector('#mypostsenderblk')) {
         var mycover = ""; var myimage = ""; var mydisplayname = "";
         var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
-        var myid = getMyQueryVal().id ? getMyQueryVal().id : (userdetails ?  userdetails.usersId :  0);
+        var myulid = userdetails ?  userdetails.usersId :  0;
+        var myid = getMyQueryVal().id ? getMyQueryVal().id : myulid;
         var apiUrl = getMyApiUrl();
 
         fetchingData(`${apiUrl}/api/users/${myid}`, "GET", null, userdetails.token, true).then(([users]) => {
@@ -18,66 +19,68 @@ function PostSender() {
                 mycover = mycover.indexOf('/users') !== -1 ? mycover.replace('/users', '') : mycover;
                 myimage = myimage.indexOf('/users') !== -1 ? myimage.replace('/users', '') : myimage;
 
-                document.querySelector('#mypostsenderblk').innerHTML = `
-                <div class="blkpostsender">
-                    <div class="blkpostsenderheader">
-                        <img src="${myimage}" width="50" height="50" class="img-fluid imguser">
-                        <form action="" method="post" class="formposter ms-2" id="formposter">
-                            <textarea name="text" id="text" cols="1" rows="3" placeholder="What you are thinking this time, ${mydisplayname}?"></textarea>
-                            <!-- <input type="text" name="text" id="text" placeholder="What you are thinking this time, ${mydisplayname}?" /> -->
-                        </form>
-                    </div>
-                    <div class="blkpostsenderbody">
-                        <div class="blkposterbodycontainer mt-3">
-                            <div class="input-group t-left d-block">
-                                <button class="btn btn-primary btnimages">
-                                    <i class="bi bi-images"></i>
-                                    <span class="ms-1">Images</span>
-                                </button>
-                                <button class="btn btn-primary btnvideos">
-                                    <i class="bi bi-camera-video"></i>
-                                    <span class="ms-1">Videos</span>
-                                </button>
-                                <button class="btn btn-primary btnemojis">
-                                    <i class="bi bi-emoji-smile"></i>
-                                    <span class="ms-1">Emojis</span>
-                                </button>
-                            </div>
-                            <div class="input-group t-right d-block">
-                                <div class="dropdown selstatus">
-                                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-globe me-1"></i>
-                                    Public
+                if(myulid == usersres.id) {
+                    document.querySelector('#mypostsenderblk').innerHTML = `
+                    <div class="blkpostsender">
+                        <div class="blkpostsenderheader">
+                            <img src="${myimage}" width="50" height="50" class="img-fluid imguser">
+                            <form action="" method="post" class="formposter ms-2" id="formposter">
+                                <textarea name="text" id="text" cols="1" rows="3" placeholder="What you are thinking this time, ${mydisplayname}?"></textarea>
+                                <!-- <input type="text" name="text" id="text" placeholder="What you are thinking this time, ${mydisplayname}?" /> -->
+                            </form>
+                        </div>
+                        <div class="blkpostsenderbody">
+                            <div class="blkposterbodycontainer mt-3">
+                                <div class="input-group t-left d-block">
+                                    <button class="btn btn-primary btnimages">
+                                        <i class="bi bi-images"></i>
+                                        <span class="ms-1">Images</span>
                                     </button>
-                                    <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="${location.pathname}?id=${myid}#public">
-                                            <i class="bi bi-globe me-1"></i>
-                                            Public
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="${location.pathname}?id=${myid}#private">
-                                            <i class="bi bi-lock me-1"></i>
-                                            Private
-                                        </a>
-                                    </li>
-                                    </ul>
+                                    <button class="btn btn-primary btnvideos">
+                                        <i class="bi bi-camera-video"></i>
+                                        <span class="ms-1">Videos</span>
+                                    </button>
+                                    <button class="btn btn-primary btnemojis">
+                                        <i class="bi bi-emoji-smile"></i>
+                                        <span class="ms-1">Emojis</span>
+                                    </button>
                                 </div>
-                                <button type="reset" class="btn btn-secondary btnclear" id="btnclear">
-                                    <i class="bi bi-x-circle"></i>
-                                    <span class="ms-1">Clear</span>
-                                </button>
-                                <button type="button" class="btn btn-primary btnpost" id="btnpost">
-                                    <i class="bi bi-plus-circle"></i>
-                                    <span class="ms-1">Post</span>
-                                </button>
+                                <div class="input-group t-right d-block">
+                                    <div class="dropdown selstatus">
+                                        <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-globe me-1"></i>
+                                        Public
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="${location.pathname}?id=${myid}#public">
+                                                <i class="bi bi-globe me-1"></i>
+                                                Public
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="${location.pathname}?id=${myid}#private">
+                                                <i class="bi bi-lock me-1"></i>
+                                                Private
+                                            </a>
+                                        </li>
+                                        </ul>
+                                    </div>
+                                    <button type="reset" class="btn btn-secondary btnclear" id="btnclear">
+                                        <i class="bi bi-x-circle"></i>
+                                        <span class="ms-1">Clear</span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btnpost" id="btnpost">
+                                        <i class="bi bi-plus-circle"></i>
+                                        <span class="ms-1">Post</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>`;
-
-                doActionBtnModals();
+                    </div>`;
+    
+                    doActionBtnModals();
+                }
             }
         });
     }

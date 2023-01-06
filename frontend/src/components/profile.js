@@ -16,12 +16,16 @@ function ProfileSidebarLeft() {
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="/assets/images/luigi.png" width="50" height="50" alt="Luigi Carvalho" class="img-fluid imguser">
-                                    <p class="titleuser mt-3">Luigi Carvalho</p>
+                                    <a href="pages/profile.html?id=1">
+                                        <img src="/assets/images/luigi.png" width="50" height="50" alt="Luigi Carvalho" class="img-fluid imguser">
+                                        <p class="titleuser mt-3">Luigi Carvalho</p>
+                                    </a>
                                 </td>
                                 <td>
-                                    <img src="/assets/images/guest.png" width="50" height="50" alt="Guest Convidado" class="img-fluid imguser guest">
-                                    <p class="titleuser mt-3">Guest Convidado</p>
+                                    <a href="pages/profile.html?id=2">
+                                        <img src="/assets/images/guest.png" width="50" height="50" alt="Guest Convidado" class="img-fluid imguser guest">
+                                        <p class="titleuser mt-3">Guest Convidado</p>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
