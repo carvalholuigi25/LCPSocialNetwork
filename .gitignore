@@ -3,8 +3,7 @@ package-lock.json
 .npmrc
 frontend/.npmrc
 frontend/package-lock.json
-# frontend/dist
-# frontend/dist/*
+frontend/dist/*
 backend/API/nodejs/node_modules
 backend/API/nodejs/package-lock.json
 backend/API/nodejs/.npmrc
