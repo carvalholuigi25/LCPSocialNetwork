@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using lcpsnapi.Classes;
 using lcpsnapi.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using lcpsnapi.Extensions;
 
 namespace lcpsnapi.Controllers
 {
@@ -89,6 +88,15 @@ namespace lcpsnapi.Controllers
         {
             var post = _IPosts.DeletePosts(id);
             return await Task.FromResult(post);
+        }
+
+        /// <summary>
+        /// Reset AI posts by id
+        /// </summary>
+        [HttpPost("ai/{id}")]
+        public void ResetAIByPostId(int? id = 0)
+        {
+            _IPosts.ResetAIById("Post", id);
         }
 
         /// <summary>

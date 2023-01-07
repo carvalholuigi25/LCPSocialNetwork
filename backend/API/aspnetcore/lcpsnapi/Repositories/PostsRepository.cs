@@ -1,6 +1,7 @@
 ﻿using lcpsnapi.Classes;
 using lcpsnapi.Context;
 using lcpsnapi.Interfaces;
+using lcpsnapi.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace lcpsnapi.Repositories
@@ -82,6 +83,7 @@ namespace lcpsnapi.Repositories
                 {
                     _dbContext.Post?.Remove(Post);
                     _dbContext.SaveChanges();
+                    ResetAIById("Posts", 0);
                     return Post;
                 }
                 else
@@ -92,6 +94,14 @@ namespace lcpsnapi.Repositories
             catch
             {
                 throw;
+            }
+        }
+
+        public void ResetAIById(string? tblname = "Post", int? id = 0) {
+            try {
+                _dbContext.Database.ExecuteSqlRaw($"DBCC CHECKIDENT('dbo.{tblname}', RESEED, {id})");
+            } catch (Exception e) {
+                throw new ArgumentException(e.Message);
             }
         }
 
