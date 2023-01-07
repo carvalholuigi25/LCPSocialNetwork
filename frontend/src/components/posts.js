@@ -105,8 +105,8 @@ function PostSender() {
                                 reactsId: 1
                             };
 
-                            console.log(data);
                             Create("posts", data, userdetails.token).then(x => x).catch(err => console.log(err));
+                            window.location.reload();
                         };
                     }
     
