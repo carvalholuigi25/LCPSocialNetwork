@@ -20,7 +20,5 @@ comp.MyNotifications();
 comp.MyReactions();
 comp.MyShares();
 comp.MySharePost();
-comp.EditMyPost(1);
-comp.DelMyPost(1);
 comp.setFixedNavbar();
 comp.doActionBtnModals();

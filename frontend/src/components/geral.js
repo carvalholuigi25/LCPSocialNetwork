@@ -1,4 +1,5 @@
 import * as bootstrap from 'bootstrap';
+import { getMyApiUrl, fetchingData } from '../scripts/my_functions';
 
 function getMyQueryVal() {
     return new Proxy(new URLSearchParams(window.location.search), {
@@ -16,7 +17,27 @@ function setFixedNavbar() {
     }
 }
 
+function getMyCurId() {
+    var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
+    var myulid = userdetails ?  userdetails.usersId :  0;
+    var myid = getMyQueryVal().id ? getMyQueryVal().id : myulid;
+    return myid;
+}
+
+function getLength(apiname) {
+    var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
+    var apiUrl = getMyApiUrl();
+
+    fetchingData(`${apiUrl}/api/${apiname}/count`, "GET", userdetails.token, true).then(x => {
+        localStorage.setItem("len", x.length);
+    }).catch(err => { localStorage.setItem("len", 0); });
+
+    return localStorage.getItem("len");
+}
+
 function doActionBtnModals() {
+    var len = getLength("posts");
+
     if(document.querySelector('#btnclear')) {
         document.querySelector('#btnclear').onclick = function(e) {
             e.preventDefault();
@@ -24,89 +45,65 @@ function doActionBtnModals() {
         };
     }
     
-    if(document.querySelector('#btneditpost')) {
-        document.querySelector('#btneditpost').onclick = function(e) {
-            e.preventDefault();
-            const modaleditmypost = new bootstrap.Modal('#modaleditmypost');
-            modaleditmypost.show();
-        };
-    }
-    
-    if(document.querySelector('#btndelpost')) {
-        document.querySelector('#btndelpost').onclick = function(e) {
-            e.preventDefault();
-            const modaldelmypost = new bootstrap.Modal('#modaldelmypost');
-            modaldelmypost.show();
-        };
-    }
-    
-    if(document.querySelector('#myreactsstats')) {
-        document.querySelector('#myreactsstats').onclick = function(e) {
-            e.preventDefault();
-            const modalmyreactions = new bootstrap.Modal('#modalmyreactions');
-            modalmyreactions.show();
-        };
-    }
-    
-    if(document.querySelector('#mysharesstats')) {
-        document.querySelector('#mysharesstats').onclick = function(e) {
-            e.preventDefault();
-            const modalmyshares = new bootstrap.Modal('#modalmyshares');
-            modalmyshares.show();
-        };
-    }
-    
-    if(document.querySelector('#btnshreact')) {
-        document.querySelector('#btnshreact').onclick = function() {
-            if(document.querySelector('#blkreactlist').classList.contains('hidden')) {
-                document.querySelector('#blkreactlist').classList.remove('hidden');
-            } else {
-                document.querySelector('#blkreactlist').classList.add('hidden');
+    if(len > 0) {
+        for(var i = 0; i < len; i++) {
+            if(document.querySelectorAll('#myreactsstats')[i]) {
+                document.querySelectorAll('#myreactsstats')[i].onclick = function(e) {
+                    e.preventDefault();
+                    const modalmyreactions = new bootstrap.Modal('#modalmyreactions'+this.getAttribute('data-id'));
+                    modalmyreactions.show();
+                };
             }
-        };
     
-        // document.querySelector('#btnshreact').onmouseover = function() {
-        //     if(document.querySelector('#blkreactlist').classList.contains('hidden')) {
-        //         document.querySelector('#blkreactlist').classList.remove('hidden');
-        //     }
-        // };
-    
-        // document.querySelector('#btnshreact').onmouseout = function() {
-        //     if(!document.querySelector('#blkreactlist').classList.contains('hidden')) {
-        //         document.querySelector('#blkreactlist').classList.add('hidden');
-        //     }
-        // };
-    }
-    
-    if(document.querySelector('#btnshcomments')) {
-        if(document.querySelectorAll('.blkpostfooter')[0]) {
-            if(!document.querySelectorAll('.blkpostfooter')[0].classList.contains('hidden')) {
-                localStorage.setItem('showComments', true);
+            if(document.querySelectorAll('#mysharesstats')[i]) {
+                document.querySelectorAll('#mysharesstats')[i].onclick = function(e) {
+                    e.preventDefault();
+                    const modalmyshares = new bootstrap.Modal('#modalmyshares'+this.getAttribute('data-id'));
+                    modalmyshares.show();
+                };
             }
-        
-            if(localStorage.getItem('showComments') == "true") {
-                document.querySelectorAll('.blkpostfooter')[0].classList.remove('hidden');
+    
+            if(document.querySelectorAll('#btnshreact')[i]) {
+                document.querySelectorAll('#btnshreact')[i].onclick = function() {
+                    if(document.querySelectorAll('#blkreactlist')[this.getAttribute('data-id')-1].classList.contains('hidden')) {
+                        document.querySelectorAll('#blkreactlist')[this.getAttribute('data-id')-1].classList.remove('hidden');
+                    } else {
+                        document.querySelectorAll('#blkreactlist')[this.getAttribute('data-id')-1].classList.add('hidden');
+                    }
+                };
+            }
+    
+            if(document.querySelectorAll('#btnshcomments')[i]) {
+                if(document.querySelectorAll('.blkpostfooter')[i]) {
+                    if(!document.querySelectorAll('.blkpostfooter')[i].classList.contains('hidden')) {
+                        localStorage.setItem('showComments', true);
+                    }
+                
+                    if(localStorage.getItem('showComments') == "true") {
+                        document.querySelectorAll('.blkpostfooter')[i].classList.remove('hidden');
+                    }
+                }
+            
+                document.querySelectorAll('#btnshcomments')[i].onclick = function() {
+                    if(document.querySelectorAll('.blkpostfooter')[this.getAttribute('data-id')-1].classList.contains('hidden')) {
+                        localStorage.setItem('showComments', true);
+                        document.querySelectorAll('.blkpostfooter')[this.getAttribute('data-id')-1].classList.remove('hidden');
+                    } else {
+                        localStorage.setItem('showComments', false);
+                        document.querySelectorAll('.blkpostfooter')[this.getAttribute('data-id')-1].classList.add('hidden');
+                    }
+                };
+            }
+    
+            if(document.querySelectorAll('#btnshshares')[i]) {
+                document.querySelectorAll('#btnshshares')[i].onclick = function(e) {
+                    e.preventDefault();
+                    const modalmysharepost = new bootstrap.Modal('#modalmysharepost'+this.getAttribute('data-id'));
+                    modalmysharepost.show();
+                };
             }
         }
-    
-        document.querySelector('#btnshcomments').onclick = function() {
-            if(document.querySelectorAll('.blkpostfooter')[0].classList.contains('hidden')) {
-                localStorage.setItem('showComments', true);
-                document.querySelectorAll('.blkpostfooter')[0].classList.remove('hidden');
-            } else {
-                localStorage.setItem('showComments', false);
-                document.querySelectorAll('.blkpostfooter')[0].classList.add('hidden');
-            }
-        };
-    }
-    
-    if(document.querySelector('#btnshshares')) {
-        document.querySelector('#btnshshares').onclick = function(e) {
-            e.preventDefault();
-            const modalmysharepost = new bootstrap.Modal('#modalmysharepost');
-            modalmysharepost.show();
-        };
     }
 }
 
-export { getMyQueryVal, setFixedNavbar, doActionBtnModals }
+export { getMyQueryVal, setFixedNavbar, getMyCurId, getLength, doActionBtnModals }

@@ -1,3 +1,5 @@
+import { getMyCurId, getLength } from './geral';
+
 function MyFriendsRequests() {
     if(document.querySelector('#blkmodalmyfriendreqs')) {
         document.querySelector('#blkmodalmyfriendreqs').innerHTML = `
@@ -78,135 +80,98 @@ function MyNotifications() {
 
 function MyShares() {
     if(document.querySelector('#blkmodalmyshares')) {
-        document.querySelector('#blkmodalmyshares').innerHTML = `
-            <div class="modalmyshares modal fade" id="modalmyshares" tabindex="-1" aria-labelledby="modalmyshareslbl" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary">
-                            <h5 class="modal-title" id="modalmyshareslbl">
-                                <i class="bi bi-share"></i>
-                                My shares
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>0 shares!</p>
-                        </div>
-                        <div class="modal-footer bg-primary">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        var len = getLength("posts");
+
+        if(len > 0) {
+            for(var i = 0; i < len; i++) {
+                document.querySelector('#blkmodalmyshares').innerHTML += `
+                <div class="modalmyshares modalmyshares${i+1} modal fade" id="modalmyshares${i+1}" data-id="${i+1}" tabindex="-1" aria-labelledby="modalmyshareslbl" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title" id="modalmyshareslbl">
+                                    <i class="bi bi-share"></i>
+                                    My shares (id: ${i+1})
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>0 shares!</p>
+                            </div>
+                            <div class="modal-footer bg-primary">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+            }
+        }
     }
 }
 
 function MyReactions() {
     if(document.querySelector('#blkmodalmyreactions')) {
-        document.querySelector('#blkmodalmyreactions').innerHTML = `
-            <div class="modalmyreactions modal fade" id="modalmyreactions" tabindex="-1" aria-labelledby="modalmyreactionslbl" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary">
-                            <h5 class="modal-title" id="modalmyreactionslbl">
-                                <i class="bi bi-emoji-smile"></i>
-                                My reactions
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>0 reactions!</p>
-                        </div>
-                        <div class="modal-footer bg-primary">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        var len = getLength("posts");
+
+        if(len > 0) {
+            for(var i = 0; i < len; i++) {
+                document.querySelector('#blkmodalmyreactions').innerHTML += `
+                <div class="modalmyreactions modalmyreactions${i+1} modal fade" id="modalmyreactions${i+1}" data-id="${i+1}" tabindex="-1" aria-labelledby="modalmyreactionslbl" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title" id="modalmyreactionslbl">
+                                    <i class="bi bi-emoji-smile"></i>
+                                    My reactions (id: ${i+1})
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>0 reactions!</p>
+                            </div>
+                            <div class="modal-footer bg-primary">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+            }
+        }
     }
 }
 
 function MySharePost() {
     if(document.querySelector('#blkmodalmysharepost')) {
-        document.querySelector('#blkmodalmysharepost').innerHTML = `
-            <div class="modalmysharepost modal fade" id="modalmysharepost" tabindex="-1" aria-labelledby="modalmysharepostlbl" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary">
-                            <h5 class="modal-title" id="modalmysharepostlbl">
-                                <i class="bi bi-share"></i>
-                                Share this post
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want share this post (id: 1)?</p>
-                        </div>
-                        <div class="modal-footer bg-primary">
-                            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        var len = getLength("posts");
+
+        if(len > 0) {
+            for(var i = 0; i < len; i++) {
+                document.querySelector('#blkmodalmysharepost').innerHTML += `
+                <div class="modalmysharepost modalmysharepost${i+1} modal fade" id="modalmysharepost${i+1}" data-id="${i+1}" tabindex="-1" aria-labelledby="modalmysharepostlbl" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title" id="modalmysharepostlbl">
+                                    <i class="bi bi-share"></i>
+                                    Share this post (id: ${i+1})
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you want share this post?</p>
+                            </div>
+                            <div class="modal-footer bg-primary">
+                                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        `;
+                </div>`;
+            }
+        }
     }
 }
 
-function EditMyPost(id = 1) {
-    if(document.querySelector('#blkmodaleditmypost')) {
-        document.querySelector('#blkmodaleditmypost').innerHTML = `
-            <div class="modaleditmypost modal fade" id="modaleditmypost" tabindex="-1" aria-labelledby="modaleditmypostlbl" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header bg-info">
-                            <h5 class="modal-title" id="modaleditmypostlbl">
-                                <i class="bi bi-pen"></i>
-                                Edit this post
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want edit this post (id: ${id})?</p>
-                        </div>
-                        <div class="modal-footer bg-info">
-                            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-}
-
-function DelMyPost(id = 1) {
-    if(document.querySelector('#blkmodaldelmypost')) {
-        document.querySelector('#blkmodaldelmypost').innerHTML = `
-            <div class="modaldelmypost modal fade" id="modaldelmypost" tabindex="-1" aria-labelledby="modaldelmypostlbl" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header bg-warning">
-                            <h5 class="modal-title" id="modaldelmypostlbl">
-                                <i class="bi bi-trash"></i>
-                                Delete this post
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want delete this post (id: ${id})?</p>
-                        </div>
-                        <div class="modal-footer bg-warning">
-                            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-}
-
-export { MyFriendsRequests, MyPrivateMessages, MyNotifications, MyShares, MyReactions, MySharePost, EditMyPost, DelMyPost }
+export { MyFriendsRequests, MyPrivateMessages, MyNotifications, MyShares, MyReactions, MySharePost }

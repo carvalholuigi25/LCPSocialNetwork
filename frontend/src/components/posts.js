@@ -223,7 +223,7 @@ function Posts() {
                     xp.forEach(elm => {
                         if(elm != null && elm.usersId == myid) {
                             document.querySelector('#mypostsblk').innerHTML += `
-                            <div class="blkpost mt-3">
+                            <div class="blkpost mt-3" data-id="${elm.postId}">
                                 <div class="blkpostheader">
                                     <div class="blkphleft">
                                         <a href="pages/profile.html?id=${myid}">
@@ -261,13 +261,13 @@ function Posts() {
                                     <img src="${elm.image}" alt="Post image from usersid ${elm.usersId}" class="imgpost" />
                                     <p class="mt-3">${elm.text}</p>
                                     <div class="links p-3 d-block">
-                                        <a href="pages/profile.html?id=${elm.usersId}#reacts" id="myreactsstats" class="myreactsstats">
+                                        <a href="pages/profile.html?id=${elm.usersId}&pid=${elm.postId}#reacts" id="myreactsstats" class="myreactsstats" data-id="${elm.postId}">
                                             0 reacts
                                         </a>
-                                        <a href="pages/profile.html?id=${elm.usersId}#shares" id="mysharesstats" class="mysharesstats ms-2">
+                                        <a href="pages/profile.html?id=${elm.usersId}&pid=${elm.postId}#shares" id="mysharesstats" class="mysharesstats ms-2" data-id="${elm.postId}">
                                             0 shares
                                         </a>
-                                        <a href="pages/profile.html?id=${elm.usersId}#comments" id="mycommentsstats" class="mycommentsstats ms-2">
+                                        <a href="pages/profile.html?id=${elm.usersId}&pid=${elm.postId}#comments" id="mycommentsstats" class="mycommentsstats ms-2" data-id="${elm.postId}">
                                             0 comments
                                         </a>
                                     </div>
@@ -276,50 +276,50 @@ function Posts() {
                                             <div class="blkreactlist hidden" id="blkreactlist">
                                                 <div class="sreactgrp" id="sreactgrp">
                                                     <div class="reactgrp reactlike">
-                                                        <a href="pages/profile.html?id=${elm.usersId}#react#like">
+                                                        <a href="pages/profile.html?id=${elm.usersId}#react#like" data-id="${elm.postId}">
                                                             <i class="bi bi-hand-thumbs-up-fill"></i>
                                                         </a>
                                                     </div>
                                                     <div class="reactgrp reactdislike">
-                                                        <a href="pages/profile.html?id=${elm.usersId}#react#dislike">
+                                                        <a href="pages/profile.html?id=${elm.usersId}#react#dislike" data-id="${elm.postId}">
                                                             <i class="bi bi-hand-thumbs-down-fill"></i>
                                                         </a>
                                                     </div>
                                                     <div class="reactgrp reactsad">
-                                                        <a href="pages/profile.html?id=${elm.usersId}#react#sad">
+                                                        <a href="pages/profile.html?id=${elm.usersId}#react#sad" data-id="${elm.postId}">
                                                             <i class="bi bi-emoji-frown-fill"></i>
                                                         </a>
                                                     </div>
                                                     <div class="reactgrp reactangry">
-                                                        <a href="pages/profile.html?id=${elm.usersId}#react#angry">
+                                                        <a href="pages/profile.html?id=${elm.usersId}#react#angry" data-id="${elm.postId}">
                                                             <i class="bi bi-emoji-angry-fill"></i>
                                                         </a>
                                                     </div>
                                                     <div class="reactgrp reactlaugh">
-                                                        <a href="pages/profile.html?id=${elm.usersId}#react#laugh">
+                                                        <a href="pages/profile.html?id=${elm.usersId}#react#laugh" data-id="${elm.postId}">
                                                             <i class="bi bi-emoji-laughing-fill"></i>
                                                         </a>
                                                     </div>
                                                     <div class="reactgrp reactdisgusting">
-                                                        <a href="pages/profile.html?id=${elm.usersId}#react#disgusting">
+                                                        <a href="pages/profile.html?id=${elm.usersId}#react#disgusting" data-id="${elm.postId}">
                                                             <i class="bi bi-emoji-dizzy-fill"></i>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary btnshreact" id="btnshreact">
+                                            <button class="btn btn-primary btnshreact" id="btnshreact" data-id="${elm.postId}">
                                                 <i class="bi bi-emoji-smile"></i>
                                                 React
                                             </button>
                                         </div>
                                         <div class="colactionlinks t-center">
-                                            <button class="btn btn-primary btnshcomments" id="btnshcomments">
+                                            <button class="btn btn-primary btnshcomments" id="btnshcomments" data-id="${elm.postId}">
                                                 <i class="bi bi-chat-square-dots"></i>
                                                 Comment
                                             </button>
                                         </div>
                                         <div class="colactionlinks t-right">
-                                            <button class="btn btn-primary btnshshares" id="btnshshares">
+                                            <button class="btn btn-primary btnshshares" id="btnshshares" data-id="${elm.postId}">
                                                 <i class="bi bi-share"></i>
                                                 Share
                                             </button>
@@ -330,8 +330,8 @@ function Posts() {
                                     ${PostsComments(myid, mydisplayname, myimage)}
                                 </div>
                             </div>`;
-    
-                            doActionBtnModals(elm.postId);
+
+                            doActionBtnModals();
                         } else {
                             document.querySelector('#mypostsblk').innerHTML = `
                                <div class="warnblk">

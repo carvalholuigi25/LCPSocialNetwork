@@ -43,6 +43,15 @@ namespace lcpsnapi.Controllers
         }
 
         /// <summary>
+        /// Get posts length
+        /// </summary>
+        [HttpGet("count")]
+        public async Task<ActionResult<object>> GetPostLength()
+        {
+            return await Task.FromResult(new { length = _IPosts.GetPosts()?.Count() });
+        }
+
+        /// <summary>
         /// Insert posts
         /// </summary>
         [HttpPost]
