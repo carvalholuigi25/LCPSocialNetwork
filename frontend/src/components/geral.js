@@ -24,6 +24,11 @@ function getMyCurId() {
     return myid;
 }
 
+function getMyCurToken() {
+    var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
+    return userdetails ? userdetails.token : null;
+}
+
 function getLength(apiname) {
     var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
     var apiUrl = getMyApiUrl();
@@ -106,4 +111,4 @@ function doActionBtnModals() {
     }
 }
 
-export { getMyQueryVal, setFixedNavbar, getMyCurId, getLength, doActionBtnModals }
+export { getMyQueryVal, setFixedNavbar, getMyCurId, getMyCurToken, getLength, doActionBtnModals }

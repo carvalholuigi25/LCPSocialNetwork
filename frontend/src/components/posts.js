@@ -1,5 +1,6 @@
 import { fetchingData, fetchPostsAndUsers, getMyApiUrl } from "../scripts/my_functions";
 import { doActionBtnModals, getMyQueryVal } from "./geral";
+import { GetNotifications } from './notifications';
 import { Create, Read } from "./crud";
 
 function PostSender() {
@@ -105,8 +106,15 @@ function PostSender() {
                                 reactsId: 1
                             };
 
-                            Create("posts", data, userdetails.token).then(x => x).catch(err => console.log(err));
-                            window.location.reload();
+                            Create("posts", data, userdetails.token).then(x => {
+                                GetNotifications("blksubnotifications", "text-bg-success", "bi-check-lg", "Created new post successfully!", true, 1000);
+                                setTimeout(() => {
+                                    location.href = "pages/main.html";
+                                }, 1000);
+                            }).catch(err => {
+                                console.log(err);
+                                GetNotifications("blksubnotifications", "text-bg-error", "bi-x", "Error: Could not to create a new post!", true, 1000);
+                            });
                         };
                     }
     

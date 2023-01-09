@@ -22,3 +22,5 @@ comp.MyShares();
 comp.MySharePost();
 comp.setFixedNavbar();
 comp.doActionBtnModals();
+comp.getEditForm();
+comp.getDelForm();
