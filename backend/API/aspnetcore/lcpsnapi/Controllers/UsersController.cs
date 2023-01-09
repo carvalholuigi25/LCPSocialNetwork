@@ -21,7 +21,8 @@ namespace lcpsnapi.Controllers
         /// Get all users details
         /// </summary>
         [HttpGet]
-        [Authorize(Policy = "PolicyAdminOnly")]
+        [AllowAnonymous]
+        //[Authorize(Policy = "PolicyAdminOnly")]
         public async Task<ActionResult<IEnumerable<Users>?>> GetUser()
         {
             return await Task.FromResult(_IUsers.GetUsers());
@@ -31,7 +32,8 @@ namespace lcpsnapi.Controllers
         /// Get user details by id
         /// </summary>
         [HttpGet("{id}")]
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         public async Task<ActionResult<Users>> GetUsers(int id)
         {
             var users = await Task.FromResult(_IUsers.GetUsersDetails(id));

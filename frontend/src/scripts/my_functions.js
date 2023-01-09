@@ -18,9 +18,8 @@ function importAll(r) {
     return r.keys().map(r);
 }
 
-async function fetchingData(url = "/api/users/auth/login", method = "GET", body = null, token = null, isFetchReqParallel = false) {
-    var myHeaders = new Headers();
-    var myInit = { 
+function getMyFetchOptions(method = "GET", token = null, body = null) {
+    return { 
         method: method,
         mode: 'cors',
         cache: 'no-cache',
@@ -34,6 +33,10 @@ async function fetchingData(url = "/api/users/auth/login", method = "GET", body 
         referrerPolicy: 'no-referrer',
         body: method != "GET" ? JSON.stringify(body) : null
     };
+}
+
+async function fetchingData(url = "/api/users/auth/login", method = "GET", body = null, token = null, isFetchReqParallel = false) {
+    var myInit = getMyFetchOptions(method, token, body);
 
     // console.log(myInit);
 
@@ -59,6 +62,20 @@ async function fetchingData(url = "/api/users/auth/login", method = "GET", body 
         return aresp;
     }
 }
+
+async function fetchPostsAndUsers(postid = -1, userid = -1, token = null, body = null) {
+    const apiUrl = getMyApiUrl();
+    const myInit = getMyFetchOptions("GET", token, body);
+    const mypostid = postid != -1 ? `/${postid}` : "";
+    const myuserid = userid != -1 ? `/${userid}` : "";
+    const [postsResponse, usersResponse] = await Promise.all([
+      fetch(`${apiUrl}/api/posts${mypostid}`, myInit),
+      fetch(`${apiUrl}/api/users${myuserid}`, myInit)
+    ]);
+    const posts = await postsResponse.json();
+    const users = await usersResponse.json();
+    return [posts, users];
+  }
 
 function getFormLogin() {
     if(document.querySelector('#mformlog')) {
@@ -287,4 +304,4 @@ function doPrevCover() {
     }
 }
 
-export { getMyApiUrl, importAll, fetchingData, doLogin, doReg, doLogout, doReqMsgForFields, doPrevAvatar, doPrevCover }
+export { getMyApiUrl, importAll, fetchingData, fetchPostsAndUsers, doLogin, doReg, doLogout, doReqMsgForFields, doPrevAvatar, doPrevCover }
