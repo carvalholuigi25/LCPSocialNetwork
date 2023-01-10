@@ -217,6 +217,60 @@ function getPages(isProd = false) {
       minify: optmini,
       base: getBase(),
       year: year
+    }),
+    new HtmlWebpackPlugin({
+      title: ptitle + " - Animes",
+      filename: "pages/userthings/animes.html",
+      template: "./src/pages/userthings/animes.ejs",
+      chunks: ['pages'],
+      minify: optmini,
+      base: getBase(),
+      year: year
+    }),
+    new HtmlWebpackPlugin({
+      title: ptitle + " - Comic Books",
+      filename: "pages/userthings/comicbooks.html",
+      template: "./src/pages/userthings/comicbooks.ejs",
+      chunks: ['pages'],
+      minify: optmini,
+      base: getBase(),
+      year: year
+    }),
+    new HtmlWebpackPlugin({
+      title: ptitle + " - Games",
+      filename: "pages/userthings/games.html",
+      template: "./src/pages/userthings/games.ejs",
+      chunks: ['pages'],
+      minify: optmini,
+      base: getBase(),
+      year: year
+    }),
+    new HtmlWebpackPlugin({
+      title: ptitle + " - Mangas",
+      filename: "pages/userthings/mangas.html",
+      template: "./src/pages/userthings/mangas.ejs",
+      chunks: ['pages'],
+      minify: optmini,
+      base: getBase(),
+      year: year
+    }),
+    new HtmlWebpackPlugin({
+      title: ptitle + " - Movies",
+      filename: "pages/userthings/movies.html",
+      template: "./src/pages/userthings/movies.ejs",
+      chunks: ['pages'],
+      minify: optmini,
+      base: getBase(),
+      year: year
+    }),
+    new HtmlWebpackPlugin({
+      title: ptitle + " - TV Series",
+      filename: "pages/userthings/tvseries.html",
+      template: "./src/pages/userthings/tvseries.ejs",
+      chunks: ['pages'],
+      minify: optmini,
+      base: getBase(),
+      year: year
     })
   ];
 }

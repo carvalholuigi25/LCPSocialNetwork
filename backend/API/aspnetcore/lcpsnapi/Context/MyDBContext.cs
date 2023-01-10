@@ -19,6 +19,12 @@ namespace lcpsnapi.Context
         public DbSet<Media>? Media { get; set; }
         public DbSet<Achievements>? Achievements { get; set; }
         public DbSet<Todo>? Todo { get; set; }
+        public DbSet<Games>? Game { get; set; }
+        public DbSet<Movies>? Movie { get; set; }
+        public DbSet<TVSeries>? TVSerie { get; set; }
+        public DbSet<Animes>? Anime { get; set; }
+        public DbSet<Mangas>? Manga { get; set; }
+        public DbSet<ComicBooks>? ComicBook { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
         {

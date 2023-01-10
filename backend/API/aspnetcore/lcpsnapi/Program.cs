@@ -33,6 +33,12 @@ builder.Services.AddTransient<IMedia, MediaRepository>();
 builder.Services.AddTransient<IAttachments, AttachmentsRepository>();
 builder.Services.AddTransient<IAchievements, AchievementsRepository>();
 builder.Services.AddTransient<ITodo, TodoRepository>();
+builder.Services.AddTransient<IGames, GamesRepository>();
+builder.Services.AddTransient<ITVSeries, TVSeriesRepository>();
+builder.Services.AddTransient<IMovies, MoviesRepository>();
+builder.Services.AddTransient<IAnimes, AnimesRepository>();
+builder.Services.AddTransient<IMangas, MangasRepository>();
+builder.Services.AddTransient<IComicBooks, ComicBooksRepository>();
 
 var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
 builder.Services.AddAuthentication(x =>

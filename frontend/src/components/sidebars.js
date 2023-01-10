@@ -32,6 +32,42 @@ function Sidebars() {
                         <span>Groups</span>
                     </a>
                 </div>
+                <div class="col-12 col-md-6">
+                    <a href="pages/userthings/animes.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-people-fill me-1"></i>
+                        <span>Animes</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <a href="pages/userthings/comicbooks.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-people-fill me-1"></i>
+                        <span>Comic Books</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <a href="pages/userthings/games.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-people-fill me-1"></i>
+                        <span>Games</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <a href="pages/userthings/mangas.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-people-fill me-1"></i>
+                        <span>Mangas</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <a href="pages/userthings/movies.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-people-fill me-1"></i>
+                        <span>Movies</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <a href="pages/userthings/tvseries.html" class="btn btn-primary mt-3">
+                        <i class="bi bi-people-fill me-1"></i>
+                        <span>TV Series</span>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="mblklinksfooter">
