@@ -221,6 +221,9 @@ function Posts() {
         fetchPostsAndUsers(-1, gmyid, userdetails.token, null).then(([posts, users]) => {
             users = users.data != null ? [users.data] : users;
             if(posts.length > 0 && users.length > 0) {
+               posts = posts.sort((a, b) => -a.dateCreated.localeCompare(b.dateCreated));
+               posts = getMyQueryVal().postid ? posts.filter(x => x.postId == getMyQueryVal().postid) : posts;
+               
                users.forEach(elmusers => {
                 posts.forEach(elmposts => {
                     if(elmposts != null && elmposts.usersId == elmusers.id) {
@@ -263,8 +266,8 @@ function Posts() {
                                     <div class="blkphtext ms-2">
                                         <span class="text-truncate"><a href="pages/profile.html?id=${elmposts.usersId}">${mydisplayname}</a></span>
                                         <div class="blkphtextrow">
-                                            <a href="${location.pathname}?id=${elmposts.usersId}#status"><i class="bi bi-globe"></i> ${elmposts.status}</a>
-                                            <a href="${location.pathname}?id=${elmposts.usersId}#datetime" class="ms-3"><i class="bi bi-calendar-date"></i> ${elmposts.dateCreated}</a>
+                                            <a href="${location.pathname}?id=${elmposts.usersId}&postid=${elmposts.postId}#status"><i class="bi bi-globe"></i> ${elmposts.status}</a>
+                                            <a href="${location.pathname}?id=${elmposts.usersId}&postid=${elmposts.postId}#datetime" class="ms-3"><i class="bi bi-calendar-date"></i> ${elmposts.dateCreated}</a>
                                         </div>
                                     </div>
                                 </div>

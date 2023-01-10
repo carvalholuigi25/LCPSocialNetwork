@@ -31,6 +31,14 @@
 .float-center { float: none; }
 .float-right { float: right; }
 
+form {
+    input:not([type=button]):not([type=submit]):not([type=reset]):read-only {
+        cursor: not-allowed;
+        background-color: silver;
+        color: black;
+    }
+}
+
 a {
     color: inherit;
     text-decoration: inherit;

@@ -13,6 +13,14 @@
             background-color: $bgcolor;
             color: $color;
 
+            form {
+                input:not([type=button]):not([type=submit]):not([type=reset]):read-only {
+                    cursor: not-allowed;
+                    background-color: $altbgcolor;
+                    color: $color;
+                }
+            }
+
             .blkpprivacypolicy, .blkptermsofservice {
                 * {
                     color: $color;
