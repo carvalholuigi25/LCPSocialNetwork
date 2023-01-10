@@ -169,10 +169,10 @@ function PostsComments(myid, mydisplayname, myimage) {
     return `
     <hr>
     <h3>Comments</h3>
-    <div class="blkpostercomments mt-3 mb-3">
+    <div class="blkpostercomments blkpostercomments${myid} mt-3 mb-3">
         ${GetFormPostComment(myid, mydisplayname)}
     </div>
-    <div class="blkpostcomments mt-3">
+    <div class="blkpostcomments blkpostcomments${myid} mt-3">
         <div class="blkpostcommentsheader">
             <div class="blkphcleft">
                 <img src="${myimage}" width="50" height="50" class="img-fluid imguser">
@@ -279,19 +279,19 @@ function Posts() {
                                 <img src="${elmposts.image}" alt="Post image from usersid ${elmposts.usersId}" class="imgpost" />
                                 <p class="mt-3">${elmposts.text}</p>
                                 <div class="links p-3 d-block">
-                                    <a href="pages/profile.html?id=${elmposts.usersId}&pid=${elmposts.postId}#reacts" id="myreactsstats" class="myreactsstats" data-id="${elmposts.postId}">
+                                    <a href="pages/profile.html?id=${elmposts.usersId}&postid=${elmposts.postId}#reacts" id="myreactsstats" class="myreactsstats" data-id="${elmposts.postId}">
                                         0 reacts
                                     </a>
-                                    <a href="pages/profile.html?id=${elmposts.usersId}&pid=${elmposts.postId}#shares" id="mysharesstats" class="mysharesstats ms-2" data-id="${elmposts.postId}">
+                                    <a href="pages/profile.html?id=${elmposts.usersId}&postid=${elmposts.postId}#shares" id="mysharesstats" class="mysharesstats ms-2" data-id="${elmposts.postId}">
                                         0 shares
                                     </a>
-                                    <a href="pages/profile.html?id=${elmposts.usersId}&pid=${elmposts.postId}#comments" id="mycommentsstats" class="mycommentsstats ms-2" data-id="${elmposts.postId}">
+                                    <a href="pages/profile.html?id=${elmposts.usersId}&postid=${elmposts.postId}#comments" id="mycommentsstats" class="mycommentsstats ms-2" data-id="${elmposts.postId}">
                                         0 comments
                                     </a>
                                 </div>
                                 <div class="actionlinks input-group p-3">
                                     <div class="colactionlinks t-left">
-                                        <div class="blkreactlist hidden" id="blkreactlist">
+                                        <div class="blkreactlist blkreactlist${elmposts.postId} hidden" id="blkreactlist">
                                             <div class="sreactgrp" id="sreactgrp">
                                                 <div class="reactgrp reactlike">
                                                     <a href="pages/profile.html?id=${elmposts.usersId}#react#like" data-id="${elmposts.postId}">
@@ -344,7 +344,7 @@ function Posts() {
                                     </div>
                                 </div>
                             </div>
-                            <div class="blkpostfooter hidden">
+                            <div class="blkpostfooter blkpostfooter${elmposts.postId} hidden">
                                 ${PostsComments(myid, mydisplayname, myimage)}
                             </div>
                         </div>`;

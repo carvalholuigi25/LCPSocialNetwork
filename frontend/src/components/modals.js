@@ -1,4 +1,5 @@
-import { getMyCurId, getLength } from './geral';
+import { Read } from './crud';
+import { getMyCurId, getLength, getMyCurToken, getMyQueryVal } from './geral';
 
 function MyFriendsRequests() {
     if(document.querySelector('#blkmodalmyfriendreqs')) {
@@ -80,97 +81,130 @@ function MyNotifications() {
 
 function MyShares() {
     if(document.querySelector('#blkmodalmyshares')) {
-        var len = getLength("posts");
+        var myid = getMyQueryVal().postid ? getMyQueryVal().postid : -1;
+        var ary = [];
+        var rx = "";
 
-        if(len > 0) {
-            for(var i = 0; i < len; i++) {
-                document.querySelector('#blkmodalmyshares').innerHTML += `
-                <div class="modalmyshares modalmyshares${i+1} modal fade" id="modalmyshares${i+1}" data-id="${i+1}" tabindex="-1" aria-labelledby="modalmyshareslbl" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title" id="modalmyshareslbl">
-                                    <i class="bi bi-share"></i>
-                                    My shares (id: ${i+1})
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>0 shares!</p>
-                            </div>
-                            <div class="modal-footer bg-primary">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        Read("posts", myid, getMyCurToken()).then(x => {
+            if(typeof x === "object") {
+                ary.push(x);
+                rx = ary[0];
+            } else {
+                rx = x;
+            }
+
+            if(rx != null && rx.length > 0) {
+                rx.forEach(elmp => {
+                    document.querySelector('#blkmodalmyshares').innerHTML += `
+                        <div class="modalmyshares modalmyshares${elmp.postId} modal fade" id="modalmyshares${elmp.postId}" data-id="${elmp.postId}" tabindex="-1" aria-labelledby="modalmyshareslbl" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                        <h5 class="modal-title" id="modalmyshareslbl">
+                                            <i class="bi bi-share"></i>
+                                            My shares (id: ${elmp.postId})
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>0 shares!</p>
+                                    </div>
+                                    <div class="modal-footer bg-primary">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            `;
+                    `;
+                });
             }
-        }
+        }).catch(err => console.log(err));
     }
 }
 
 function MyReactions() {
     if(document.querySelector('#blkmodalmyreactions')) {
-        var len = getLength("posts");
+        var myid = getMyQueryVal().postid ? getMyQueryVal().postid : -1;
+        var ary = [];
+        var rx = "";
 
-        if(len > 0) {
-            for(var i = 0; i < len; i++) {
-                document.querySelector('#blkmodalmyreactions').innerHTML += `
-                <div class="modalmyreactions modalmyreactions${i+1} modal fade" id="modalmyreactions${i+1}" data-id="${i+1}" tabindex="-1" aria-labelledby="modalmyreactionslbl" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title" id="modalmyreactionslbl">
-                                    <i class="bi bi-emoji-smile"></i>
-                                    My reactions (id: ${i+1})
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>0 reactions!</p>
-                            </div>
-                            <div class="modal-footer bg-primary">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        Read("posts", myid, getMyCurToken()).then(x => {
+           if(typeof x === "object") {
+                ary.push(x);
+                rx = ary[0];
+            } else {
+                rx = x;
+            }
+
+            if(rx != null && rx.length > 0) {
+                rx.forEach(elmp => {
+                    document.querySelector('#blkmodalmyreactions').innerHTML += `
+                        <div class="modalmyreactions modalmyreactions${elmp.postId} modal fade" id="modalmyreactions${elmp.postId}" data-id="${elmp.postId}" tabindex="-1" aria-labelledby="modalmyreactionslbl" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                        <h5 class="modal-title" id="modalmyreactionslbl">
+                                            <i class="bi bi-emoji-smile"></i>
+                                            My reactions (id: ${elmp.postId})
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>0 reactions!</p>
+                                    </div>
+                                    <div class="modal-footer bg-primary">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            `;
+                    `;
+                });
             }
-        }
+        }).catch(err => console.log(err));
     }
 }
 
 function MySharePost() {
     if(document.querySelector('#blkmodalmysharepost')) {
-        var len = getLength("posts");
+        var myid = getMyQueryVal().postid ? getMyQueryVal().postid : -1;
+        var ary = [];
+        var rx = "";
 
-        if(len > 0) {
-            for(var i = 0; i < len; i++) {
-                document.querySelector('#blkmodalmysharepost').innerHTML += `
-                <div class="modalmysharepost modalmysharepost${i+1} modal fade" id="modalmysharepost${i+1}" data-id="${i+1}" tabindex="-1" aria-labelledby="modalmysharepostlbl" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title" id="modalmysharepostlbl">
-                                    <i class="bi bi-share"></i>
-                                    Share this post (id: ${i+1})
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Do you want share this post?</p>
-                            </div>
-                            <div class="modal-footer bg-primary">
-                                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        Read("posts", myid, getMyCurToken()).then(x => {
+           if(typeof x === "object") {
+                ary.push(x);
+                rx = ary[0];
+            } else {
+                rx = x;
+            }
+            
+            if(rx != null && rx.length > 0) {
+                rx.forEach(elmp => {
+                    document.querySelector('#blkmodalmysharepost').innerHTML += `
+                    <div class="modalmysharepost modalmysharepost${elmp.postId} modal fade" id="modalmysharepost${elmp.postId}" data-id="${elmp.postId}" tabindex="-1" aria-labelledby="modalmysharepostlbl" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title" id="modalmysharepostlbl">
+                                        <i class="bi bi-share"></i>
+                                        Share this post (id: ${elmp.postId})
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you want share this post?</p>
+                                </div>
+                                <div class="modal-footer bg-primary">
+                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Yes</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>`;
+                    </div>`;
+                });
             }
-        }
+        }).catch(err => console.log(err));
     }
 }
 

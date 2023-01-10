@@ -29,11 +29,12 @@ function getMyCurToken() {
     return userdetails ? userdetails.token : null;
 }
 
-function getLength(apiname) {
+function getLength(apiname, id = -1) {
     var userdetails = localStorage.getItem("login") ? JSON.parse(localStorage.getItem("login")) : null;
     var apiUrl = getMyApiUrl();
+    var myid = id != -1 ? `/${id}` : "";
 
-    fetchingData(`${apiUrl}/api/${apiname}/count`, "GET", userdetails.token, true).then(x => {
+    fetchingData(`${apiUrl}/api/${apiname}/count${myid}`, "GET", userdetails.token, true).then(x => {
         localStorage.setItem("len", x.length);
     }).catch(err => { localStorage.setItem("len", 0); });
 
@@ -41,7 +42,8 @@ function getLength(apiname) {
 }
 
 function doActionBtnModals() {
-    var len = getLength("posts");
+    var myid = getMyQueryVal().postid ? getMyQueryVal().postid : -1;
+    var len = getLength("posts", myid);
 
     if(document.querySelector('#btnclear')) {
         document.querySelector('#btnclear').onclick = function(e) {
@@ -68,12 +70,20 @@ function doActionBtnModals() {
                 };
             }
     
+            if(document.querySelectorAll('#btnshshares')[i]) {
+                document.querySelectorAll('#btnshshares')[i].onclick = function(e) {
+                    e.preventDefault();
+                    const modalmysharepost = new bootstrap.Modal('#modalmysharepost'+this.getAttribute('data-id'));
+                    modalmysharepost.show();
+                };
+            }
+    
             if(document.querySelectorAll('#btnshreact')[i]) {
                 document.querySelectorAll('#btnshreact')[i].onclick = function() {
-                    if(document.querySelectorAll('#blkreactlist')[this.getAttribute('data-id')-1].classList.contains('hidden')) {
-                        document.querySelectorAll('#blkreactlist')[this.getAttribute('data-id')-1].classList.remove('hidden');
+                    if(document.querySelectorAll('.blkreactlist'+this.getAttribute('data-id'))[0].classList.contains('hidden')) {
+                        document.querySelectorAll('.blkreactlist'+this.getAttribute('data-id'))[0].classList.remove('hidden');
                     } else {
-                        document.querySelectorAll('#blkreactlist')[this.getAttribute('data-id')-1].classList.add('hidden');
+                        document.querySelectorAll('.blkreactlist'+this.getAttribute('data-id'))[0].classList.add('hidden');
                     }
                 };
             }
@@ -90,21 +100,13 @@ function doActionBtnModals() {
                 }
             
                 document.querySelectorAll('#btnshcomments')[i].onclick = function() {
-                    if(document.querySelectorAll('.blkpostfooter')[this.getAttribute('data-id')-1].classList.contains('hidden')) {
+                    if(document.querySelectorAll('.blkpostfooter'+this.getAttribute('data-id'))[0].classList.contains('hidden')) {
                         localStorage.setItem('showComments', true);
-                        document.querySelectorAll('.blkpostfooter')[this.getAttribute('data-id')-1].classList.remove('hidden');
+                        document.querySelectorAll('.blkpostfooter'+this.getAttribute('data-id'))[0].classList.remove('hidden');
                     } else {
                         localStorage.setItem('showComments', false);
-                        document.querySelectorAll('.blkpostfooter')[this.getAttribute('data-id')-1].classList.add('hidden');
+                        document.querySelectorAll('.blkpostfooter'+this.getAttribute('data-id'))[0].classList.add('hidden');
                     }
-                };
-            }
-    
-            if(document.querySelectorAll('#btnshshares')[i]) {
-                document.querySelectorAll('#btnshshares')[i].onclick = function(e) {
-                    e.preventDefault();
-                    const modalmysharepost = new bootstrap.Modal('#modalmysharepost'+this.getAttribute('data-id'));
-                    modalmysharepost.show();
                 };
             }
         }
