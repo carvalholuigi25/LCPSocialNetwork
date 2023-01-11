@@ -12,3 +12,4 @@ export * from '../components/toggleTheme';
 export * from '../components/forms';
 export * from '../components/modals';
 export * from '../components/notifications';
+export * from '../components/userthings';
