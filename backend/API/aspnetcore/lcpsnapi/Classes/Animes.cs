@@ -26,6 +26,7 @@ namespace lcpsnapi.Classes
         public string? DateEnd { get; set; }
         public double? Rating { get; set; }
         public bool? IsFeatured { get; set; }
+        public bool? IsFavorite { get; set; }
         public string? DateCreated { get; set; }
         public int? UsersId { get; set; }
     }
