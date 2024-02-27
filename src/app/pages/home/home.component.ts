@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { SafePipe } from '../../pipes';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  yearnow = new Date().getUTCFullYear();
 }

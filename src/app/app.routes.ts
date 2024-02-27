@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent, AuthComponent, LoginComponent, RegisterComponent, NewsfeedComponent, AdminComponent, DashboardComponent, NotfoundComponent, UsersComponent, SettingsComponent } from './pages';
+import { CodeConductComponent, PrivacyPolicyComponent, TosComponent } from './pages/infopublic';
 import { AuthGuard, AdminGuard } from './guards';
 
 export const routes: Routes = [
@@ -27,5 +28,8 @@ export const routes: Routes = [
         canActivate: [AdminGuard] 
     },
     { path: 'settings', component: SettingsComponent },
+    { path: 'tos', component: TosComponent },
+    { path: 'privacypolicy', component: PrivacyPolicyComponent },
+    { path: 'codeconduct', component: CodeConductComponent },
     { path: '**', component: NotfoundComponent }
 ];

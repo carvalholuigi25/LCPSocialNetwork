@@ -1,1 +1,41 @@
-<p>register works!</p>
+<div class="container-fluid">
+    <div class="row mbkgimg">
+        <div class="col-12 col-md-6 colhome">
+            <div class="blklogo">
+                <h1 class="logo">LCP Social Network</h1>
+            </div>
+            <div class="footer">
+                <div class="pagelinks">
+                    <a href="tos">TOS</a>
+                    <a href="privacypolicy">Privacy Policy</a>
+                    <a href="codeconduct">Code of Conduct</a>
+                </div>
+                <div class="copyright">
+                    &copy;<span id="yearnow">{{yearnow}}</span> - LCP - Created by <a href="mailto:luiscarvalho239@gmail.com">Luis Carvalho</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 colhomeinfo">
+            <h2 class="title">Register</h2>
+            <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="regform">
+                <div class="form-group mt-3">
+                    <label for="username">Username: </label>
+                    <input id="username" type="text" formControlName="username" class="form-control text-center mt-3">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="email">Email: </label>
+                    <input id="email" type="email" formControlName="email" class="form-control text-center mt-3">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="password">Password: </label>
+                    <input id="password" type="password" formControlName="password" class="form-control text-center mt-3">
+                </div>
+                <div class="form-group mt-3">
+                    <button type="reset" mat-flat-button color="primary">Clear</button>
+                    <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!regForm.valid">Submit</button>
+                </div>
+            </form>
+            <a mat-flat-button class="mt-3" href="home" color="primary">Back</a>
+        </div>
+    </div>
+</div>

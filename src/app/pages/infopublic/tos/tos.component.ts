@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-auth',
+  selector: 'app-tos',
   standalone: true,
   imports: [MatButtonModule],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  templateUrl: './tos.component.html',
+  styleUrl: './tos.component.scss'
 })
-export class AuthComponent {
+export class TosComponent {
   yearnow = new Date().getUTCFullYear();
 
 }

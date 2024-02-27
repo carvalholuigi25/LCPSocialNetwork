@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-auth',
+  selector: 'app-privacypolicy',
   standalone: true,
   imports: [MatButtonModule],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  templateUrl: './privacypolicy.component.html',
+  styleUrl: './privacypolicy.component.scss'
 })
-export class AuthComponent {
+export class PrivacyPolicyComponent {
   yearnow = new Date().getUTCFullYear();
 
 }
