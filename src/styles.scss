@@ -175,6 +175,20 @@ a.active {
     font-weight: bold;
 }
 
+input {
+    text-align: left;
+}
+
+.mdc-text-field--outlined .mat-mdc-form-field-infix, 
+.mdc-text-field--no-label .mat-mdc-form-field-infix,
+.mdc-select-field--outlined .mat-mdc-form-field-infix, 
+.mdc-select-field--no-label .mat-mdc-form-field-infix,
+.mdc-textarea-field--outlined .mat-mdc-form-field-infix, 
+.mdc-textarea-field--no-label .mat-mdc-form-field-infix {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 @media all and (width >= 769px) and (width <= 992px) {
     .colhome {
         .blklogo {

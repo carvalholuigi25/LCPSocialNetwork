@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SharedModule } from '../../../modules';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [MatButtonModule, ReactiveFormsModule],
+  imports: [SharedModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -13,12 +13,24 @@ export class RegisterComponent {
   yearnow = new Date().getUTCFullYear();
   regForm = new FormGroup({
     username: new FormControl('', Validators.required),
+  });
+  regForm2 = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
+  onClear() {
+    this.regForm.reset();
+    this.regForm2.reset();
+  }
+
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.log(this.regForm.value);
+    var obj = {
+      username: this.regForm.value.username,
+      email: this.regForm2.value.email,
+      password: this.regForm2.value.password
+    };
+    console.log(obj);
   }
 }

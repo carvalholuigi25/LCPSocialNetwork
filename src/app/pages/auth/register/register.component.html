@@ -11,30 +11,77 @@
                     <a href="codeconduct">Code of Conduct</a>
                 </div>
                 <div class="copyright">
-                    &copy;<span id="yearnow">{{yearnow}}</span> - LCP - Created by <a href="mailto:luiscarvalho239@gmail.com">Luis Carvalho</a>
+                    &copy;<span id="yearnow">{{yearnow}}</span> - LCP - Created by <a
+                        href="mailto:luiscarvalho239@gmail.com">Luis Carvalho</a>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6 colhomeinfo">
             <h2 class="title">Register</h2>
-            <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="regform">
-                <div class="form-group mt-3">
-                    <label for="username">Username: </label>
-                    <input id="username" type="text" formControlName="username" class="form-control text-center mt-3">
-                </div>
-                <div class="form-group mt-3">
-                    <label for="email">Email: </label>
-                    <input id="email" type="email" formControlName="email" class="form-control text-center mt-3">
-                </div>
-                <div class="form-group mt-3">
-                    <label for="password">Password: </label>
-                    <input id="password" type="password" formControlName="password" class="form-control text-center mt-3">
-                </div>
+            <mat-stepper [linear]="false" #stepper>
+                <mat-step [stepControl]="regForm">
+                    <form [formGroup]="regForm" class="regform mx-auto">
+                        <ng-template matStepLabel>Username</ng-template>
+                        <mat-form-field class="mt-3">
+                            <mat-label for="username">Username</mat-label>
+                            <input id="username" type="text" formControlName="username"
+                                class="form-control text-start mt-3" title="Write here your username" required
+                                matInput />
+                        </mat-form-field>
+                        <div class="form-group mt-3">
+                            <button type="button" title="next" mat-flat-button color="accent" matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="regForm2" label="Email & Password">
+                    <form [formGroup]="regForm2" class="regform mx-auto" (ngSubmit)="onSubmit()">
+                        <mat-form-field class="mt-3">
+                            <mat-label for="email">Email</mat-label>
+                            <input id="email" type="email" formControlName="email" class="form-control text-start mt-3" title="Write here your email" required matInput />
+                        </mat-form-field>
+                        <mat-form-field class="mt-3">
+                            <mat-label for="password">Password</mat-label>
+                            <input id="password" type="password" formControlName="password"
+                                class="form-control text-start mt-3" title="Write here your password" required
+                                matInput />
+                        </mat-form-field>
+                        <div class="form-group mt-3">
+                            <button type="button" title="back" mat-flat-button color="primary" matStepperPrevious>Back</button>
+                            <button type="button" title="next" class="ms-3" mat-flat-button color="accent" matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    <div class="form-group mt-3">
+                        <button type="button" mat-flat-button color="primary" (click)="onClear()">Clear</button>
+                        <button type="submit" class="ms-3" mat-flat-button color="accent"
+                            [disabled]="!regForm.valid">Submit</button>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button mat-flat-button color="warn" (click)="stepper.reset()">Reset</button>
+                    </div>
+                </mat-step>
+            </mat-stepper>
+
+            <!-- <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="regform">
+                <mat-form-field class="mt-3">
+                    <mat-label for="username">Username</mat-label>
+                    <input id="username" type="text" formControlName="username" class="form-control text-start mt-3" title="Write here your username" required matInput />
+                </mat-form-field>
+                <mat-form-field class="mt-3">
+                    <mat-label for="email">Email</mat-label>
+                    <input id="email" type="email" formControlName="email" class="form-control text-start mt-3" title="Write here your email" required matInput />
+                </mat-form-field>
+                <mat-form-field class="mt-3">
+                    <mat-label for="password">Password</mat-label>
+                    <input id="password" type="password" formControlName="password" class="form-control text-start mt-3" title="Write here your password" required matInput />
+                </mat-form-field>
                 <div class="form-group mt-3">
                     <button type="reset" mat-flat-button color="primary">Clear</button>
                     <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!regForm.valid">Submit</button>
                 </div>
-            </form>
+            </form> -->
             <a mat-flat-button class="mt-3" href="home" color="primary">Back</a>
         </div>
     </div>
