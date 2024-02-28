@@ -1,1 +1,57 @@
-<p>newsfeed works!</p>
+<app-navbar></app-navbar>
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-12 p-3 newsfeed">
+            <form class="frmpost">
+                <textarea title="txtpost" name="txtpost" id="txtpost" cols="1" rows="10" class="form-control"
+                    placeholder="Write something here..."></textarea>
+                <div class="form-group mt-3 text-center">
+                    <button mat-flat-button color="primary" type="reset">Reset</button>
+                    <button mat-flat-button color="accent" type="submit" class="ms-3">Submit</button>
+                </div>
+            </form>
+
+            <mat-card class="post mt-3">
+                <mat-card-header>
+                    <img src="/assets/images/bkg.jpeg" mat-card-avatar title="avatar" />
+                    <mat-card-title>
+                        Post #1
+                    </mat-card-title>
+                    <mat-card-subtitle class="mt-1">
+                        Subtitle
+                    </mat-card-subtitle>
+                    <span class="example-spacer"></span>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_horiz</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <a href="post/1/edit" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Edit</span>
+                        </a>
+                        <a  href="post/1/delete" mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete</span>
+                        </a>
+                    </mat-menu>
+                </mat-card-header>
+                <mat-card-content>
+                    <img src="/assets/images/bkg.jpeg" mat-card-image title="image" class="img-fluid" />
+                    <p class="mt-3 ctxtjustify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quidem ipsum rem
+                        porro molestias quis id, officia suscipit expedita tempore atque accusamus sit fuga repellendus
+                        doloribus similique quod aperiam nesciunt.</p>
+                </mat-card-content>
+                <mat-card-footer>
+                    <mat-card-actions>
+                        <mat-card-content class="padcardfooter">
+                            <button mat-flat-button color="primary" title="read">Read more</button>
+                        </mat-card-content>
+                    </mat-card-actions>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

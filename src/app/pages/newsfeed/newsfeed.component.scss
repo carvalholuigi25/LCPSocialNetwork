@@ -1,0 +1,55 @@
+.newsfeed {
+    .colbarleft {
+        display: block;
+        min-height: 100vh;
+        overflow: auto;
+        background: #3f51b5;
+        color: white;
+        margin-top: -16px;
+        margin-bottom: -16px;
+        margin-left: -15px;
+        margin-right: 15px;
+    }
+    
+    .colbarright {
+        display: block;
+        min-height: 100vh;
+        overflow: auto;
+        background: #3f51b5;
+        color: white;
+        margin-top: -16px;
+        margin-bottom: -16px;
+        margin-right: -15px;
+        margin-left: 15px;
+    }
+    
+    .colbarcenter {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+    
+    .padcardfooter {
+        padding: 6px;
+        text-align: center;
+        margin: auto auto;
+    }
+    
+    .ctxtjustify {
+        text-align: justify;
+        line-height: 2rem;
+    }
+}
+
+@media all and (width <= 768px) {
+    .newsfeed {
+        .colbarleft,
+        .colbarright {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}

@@ -18,10 +18,16 @@ export class RegisterComponent {
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
+  regFormFinale = new FormGroup({
+    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
 
   onClear() {
     this.regForm.reset();
     this.regForm2.reset();
+    this.regFormFinale.reset();
   }
 
   onSubmit() {

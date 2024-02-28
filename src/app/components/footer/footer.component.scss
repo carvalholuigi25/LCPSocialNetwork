@@ -1,0 +1,27 @@
+.myfooter {
+    display: block;
+    position: relative;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #3f51b5;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin: auto;
+    z-index: 9999;
+
+    .pagelinks {
+        margin-top: 0px;
+    }
+
+    .copyright {
+        margin-top: 15px;
+    }
+
+    a {
+        color: inherit;
+        margin-left: 5px;
+    }
+}

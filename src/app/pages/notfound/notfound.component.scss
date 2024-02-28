@@ -1,0 +1,20 @@
+.notfound {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    max-height: 100%;
+
+    .mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
+        font-size: 10rem;
+        width: inherit;
+        height: inherit;
+        color: red;
+    }
+
+    .tjustify {
+        text-align: justify;
+        line-height: 2rem;
+    }
+}

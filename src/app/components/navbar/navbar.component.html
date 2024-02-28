@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="mynavbar">
+    <a href="home" class="navbarbrandct">LCPSN</a>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <img src="/assets/images/bkg.jpeg" alt="bkg user" class="img-fluid img-avatar" />
+    </button>
+    <mat-menu #menu="matMenu">
+        <a href="settings" mat-menu-item>
+            <mat-icon>manufacturing</mat-icon>
+            <span>Settings</span>
+        </a>
+        <a href="auth/login" mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </a>
+    </mat-menu>
+</mat-toolbar>
