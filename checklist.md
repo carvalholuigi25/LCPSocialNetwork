@@ -1,32 +1,32 @@
 # LCPSN Checklist
 
-<aside>
-💡 Warning: This list is in construction phase and all items will be subject to change by owner.
-</aside>
+> ## :warning: Warning: 
+> 
+> This list is in construction phase and all items will be subject to change by owner.
 
 - [ ]  1 - Backend
     - [ ]  API
-        - [ ]  Create classes or models
-        - [ ]  Create database
-        - [ ]  Add multi database connections (SQL Server, SQLite, MySQL & PostgreSQL)
+        - [x]  Create classes or models
+        - [x]  Create database
+        - [x]  Add multi database connections (SQL Server, SQLite, MySQL & PostgreSQL)
         - [ ]  Add & Configurate database relationship
         - [ ]  Add authentication & authorization (including JWT, Cookies, Roles, Claims & Policies)
-        - [ ]  Add interfaces, repositories (or services) & controllers
-        - [ ]  Add CRUD (create, read, update, delete) functions from context of your database for repositories (or services) and call them to the controllers
-        - [ ]  Add api info
-        - [ ]  Add description for each api endpoint
+        - [x]  Add interfaces, repositories (or services) & controllers
+        - [x]  Add CRUD (create, read, update, delete) functions from context of your database for repositories (or services) and call them to the controllers
+        - [x]  Add api info
+        - [x]  Add description for each api endpoint
         - [ ]  Add error model validation for each api endpoint or class
-        - [ ]  Add table data (seed) to test in development
-        - [ ]  Realtime data with signalr
+        - [x]  Add table data (seed) to test in development
+        - [x]  Realtime data with signalr
         - [ ]  Secure all api stuff
         - [ ]  DTO
         - [ ]  Rate Limit
-        - [ ]  Pagination & Filteration & Search for data
-        - [ ]  Query builder’n’runner
+        - [x]  Pagination & Filteration & Search for data
+        - [x]  Query builder’n’runner
         - [ ]  Localization
         - [ ]  Remove all table data (seed) for production
         - [ ]  Unit test for each endpoint (optional)
-        - [ ]  Build
+        - [x]  Build
 - [ ]  2 - Frontend
     - [ ]  Users
     - [ ]  Roles & Auth (Login, Logout, Registration, etc)
