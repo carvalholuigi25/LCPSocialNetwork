@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../../../modules';
+import { Users } from '../../../models';
 
 @Component({
   selector: 'app-register',
@@ -11,18 +12,28 @@ import { SharedModule } from '../../../modules';
 })
 export class RegisterComponent {
   yearnow = new Date().getUTCFullYear();
-  regForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-  });
-  regForm2 = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  });
-  regFormFinale = new FormGroup({
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  });
+  regForm!: FormGroup;
+  regForm2!: FormGroup;
+  regFormFinale!: FormGroup;
+
+  constructor() { }
+
+  ngOnInit() {
+    this.regForm = new FormGroup({
+      Username: new FormControl('', Validators.required),
+    });
+
+    this.regForm2 = new FormGroup({
+      Email: new FormControl('', Validators.required),
+      Password: new FormControl('', Validators.required),
+    });
+
+    this.regFormFinale = new FormGroup({
+      Username: new FormControl('', Validators.required),
+      Email: new FormControl('', Validators.required),
+      Password: new FormControl('', Validators.required),
+    });
+  }
 
   onClear() {
     this.regForm.reset();
@@ -31,12 +42,13 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    var obj = {
-      username: this.regForm.value.username,
-      email: this.regForm2.value.email,
-      password: this.regForm2.value.password
+    const regRequest: Users = {
+      Username: this.regForm.value.Username,
+      Email: this.regForm2.value.Email,
+      Password: this.regForm2.value.Password
     };
-    console.log(obj);
+
+    // this.regFormFinale.patchValue(regRequest);
+    console.log(regRequest);
   }
 }

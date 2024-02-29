@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../../../modules';
+import { UsersAuth } from '../../../models';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,25 @@ import { SharedModule } from '../../../modules';
 })
 export class LoginComponent {
   yearnow = new Date().getUTCFullYear();
+  logForm!: FormGroup;
 
-  logForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  });
+  constructor() { }
+
+  ngOnInit() {
+    this.logForm = new FormGroup({
+      Username: new FormControl('', Validators.required),
+      Password: new FormControl('', Validators.required),
+    });
+  }
+
+  get f() { return this.logForm.controls; }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.log(this.logForm.value);
+    const loginRequest: UsersAuth = {
+      Username: this.f["Username"].value!.toString(),
+      Password: this.f["Password"].value!.toString()
+    };
+
+    console.log(loginRequest);
   }
 }
