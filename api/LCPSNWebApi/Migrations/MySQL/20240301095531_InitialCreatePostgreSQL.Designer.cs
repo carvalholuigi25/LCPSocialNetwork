@@ -3,17 +3,16 @@ using System;
 using LCPSNWebApi.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LCPSNWebApi.Migrations.SQLServer
+namespace LCPSNWebApi.Migrations.MySQL
 {
-    [DbContext(typeof(DBContext))]
-    [Migration("20240226114331_InitialCreateSQLServer")]
-    partial class InitialCreateSQLServer
+    [DbContext(typeof(DBContextMySQL))]
+    [Migration("20240301095531_InitialCreatePostgreSQL")]
+    partial class InitialCreatePostgreSQL
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,9 +20,7 @@ namespace LCPSNWebApi.Migrations.SQLServer
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Attachment", b =>
                 {
@@ -31,33 +28,31 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AttachmentId"));
-
                     b.Property<string>("AttachmentType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("AttachmentUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime?>("DateAttachmentUploaded")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("FriendId")
                         .HasColumnType("int");
 
                     b.Property<bool?>("IsFeatured")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -68,8 +63,6 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         {
                             t.HasTrigger("Attachments_Trigger");
                         });
-
-                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
@@ -78,30 +71,28 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
-
                     b.Property<DateTime?>("DatePostCreated")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("FriendId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImgUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("PostId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -109,19 +100,15 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     b.HasKey("CommentId");
 
                     b.HasIndex("FriendId")
-                        .IsUnique()
-                        .HasFilter("[FriendId] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Comments", t =>
                         {
                             t.HasTrigger("Comments_Trigger");
                         });
-
-                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Files.FileData", b =>
@@ -130,27 +117,25 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("FileFullPath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FileName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<long>("FileSize")
                         .HasColumnType("bigint");
 
                     b.Property<string>("FileType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<Guid>("GId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<byte[]>("ImageBytes")
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("longblob");
 
                     b.HasKey("Id");
 
@@ -158,8 +143,6 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         {
                             t.HasTrigger("FilesData_Trigger");
                         });
-
-                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
@@ -168,36 +151,34 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FriendId"));
-
                     b.Property<string>("AvatarUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Biography")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CoverUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime?>("DateAccountCreated")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("FriendId");
 
@@ -205,8 +186,6 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         {
                             t.HasTrigger("Friends_Trigger");
                         });
-
-                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
@@ -215,30 +194,28 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PostId"));
-
                     b.Property<int?>("CommentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DatePostCreated")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("FriendId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImgUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -246,19 +223,15 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     b.HasKey("PostId");
 
                     b.HasIndex("FriendId")
-                        .IsUnique()
-                        .HasFilter("[FriendId] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Posts", t =>
                         {
                             t.HasTrigger("Posts_Trigger");
                         });
-
-                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
             modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
@@ -267,48 +240,52 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
                     b.Property<string>("AvatarUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Biography")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CoverUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CurrentToken")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime?>("DateAccountCreated")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("FriendsFriendId")
                         .HasColumnType("int");
 
+                    b.Property<string>("LastName")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("RefreshToken")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime?>("RefreshTokenExpiryTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("UserId");
 
@@ -319,15 +296,15 @@ namespace LCPSNWebApi.Migrations.SQLServer
                             t.HasTrigger("Users_Trigger");
                         });
 
-                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
-
                     b.HasData(
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 2, 26, 11, 43, 30, 950, DateTimeKind.Utc).AddTicks(7903),
-                            Password = "$2a$12$6rraF/B43GA.af1hgGTpB.wVlw.mBn8kFdXbyg5o2Cd/edDKymOU2",
-                            RefreshTokenExpiryTime = new DateTime(2024, 2, 26, 11, 43, 30, 950, DateTimeKind.Utc).AddTicks(7912),
+                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3546),
+                            FirstName = "Luis",
+                            LastName = "Carvalho",
+                            Password = "$2a$12$9T5MXvaWSDs5NfQliBd7Pug.9VuQ/QTSuhxNmlr62sXL/8FbVVkOW",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3555),
                             Role = "Administrator",
                             Username = "admin"
                         });

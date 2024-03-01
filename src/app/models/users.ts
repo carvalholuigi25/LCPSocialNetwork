@@ -4,6 +4,8 @@ export class Users {
     UserId?: number;
     Username!: string;
     Password!: string;
+    FirstName?: string;
+    LastName?: string;
     Email?: string;
     Role?: string | UsersRoles;
     Status?: string;

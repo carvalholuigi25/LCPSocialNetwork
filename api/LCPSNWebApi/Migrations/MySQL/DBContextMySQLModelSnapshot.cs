@@ -255,8 +255,14 @@ namespace LCPSNWebApi.Migrations.MySQL
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("longtext");
+
                     b.Property<int?>("FriendsFriendId")
                         .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -291,9 +297,11 @@ namespace LCPSNWebApi.Migrations.MySQL
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 2, 26, 11, 42, 57, 807, DateTimeKind.Utc).AddTicks(7183),
-                            Password = "$2a$12$u6wcW6hEWKC.P3oUVNWlKe3prMI9qe8cOcEqZO5DBL.8Q/g4u.lXe",
-                            RefreshTokenExpiryTime = new DateTime(2024, 2, 26, 11, 42, 57, 807, DateTimeKind.Utc).AddTicks(7194),
+                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3546),
+                            FirstName = "Luis",
+                            LastName = "Carvalho",
+                            Password = "$2a$12$9T5MXvaWSDs5NfQliBd7Pug.9VuQ/QTSuhxNmlr62sXL/8FbVVkOW",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3555),
                             Role = "Administrator",
                             Username = "admin"
                         });

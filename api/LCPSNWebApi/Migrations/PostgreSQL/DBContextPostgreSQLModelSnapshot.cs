@@ -270,8 +270,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
                     b.Property<int?>("FriendsFriendId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -306,9 +312,11 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 2, 26, 11, 42, 35, 348, DateTimeKind.Utc).AddTicks(1455),
-                            Password = "$2a$12$G4LhTia9FQ9ItZLC9vnqWenf5XbasVQrUpUMUjLm//4tPeb9X83Hu",
-                            RefreshTokenExpiryTime = new DateTime(2024, 2, 26, 11, 42, 35, 348, DateTimeKind.Utc).AddTicks(1464),
+                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 55, 4, 201, DateTimeKind.Utc).AddTicks(6830),
+                            FirstName = "Luis",
+                            LastName = "Carvalho",
+                            Password = "$2a$12$E//Ja4CyX7FSOZYoW0ZSYu.3ZtpBZhS7AOH5cGumm8kNK7JJoaVwq",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 55, 4, 201, DateTimeKind.Utc).AddTicks(6843),
                             Role = "Administrator",
                             Username = "admin"
                         });

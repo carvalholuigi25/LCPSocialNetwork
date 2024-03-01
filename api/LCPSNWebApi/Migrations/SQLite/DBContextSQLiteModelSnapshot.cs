@@ -253,8 +253,14 @@ namespace LCPSNWebApi.Migrations.SQLite
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("FriendsFriendId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -289,9 +295,11 @@ namespace LCPSNWebApi.Migrations.SQLite
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 2, 26, 11, 42, 12, 125, DateTimeKind.Utc).AddTicks(2098),
-                            Password = "$2a$12$nlbzrKaR3X8rmYt2eZNwU.mxJKlH2xCYZMHgVeOdX7RkO5JPWvNqq",
-                            RefreshTokenExpiryTime = new DateTime(2024, 2, 26, 11, 42, 12, 125, DateTimeKind.Utc).AddTicks(2110),
+                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 54, 41, 110, DateTimeKind.Utc).AddTicks(4348),
+                            FirstName = "Luis",
+                            LastName = "Carvalho",
+                            Password = "$2a$12$Y7NNppqaj9WjH9flVmfTf.Go8jwuy2XIrTvnAHQ2YtpxvjOJX.HWG",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 54, 41, 110, DateTimeKind.Utc).AddTicks(4358),
                             Role = "Administrator",
                             Username = "admin"
                         });

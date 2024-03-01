@@ -6,6 +6,71 @@ ASPNETCORE_ENVIRONMENT="Development"
 USERPTHCT="$HOME"
 MYLCPPATH="$USERPTHCT/Documents/projects/angular/LCPSocialNetwork/api/LCPSNWebApi"
 
+genDBSQLServer () {
+	DBMode="SQLServer"
+	dotnet ef migrations remove --context DBContext --force
+	dotnet ef migrations add InitialCreateSQLServer --context DBContext --output-dir "Migrations/SQLServer"
+	dotnet ef database update --context DBContext
+
+	copyfiles
+}
+
+genDBSQLite () {
+	DBMode="SQLite"
+	dotnet ef migrations remove --context DBContextSQLite --force
+	dotnet ef migrations add InitialCreateSQLite --context DBContextSQLite --output-dir "Migrations/SQLite"
+	dotnet ef database update --context DBContextSQLite
+}
+
+genDBPostgreSQL () {
+	DBMode="PostgreSQL"
+	dotnet ef migrations remove --context DBContextPostgreSQL --force
+	dotnet ef migrations add InitialCreatePostgreSQL --context DBContextPostgreSQL --output-dir "Migrations/PostgreSQL"
+	dotnet ef database update --context DBContextPostgreSQL
+}
+
+genDBMySQL () {
+	DBMode="MySQL"
+	dotnet ef migrations remove --context DBContextMySQL --force
+	dotnet ef migrations add InitialCreatePostgreSQL --context DBContextMySQL --output-dir "Migrations/MySQL"
+	dotnet ef database update --context DBContextMySQL
+}
+
+genDBAll () {
+	dotnet ef migrations remove --context DBContext --force
+	dotnet ef migrations remove --context DBContextSQLite --force
+	dotnet ef migrations remove --context DBContextPostgreSQL --force
+	dotnet ef migrations remove --context DBContextMySQL --force
+
+	DBMode="SQLServer"
+	dotnet ef migrations add InitialCreateSQLServer --context DBContext --output-dir "Migrations/SQLServer"
+	dotnet ef database update --context DBContext
+
+	DBMode="SQLite"
+	dotnet ef migrations add InitialCreateSQLite --context DBContextSQLite --output-dir "Migrations/SQLite"
+	dotnet ef database update --context DBContextSQLite
+
+	DBMode="PostgreSQL"
+	dotnet ef migrations add InitialCreatePostgreSQL --context DBContextPostgreSQL --output-dir "Migrations/PostgreSQL"
+	dotnet ef database update --context DBContextPostgreSQL
+	
+	DBMode="MySQL"
+	dotnet ef migrations add InitialCreatePostgreSQL --context DBContextMySQL --output-dir "Migrations/MySQL"
+	dotnet ef database update --context DBContextMySQL
+
+	copyfiles
+}
+
+copyfiles () {
+	if [[ -f "$USERPTHCT/LCPSNWebApiDB.mdf" ]]; then
+		cp -r "$USERPTHCT/LCPSNWebApiDB.mdf" "$MYLCPPATH/Databases/SQLServer"
+	fi
+
+	if [[ -f "$USERPTHCT/LCPSNWebApiDB_log.ldf" ]]; then
+		cp -r "$USERPTHCT/LCPSNWebApiDB_log.ldf" "$MYLCPPATH/Databases/SQLServer"
+	fi
+}
+
 clear
 dotnet tool install --global dotnet-ef
 
@@ -73,70 +138,5 @@ elif [[ $DBModeOpt == "4" ]]; then
 else
 	genDBAll
 fi
-
-genDBSQLServer () {
-	DBMode="SQLServer"
-	dotnet ef migrations remove --context DBContext --force
-	dotnet ef migrations add InitialCreateSQLServer --context DBContext --output-dir "Migrations\SQLServer"
-	dotnet ef database update --context DBContext
-
-	copyfiles
-}
-
-genDBSQLite () {
-	DBMode="SQLite"
-	dotnet ef migrations remove --context DBContextSQLite --force
-	dotnet ef migrations add InitialCreateSQLite --context DBContextSQLite --output-dir "Migrations\SQLite"
-	dotnet ef database update --context DBContextSQLite
-}
-
-genDBPostgreSQL () {
-	DBMode="PostgreSQL"
-	dotnet ef migrations remove --context DBContextPostgreSQL --force
-	dotnet ef migrations add InitialCreatePostgreSQL --context DBContextPostgreSQL --output-dir "Migrations\PostgreSQL"
-	dotnet ef database update --context DBContextPostgreSQL
-}
-
-genDBMySQL () {
-	DBMode="MySQL"
-	dotnet ef migrations remove --context DBContextMySQL --force
-	dotnet ef migrations add InitialCreatePostgreSQL --context DBContextMySQL --output-dir "Migrations\MySQL"
-	dotnet ef database update --context DBContextMySQL
-}
-
-genDBAll () {
-	dotnet ef migrations remove --context DBContext --force
-	dotnet ef migrations remove --context DBContextSQLite --force
-	dotnet ef migrations remove --context DBContextPostgreSQL --force
-	dotnet ef migrations remove --context DBContextMySQL --force
-
-	DBMode="SQLServer"
-	dotnet ef migrations add InitialCreateSQLServer --context DBContext --output-dir "Migrations\SQLServer"
-	dotnet ef database update --context DBContext
-
-	DBMode="SQLite"
-	dotnet ef migrations add InitialCreateSQLite --context DBContextSQLite --output-dir "Migrations\SQLite"
-	dotnet ef database update --context DBContextSQLite
-
-	DBMode="PostgreSQL"
-	dotnet ef migrations add InitialCreatePostgreSQL --context DBContextPostgreSQL --output-dir "Migrations\PostgreSQL"
-	dotnet ef database update --context DBContextPostgreSQL
-	
-	DBMode="MySQL"
-	dotnet ef migrations add InitialCreatePostgreSQL --context DBContextMySQL --output-dir "Migrations\MySQL"
-	dotnet ef database update --context DBContextMySQL
-
-	copyfiles
-}
-
-copyfiles () {
-	if [[ -f "$USERPTHCT/LCPSNWebApiDB.mdf" ]]; then
-		cp -r "$USERPTHCT/LCPSNWebApiDB.mdf" "$MYLCPPATH/Databases/SQLServer"
-	fi
-
-	if [[ -f "$USERPTHCT/LCPSNWebApiDB_log.ldf" ]]; then
-		cp -r "$USERPTHCT/LCPSNWebApiDB_log.ldf" "$MYLCPPATH/Databases/SQLServer"
-	fi
-}
 
 exit

@@ -284,8 +284,14 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("FriendsFriendId")
                         .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -322,9 +328,11 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 2, 26, 11, 43, 30, 950, DateTimeKind.Utc).AddTicks(7903),
-                            Password = "$2a$12$6rraF/B43GA.af1hgGTpB.wVlw.mBn8kFdXbyg5o2Cd/edDKymOU2",
-                            RefreshTokenExpiryTime = new DateTime(2024, 2, 26, 11, 43, 30, 950, DateTimeKind.Utc).AddTicks(7912),
+                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 56, 21, 948, DateTimeKind.Utc).AddTicks(5159),
+                            FirstName = "Luis",
+                            LastName = "Carvalho",
+                            Password = "$2a$12$POYPQPZVLPKD2//6cIXd7OpAiBZ.g/4BsXm7t2M4HOiL.z0RLRshe",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 56, 21, 948, DateTimeKind.Utc).AddTicks(5177),
                             Role = "Administrator",
                             Username = "admin"
                         });

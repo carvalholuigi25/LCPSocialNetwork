@@ -8,7 +8,6 @@ namespace LCPSNWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Administrator,Moderator,User")]
     public class UserController : ControllerBase
     {
         private readonly IUser _users;
@@ -23,6 +22,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _users.GetUsers();
@@ -34,6 +34,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsersById(int? id)
         {
             return await _users.GetUsersById(id);
@@ -44,6 +45,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("enumslist")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public IActionResult GetUsersAsEnumList()
         {
             return _users.GetUsersAsEnumList();
@@ -54,6 +56,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("fopenumslist")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public IActionResult GetFilterOperationEnumList()
         {
             return Ok(Enum.GetNames(typeof(FilterOperatorEnum)));
@@ -66,6 +69,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="Users"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public async Task<IActionResult> PutUsers(int? id, User Users)
         {
             return await _users.PutUsers(id, Users);
@@ -77,6 +81,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="Users"></param>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<User>> PostUsers(User Users)
         {
             return await _users.PostUsers(Users);
@@ -88,6 +93,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public async Task<IActionResult> DeleteUsers(int? id)
         {
             return await _users.DeleteUsers(id);
@@ -99,6 +105,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="rsid"></param>
         /// <returns></returns>
         [HttpPost("{rsid}")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public async Task<IActionResult> ResetIdSeed(int rsid = 1)
         {
             return await _users.ResetIdSeed(rsid);
@@ -110,6 +117,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="qryp"></param>
         /// <returns></returns>
         [HttpGet("filter")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public async Task<IActionResult> SearchUsers([FromQuery] QueryParams qryp)
         {
             return await _users.SearchData(qryp);
@@ -120,6 +128,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("lastid")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
         public async Task<IActionResult> GetLastId()
         {
             return await _users.GetLastId();

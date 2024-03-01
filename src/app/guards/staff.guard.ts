@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { Router, CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateFn } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard {
+export class StaffGuard {
     constructor(
         private router: Router,
         private authService: AuthService
@@ -11,10 +11,10 @@ export class AuthGuard {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authService.userValue;
-        const aryroles = ["User", "user"];
+        const aryroles = ["Administrator", "administrator", "Admin", "admin", "Moderator", "moderator", "Mod", "mod"];
 
         if (user && aryroles.includes(user.Role?.toString()!)) {
-            // logged in so return true
+            // logged as admin in so return true
             return true;
         }
 
@@ -24,6 +24,6 @@ export class AuthGuard {
     }
 }
 
-export const authGuardGuard: CanActivateFn = (route, state) => {
-    return inject(AuthGuard).canActivate(route, state);
+export const staffGuardGuard: CanActivateFn = (route, state) => {
+    return inject(StaffGuard).canActivate(route, state);
 };

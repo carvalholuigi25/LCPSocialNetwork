@@ -104,6 +104,10 @@ namespace LCPSNWebApi.Migrations.MySQL
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Password = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    FirstName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LastName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Role = table.Column<string>(type: "longtext", nullable: true)
@@ -207,8 +211,8 @@ namespace LCPSNWebApi.Migrations.MySQL
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FriendsFriendId", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, null, null, null, null, new DateTime(2024, 2, 26, 11, 42, 57, 807, DateTimeKind.Utc).AddTicks(7183), null, null, "$2a$12$u6wcW6hEWKC.P3oUVNWlKe3prMI9qe8cOcEqZO5DBL.8Q/g4u.lXe", null, new DateTime(2024, 2, 26, 11, 42, 57, 807, DateTimeKind.Utc).AddTicks(7194), "Administrator", null, "admin" });
+                columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "FriendsFriendId", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
+                values: new object[] { 1, null, null, null, null, new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3546), null, "Luis", null, "Carvalho", "$2a$12$9T5MXvaWSDs5NfQliBd7Pug.9VuQ/QTSuhxNmlr62sXL/8FbVVkOW", null, new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3555), "Administrator", null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_FriendId",

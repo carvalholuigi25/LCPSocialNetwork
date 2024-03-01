@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../../../modules';
 import { Users } from '../../../models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@app/services/auth.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +18,12 @@ export class RegisterComponent {
   regForm!: FormGroup;
   regForm2!: FormGroup;
   regFormFinale!: FormGroup;
+  submitted = false;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.regForm = new FormGroup({
@@ -42,13 +49,28 @@ export class RegisterComponent {
   }
 
   onSubmit() {
+    this.submitted = true;
+
+    if (this.regForm.invalid && this.regForm2.invalid) {
+      return;
+    }
+
     const regRequest: Users = {
       Username: this.regForm.value.Username,
       Email: this.regForm2.value.Email,
       Password: this.regForm2.value.Password
     };
 
-    // this.regFormFinale.patchValue(regRequest);
-    console.log(regRequest);
+    this.authService.register(regRequest)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          this.router.navigate([returnUrl]);
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
   }
 }

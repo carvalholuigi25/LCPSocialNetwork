@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent, AuthComponent, LoginComponent, RegisterComponent, NewsfeedComponent, AdminComponent, DashboardComponent, NotfoundComponent, UsersComponent, SettingsComponent } from './pages';
 import { CodeConductComponent, PrivacyPolicyComponent, TosComponent } from './pages/infopublic';
-import { AuthGuard, AdminGuard } from './guards';
+import { AuthGuard, StaffGuard } from './guards';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -10,12 +10,11 @@ export const routes: Routes = [
     {
         path: 'auth',
         children: [
-            { path: '', component: AuthComponent },
-            { path: 'login', component: LoginComponent },
+            { path: '', component: AuthComponent, canActivateChild: [AuthGuard] },
+            { path: 'login', component: LoginComponent, canActivateChild: [AuthGuard] },
             { path: 'register', component: RegisterComponent },
             { path: '**', component: NotfoundComponent }
-        ],
-        canActivate: [AuthGuard]
+        ]
     },
     { path: 'newsfeed', component: NewsfeedComponent },
     { 
@@ -25,7 +24,7 @@ export const routes: Routes = [
            { path: 'dashboard', component: DashboardComponent },
            { path: '**', component: NotfoundComponent }
         ],
-        canActivate: [AdminGuard] 
+        canActivate: [StaffGuard] 
     },
     { path: 'settings', component: SettingsComponent },
     { path: 'tos', component: TosComponent },

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../../../modules';
 import { UsersAuth } from '../../../models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@app/services/auth.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +16,18 @@ import { UsersAuth } from '../../../models';
 export class LoginComponent {
   yearnow = new Date().getUTCFullYear();
   logForm!: FormGroup;
+  submitted = false;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    // redirect to home if already logged in
+    if (this.authService.userValue) {
+      this.router.navigate(['/newsfeed']);
+    }
+  }
 
   ngOnInit() {
     this.logForm = new FormGroup({
@@ -26,11 +39,27 @@ export class LoginComponent {
   get f() { return this.logForm.controls; }
 
   onSubmit() {
+    this.submitted = true;
+
+    if (this.logForm.invalid) {
+      return;
+    }
+
     const loginRequest: UsersAuth = {
       Username: this.f["Username"].value!.toString(),
       Password: this.f["Password"].value!.toString()
     };
 
-    console.log(loginRequest);
+    this.authService.login(loginRequest)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          this.router.navigate([returnUrl]);
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
   }
 }

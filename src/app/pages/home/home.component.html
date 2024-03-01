@@ -17,7 +17,11 @@
         </div>
         <div class="col-12 col-md-6 colhomeinfo">
             <h2 class="title">Welcome!</h2>
-            <a mat-flat-button href="auth/login" color="primary">Login</a>
+            @if(user) {
+                <a mat-flat-button href="/newsfeed" color="primary">Enter</a>
+            } @else {
+                <a mat-flat-button href="/auth/login" color="primary">Login</a>
+            }
         </div>
     </div>
 </div>

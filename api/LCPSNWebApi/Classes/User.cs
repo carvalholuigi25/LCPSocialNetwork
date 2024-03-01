@@ -10,6 +10,8 @@ public class User
     [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int UserId { get; set; }
     [DataType(DataType.Text)][Required] public string Username { get; set; } = null!;
     [DataType(DataType.Text)][Required] public string Password { get; set; } = null!;
+    [DataType(DataType.Text)] public string? FirstName { get; set; }
+    [DataType(DataType.Text)] public string? LastName { get; set; }
     [DataType(DataType.Text)] public string? Email { get; set; }
     [DataType(DataType.Text)] public string? Role { get; set; } = UserRoles.User.ToString();
     [DataType(DataType.Text)] public string? Status { get; set; }

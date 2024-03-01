@@ -60,13 +60,11 @@
                     <form [formGroup]="regFormFinale" class="regform mx-auto" (ngSubmit)="onSubmit()">
                         <div class="form-group mt-3">
                             <button type="button" mat-flat-button color="primary" (click)="onClear()">Clear</button>
-                            <button type="submit" class="ms-3" mat-flat-button color="accent"
-                                [disabled]="!regForm.valid && !regForm2.valid">Submit</button>
+                            <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!regForm.valid && !regForm2.valid">Submit</button>
                         </div>
                     </form>
                     <div class="form-group mt-3">
-                        <button type="button" title="back" mat-flat-button color="primary"
-                            matStepperPrevious>Previous</button>
+                        <button type="button" title="back" mat-flat-button color="primary" matStepperPrevious>Previous</button>
                         <button mat-flat-button color="warn" class="ms-3" (click)="stepper.reset()">Reset</button>
                     </div>
                 </mat-step>

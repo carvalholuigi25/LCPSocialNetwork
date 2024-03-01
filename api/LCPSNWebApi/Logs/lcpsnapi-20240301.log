@@ -1,0 +1,207 @@
+[2024-03-01 09:59:53.863 +00:00  INF]  User profile is available. Using 'C:\Users\luisc\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2024-03-01 09:59:55.602 +00:00  INF]  Now listening on: https://localhost:5000
+[2024-03-01 09:59:55.602 +00:00  INF]  Now listening on: http://localhost:5001
+[2024-03-01 09:59:55.606 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2024-03-01 09:59:55.607 +00:00  INF]  Hosting environment: Development
+[2024-03-01 09:59:55.607 +00:00  INF]  Content root path: C:\Users\luisc\Documents\projects\angular\LCPSocialNetwork\api\LCPSNWebApi
+[2024-03-01 10:00:11.139 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/ - null null
+[2024-03-01 10:00:11.306 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/ - 404 0 null 172.1166ms
+[2024-03-01 10:00:11.308 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/, Response status code: 404
+[2024-03-01 10:00:11.573 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:00:11.585 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 11.9577ms
+[2024-03-01 10:00:11.586 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:00:12.584 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:00:12.590 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 5.9282ms
+[2024-03-01 10:00:12.590 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:00:14.887 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/ - null null
+[2024-03-01 10:00:14.895 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/ - 301 0 null 7.3313ms
+[2024-03-01 10:00:14.958 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:00:15.166 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 208.49ms
+[2024-03-01 10:00:15.352 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:00:15.352 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/swagger-ui.css - null null
+[2024-03-01 10:00:15.366 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 14.3043ms
+[2024-03-01 10:00:15.401 +00:00  INF]  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+[2024-03-01 10:00:15.401 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/swagger-ui.css - 499 144929 text/css 49.7023ms
+[2024-03-01 10:00:15.922 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:00:15.923 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 1.3457ms
+[2024-03-01 10:00:15.923 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:00:15.995 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/favicon-16x16.png - null null
+[2024-03-01 10:00:16.006 +00:00  INF]  Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+[2024-03-01 10:00:16.007 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/favicon-16x16.png - 200 665 image/png 11.7099ms
+[2024-03-01 10:00:16.128 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:00:16.721 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 593.3335ms
+[2024-03-01 10:00:17.003 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:00:17.005 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 1.821ms
+[2024-03-01 10:00:17.006 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:02:31.243 +00:00  INF]  Request starting HTTP/1.1 OPTIONS http://localhost:5001/auth/users - null null
+[2024-03-01 10:02:31.245 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:02:31.252 +00:00  INF]  Request finished HTTP/1.1 OPTIONS http://localhost:5001/auth/users - 204 null null 7.9907ms
+[2024-03-01 10:02:31.258 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5001/auth/users - application/json 43
+[2024-03-01 10:02:31.258 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:02:31.261 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5001/auth/users - 307 0 null 3.2247ms
+[2024-03-01 10:02:31.285 +00:00  INF]  Request starting HTTP/2 OPTIONS https://localhost:5000/auth/users - null null
+[2024-03-01 10:02:31.288 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:02:31.289 +00:00  INF]  Request finished HTTP/2 OPTIONS https://localhost:5000/auth/users - 204 null null 3.9346ms
+[2024-03-01 10:02:31.294 +00:00  INF]  Request starting HTTP/2 POST https://localhost:5000/auth/users - application/json 43
+[2024-03-01 10:02:31.295 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:02:31.295 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/auth/users - 404 0 null 0.69ms
+[2024-03-01 10:02:31.295 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:5000/auth/users, Response status code: 404
+[2024-03-01 10:05:14.449 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:05:14.452 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 2.8794ms
+[2024-03-01 10:05:14.480 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:05:14.482 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 2.3179ms
+[2024-03-01 10:05:14.623 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:05:14.682 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 58.787ms
+[2024-03-01 10:05:15.433 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:05:15.433 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.6384ms
+[2024-03-01 10:05:15.433 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:05:36.751 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:05:36.761 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 10.6954ms
+[2024-03-01 10:05:36.797 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:05:36.799 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 1.3405ms
+[2024-03-01 10:05:37.147 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:05:37.241 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 94.1643ms
+[2024-03-01 10:05:37.757 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:05:37.758 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.6112ms
+[2024-03-01 10:05:37.758 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:05:39.093 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:05:39.107 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 14.6208ms
+[2024-03-01 10:05:39.152 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:05:39.155 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 2.8378ms
+[2024-03-01 10:05:39.660 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:05:39.724 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 63.6951ms
+[2024-03-01 10:05:40.094 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:05:40.095 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.7191ms
+[2024-03-01 10:05:40.095 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:05:50.266 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:05:50.274 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 7.0904ms
+[2024-03-01 10:05:50.323 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:05:50.324 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 1.2927ms
+[2024-03-01 10:05:50.670 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:05:50.738 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 68.396ms
+[2024-03-01 10:05:51.271 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:05:51.272 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.9527ms
+[2024-03-01 10:05:51.272 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:05:51.981 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:05:51.995 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 14.8796ms
+[2024-03-01 10:05:52.031 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:05:52.032 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 0.856ms
+[2024-03-01 10:05:52.203 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:05:52.239 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 36.2863ms
+[2024-03-01 10:05:52.982 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:05:52.983 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.8611ms
+[2024-03-01 10:05:52.983 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:06:31.368 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:06:31.380 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 12.2997ms
+[2024-03-01 10:06:31.422 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:06:31.422 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 0.7932ms
+[2024-03-01 10:06:31.573 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:06:31.601 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 27.7689ms
+[2024-03-01 10:06:32.380 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:06:32.381 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.7323ms
+[2024-03-01 10:06:32.381 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:06:36.175 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:06:36.185 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 9.9512ms
+[2024-03-01 10:06:36.209 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:06:36.210 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 0.6201ms
+[2024-03-01 10:06:36.327 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:06:36.349 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 22.3456ms
+[2024-03-01 10:06:37.183 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:06:37.184 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.6542ms
+[2024-03-01 10:06:37.184 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:06:41.397 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:06:41.406 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 8.9971ms
+[2024-03-01 10:06:41.440 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:06:41.441 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 0.9771ms
+[2024-03-01 10:06:41.577 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:06:41.614 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 37.5676ms
+[2024-03-01 10:06:42.403 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:06:42.404 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.5615ms
+[2024-03-01 10:06:42.404 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:06:44.859 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:06:44.867 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 7.6789ms
+[2024-03-01 10:06:44.895 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:06:44.896 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 0.324ms
+[2024-03-01 10:06:45.245 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:06:45.294 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 49.1381ms
+[2024-03-01 10:06:45.899 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:06:45.900 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.648ms
+[2024-03-01 10:06:45.900 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:08:17.036 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/index.html - null null
+[2024-03-01 10:08:17.041 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/index.html - 200 null text/html;charset=utf-8 4.6532ms
+[2024-03-01 10:08:17.070 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - null null
+[2024-03-01 10:08:17.071 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 0.4871ms
+[2024-03-01 10:08:17.234 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - null null
+[2024-03-01 10:08:17.265 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 31.2329ms
+[2024-03-01 10:08:18.050 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 10:08:18.050 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 0.5379ms
+[2024-03-01 10:08:18.050 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 10:20:17.666 +00:00  INF]  Request starting HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - null null
+[2024-03-01 10:20:17.679 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:20:17.689 +00:00  INF]  Request finished HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - 204 null null 25.4622ms
+[2024-03-01 10:20:17.692 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5001/api/auth/login - application/json 43
+[2024-03-01 10:20:17.692 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:20:17.696 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5001/api/auth/login - 307 0 null 5.0947ms
+[2024-03-01 10:20:17.729 +00:00  INF]  Request starting HTTP/2 OPTIONS https://localhost:5000/api/auth/login - null null
+[2024-03-01 10:20:17.729 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:20:17.730 +00:00  INF]  Request finished HTTP/2 OPTIONS https://localhost:5000/api/auth/login - 204 null null 0.4044ms
+[2024-03-01 10:20:17.732 +00:00  INF]  Request starting HTTP/2 POST https://localhost:5000/api/auth/login - application/json 43
+[2024-03-01 10:20:17.733 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:20:17.791 +00:00  INF]  Executing endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 10:20:17.925 +00:00  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(LCPSNWebApi.Classes.UserAuth) on controller LCPSNWebApi.Controllers.Auth.AuthController (LCPSNWebApi).
+[2024-03-01 10:20:25.140 +00:00  INF]  Executing OkObjectResult, writing value of type 'LCPSNWebApi.Classes.Auth.AuthenticatedResponse'.
+[2024-03-01 10:20:25.156 +00:00  INF]  Executed action LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi) in 7225.9635ms
+[2024-03-01 10:20:25.156 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 10:20:25.165 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 7432.2257ms
+[2024-03-01 10:31:32.566 +00:00  INF]  Request starting HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - null null
+[2024-03-01 10:31:32.568 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:31:32.571 +00:00  INF]  Request finished HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - 204 null null 5.7862ms
+[2024-03-01 10:31:32.576 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5001/api/auth/login - application/json 43
+[2024-03-01 10:31:32.577 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:31:32.578 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5001/api/auth/login - 307 0 null 2.2358ms
+[2024-03-01 10:31:32.602 +00:00  INF]  Request starting HTTP/2 OPTIONS https://localhost:5000/api/auth/login - null null
+[2024-03-01 10:31:32.602 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:31:32.602 +00:00  INF]  Request finished HTTP/2 OPTIONS https://localhost:5000/api/auth/login - 204 null null 0.3924ms
+[2024-03-01 10:31:32.606 +00:00  INF]  Request starting HTTP/2 POST https://localhost:5000/api/auth/login - application/json 43
+[2024-03-01 10:31:32.607 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:31:32.621 +00:00  INF]  Executing endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 10:31:32.627 +00:00  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(LCPSNWebApi.Classes.UserAuth) on controller LCPSNWebApi.Controllers.Auth.AuthController (LCPSNWebApi).
+[2024-03-01 10:31:33.391 +00:00  INF]  Executing OkObjectResult, writing value of type 'LCPSNWebApi.Classes.Auth.AuthenticatedResponse'.
+[2024-03-01 10:31:33.392 +00:00  INF]  Executed action LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi) in 764.8056ms
+[2024-03-01 10:31:33.392 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 10:31:33.392 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 786.0366ms
+[2024-03-01 10:39:44.379 +00:00  INF]  Request starting HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - null null
+[2024-03-01 10:39:44.379 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:39:44.379 +00:00  INF]  Request finished HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - 204 null null 0.7151ms
+[2024-03-01 10:39:44.383 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5001/api/auth/login - application/json 43
+[2024-03-01 10:39:44.383 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:39:44.384 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5001/api/auth/login - 307 0 null 1.026ms
+[2024-03-01 10:39:44.411 +00:00  INF]  Request starting HTTP/2 OPTIONS https://localhost:5000/api/auth/login - null null
+[2024-03-01 10:39:44.411 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:39:44.411 +00:00  INF]  Request finished HTTP/2 OPTIONS https://localhost:5000/api/auth/login - 204 null null 0.1685ms
+[2024-03-01 10:39:44.414 +00:00  INF]  Request starting HTTP/2 POST https://localhost:5000/api/auth/login - application/json 43
+[2024-03-01 10:39:44.414 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:39:44.415 +00:00  INF]  Executing endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 10:39:44.415 +00:00  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(LCPSNWebApi.Classes.UserAuth) on controller LCPSNWebApi.Controllers.Auth.AuthController (LCPSNWebApi).
+[2024-03-01 10:39:44.868 +00:00  INF]  Executing OkObjectResult, writing value of type 'LCPSNWebApi.Classes.Auth.AuthenticatedResponse'.
+[2024-03-01 10:39:44.869 +00:00  INF]  Executed action LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi) in 453.6535ms
+[2024-03-01 10:39:44.869 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 10:39:44.869 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 455.2082ms
+[2024-03-01 10:41:06.539 +00:00  INF]  Request starting HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - null null
+[2024-03-01 10:41:06.539 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:41:06.539 +00:00  INF]  Request finished HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - 204 null null 0.3045ms
+[2024-03-01 10:41:06.541 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5001/api/auth/login - application/json 43
+[2024-03-01 10:41:06.541 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:41:06.541 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5001/api/auth/login - 307 0 null 0.2073ms
+[2024-03-01 10:41:06.555 +00:00  INF]  Request starting HTTP/2 OPTIONS https://localhost:5000/api/auth/login - null null
+[2024-03-01 10:41:06.555 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:41:06.555 +00:00  INF]  Request finished HTTP/2 OPTIONS https://localhost:5000/api/auth/login - 204 null null 0.3627ms
+[2024-03-01 10:41:06.559 +00:00  INF]  Request starting HTTP/2 POST https://localhost:5000/api/auth/login - application/json 43
+[2024-03-01 10:41:06.560 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 10:41:06.560 +00:00  INF]  Executing endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 10:41:06.560 +00:00  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(LCPSNWebApi.Classes.UserAuth) on controller LCPSNWebApi.Controllers.Auth.AuthController (LCPSNWebApi).
+[2024-03-01 10:41:06.908 +00:00  INF]  Executing OkObjectResult, writing value of type 'LCPSNWebApi.Classes.Auth.AuthenticatedResponse'.
+[2024-03-01 10:41:06.908 +00:00  INF]  Executed action LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi) in 348.4456ms
+[2024-03-01 10:41:06.908 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 10:41:06.909 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 349.3375ms
+[2024-03-01 10:41:27.893 +00:00  INF]  Application is shutting down...

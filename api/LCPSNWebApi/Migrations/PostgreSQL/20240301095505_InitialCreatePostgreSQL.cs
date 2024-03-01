@@ -80,6 +80,8 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Username = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
                     Role = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
@@ -164,8 +166,8 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FriendsFriendId", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, null, null, null, null, new DateTime(2024, 2, 26, 11, 42, 35, 348, DateTimeKind.Utc).AddTicks(1455), null, null, "$2a$12$G4LhTia9FQ9ItZLC9vnqWenf5XbasVQrUpUMUjLm//4tPeb9X83Hu", null, new DateTime(2024, 2, 26, 11, 42, 35, 348, DateTimeKind.Utc).AddTicks(1464), "Administrator", null, "admin" });
+                columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "FriendsFriendId", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
+                values: new object[] { 1, null, null, null, null, new DateTime(2024, 3, 1, 9, 55, 4, 201, DateTimeKind.Utc).AddTicks(6830), null, "Luis", null, "Carvalho", "$2a$12$E//Ja4CyX7FSOZYoW0ZSYu.3ZtpBZhS7AOH5cGumm8kNK7JJoaVwq", null, new DateTime(2024, 3, 1, 9, 55, 4, 201, DateTimeKind.Utc).AddTicks(6843), "Administrator", null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_FriendId",
