@@ -100,7 +100,8 @@ body {
     }
 }
 
-.pagetos, .pagecoc, .pageprivacypolicy {
+.pagetos, .pagecoc, 
+.pageprivacypolicy, .pagecookiepolicy {
     display: block;
     position: relative;
     -webkit-backdrop-filter: blur(16px) saturate(180%);

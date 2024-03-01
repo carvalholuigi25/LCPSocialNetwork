@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent, AuthComponent, LoginComponent, RegisterComponent, NewsfeedComponent, AdminComponent, DashboardComponent, NotfoundComponent, UsersComponent, SettingsComponent } from './pages';
-import { CodeConductComponent, PrivacyPolicyComponent, TosComponent } from './pages/infopublic';
+import { CodeConductComponent, CookiePolicyComponent, PrivacyPolicyComponent, TosComponent } from './pages/infopublic';
 import { AuthGuard, StaffGuard } from './guards';
 
 export const routes: Routes = [
@@ -30,5 +30,6 @@ export const routes: Routes = [
     { path: 'tos', component: TosComponent },
     { path: 'privacypolicy', component: PrivacyPolicyComponent },
     { path: 'codeconduct', component: CodeConductComponent },
+    { path: 'cookiepolicy', component: CookiePolicyComponent },
     { path: '**', component: NotfoundComponent }
 ];

@@ -205,3 +205,26 @@
 [2024-03-01 10:41:06.908 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
 [2024-03-01 10:41:06.909 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 349.3375ms
 [2024-03-01 10:41:27.893 +00:00  INF]  Application is shutting down...
+[2024-03-01 12:34:49.395 +00:00  INF]  User profile is available. Using 'C:\Users\luisc\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2024-03-01 12:34:50.627 +00:00  INF]  Now listening on: https://localhost:5000
+[2024-03-01 12:34:50.627 +00:00  INF]  Now listening on: http://localhost:5001
+[2024-03-01 12:34:50.636 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2024-03-01 12:34:50.637 +00:00  INF]  Hosting environment: Development
+[2024-03-01 12:34:50.637 +00:00  INF]  Content root path: C:\Users\luisc\Documents\projects\angular\LCPSocialNetwork\api\LCPSNWebApi
+[2024-03-01 12:43:44.405 +00:00  INF]  Application is shutting down...
+[2024-03-01 12:44:10.626 +00:00  INF]  User profile is available. Using 'C:\Users\luisc\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2024-03-01 12:44:10.864 +00:00  INF]  Now listening on: https://localhost:5000
+[2024-03-01 12:44:10.864 +00:00  INF]  Now listening on: http://localhost:5001
+[2024-03-01 12:44:10.866 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2024-03-01 12:44:10.867 +00:00  INF]  Hosting environment: Development
+[2024-03-01 12:44:10.867 +00:00  INF]  Content root path: C:\Users\luisc\Documents\projects\angular\LCPSocialNetwork\api\LCPSNWebApi
+[2024-03-01 12:44:30.187 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/ - null null
+[2024-03-01 12:44:30.339 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/ - 404 0 null 154.2569ms
+[2024-03-01 12:44:30.340 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/, Response status code: 404
+[2024-03-01 12:44:30.454 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/favicon.ico - null null
+[2024-03-01 12:44:30.458 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/favicon.ico - 499 null null 3.8133ms
+[2024-03-01 12:44:30.458 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/favicon.ico, Response status code: 499
+[2024-03-01 12:44:31.067 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 12:44:31.071 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 3.9085ms
+[2024-03-01 12:44:31.071 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 12:48:02.438 +00:00  INF]  Application is shutting down...

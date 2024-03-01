@@ -15,7 +15,9 @@ import { ErrorInterceptor } from '../helpers/error.interceptor';
 import { fakeBackendProvider } from '../helpers/fake-backend';
 import { JwtInterceptor } from '../helpers/jwt-interceptor';
 
-const modules = [
+const declarationsAry: any[] = [];
+
+const modulesAry = [
   CommonModule,
   HttpClientModule,
   ReactiveFormsModule,
@@ -31,17 +33,21 @@ const modules = [
   MatCardModule
 ];
 
+const providersAry = [
+  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  fakeBackendProvider
+];
+
 @NgModule({
-  declarations: [],
+  declarations: declarationsAry,
   imports: [
-    modules
+    modulesAry
   ],
-  exports: modules,
-  providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider
-  ]
+  exports: [
+    modulesAry
+  ],
+  providers: providersAry
 })
 export class SharedModule { }
