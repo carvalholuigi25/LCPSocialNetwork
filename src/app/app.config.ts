@@ -16,7 +16,7 @@ export function createTranslateLoader(http: HttpClient) {
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: "localhost"
+    domain: "localhost",
   },
   position: "bottom",
   palette: {
@@ -37,7 +37,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   layouts: {
     "my-custom-layout": '{{messagelink}}{{compliance}}'
   },
-  elements:{
+  elements: {
     messagelink: `
     <span id="cookieconsent:desc" class="cc-message">{{message}} 
       <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{cookiePolicyHref}}" target="_blank" rel="noopener">{{cookiePolicyLink}}</a>, 
@@ -47,7 +47,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     `,
     compliance: `<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt maxime voluptas neque optio quidem voluptate nam perspiciatis, vero, aliquam facilis eius. Dolores consectetur aliquam veniam harum inventore. Modi, natus ipsum?</p>`
   },
-  content:{
+  content: {
     message: 'By using our site, you acknowledge that you have read and understand our ',
     cookiePolicyLink: 'Cookie Policy',
     cookiePolicyHref: 'http://localhost:4200/cookiepolicy',
@@ -55,6 +55,12 @@ const cookieConfig: NgcCookieConsentConfig = {
     privacyPolicyHref: 'http://localhost:4200/privacypolicy',
     tosLink: 'Terms of Service',
     tosHref: 'http://localhost:4200/tos',
+    header: "Cookies used on the website!",
+    dismiss: "Got it!",
+    allow: "Allow cookies",
+    deny: "Decline",
+    link: "Learn more",
+    policy: "Cookie Policy"
   }
 };
 
