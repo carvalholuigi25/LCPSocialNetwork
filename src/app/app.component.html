@@ -1,1 +1,93 @@
-<router-outlet />
+@if(!isNavMenuHiddenForPages) {
+  <mat-toolbar color="primary" class="mynavbar">
+    <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="example-spacer"></span>
+
+    @if(user) {
+      <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
+        <button mat-icon-button [matMenuTriggerFor]="menusearch" aria-label="Search menu">
+          <mat-icon aria-hidden="false">search</mat-icon>
+          <span class="cdk-visually-hidden">
+            Search
+          </span>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menunotifications" aria-label="Notifications menu">
+          <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
+          <span class="cdk-visually-hidden">
+            Notifications
+          </span>
+        </button>
+        <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menuchat" aria-label="Chat menu">
+          <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">chat</mat-icon>
+          <span class="cdk-visually-hidden">
+            Chat Messages
+          </span>
+        </button>
+        <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User control menu">
+          <img src="{{user.usersInfo.avatarUrl ?? '/assets/images/bkg.jpeg'}}" alt="{{user.usersInfo.username}}"
+            class="img-fluid img-avatar" />
+        </button>
+      </div>
+
+      <mat-menu class="p-3" #menusearch="matMenu">
+        <mat-form-field class="searchblk" appearance="fill" color="accent" (click)="DoPreventMenuCloseAfterClicked($event);">
+          <mat-label>Search</mat-label>
+          <input class="searchinp" matInput placeholder="Search">
+          <mat-icon matSuffix aria-hidden="false">search</mat-icon>
+        </mat-form-field>
+      </mat-menu>
+      <mat-menu class="p-3" #menunotifications="matMenu">
+        <p>0 notifications!</p>
+      </mat-menu>
+      <mat-menu class="p-3" #menuchat="matMenu">
+        <p>0 chat messages!</p>
+      </mat-menu>
+      <mat-menu #menu="matMenu">
+        <a class="text-center" href="users/{{user.usersInfo.userId}}" mat-menu-item>
+          <span>{{user.usersInfo.username}}</span>
+        </a>
+        <a href="settings" mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </a>
+        <button (click)="logout()" mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    } @else {
+      <a mat-flat-button color="accent" href="/auth/login">Login</a>
+    }
+  </mat-toolbar>
+
+  <mat-sidenav-container autosize>
+    <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'"
+      [opened]="isMobile ? 'false' : 'true'">
+      <mat-nav-list>
+        @if(user) {
+          <a mat-list-item routerLink="/newsfeed" routerLinkActive="active">
+            <span class="entry">
+              <mat-icon>house</mat-icon>
+              <span *ngIf="!isCollapsed">Home</span>
+            </span>
+          </a>
+        } @else {
+          <a mat-list-item routerLink="/home" routerLinkActive="active">
+            <span class="entry">
+              <mat-icon>house</mat-icon>
+              <span *ngIf="!isCollapsed">Home</span>
+            </span>
+          </a>
+        }
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+} @else {
+  <router-outlet></router-outlet>
+}

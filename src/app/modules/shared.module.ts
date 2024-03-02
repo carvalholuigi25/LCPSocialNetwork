@@ -16,6 +16,8 @@ import { fakeBackendProvider } from '../helpers/fake-backend';
 import { JwtInterceptor } from '../helpers/jwt-interceptor';
 import { MatBadgeModule } from '@angular/material/badge';
 import { RouterModule } from '@angular/router';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 const declarationsAry: any[] = [];
 
@@ -34,6 +36,8 @@ const modulesAry = [
   MatIconButton,
   MatMenuModule,
   MatBadgeModule,
+  MatSidenavModule,
+  MatListModule,
   MatCardModule
 ];
 

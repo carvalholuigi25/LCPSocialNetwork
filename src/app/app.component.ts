@@ -1,33 +1,84 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { NgcCookieConsentService, NgcInitializationErrorEvent, NgcInitializingEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
+import { Component, ViewChild } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { NgcCookieConsentService, NgcInitializationErrorEvent, NgcInitializingEvent } from 'ngx-cookieconsent';
 import { Subscription } from 'rxjs';
+import { SharedModule } from './modules';
+import { AuthService } from './services/auth.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SharedModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'LCPSocialNetwork';
-
+  user?: any;
+  isMobile = true;
+  isCollapsed = true;
+  isNavMenuHiddenForPages = true;
+  rname?: string;
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+  
   //keep refs to subscriptions to be able to unsubscribe later
   private initializingSubscription!: Subscription;
   private initializedSubscription!: Subscription;
   private initializationErrorSubscription!: Subscription;
 
-  constructor(private ccService: NgcCookieConsentService, private translateService: TranslateService) { }
+  constructor(
+    private ccService: NgcCookieConsentService, 
+    private translateService: TranslateService, 
+    private authService: AuthService, 
+    private observer: BreakpointObserver,
+    private router: Router
+  ) { 
+    this.router.events.subscribe((url:any) => { 
+      this.isNavMenuHiddenForPages = ["/auth", "/auth/login", "/auth/register", "/", "/home", "/tos", "/privacypolicy", "/codeconduct", "/cookiepolicy"].includes(url.url) ? true : false;
+    });
+    this.authService.user.subscribe(x => this.user = x);
+  }
 
   ngOnInit() {
     this.LoadCookieConsent();
     this.LoadTranslateService();
+    this.LoadMediaObserver();
   }
 
   ngOnDestroy() {
     this.UnloadCookieConsent();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  DoPreventMenuCloseAfterClicked($event:any){
+    $event.stopPropagation();
+    //Another instructions
+  }
+
+  toggleMenu() {
+    if(this.isMobile){
+      this.sidenav.toggle();
+      this.isCollapsed = false; // On mobile, the menu can never be collapsed
+    } else {
+      this.sidenav.open(); // On desktop/tablet, the menu can never be fully closed
+      this.isCollapsed = !this.isCollapsed;
+    }
+  }
+
+  LoadMediaObserver() {
+    this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
+      if(screenSize.matches){
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+    });
   }
 
   LoadCookieConsent() {
