@@ -1,4 +1,5 @@
 .mynavbar {
+    flex-wrap: wrap;
     .navbarbrandct {
         color: white;
         text-decoration: none;
@@ -16,8 +17,23 @@
         object-fit: cover; 
         object-position: center;
     }
+
+    .searchblk {
+        ::ng-deep .mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align, .mat-mdc-form-field-bottom-align::before {
+            display: none !important;
+        }
+    }
     
     .mat-mdc-menu-trigger.mdc-icon-button.mat-mdc-icon-button.mat-unthemed.mat-mdc-button-base {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 5px;
+    }
+}
+
+@media all and (width <= 768px) {
+    .searchblk {
+        width: 130px;
     }
 }

@@ -44,3 +44,4 @@ Thumbs.db
 # API Stuff
 api/LCPSNWebApi/bin
 api/LCPSNWebApi/obj
+api/LCPSNWebApi/[Ll]ogs/*.log

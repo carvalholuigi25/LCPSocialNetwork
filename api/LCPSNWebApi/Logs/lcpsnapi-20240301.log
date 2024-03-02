@@ -309,3 +309,93 @@
 [2024-03-01 13:42:00.925 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
 [2024-03-01 13:42:00.925 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 1712.3869ms
 [2024-03-01 13:42:44.036 +00:00  INF]  Application is shutting down...
+[2024-03-01 13:46:31.311 +00:00  INF]  User profile is available. Using 'C:\Users\luisc\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2024-03-01 13:46:31.535 +00:00  INF]  Now listening on: https://localhost:5000
+[2024-03-01 13:46:31.535 +00:00  INF]  Now listening on: http://localhost:5001
+[2024-03-01 13:46:31.537 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2024-03-01 13:46:31.538 +00:00  INF]  Hosting environment: Development
+[2024-03-01 13:46:31.538 +00:00  INF]  Content root path: C:\Users\luisc\Documents\projects\angular\LCPSocialNetwork\api\LCPSNWebApi
+[2024-03-01 13:46:35.167 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/ - null null
+[2024-03-01 13:46:35.433 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/ - 404 0 null 267.6164ms
+[2024-03-01 13:46:35.436 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/, Response status code: 404
+[2024-03-01 13:46:35.487 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/favicon.ico - null null
+[2024-03-01 13:46:35.491 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/favicon.ico - 404 0 null 4.5127ms
+[2024-03-01 13:46:35.492 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/favicon.ico, Response status code: 404
+[2024-03-01 13:46:36.028 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 13:46:36.034 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 5.5972ms
+[2024-03-01 13:46:36.034 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 13:47:29.714 +00:00  INF]  Request starting HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - null null
+[2024-03-01 13:47:29.716 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 13:47:29.749 +00:00  INF]  Request finished HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - 204 null null 34.7895ms
+[2024-03-01 13:47:29.752 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5001/api/auth/login - application/json 43
+[2024-03-01 13:47:29.752 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 13:47:29.755 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5001/api/auth/login - 307 0 null 2.85ms
+[2024-03-01 13:47:29.786 +00:00  INF]  Request starting HTTP/2 OPTIONS https://localhost:5000/api/auth/login - null null
+[2024-03-01 13:47:29.786 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 13:47:29.786 +00:00  INF]  Request finished HTTP/2 OPTIONS https://localhost:5000/api/auth/login - 204 null null 0.2706ms
+[2024-03-01 13:47:29.791 +00:00  INF]  Request starting HTTP/2 POST https://localhost:5000/api/auth/login - application/json 43
+[2024-03-01 13:47:29.791 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 13:47:29.794 +00:00  INF]  Executing endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 13:47:29.809 +00:00  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(LCPSNWebApi.Classes.UserAuth) on controller LCPSNWebApi.Controllers.Auth.AuthController (LCPSNWebApi).
+[2024-03-01 13:47:32.007 +00:00  INF]  Executing OkObjectResult, writing value of type 'LCPSNWebApi.Classes.Auth.AuthenticatedResponse'.
+[2024-03-01 13:47:32.022 +00:00  INF]  Executed action LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi) in 2210.2529ms
+[2024-03-01 13:47:32.022 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 13:47:32.030 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 2238.6287ms
+[2024-03-01 13:47:49.266 +00:00  INF]  Application is shutting down...
+[2024-03-01 13:57:25.834 +00:00  INF]  User profile is available. Using 'C:\Users\luisc\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2024-03-01 13:57:26.190 +00:00  INF]  Now listening on: https://localhost:5000
+[2024-03-01 13:57:26.191 +00:00  INF]  Now listening on: http://localhost:5001
+[2024-03-01 13:57:26.197 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2024-03-01 13:57:26.197 +00:00  INF]  Hosting environment: Development
+[2024-03-01 13:57:26.197 +00:00  INF]  Content root path: C:\Users\luisc\Documents\projects\angular\LCPSocialNetwork\api\LCPSNWebApi
+[2024-03-01 13:57:47.883 +00:00  INF]  Request starting HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - null null
+[2024-03-01 13:57:47.904 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 13:57:47.909 +00:00  INF]  Request finished HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - 204 null null 26.9521ms
+[2024-03-01 13:57:47.912 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5001/api/auth/login - application/json 43
+[2024-03-01 13:57:47.913 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 13:57:47.914 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5001/api/auth/login - 307 0 null 2.3131ms
+[2024-03-01 13:57:47.954 +00:00  INF]  Request starting HTTP/2 OPTIONS https://localhost:5000/api/auth/login - null null
+[2024-03-01 13:57:47.955 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 13:57:47.957 +00:00  INF]  Request finished HTTP/2 OPTIONS https://localhost:5000/api/auth/login - 204 null null 2.5734ms
+[2024-03-01 13:57:47.961 +00:00  INF]  Request starting HTTP/2 POST https://localhost:5000/api/auth/login - application/json 43
+[2024-03-01 13:57:47.961 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 13:57:48.001 +00:00  INF]  Executing endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 13:57:48.012 +00:00  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(LCPSNWebApi.Classes.UserAuth) on controller LCPSNWebApi.Controllers.Auth.AuthController (LCPSNWebApi).
+[2024-03-01 13:57:51.312 +00:00  INF]  Executing OkObjectResult, writing value of type 'LCPSNWebApi.Classes.Auth.AuthenticatedResponse'.
+[2024-03-01 13:57:51.329 +00:00  INF]  Executed action LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi) in 3312.4846ms
+[2024-03-01 13:57:51.329 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 13:57:51.336 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 3374.3791ms
+[2024-03-01 13:58:19.142 +00:00  INF]  Application is shutting down...
+[2024-03-01 14:31:59.678 +00:00  INF]  User profile is available. Using 'C:\Users\luisc\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2024-03-01 14:32:00.082 +00:00  INF]  Now listening on: https://localhost:5000
+[2024-03-01 14:32:00.082 +00:00  INF]  Now listening on: http://localhost:5001
+[2024-03-01 14:32:00.086 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2024-03-01 14:32:00.086 +00:00  INF]  Hosting environment: Development
+[2024-03-01 14:32:00.086 +00:00  INF]  Content root path: C:\Users\luisc\Documents\projects\angular\LCPSocialNetwork\api\LCPSNWebApi
+[2024-03-01 14:32:04.117 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/ - null null
+[2024-03-01 14:32:04.336 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/ - 404 0 null 221.8989ms
+[2024-03-01 14:32:04.339 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/, Response status code: 404
+[2024-03-01 14:32:04.502 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/favicon.ico - null null
+[2024-03-01 14:32:04.517 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/favicon.ico - 499 null null 8.0343ms
+[2024-03-01 14:32:04.517 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/favicon.ico, Response status code: 499
+[2024-03-01 14:32:04.933 +00:00  INF]  Request starting HTTP/2 GET https://localhost:5000/service-worker.js - null null
+[2024-03-01 14:32:04.946 +00:00  INF]  Request finished HTTP/2 GET https://localhost:5000/service-worker.js - 404 0 null 13.5668ms
+[2024-03-01 14:32:04.947 +00:00  INF]  Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5000/service-worker.js, Response status code: 404
+[2024-03-01 14:32:28.080 +00:00  INF]  Request starting HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - null null
+[2024-03-01 14:32:28.084 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 14:32:28.099 +00:00  INF]  Request finished HTTP/1.1 OPTIONS http://localhost:5001/api/auth/login - 204 null null 18.5966ms
+[2024-03-01 14:32:28.101 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5001/api/auth/login - application/json 43
+[2024-03-01 14:32:28.102 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 14:32:28.104 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5001/api/auth/login - 307 0 null 3.1975ms
+[2024-03-01 14:32:28.113 +00:00  INF]  Request starting HTTP/2 OPTIONS https://localhost:5000/api/auth/login - null null
+[2024-03-01 14:32:28.114 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 14:32:28.114 +00:00  INF]  Request finished HTTP/2 OPTIONS https://localhost:5000/api/auth/login - 204 null null 0.4492ms
+[2024-03-01 14:32:28.116 +00:00  INF]  Request starting HTTP/2 POST https://localhost:5000/api/auth/login - application/json 43
+[2024-03-01 14:32:28.116 +00:00  INF]  CORS policy execution successful.
+[2024-03-01 14:32:28.120 +00:00  INF]  Executing endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 14:32:28.135 +00:00  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(LCPSNWebApi.Classes.UserAuth) on controller LCPSNWebApi.Controllers.Auth.AuthController (LCPSNWebApi).
+[2024-03-01 14:32:31.865 +00:00  INF]  Executing OkObjectResult, writing value of type 'LCPSNWebApi.Classes.Auth.AuthenticatedResponse'.
+[2024-03-01 14:32:31.883 +00:00  INF]  Executed action LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi) in 3743.1287ms
+[2024-03-01 14:32:31.883 +00:00  INF]  Executed endpoint 'LCPSNWebApi.Controllers.Auth.AuthController.Login (LCPSNWebApi)'
+[2024-03-01 14:32:31.892 +00:00  INF]  Request finished HTTP/2 POST https://localhost:5000/api/auth/login - 200 null application/json; charset=utf-8 3775.4038ms
+[2024-03-01 14:33:04.577 +00:00  INF]  Application is shutting down...

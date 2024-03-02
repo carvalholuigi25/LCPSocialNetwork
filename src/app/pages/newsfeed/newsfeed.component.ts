@@ -10,5 +10,19 @@ import { NavbarComponent, FooterComponent } from '../../components';
   styleUrl: './newsfeed.component.scss'
 })
 export class NewsfeedComponent {
+  ctLikes?: number = 0;
+  ctComments?: number = 0;
+  ctShares?: number = 0;
 
+  onClickLikes() {
+    this.ctLikes!++;
+  }
+
+  onClickComments() {
+    this.ctComments!++;
+  }
+
+  onClickShares() {
+    this.ctShares!++;
+  }
 }

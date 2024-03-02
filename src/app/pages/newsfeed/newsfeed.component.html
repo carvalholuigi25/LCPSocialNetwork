@@ -3,14 +3,18 @@
 <div class="container p-3">
     <div class="row">
         <div class="col-12 p-3 newsfeed">
-            <form class="frmpost">
-                <textarea title="txtpost" name="txtpost" id="txtpost" cols="1" rows="10" class="form-control"
-                    placeholder="Write something here..."></textarea>
-                <div class="form-group mt-3 text-center">
-                    <button mat-flat-button color="primary" type="reset">Reset</button>
-                    <button mat-flat-button color="accent" type="submit" class="ms-3">Submit</button>
-                </div>
-            </form>
+            <mat-card class="createnewpost">
+                <mat-card-content>
+                    <form class="frmpost">
+                        <textarea title="txtpost" name="txtpost" id="txtpost" cols="1" rows="10" class="form-control"
+                            placeholder="Write something here..."></textarea>
+                        <div class="form-group mt-3 text-center">
+                            <button mat-flat-button color="primary" type="reset">Reset</button>
+                            <button mat-flat-button color="accent" type="submit" class="ms-3">Submit</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
 
             <mat-card class="post mt-3">
                 <mat-card-header>
@@ -30,7 +34,7 @@
                             <mat-icon>edit</mat-icon>
                             <span>Edit</span>
                         </a>
-                        <a  href="post/1/delete" mat-menu-item>
+                        <a href="post/1/delete" mat-menu-item>
                             <mat-icon>delete</mat-icon>
                             <span>Delete</span>
                         </a>
@@ -44,8 +48,27 @@
                 </mat-card-content>
                 <mat-card-footer>
                     <mat-card-actions>
-                        <mat-card-content class="padcardfooter">
-                            <button mat-flat-button color="primary" title="read">Read more</button>
+                        <mat-card-content class="padcardfooter w-100">
+                            <div class="socialcounters">
+                                <div class="collikes">
+                                    <button class="btnlikes" mat-icon-button aria-label="Likes" (click)="onClickLikes()">
+                                        <mat-icon>thumb_up</mat-icon>
+                                        <span>{{ctLikes}}</span>
+                                    </button>
+                                </div>
+                                <div class="colcomments">
+                                    <button class="btncomments" mat-icon-button aria-label="Comments" (click)="onClickComments()">
+                                        <mat-icon>comments</mat-icon>
+                                        <span>{{ctComments}}</span>
+                                    </button>
+                                </div>
+                                <div class="colshares">
+                                    <button class="btnshares" mat-icon-button aria-label="Shares" (click)="onClickShares()">
+                                        <mat-icon>shares</mat-icon>
+                                        <span>{{ctShares}}</span>
+                                    </button>
+                                </div>
+                            </div>
                         </mat-card-content>
                     </mat-card-actions>
                 </mat-card-footer>

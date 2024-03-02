@@ -36,6 +36,39 @@
         padding: 6px;
         text-align: center;
         margin: auto auto;
+
+        .socialcounters {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .collikes, .colcomments, .colshares {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .btnlikes, .btncomments, .btnshares {
+            padding: 0;
+            margin: auto auto;
+            width: 100%;
+            max-width: 100%;
+
+            .mat-icon, span {
+                display: inline-flex;
+                padding: 0;
+                margin: auto auto;
+                font-size: 1rem;
+            }
+        }
     }
     
     .ctxtjustify {

@@ -1,0 +1,32 @@
+.myfooterpages {
+    position: relative;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+
+    .pagelinks {
+        color: inherit;
+        margin: 15px auto;
+
+        a {
+            margin: auto 5px;
+        }
+    }
+
+    .copyright {
+        margin: 15px auto;
+
+        a {
+            text-decoration: underline;
+            font-style: italic;
+            margin: auto 5px;
+        }
+    }
+
+    a {
+        color: inherit;
+        margin: auto auto;
+    }
+}

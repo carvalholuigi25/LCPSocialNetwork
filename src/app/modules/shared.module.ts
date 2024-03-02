@@ -14,12 +14,15 @@ import { MatCardModule } from '@angular/material/card';
 import { ErrorInterceptor } from '../helpers/error.interceptor';
 import { fakeBackendProvider } from '../helpers/fake-backend';
 import { JwtInterceptor } from '../helpers/jwt-interceptor';
+import { MatBadgeModule } from '@angular/material/badge';
+import { RouterModule } from '@angular/router';
 
 const declarationsAry: any[] = [];
 
 const modulesAry = [
   CommonModule,
   HttpClientModule,
+  RouterModule,
   ReactiveFormsModule,
   MatButtonModule,
   MatFormFieldModule,
@@ -30,6 +33,7 @@ const modulesAry = [
   MatIconModule,
   MatIconButton,
   MatMenuModule,
+  MatBadgeModule,
   MatCardModule
 ];
 
