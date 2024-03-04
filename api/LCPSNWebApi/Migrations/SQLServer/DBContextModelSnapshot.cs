@@ -328,11 +328,13 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 56, 21, 948, DateTimeKind.Utc).AddTicks(5159),
+                            AvatarUrl = "images/users/avatars/luis.jpg",
+                            CoverUrl = "images/users/covers/luis_cover.jpg",
+                            DateAccountCreated = new DateTime(2024, 3, 3, 16, 19, 42, 498, DateTimeKind.Utc).AddTicks(9598),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$POYPQPZVLPKD2//6cIXd7OpAiBZ.g/4BsXm7t2M4HOiL.z0RLRshe",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 56, 21, 948, DateTimeKind.Utc).AddTicks(5177),
+                            Password = "$2a$12$qw38VToaYNsVg.nFfccUKuXhkUNElSlK.mAZvrV1ZGgA8apDIDyO.",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 3, 16, 19, 42, 498, DateTimeKind.Utc).AddTicks(9605),
                             Role = "Administrator",
                             Username = "admin"
                         });

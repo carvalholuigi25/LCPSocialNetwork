@@ -6,7 +6,14 @@ import { AuthGuard, StaffGuard } from './guards';
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/home' },
     { path: 'home', component: HomeComponent },
-    { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+    { 
+        path: 'users', 
+        children: [
+            { path: '', component: UsersComponent, canActivateChild: [AuthGuard] },
+            { path: ':id', component: UsersComponent, canActivateChild: [AuthGuard] },
+            { path: '**', component: NotfoundComponent }
+        ]
+    },
     {
         path: 'auth',
         children: [

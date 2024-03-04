@@ -4,7 +4,7 @@ DEFOPTIONDBM=1
 DBMode="SQLServer"
 ASPNETCORE_ENVIRONMENT="Development"
 USERPTHCT="$HOME"
-MYLCPPATH="$USERPTHCT/Documents/projects/angular/LCPSocialNetwork/api/LCPSNWebApi"
+MYLCPPATH="$USERPTHCT/Documents/projects/LCPSocialNetwork/api/LCPSNWebApi"
 
 genDBSQLServer () {
 	DBMode="SQLServer"

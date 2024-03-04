@@ -212,7 +212,7 @@ namespace LCPSNWebApi.Migrations.MySQL
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "FriendsFriendId", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, null, null, null, null, new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3546), null, "Luis", null, "Carvalho", "$2a$12$9T5MXvaWSDs5NfQliBd7Pug.9VuQ/QTSuhxNmlr62sXL/8FbVVkOW", null, new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3555), "Administrator", null, "admin" });
+                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 3, 16, 19, 9, 333, DateTimeKind.Utc).AddTicks(6244), null, "Luis", null, "Carvalho", "$2a$12$nQpOPZ7myXwedseqHNPfj.xsVY.tsdyUZb7LJbwtMmtqPwYLl896K", null, new DateTime(2024, 3, 3, 16, 19, 9, 333, DateTimeKind.Utc).AddTicks(6251), "Administrator", null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_FriendId",

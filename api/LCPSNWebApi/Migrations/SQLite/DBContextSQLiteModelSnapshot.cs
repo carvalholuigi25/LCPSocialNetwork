@@ -295,11 +295,13 @@ namespace LCPSNWebApi.Migrations.SQLite
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 54, 41, 110, DateTimeKind.Utc).AddTicks(4348),
+                            AvatarUrl = "images/users/avatars/luis.jpg",
+                            CoverUrl = "images/users/covers/luis_cover.jpg",
+                            DateAccountCreated = new DateTime(2024, 3, 3, 16, 18, 29, 254, DateTimeKind.Utc).AddTicks(4189),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$Y7NNppqaj9WjH9flVmfTf.Go8jwuy2XIrTvnAHQ2YtpxvjOJX.HWG",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 54, 41, 110, DateTimeKind.Utc).AddTicks(4358),
+                            Password = "$2a$12$YX1HKKEcIpk4ncPwA09zGOvzZLdxzQWzdNrGCc0lnxsiTD4sL/GvC",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 3, 16, 18, 29, 254, DateTimeKind.Utc).AddTicks(4198),
                             Role = "Administrator",
                             Username = "admin"
                         });

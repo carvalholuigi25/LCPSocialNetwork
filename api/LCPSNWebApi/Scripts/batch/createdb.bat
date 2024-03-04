@@ -4,7 +4,7 @@ setlocal enableextensions
 SET DEFOPTIONDBM=1
 SET DBMode="SQLServer"
 SET ASPNETCORE_ENVIRONMENT="Development"
-SET MYLCPPATH="%USERPROFILE%\Documents\projects\angular\LCPSocialNetwork\api\LCPSNWebApi"
+SET MYLCPPATH="%USERPROFILE%\Documents\projects\LCPSocialNetwork\api\LCPSNWebApi"
 
 cls
 dotnet tool install --global dotnet-ef

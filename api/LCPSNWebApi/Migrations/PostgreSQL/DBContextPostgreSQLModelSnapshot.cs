@@ -312,11 +312,13 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 55, 4, 201, DateTimeKind.Utc).AddTicks(6830),
+                            AvatarUrl = "images/users/avatars/luis.jpg",
+                            CoverUrl = "images/users/covers/luis_cover.jpg",
+                            DateAccountCreated = new DateTime(2024, 3, 3, 16, 18, 47, 816, DateTimeKind.Utc).AddTicks(3498),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$E//Ja4CyX7FSOZYoW0ZSYu.3ZtpBZhS7AOH5cGumm8kNK7JJoaVwq",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 55, 4, 201, DateTimeKind.Utc).AddTicks(6843),
+                            Password = "$2a$12$GqaVOvLKk1pr3jxJ/VP0peTE2tTOc0hps1jL6yiuWgLjs.m7hgYba",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 3, 16, 18, 47, 816, DateTimeKind.Utc).AddTicks(3510),
                             Role = "Administrator",
                             Username = "admin"
                         });

@@ -167,7 +167,7 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "FriendsFriendId", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, null, null, null, null, new DateTime(2024, 3, 1, 9, 55, 4, 201, DateTimeKind.Utc).AddTicks(6830), null, "Luis", null, "Carvalho", "$2a$12$E//Ja4CyX7FSOZYoW0ZSYu.3ZtpBZhS7AOH5cGumm8kNK7JJoaVwq", null, new DateTime(2024, 3, 1, 9, 55, 4, 201, DateTimeKind.Utc).AddTicks(6843), "Administrator", null, "admin" });
+                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 3, 16, 18, 47, 816, DateTimeKind.Utc).AddTicks(3498), null, "Luis", null, "Carvalho", "$2a$12$GqaVOvLKk1pr3jxJ/VP0peTE2tTOc0hps1jL6yiuWgLjs.m7hgYba", null, new DateTime(2024, 3, 3, 16, 18, 47, 816, DateTimeKind.Utc).AddTicks(3510), "Administrator", null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_FriendId",

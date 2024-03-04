@@ -297,11 +297,13 @@ namespace LCPSNWebApi.Migrations.MySQL
                         new
                         {
                             UserId = 1,
-                            DateAccountCreated = new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3546),
+                            AvatarUrl = "images/users/avatars/luis.jpg",
+                            CoverUrl = "images/users/covers/luis_cover.jpg",
+                            DateAccountCreated = new DateTime(2024, 3, 3, 16, 19, 9, 333, DateTimeKind.Utc).AddTicks(6244),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$9T5MXvaWSDs5NfQliBd7Pug.9VuQ/QTSuhxNmlr62sXL/8FbVVkOW",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 1, 9, 55, 29, 979, DateTimeKind.Utc).AddTicks(3555),
+                            Password = "$2a$12$nQpOPZ7myXwedseqHNPfj.xsVY.tsdyUZb7LJbwtMmtqPwYLl896K",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 3, 16, 19, 9, 333, DateTimeKind.Utc).AddTicks(6251),
                             Role = "Administrator",
                             Username = "admin"
                         });

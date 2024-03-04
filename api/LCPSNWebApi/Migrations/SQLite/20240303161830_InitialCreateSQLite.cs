@@ -166,7 +166,7 @@ namespace LCPSNWebApi.Migrations.SQLite
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "FriendsFriendId", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, null, null, null, null, new DateTime(2024, 3, 1, 9, 54, 41, 110, DateTimeKind.Utc).AddTicks(4348), null, "Luis", null, "Carvalho", "$2a$12$Y7NNppqaj9WjH9flVmfTf.Go8jwuy2XIrTvnAHQ2YtpxvjOJX.HWG", null, new DateTime(2024, 3, 1, 9, 54, 41, 110, DateTimeKind.Utc).AddTicks(4358), "Administrator", null, "admin" });
+                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 3, 16, 18, 29, 254, DateTimeKind.Utc).AddTicks(4189), null, "Luis", null, "Carvalho", "$2a$12$YX1HKKEcIpk4ncPwA09zGOvzZLdxzQWzdNrGCc0lnxsiTD4sL/GvC", null, new DateTime(2024, 3, 3, 16, 18, 29, 254, DateTimeKind.Utc).AddTicks(4198), "Administrator", null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_FriendId",
