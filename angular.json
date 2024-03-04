@@ -74,10 +74,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "LCPSocialNetwork:build:production"
+              "buildTarget": "LCPSocialNetwork:build:production",
+              "ssl": true,
+              "sslKey": "ssl/server.key",
+              "sslCert": "ssl/server.crt",
             },
             "development": {
-              "buildTarget": "LCPSocialNetwork:build:development"
+              "buildTarget": "LCPSocialNetwork:build:development",
+              "ssl": true,
+              "sslKey": "ssl/server.key",
+              "sslCert": "ssl/server.crt"
             }
           },
           "defaultConfiguration": "development"
