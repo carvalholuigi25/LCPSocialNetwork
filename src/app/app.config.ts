@@ -72,11 +72,12 @@ export const appConfig: ApplicationConfig = {
     SharedModule, 
     provideNgcCookieConsent(cookieConfig), 
     importProvidersFrom(TranslateModule.forRoot({
+      defaultLanguage: 'en',
       loader: {
-          provide: TranslateLoader,
-          useFactory: createTranslateLoader,
-          deps: [HttpClient]
-    }
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
     })), 
     provideAnimationsAsync()
   ]
