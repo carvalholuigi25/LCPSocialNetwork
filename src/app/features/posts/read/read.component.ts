@@ -44,6 +44,6 @@ export class ReadPostsComponent implements OnInit {
   }
 
   ClickShares() {
-    this.ctLikes!++;
+    this.ctShares!++;
   }
 }
