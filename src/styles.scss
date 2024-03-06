@@ -16,6 +16,42 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.ctalertdefault {
+    &.mat-mdc-snack-bar-container {
+        --mdc-snackbar-container-color: black;
+        --mat-mdc-snack-bar-button-color: white;
+        --mat-snack-bar-button-color: white;
+        --mdc-snackbar-supporting-text-color: white;
+    }
+}
+
+.ctalertsuccess { 
+    &.mat-mdc-snack-bar-container {
+        --mdc-snackbar-container-color: rgb(2, 170, 2);
+        --mat-mdc-snack-bar-button-color: white;
+        --mat-snack-bar-button-color: white;
+        --mdc-snackbar-supporting-text-color: white;
+    }
+}
+
+.ctalerterror { 
+    &.mat-mdc-snack-bar-container {
+        --mdc-snackbar-container-color: rgb(197, 2, 2);
+        --mat-mdc-snack-bar-button-color: white;
+        --mat-snack-bar-button-color: white;
+        --mdc-snackbar-supporting-text-color: white;
+    }
+}
+
+.ctalertinfo { 
+    &.mat-mdc-snack-bar-container {
+        --mdc-snackbar-container-color: rgb(5, 5, 219);
+        --mat-mdc-snack-bar-button-color: white;
+        --mat-snack-bar-button-color: white;
+        --mdc-snackbar-supporting-text-color: white;
+    }
+}
+
 .mbkgimg {
     background-image: url('/assets/images/bkg.jpeg');
     background-position: center center;

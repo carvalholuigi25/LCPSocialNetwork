@@ -5,6 +5,7 @@ import { Users } from '../../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
 import { first } from 'rxjs';
+import { AlertsService } from '@app/services';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,9 @@ export class RegisterComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private alertsService: AlertsService
+  ) { }
 
   ngOnInit() {
     this.regForm = new FormGroup({
@@ -65,10 +68,14 @@ export class RegisterComponent {
       .pipe(first())
       .subscribe({
         next: () => {
+          this.alertsService.openAlert(`Registered successful as ${regRequest.Username}!`, 1, "success");
+
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           this.router.navigate([returnUrl]);
         },
         error: error => {
+          this.alertsService.openAlert(`Error: ${error}!`, 1, "error");
+
           console.log(error);
         }
       });

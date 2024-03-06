@@ -5,6 +5,7 @@ import { AuthService } from './services/auth.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CookieConsentComponent } from './features';
+import { AlertsService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent {
   constructor(
     private authService: AuthService, 
     private observer: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private alertsService: AlertsService
   ) { 
     this.DoRouterStuff();
   }
@@ -35,6 +37,7 @@ export class AppComponent {
   }
 
   logout() {
+    this.alertsService.openAlert(`Logged out!`, 1, "success");
     this.authService.logout();
   }
 
