@@ -23,22 +23,22 @@ export class AttachmentsService {
     }
 
     getAll() {
-        return this.http.get<Attachments[]>(`${environment.apiUrl}/attachments`, { headers: this.setHeadersObj() });
+        return this.http.get<Attachments[]>(`${environment.apiUrl}/attachment`, { headers: this.setHeadersObj() });
     }
 
     getAllById(id: number) {
-        return this.http.get<Attachments>(`${environment.apiUrl}/attachments/${id}`, { headers: this.setHeadersObj() });
+        return this.http.get<Attachments>(`${environment.apiUrl}/attachment/${id}`, { headers: this.setHeadersObj() });
     }
 
     createAttachment(attachments: Attachments) {
-        return this.http.post<Attachments>(`${environment.apiUrl}/attachments`, attachments, { headers: this.setHeadersObj() });
+        return this.http.post<Attachments>(`${environment.apiUrl}/attachment`, attachments, { headers: this.setHeadersObj() });
     }
 
     updateAttachment(id: number, attachments: Attachments) {
-        return this.http.put<Attachments>(`${environment.apiUrl}/attachments/${id}`, attachments, { headers: this.setHeadersObj() });
+        return this.http.put<Attachments>(`${environment.apiUrl}/attachment/${id}`, attachments, { headers: this.setHeadersObj() });
     }
 
     deleteAttachment(id: number) {
-        return this.http.delete<Attachments>(`${environment.apiUrl}/attachments/${id}`, { headers: this.setHeadersObj() });
+        return this.http.delete<Attachments>(`${environment.apiUrl}/attachment/${id}`, { headers: this.setHeadersObj() });
     }
 }

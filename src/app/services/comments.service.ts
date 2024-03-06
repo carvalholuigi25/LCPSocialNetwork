@@ -23,22 +23,22 @@ export class CommentsService {
     }
 
     getAll() {
-        return this.http.get<Comments[]>(`${environment.apiUrl}/comments`, { headers: this.setHeadersObj() });
+        return this.http.get<Comments[]>(`${environment.apiUrl}/comment`, { headers: this.setHeadersObj() });
     }
 
     getAllById(id: number) {
-        return this.http.get<Comments>(`${environment.apiUrl}/comments/${id}`, { headers: this.setHeadersObj() });
+        return this.http.get<Comments>(`${environment.apiUrl}/comment/${id}`, { headers: this.setHeadersObj() });
     }
 
     createComment(comments: Comments) {
-        return this.http.post<Comments>(`${environment.apiUrl}/comments`, comments, { headers: this.setHeadersObj() });
+        return this.http.post<Comments>(`${environment.apiUrl}/comment`, comments, { headers: this.setHeadersObj() });
     }
 
     updateComment(id: number, comments: Comments) {
-        return this.http.put<Comments>(`${environment.apiUrl}/comments/${id}`, comments, { headers: this.setHeadersObj() });
+        return this.http.put<Comments>(`${environment.apiUrl}/comment/${id}`, comments, { headers: this.setHeadersObj() });
     }
 
     deleteComment(id: number) {
-        return this.http.delete<Comments>(`${environment.apiUrl}/comments/${id}`, { headers: this.setHeadersObj() });
+        return this.http.delete<Comments>(`${environment.apiUrl}/comment/${id}`, { headers: this.setHeadersObj() });
     }
 }

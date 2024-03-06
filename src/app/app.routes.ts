@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent, AuthComponent, LoginComponent, RegisterComponent, NewsfeedComponent, AdminComponent, DashboardComponent, NotfoundComponent, UsersComponent, SettingsComponent } from './pages';
 import { CodeConductComponent, CookiePolicyComponent, PrivacyPolicyComponent, TosComponent } from './pages/infopublic';
 import { AuthGuard, StaffGuard } from './guards';
+import { CreatePostsComponent, DeletePostsComponent, UpdatePostsComponent } from './features';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -23,7 +24,20 @@ export const routes: Routes = [
             { path: '**', component: NotfoundComponent }
         ]
     },
-    { path: 'newsfeed', component: NewsfeedComponent },
+    { 
+        path: 'newsfeed', 
+        component: NewsfeedComponent
+    },
+    {
+        path: 'post',
+        children: [
+            { path: '', component: AuthComponent, canActivateChild: [AuthGuard] },
+            { path: 'create', component: CreatePostsComponent, canActivateChild: [AuthGuard] },
+            { path: 'update/:id', component: UpdatePostsComponent, canActivateChild: [AuthGuard] },
+            { path: 'delete/:id', component: DeletePostsComponent, canActivateChild: [AuthGuard] },
+            { path: '**', component: NotfoundComponent }
+        ]
+    },
     { 
         path: 'admin', 
         children: [

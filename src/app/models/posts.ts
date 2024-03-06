@@ -4,7 +4,7 @@ export class Posts {
     Description!: string;
     ImgUrl?: string;
     Status?: string;
-    DatePostCreated?: Date;
+    DatePostCreated?: Date | string;
     UserId?: number;
     FriendId?: number;
     CommentId?: number;

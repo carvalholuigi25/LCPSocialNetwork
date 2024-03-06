@@ -10,7 +10,7 @@ import { DOCUMENT } from '@angular/common';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private ls: Storage | undefined;
-    private userSubject: BehaviorSubject<Users | null>;
+    private userSubject: BehaviorSubject<Users | any | null>;
     public user: Observable<Users | null>;
 
     constructor(

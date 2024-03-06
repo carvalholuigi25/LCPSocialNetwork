@@ -23,22 +23,22 @@ export class FriendsService {
     }
 
     getAll() {
-        return this.http.get<Friends[]>(`${environment.apiUrl}/friends`, { headers: this.setHeadersObj() });
+        return this.http.get<Friends[]>(`${environment.apiUrl}/friend`, { headers: this.setHeadersObj() });
     }
 
     getAllById(id: number) {
-        return this.http.get<Friends>(`${environment.apiUrl}/friends/${id}`, { headers: this.setHeadersObj() });
+        return this.http.get<Friends>(`${environment.apiUrl}/friend/${id}`, { headers: this.setHeadersObj() });
     }
 
     createFriend(friends: Friends) {
-        return this.http.post<Friends>(`${environment.apiUrl}/friends`, friends, { headers: this.setHeadersObj() });
+        return this.http.post<Friends>(`${environment.apiUrl}/friend`, friends, { headers: this.setHeadersObj() });
     }
 
     updateFriend(id: number, friends: Friends) {
-        return this.http.put<Friends>(`${environment.apiUrl}/friends/${id}`, friends, { headers: this.setHeadersObj() });
+        return this.http.put<Friends>(`${environment.apiUrl}/friend/${id}`, friends, { headers: this.setHeadersObj() });
     }
 
     deleteFriend(id: number) {
-        return this.http.delete<Friends>(`${environment.apiUrl}/friends/${id}`, { headers: this.setHeadersObj() });
+        return this.http.delete<Friends>(`${environment.apiUrl}/friend/${id}`, { headers: this.setHeadersObj() });
     }
 }

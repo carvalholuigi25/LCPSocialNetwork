@@ -1,8 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Posts } from '../models';
+import { Posts, Users } from '../models';
 import { DOCUMENT } from '@angular/common';
+import { forkJoin } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
@@ -23,22 +24,28 @@ export class PostsService {
     }
 
     getAll() {
-        return this.http.get<Posts[]>(`${environment.apiUrl}/posts`, { headers: this.setHeadersObj() });
+        return this.http.get<Posts[]>(`${environment.apiUrl}/post`, { headers: this.setHeadersObj() });
+    }
+
+    getAllWithUsers() {
+        let posts = this.http.get<Posts[]>(`${environment.apiUrl}/post`, { headers: this.setHeadersObj() });
+        let users = this.http.get<Users[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });
+        return forkJoin([posts, users]);
     }
 
     getAllById(id: number) {
-        return this.http.get<Posts>(`${environment.apiUrl}/posts/${id}`, { headers: this.setHeadersObj() });
+        return this.http.get<Posts>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() });
     }
 
     createPost(posts: Posts) {
-        return this.http.post<Posts>(`${environment.apiUrl}/posts`, posts, { headers: this.setHeadersObj() });
+        return this.http.post<Posts>(`${environment.apiUrl}/post`, posts, { headers: this.setHeadersObj() });
     }
 
     updatePost(id: number, posts: Posts) {
-        return this.http.put<Posts>(`${environment.apiUrl}/posts/${id}`, posts, { headers: this.setHeadersObj() });
+        return this.http.put<Posts>(`${environment.apiUrl}/post/${id}`, posts, { headers: this.setHeadersObj() });
     }
 
     deletePost(id: number) {
-        return this.http.delete<Posts>(`${environment.apiUrl}/posts/${id}`, { headers: this.setHeadersObj() });
+        return this.http.delete<Posts>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() });
     }
 }

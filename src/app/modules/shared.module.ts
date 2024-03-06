@@ -18,6 +18,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 
 const declarationsAry: any[] = [];
 
@@ -38,7 +39,8 @@ const modulesAry = [
   MatBadgeModule,
   MatSidenavModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatSelectModule
 ];
 
 const providersAry = [
