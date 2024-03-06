@@ -1,7 +1,11 @@
 @if(!isNavMenuHiddenForPages) {
   <mat-toolbar color="primary" class="mynavbar">
     <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
-      <mat-icon>menu</mat-icon>
+      @if(!isCollapsed) {
+        <mat-icon>close</mat-icon>
+      } @else {
+        <mat-icon>menu</mat-icon>
+      }
     </button>
 
     <span class="example-spacer"></span>
@@ -91,3 +95,5 @@
 } @else {
   <router-outlet></router-outlet>
 }
+
+<app-cookieconsent></app-cookieconsent>
