@@ -5,13 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace LCPSNWebApi.Migrations.MySQL
+namespace LCPSNWebApi.Migrations.PostgreSQL
 {
-    [DbContext(typeof(DBContextMySQL))]
-    [Migration("20240307110239_InitialCreatePostgreSQL")]
+    [DbContext(typeof(DBContextPostgreSQL))]
+    [Migration("20240307135051_InitialCreatePostgreSQL")]
     partial class InitialCreatePostgreSQL
     {
         /// <inheritdoc />
@@ -20,39 +21,40 @@ namespace LCPSNWebApi.Migrations.MySQL
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Attachment", b =>
                 {
                     b.Property<int?>("AttachmentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("AttachmentId"));
 
                     b.Property<string>("AttachmentType")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("AttachmentUrl")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("DateAttachmentUploaded")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<bool?>("IsFeatured")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Status")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.HasKey("AttachmentId");
 
@@ -66,35 +68,31 @@ namespace LCPSNWebApi.Migrations.MySQL
                 {
                     b.Property<int?>("CommentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("CommentId"));
 
                     b.Property<DateTime?>("DatePostCreated")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("ImgUrl")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
-                    b.Property<int?>("PostId")
-                        .HasColumnType("int");
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Status")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.HasKey("CommentId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Comments", t =>
                         {
@@ -106,27 +104,29 @@ namespace LCPSNWebApi.Migrations.MySQL
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("FileFullPath")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("FileName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<long>("FileSize")
                         .HasColumnType("bigint");
 
                     b.Property<string>("FileType")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("GId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uuid");
 
                     b.Property<byte[]>("ImageBytes")
-                        .HasColumnType("longblob");
+                        .HasColumnType("bytea");
 
                     b.HasKey("Id");
 
@@ -140,48 +140,40 @@ namespace LCPSNWebApi.Migrations.MySQL
                 {
                     b.Property<int?>("FriendId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("FriendId"));
 
                     b.Property<string>("AvatarUrl")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Biography")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("CommentsCommentId")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.Property<string>("CoverUrl")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("DateAccountCreated")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("PostsPostId")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.Property<string>("Role")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Status")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.HasKey("FriendId");
-
-                    b.HasIndex("CommentsCommentId");
-
-                    b.HasIndex("PostsPostId");
 
                     b.ToTable("Friends", t =>
                         {
@@ -193,32 +185,31 @@ namespace LCPSNWebApi.Migrations.MySQL
                 {
                     b.Property<int?>("PostId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("PostId"));
 
                     b.Property<DateTime?>("DatePostCreated")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("ImgUrl")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Status")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.HasKey("PostId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Posts", t =>
                         {
@@ -230,58 +221,55 @@ namespace LCPSNWebApi.Migrations.MySQL
                 {
                     b.Property<int?>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("UserId"));
 
                     b.Property<string>("AvatarUrl")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Biography")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("CoverUrl")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("CurrentToken")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("DateAccountCreated")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("FriendsFriendId")
-                        .HasColumnType("int");
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("RefreshToken")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("RefreshTokenExpiryTime")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Role")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Status")
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("FriendsFriendId");
 
                     b.ToTable("Users", t =>
                         {
@@ -294,59 +282,14 @@ namespace LCPSNWebApi.Migrations.MySQL
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 7, 11, 2, 38, 917, DateTimeKind.Utc).AddTicks(6404),
+                            DateAccountCreated = new DateTime(2024, 3, 7, 13, 50, 50, 225, DateTimeKind.Utc).AddTicks(8308),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$9CDkNHhRGNbUGHc3gZWtieIPbWfKujLOucz/vDDEJGqX9r4labj0q",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 7, 11, 2, 38, 917, DateTimeKind.Utc).AddTicks(6415),
+                            Password = "$2a$12$tE/G0qgybLTq6zdXVC9VfuZsabpF07mTwRZOhaOf6IV2XQ2QYZxb6",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 7, 13, 50, 50, 225, DateTimeKind.Utc).AddTicks(8315),
                             Role = "Administrator",
                             Username = "admin"
                         });
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithOne("Comments")
-                        .HasForeignKey("LCPSNWebApi.Classes.Comment", "UserId");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.Comment", "Comments")
-                        .WithMany()
-                        .HasForeignKey("CommentsCommentId");
-
-                    b.HasOne("LCPSNWebApi.Classes.Post", "Posts")
-                        .WithMany()
-                        .HasForeignKey("PostsPostId");
-
-                    b.Navigation("Comments");
-
-                    b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithOne("Posts")
-                        .HasForeignKey("LCPSNWebApi.Classes.Post", "UserId");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.Friend", "Friends")
-                        .WithMany()
-                        .HasForeignKey("FriendsFriendId");
-
-                    b.Navigation("Friends");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

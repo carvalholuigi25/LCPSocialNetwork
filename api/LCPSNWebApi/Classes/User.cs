@@ -22,9 +22,6 @@ public class User
     [DisplayName("CurrentToken")][DataType("text")] public string? CurrentToken { get; set; }
     [DisplayName("RefreshToken")][DataType("text")] public string? RefreshToken { get; set; }
     [DisplayName("RefreshTokenExpiryTime")][DataType(DataType.DateTime)] public DateTime? RefreshTokenExpiryTime { get; set; } = DateTime.UtcNow;
-    [JsonIgnore] public Friend? Friends { get; set; }
-    [JsonIgnore] public Post? Posts { get; set; }
-    [JsonIgnore] public Comment? Comments { get; set; }
 }
 
 public class UserAuth

@@ -9,8 +9,7 @@ public class Attachment
     [Required][DataType(DataType.Text)] public string AttachmentUrl { get; set; } = null!;
     [DataType(DataType.Text)] public string? AttachmentType { get; set; }
     [DataType(DataType.Text)] public string? Description { get; set; }
-    [DataType(DataType.Text)] public string? Status { get; set; }
-    [DataType(DataType.DateTime)] public DateTime? DateAttachmentUploaded { get; set; }
+    [DataType(DataType.Text)] public string? Status { get; set; } = "public";
+    [DataType(DataType.DateTime)] public DateTime? DateAttachmentUploaded { get; set; } = DateTime.UtcNow;
     public bool? IsFeatured { get; set; }
-    public int? UserId { get; set; }
 }

@@ -53,9 +53,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("AttachmentId");
 
                     b.ToTable("Attachments", t =>
@@ -82,8 +79,8 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<string>("ImgUrl")
                         .HasColumnType("text");
 
-                    b.Property<int?>("PostId")
-                        .HasColumnType("integer");
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Status")
                         .HasColumnType("text");
@@ -92,13 +89,7 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("CommentId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Comments", t =>
                         {
@@ -156,9 +147,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<string>("Biography")
                         .HasColumnType("text");
 
-                    b.Property<int?>("CommentsCommentId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("CoverUrl")
                         .HasColumnType("text");
 
@@ -172,9 +160,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("PostsPostId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Role")
                         .HasColumnType("text");
 
@@ -186,10 +171,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .HasColumnType("text");
 
                     b.HasKey("FriendId");
-
-                    b.HasIndex("CommentsCommentId");
-
-                    b.HasIndex("PostsPostId");
 
                     b.ToTable("Friends", t =>
                         {
@@ -215,6 +196,9 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<string>("ImgUrl")
                         .HasColumnType("text");
 
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
@@ -222,13 +206,7 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("PostId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Posts", t =>
                         {
@@ -265,9 +243,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
 
-                    b.Property<int?>("FriendsFriendId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("LastName")
                         .HasColumnType("text");
 
@@ -293,8 +268,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("FriendsFriendId");
-
                     b.ToTable("Users", t =>
                         {
                             t.HasTrigger("Users_Trigger");
@@ -306,59 +279,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 7, 11, 2, 16, 649, DateTimeKind.Utc).AddTicks(8844),
+                            DateAccountCreated = new DateTime(2024, 3, 7, 13, 50, 50, 225, DateTimeKind.Utc).AddTicks(8308),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$K8Fyq4Nhfre8E23P88nl4O/yXnoNns45VnLHvtdjDp/HzkzYEGADK",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 7, 11, 2, 16, 649, DateTimeKind.Utc).AddTicks(8850),
+                            Password = "$2a$12$tE/G0qgybLTq6zdXVC9VfuZsabpF07mTwRZOhaOf6IV2XQ2QYZxb6",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 7, 13, 50, 50, 225, DateTimeKind.Utc).AddTicks(8315),
                             Role = "Administrator",
                             Username = "admin"
                         });
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithOne("Comments")
-                        .HasForeignKey("LCPSNWebApi.Classes.Comment", "UserId");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.Comment", "Comments")
-                        .WithMany()
-                        .HasForeignKey("CommentsCommentId");
-
-                    b.HasOne("LCPSNWebApi.Classes.Post", "Posts")
-                        .WithMany()
-                        .HasForeignKey("PostsPostId");
-
-                    b.Navigation("Comments");
-
-                    b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithOne("Posts")
-                        .HasForeignKey("LCPSNWebApi.Classes.Post", "UserId");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.Friend", "Friends")
-                        .WithMany()
-                        .HasForeignKey("FriendsFriendId");
-
-                    b.Navigation("Friends");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
