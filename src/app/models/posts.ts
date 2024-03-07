@@ -6,6 +6,4 @@ export class Posts {
     Status?: string;
     DatePostCreated?: Date | string;
     UserId?: number;
-    FriendId?: number;
-    CommentId?: number;
 }

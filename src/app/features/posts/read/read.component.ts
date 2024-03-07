@@ -11,7 +11,9 @@ import { AlertsService, AuthService, PostsService } from '@app/services';
 })
 export class ReadPostsComponent implements OnInit {
   dataAll?: any;
-  authorName?: string;
+  avatarId?: number;
+  avatarName?: string;
+  avatarUrl?: string;
   ctLikes: number = 0;
   ctComments: number = 0;
   ctShares: number = 0;
@@ -24,13 +26,16 @@ export class ReadPostsComponent implements OnInit {
 
   getPosts() {
     const uid = this.authService.userValue ? this.authService.userValue["usersInfo"]["userId"] : 1;
+    this.avatarId = this.authService.userValue ? this.authService.userValue["usersInfo"]["userId"] : 1;
+    this.avatarName = this.authService.userValue ? this.authService.userValue["usersInfo"]["username"] : "guest";
+    this.avatarUrl = this.authService.userValue ? this.authService.userValue["usersInfo"]["avatarUrl"] : "images/bkg.jpeg";
     this.postsService.getAllById(uid).subscribe({
       next: (r) => {
         this.dataAll = r;
       },
-      error: error => {
-        this.alertsService.openAlert(`Error: ${error}`, 1, "error");
-        console.log(error);
+      error: (em) => {
+        this.alertsService.openAlert(`Error: ${em.message}`, 1, "error");
+        console.log(em);
       }
     });
   }

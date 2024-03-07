@@ -21,7 +21,7 @@ namespace LCPSNWebApi.Migrations.MySQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Attachment", b =>
                 {
-                    b.Property<int>("AttachmentId")
+                    b.Property<int?>("AttachmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -37,9 +37,6 @@ namespace LCPSNWebApi.Migrations.MySQL
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("int");
 
                     b.Property<bool?>("IsFeatured")
                         .HasColumnType("tinyint(1)");
@@ -64,7 +61,7 @@ namespace LCPSNWebApi.Migrations.MySQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
-                    b.Property<int>("CommentId")
+                    b.Property<int?>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -74,9 +71,6 @@ namespace LCPSNWebApi.Migrations.MySQL
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("longtext");
@@ -95,9 +89,6 @@ namespace LCPSNWebApi.Migrations.MySQL
                         .HasColumnType("int");
 
                     b.HasKey("CommentId");
-
-                    b.HasIndex("FriendId")
-                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -144,7 +135,7 @@ namespace LCPSNWebApi.Migrations.MySQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
                 {
-                    b.Property<int>("FriendId")
+                    b.Property<int?>("FriendId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -153,6 +144,9 @@ namespace LCPSNWebApi.Migrations.MySQL
 
                     b.Property<string>("Biography")
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("CommentsCommentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CoverUrl")
                         .HasColumnType("longtext");
@@ -167,6 +161,9 @@ namespace LCPSNWebApi.Migrations.MySQL
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("PostsPostId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Role")
                         .HasColumnType("longtext");
 
@@ -179,6 +176,10 @@ namespace LCPSNWebApi.Migrations.MySQL
 
                     b.HasKey("FriendId");
 
+                    b.HasIndex("CommentsCommentId");
+
+                    b.HasIndex("PostsPostId");
+
                     b.ToTable("Friends", t =>
                         {
                             t.HasTrigger("Friends_Trigger");
@@ -187,11 +188,8 @@ namespace LCPSNWebApi.Migrations.MySQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
-                    b.Property<int>("PostId")
+                    b.Property<int?>("PostId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CommentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DatePostCreated")
@@ -200,9 +198,6 @@ namespace LCPSNWebApi.Migrations.MySQL
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("longtext");
@@ -219,9 +214,6 @@ namespace LCPSNWebApi.Migrations.MySQL
 
                     b.HasKey("PostId");
 
-                    b.HasIndex("FriendId")
-                        .IsUnique();
-
                     b.HasIndex("UserId")
                         .IsUnique();
 
@@ -233,7 +225,7 @@ namespace LCPSNWebApi.Migrations.MySQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -299,11 +291,11 @@ namespace LCPSNWebApi.Migrations.MySQL
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 3, 16, 19, 9, 333, DateTimeKind.Utc).AddTicks(6244),
+                            DateAccountCreated = new DateTime(2024, 3, 7, 11, 2, 38, 917, DateTimeKind.Utc).AddTicks(6404),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$nQpOPZ7myXwedseqHNPfj.xsVY.tsdyUZb7LJbwtMmtqPwYLl896K",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 3, 16, 19, 9, 333, DateTimeKind.Utc).AddTicks(6251),
+                            Password = "$2a$12$9CDkNHhRGNbUGHc3gZWtieIPbWfKujLOucz/vDDEJGqX9r4labj0q",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 7, 11, 2, 38, 917, DateTimeKind.Utc).AddTicks(6415),
                             Role = "Administrator",
                             Username = "admin"
                         });
@@ -311,21 +303,28 @@ namespace LCPSNWebApi.Migrations.MySQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
-                    b.HasOne("LCPSNWebApi.Classes.Friend", null)
-                        .WithOne("Comments")
-                        .HasForeignKey("LCPSNWebApi.Classes.Comment", "FriendId");
-
                     b.HasOne("LCPSNWebApi.Classes.User", null)
                         .WithOne("Comments")
                         .HasForeignKey("LCPSNWebApi.Classes.Comment", "UserId");
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.Comment", "Comments")
+                        .WithMany()
+                        .HasForeignKey("CommentsCommentId");
+
+                    b.HasOne("LCPSNWebApi.Classes.Post", "Posts")
+                        .WithMany()
+                        .HasForeignKey("PostsPostId");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("Posts");
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
-                    b.HasOne("LCPSNWebApi.Classes.Friend", null)
-                        .WithOne("Posts")
-                        .HasForeignKey("LCPSNWebApi.Classes.Post", "FriendId");
-
                     b.HasOne("LCPSNWebApi.Classes.User", null)
                         .WithOne("Posts")
                         .HasForeignKey("LCPSNWebApi.Classes.Post", "UserId");
@@ -338,13 +337,6 @@ namespace LCPSNWebApi.Migrations.MySQL
                         .HasForeignKey("FriendsFriendId");
 
                     b.Navigation("Friends");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>

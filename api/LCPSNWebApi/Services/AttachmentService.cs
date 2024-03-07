@@ -105,7 +105,7 @@ namespace LCPSNWebApi.Services
 
             _context.Attachments.Remove(Attachment);
             await _context.SaveChangesAsync();
-            await ResetIdSeed(1);
+            await ResetIdSeed(0);
 
             return NoContent();
         }
@@ -195,7 +195,7 @@ namespace LCPSNWebApi.Services
             {
                 string msg = "";
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"SELECT MAX(id) FROM Attachments";
+                string queryString = $@"SELECT MAX(AttachmentId) FROM Attachments";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {

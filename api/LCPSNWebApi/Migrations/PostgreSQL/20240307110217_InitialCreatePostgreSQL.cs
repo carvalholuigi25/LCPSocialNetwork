@@ -25,8 +25,7 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     Status = table.Column<string>(type: "text", nullable: true),
                     DateAttachmentUploaded = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     IsFeatured = table.Column<bool>(type: "boolean", nullable: true),
-                    UserId = table.Column<int>(type: "integer", nullable: true),
-                    FriendId = table.Column<int>(type: "integer", nullable: true)
+                    UserId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,6 +51,25 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    ImgUrl = table.Column<string>(type: "text", nullable: true),
+                    Status = table.Column<string>(type: "text", nullable: true),
+                    DatePostCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: true),
+                    PostId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Friends",
                 columns: table => new
                 {
@@ -65,11 +83,18 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     Biography = table.Column<string>(type: "text", nullable: true),
                     AvatarUrl = table.Column<string>(type: "text", nullable: true),
                     CoverUrl = table.Column<string>(type: "text", nullable: true),
-                    DateAccountCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DateAccountCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    PostsPostId = table.Column<int>(type: "integer", nullable: true),
+                    CommentsCommentId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Friends", x => x.FriendId);
+                    table.ForeignKey(
+                        name: "FK_Friends_Comments_CommentsCommentId",
+                        column: x => x.CommentsCommentId,
+                        principalTable: "Comments",
+                        principalColumn: "CommentId");
                 });
 
             migrationBuilder.CreateTable(
@@ -105,36 +130,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    CommentId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Title = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    ImgUrl = table.Column<string>(type: "text", nullable: true),
-                    Status = table.Column<string>(type: "text", nullable: true),
-                    DatePostCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UserId = table.Column<int>(type: "integer", nullable: true),
-                    FriendId = table.Column<int>(type: "integer", nullable: true),
-                    PostId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.CommentId);
-                    table.ForeignKey(
-                        name: "FK_Comments_Friends_FriendId",
-                        column: x => x.FriendId,
-                        principalTable: "Friends",
-                        principalColumn: "FriendId");
-                    table.ForeignKey(
-                        name: "FK_Comments_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -145,18 +140,11 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     ImgUrl = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
                     DatePostCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UserId = table.Column<int>(type: "integer", nullable: true),
-                    FriendId = table.Column<int>(type: "integer", nullable: true),
-                    CommentId = table.Column<int>(type: "integer", nullable: true)
+                    UserId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.PostId);
-                    table.ForeignKey(
-                        name: "FK_Posts_Friends_FriendId",
-                        column: x => x.FriendId,
-                        principalTable: "Friends",
-                        principalColumn: "FriendId");
                     table.ForeignKey(
                         name: "FK_Posts_Users_UserId",
                         column: x => x.UserId,
@@ -167,13 +155,7 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "FriendsFriendId", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 3, 16, 18, 47, 816, DateTimeKind.Utc).AddTicks(3498), null, "Luis", null, "Carvalho", "$2a$12$GqaVOvLKk1pr3jxJ/VP0peTE2tTOc0hps1jL6yiuWgLjs.m7hgYba", null, new DateTime(2024, 3, 3, 16, 18, 47, 816, DateTimeKind.Utc).AddTicks(3510), "Administrator", null, "admin" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_FriendId",
-                table: "Comments",
-                column: "FriendId",
-                unique: true);
+                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 7, 11, 2, 16, 649, DateTimeKind.Utc).AddTicks(8844), null, "Luis", null, "Carvalho", "$2a$12$K8Fyq4Nhfre8E23P88nl4O/yXnoNns45VnLHvtdjDp/HzkzYEGADK", null, new DateTime(2024, 3, 7, 11, 2, 16, 649, DateTimeKind.Utc).AddTicks(8850), "Administrator", null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_UserId",
@@ -182,10 +164,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_FriendId",
-                table: "Posts",
-                column: "FriendId",
-                unique: true);
+                name: "IX_Friends_CommentsCommentId",
+                table: "Friends",
+                column: "CommentsCommentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Friends_PostsPostId",
+                table: "Friends",
+                column: "PostsPostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_UserId",
@@ -197,28 +183,50 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                 name: "IX_Users_FriendsFriendId",
                 table: "Users",
                 column: "FriendsFriendId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comments_Users_UserId",
+                table: "Comments",
+                column: "UserId",
+                principalTable: "Users",
+                principalColumn: "UserId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Friends_Posts_PostsPostId",
+                table: "Friends",
+                column: "PostsPostId",
+                principalTable: "Posts",
+                principalColumn: "PostId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comments_Users_UserId",
+                table: "Comments");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Posts_Users_UserId",
+                table: "Posts");
+
             migrationBuilder.DropTable(
                 name: "Attachments");
 
             migrationBuilder.DropTable(
-                name: "Comments");
-
-            migrationBuilder.DropTable(
                 name: "FilesData");
-
-            migrationBuilder.DropTable(
-                name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Friends");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Posts");
         }
     }
 }

@@ -1,2 +1,44 @@
-<h1>Coming soon...</h1>
-<a [routerLink]="['/newsfeed']" class="mt-3" color="primary" mat-flat-button>Back</a>
+<div class="col-12">
+    @if(id && id != -1) {
+        <form [formGroup]="postsUpdateFrm" (ngSubmit)="OnUpdate()" class="postsUpdateForm p-3">
+            <mat-form-field class="mt-3">
+                <mat-label for="title">Title</mat-label>
+                <input id="title" type="text" formControlName="Title" class="form-control text-start mt-3"
+                    title="Write here the post title" required matInput>
+            </mat-form-field>
+            <mat-form-field class="mt-3">
+                <mat-label for="description">Description</mat-label>
+                <textarea formControlName="Description" class="form-control text-start mt-3"
+                    title="Write here the post description" cols="1" rows="10" required matInput></textarea>
+            </mat-form-field>
+            <mat-form-field class="mt-3">
+                <mat-label for="imgUrl">Image Url</mat-label>
+                <input id="imgUrl" type="text" formControlName="ImgUrl" class="form-control text-start mt-3"
+                    title="Write here the post image url" matInput>
+            </mat-form-field>
+            <mat-form-field class="mt-3">
+                <mat-label for="status">Status</mat-label>
+                <mat-select id="status" formControlName="Status" class="text-start mt-3" title="Select the status of post">
+                    <mat-option value="public">Public</mat-option>
+                    <mat-option value="private">Private</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="form-group mt-3 mx-auto">
+                <button type="button" mat-flat-button color="primary" (click)="OnNotUpdate()">Cancel</button>
+                <button type="button" mat-flat-button color="primary" (click)="OnClear()" class="ms-3">Clear</button>
+                <button type="button" mat-flat-button color="warn" (click)="OnResetToDefValues()" class="ms-3">Reset to default
+                    values</button>
+                <button type="submit" class="ms-3" mat-flat-button color="accent"
+                    [disabled]="!postsUpdateFrm.valid">Update</button>
+            </div>
+        </form>
+    } @else {
+        <div class="d-flex flex-column justify-content-center align-items-center p-3 mt-3">
+            <mat-icon>error</mat-icon>
+            <h2 class="tjustify mt-3">
+                Not to be able to update it because the id is invalid or does not match to the current post!
+            </h2>
+            <a mat-flat-button class="mt-3" [routerLink]="['/newsfeed']" color="primary">Back</a>
+        </div>
+    }
+</div>

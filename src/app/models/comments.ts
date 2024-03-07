@@ -6,6 +6,5 @@ export class Comments {
     Status?: string;
     DatePostCreated?: Date;
     UserId?: number;
-    FriendId?: number;
     PostId?: number;
 }

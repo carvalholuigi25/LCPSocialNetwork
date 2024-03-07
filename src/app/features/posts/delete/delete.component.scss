@@ -1,8 +1,15 @@
-.postsForm {
+.postsDeleteForm {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
     align-items: stretch;
     width: 100%;
     max-width: 100%;
+
+    .table {
+        table-layout: fixed;
+        white-space: normal;
+        overflow: auto;
+        margin: 0;
+    }
 }

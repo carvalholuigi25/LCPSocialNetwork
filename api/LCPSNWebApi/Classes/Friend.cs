@@ -6,7 +6,7 @@ namespace LCPSNWebApi.Classes;
 
 public class Friend
 {
-    [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int FriendId { get; set; }
+    [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int? FriendId { get; set; }
     [DataType(DataType.Text)][Required] public string Username { get; set; } = null!;
     [DataType(DataType.Text)][Required] public string Password { get; set; } = null!;
     [DataType(DataType.Text)] public string? Email { get; set; }

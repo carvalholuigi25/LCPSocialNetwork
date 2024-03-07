@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Posts } from '@app/models';
 import { SharedModule } from '@app/modules';
-import { PostsService } from '@app/services';
+import { AlertsService, AuthService, PostsService } from '@app/services';
 
 @Component({
   selector: 'app-updateposts',
@@ -10,9 +13,87 @@ import { PostsService } from '@app/services';
   styleUrl: './update.component.scss'
 })
 export class UpdatePostsComponent implements OnInit {
-  constructor(private postsService: PostsService) {}
+  id: number = -1;
+  postsUpdateFrm!: FormGroup;
+  submitted = false;
+
+  constructor(private alertsService: AlertsService, private postsService: PostsService, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.id = params["id"];
+    });
+  }
+
+  get f() { return this.postsUpdateFrm!.controls; }
 
   ngOnInit(): void {
-      
+     this.getPosts(); 
+  }
+
+  getPosts() {
+    this.postsUpdateFrm = new FormGroup({
+      Title: new FormControl('', Validators.required),
+      Description: new FormControl('', Validators.required),
+      ImgUrl: new FormControl('images/bkg.jpeg'),
+      Status: new FormControl('public')
+    });
+
+    if(this.id != -1) {
+      this.postsService.getAllById(this.id!).subscribe({
+        next: (dataP: any) => {
+          this.postsUpdateFrm.patchValue({
+            Title: dataP[0].title,
+            Description: dataP[0].description,
+            ImgUrl: dataP[0].imgUrl,
+            Status: dataP[0].status
+          });
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
+    }
+  }
+
+  OnClear() {
+    this.postsUpdateFrm.reset();
+    this.postsUpdateFrm.clearValidators();
+    this.postsUpdateFrm.updateValueAndValidity();
+  }
+
+  OnResetToDefValues() {
+    this.getPosts();
+  }
+
+  OnNotUpdate() {
+    this.alertsService.openAlert(`Cancelled the update of post (Id: ${this.id})!`, 1, "success");
+    this.router.navigate(['/newsfeed']);
+  }
+
+  OnUpdate() {
+    if(this.id != -1) {
+      this.submitted = true;
+
+      const postsObj: Posts = {
+        PostId: this.id ?? 1,
+        Title: this.f["Title"].value.toString(),
+        Description: this.f["Description"].value.toString(),
+        ImgUrl: this.f["ImgUrl"].value.toString(),
+        Status: this.f["Status"].value.toString(),
+        UserId: this.authService.userValue["usersInfo"]["userId"] ?? 1
+      };
+
+      console.log(postsObj)
+
+      this.postsService.updatePost(this.id, postsObj).subscribe({
+        next: () => {
+          this.alertsService.openAlert(`Updated post (Id: ${this.id}) sucessfully!`, 1, "success");
+          this.router.navigate(['/newsfeed']);
+        },
+        error: (em) => {
+          this.alertsService.openAlert(`Error: ${em.message}`, 1, "error");
+          console.log(em);
+        }
+      });
+    }
   }
 }

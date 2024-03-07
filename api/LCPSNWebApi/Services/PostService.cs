@@ -77,7 +77,7 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<Post>> CreatePost(Post PostData)
+        public async Task<ActionResult<IEnumerable<Post>>> CreatePost(Post PostData)
         {
             if (!ModelState.IsValid)
             {
@@ -87,7 +87,8 @@ namespace LCPSNWebApi.Services
             _context.Posts.Add(PostData);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPostById", new { id = PostData.PostId }, PostData);
+            return await GetPost();
+            // return CreatedAtAction("GetPostById", new { id = PostData.PostId }, PostData);
         }
 
         public async Task<IActionResult> DeletePost(int? id)
@@ -105,7 +106,7 @@ namespace LCPSNWebApi.Services
 
             _context.Posts.Remove(Post);
             await _context.SaveChangesAsync();
-            await ResetIdSeed(1);
+            await ResetIdSeed(0);
 
             return NoContent();
         }
@@ -195,7 +196,7 @@ namespace LCPSNWebApi.Services
             {
                 string msg = "";
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"SELECT MAX(id) FROM Posts";
+                string queryString = $@"SELECT MAX(PostId) FROM Posts";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {

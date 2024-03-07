@@ -105,7 +105,7 @@ namespace LCPSNWebApi.Services
 
             _context.FilesData.Remove(FileData);
             await _context.SaveChangesAsync();
-            await ResetIdSeed(1);
+            await ResetIdSeed(0);
 
             return NoContent();
         }

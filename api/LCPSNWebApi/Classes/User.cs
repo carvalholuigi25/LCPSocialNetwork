@@ -7,7 +7,7 @@ namespace LCPSNWebApi.Classes;
 
 public class User
 {
-    [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int UserId { get; set; }
+    [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int? UserId { get; set; }
     [DataType(DataType.Text)][Required] public string Username { get; set; } = null!;
     [DataType(DataType.Text)][Required] public string Password { get; set; } = null!;
     [DataType(DataType.Text)] public string? FirstName { get; set; }

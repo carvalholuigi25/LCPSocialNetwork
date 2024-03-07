@@ -112,7 +112,7 @@ namespace LCPSNWebApi.Services
 
             _context.Friends.Remove(Friends);
             await _context.SaveChangesAsync();
-            await ResetIdSeed(1);
+            await ResetIdSeed(0);
 
             return NoContent();
         }
@@ -202,7 +202,7 @@ namespace LCPSNWebApi.Services
             {
                 string msg = "";
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"SELECT MAX(id) FROM Friends";
+                string queryString = $@"SELECT MAX(FriendId) FROM Friends";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {

@@ -24,11 +24,11 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Attachment", b =>
                 {
-                    b.Property<int>("AttachmentId")
+                    b.Property<int?>("AttachmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AttachmentId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("AttachmentId"));
 
                     b.Property<string>("AttachmentType")
                         .HasColumnType("text");
@@ -42,9 +42,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("integer");
 
                     b.Property<bool?>("IsFeatured")
                         .HasColumnType("boolean");
@@ -69,11 +66,11 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
-                    b.Property<int>("CommentId")
+                    b.Property<int?>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CommentId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("CommentId"));
 
                     b.Property<DateTime?>("DatePostCreated")
                         .HasColumnType("timestamp without time zone");
@@ -81,9 +78,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("text");
@@ -102,9 +96,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .HasColumnType("integer");
 
                     b.HasKey("CommentId");
-
-                    b.HasIndex("FriendId")
-                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -153,17 +144,20 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
                 {
-                    b.Property<int>("FriendId")
+                    b.Property<int?>("FriendId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FriendId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("FriendId"));
 
                     b.Property<string>("AvatarUrl")
                         .HasColumnType("text");
 
                     b.Property<string>("Biography")
                         .HasColumnType("text");
+
+                    b.Property<int?>("CommentsCommentId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("CoverUrl")
                         .HasColumnType("text");
@@ -178,6 +172,9 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("PostsPostId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Role")
                         .HasColumnType("text");
 
@@ -190,6 +187,10 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
                     b.HasKey("FriendId");
 
+                    b.HasIndex("CommentsCommentId");
+
+                    b.HasIndex("PostsPostId");
+
                     b.ToTable("Friends", t =>
                         {
                             t.HasTrigger("Friends_Trigger");
@@ -198,14 +199,11 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
-                    b.Property<int>("PostId")
+                    b.Property<int?>("PostId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PostId"));
-
-                    b.Property<int?>("CommentId")
-                        .HasColumnType("integer");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("PostId"));
 
                     b.Property<DateTime?>("DatePostCreated")
                         .HasColumnType("timestamp without time zone");
@@ -213,9 +211,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("text");
@@ -232,9 +227,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
                     b.HasKey("PostId");
 
-                    b.HasIndex("FriendId")
-                        .IsUnique();
-
                     b.HasIndex("UserId")
                         .IsUnique();
 
@@ -246,11 +238,11 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("UserId"));
 
                     b.Property<string>("AvatarUrl")
                         .HasColumnType("text");
@@ -314,11 +306,11 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 3, 16, 18, 47, 816, DateTimeKind.Utc).AddTicks(3498),
+                            DateAccountCreated = new DateTime(2024, 3, 7, 11, 2, 16, 649, DateTimeKind.Utc).AddTicks(8844),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$GqaVOvLKk1pr3jxJ/VP0peTE2tTOc0hps1jL6yiuWgLjs.m7hgYba",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 3, 16, 18, 47, 816, DateTimeKind.Utc).AddTicks(3510),
+                            Password = "$2a$12$K8Fyq4Nhfre8E23P88nl4O/yXnoNns45VnLHvtdjDp/HzkzYEGADK",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 7, 11, 2, 16, 649, DateTimeKind.Utc).AddTicks(8850),
                             Role = "Administrator",
                             Username = "admin"
                         });
@@ -326,21 +318,28 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
-                    b.HasOne("LCPSNWebApi.Classes.Friend", null)
-                        .WithOne("Comments")
-                        .HasForeignKey("LCPSNWebApi.Classes.Comment", "FriendId");
-
                     b.HasOne("LCPSNWebApi.Classes.User", null)
                         .WithOne("Comments")
                         .HasForeignKey("LCPSNWebApi.Classes.Comment", "UserId");
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.Comment", "Comments")
+                        .WithMany()
+                        .HasForeignKey("CommentsCommentId");
+
+                    b.HasOne("LCPSNWebApi.Classes.Post", "Posts")
+                        .WithMany()
+                        .HasForeignKey("PostsPostId");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("Posts");
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
-                    b.HasOne("LCPSNWebApi.Classes.Friend", null)
-                        .WithOne("Posts")
-                        .HasForeignKey("LCPSNWebApi.Classes.Post", "FriendId");
-
                     b.HasOne("LCPSNWebApi.Classes.User", null)
                         .WithOne("Posts")
                         .HasForeignKey("LCPSNWebApi.Classes.Post", "UserId");
@@ -353,13 +352,6 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .HasForeignKey("FriendsFriendId");
 
                     b.Navigation("Friends");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>

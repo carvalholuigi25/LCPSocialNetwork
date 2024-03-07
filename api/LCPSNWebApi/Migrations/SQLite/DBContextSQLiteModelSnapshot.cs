@@ -19,7 +19,7 @@ namespace LCPSNWebApi.Migrations.SQLite
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Attachment", b =>
                 {
-                    b.Property<int>("AttachmentId")
+                    b.Property<int?>("AttachmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -35,9 +35,6 @@ namespace LCPSNWebApi.Migrations.SQLite
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<bool?>("IsFeatured")
                         .HasColumnType("INTEGER");
@@ -62,7 +59,7 @@ namespace LCPSNWebApi.Migrations.SQLite
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
-                    b.Property<int>("CommentId")
+                    b.Property<int?>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -72,9 +69,6 @@ namespace LCPSNWebApi.Migrations.SQLite
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("TEXT");
@@ -93,9 +87,6 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .HasColumnType("INTEGER");
 
                     b.HasKey("CommentId");
-
-                    b.HasIndex("FriendId")
-                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -142,7 +133,7 @@ namespace LCPSNWebApi.Migrations.SQLite
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
                 {
-                    b.Property<int>("FriendId")
+                    b.Property<int?>("FriendId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -151,6 +142,9 @@ namespace LCPSNWebApi.Migrations.SQLite
 
                     b.Property<string>("Biography")
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("CommentsCommentId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("CoverUrl")
                         .HasColumnType("TEXT");
@@ -165,6 +159,9 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("PostsPostId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Role")
                         .HasColumnType("TEXT");
 
@@ -177,6 +174,10 @@ namespace LCPSNWebApi.Migrations.SQLite
 
                     b.HasKey("FriendId");
 
+                    b.HasIndex("CommentsCommentId");
+
+                    b.HasIndex("PostsPostId");
+
                     b.ToTable("Friends", t =>
                         {
                             t.HasTrigger("Friends_Trigger");
@@ -185,11 +186,8 @@ namespace LCPSNWebApi.Migrations.SQLite
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
-                    b.Property<int>("PostId")
+                    b.Property<int?>("PostId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("CommentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DatePostCreated")
@@ -198,9 +196,6 @@ namespace LCPSNWebApi.Migrations.SQLite
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("FriendId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("TEXT");
@@ -217,9 +212,6 @@ namespace LCPSNWebApi.Migrations.SQLite
 
                     b.HasKey("PostId");
 
-                    b.HasIndex("FriendId")
-                        .IsUnique();
-
                     b.HasIndex("UserId")
                         .IsUnique();
 
@@ -231,7 +223,7 @@ namespace LCPSNWebApi.Migrations.SQLite
 
             modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -297,11 +289,11 @@ namespace LCPSNWebApi.Migrations.SQLite
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 3, 16, 18, 29, 254, DateTimeKind.Utc).AddTicks(4189),
+                            DateAccountCreated = new DateTime(2024, 3, 7, 11, 1, 55, 560, DateTimeKind.Utc).AddTicks(3748),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$YX1HKKEcIpk4ncPwA09zGOvzZLdxzQWzdNrGCc0lnxsiTD4sL/GvC",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 3, 16, 18, 29, 254, DateTimeKind.Utc).AddTicks(4198),
+                            Password = "$2a$12$rUzUANdCShzZ4zh6ZhXoZeNe9vmV6tpETZsQII2PGy4Hes5.C960K",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 7, 11, 1, 55, 560, DateTimeKind.Utc).AddTicks(3755),
                             Role = "Administrator",
                             Username = "admin"
                         });
@@ -309,21 +301,28 @@ namespace LCPSNWebApi.Migrations.SQLite
 
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
-                    b.HasOne("LCPSNWebApi.Classes.Friend", null)
-                        .WithOne("Comments")
-                        .HasForeignKey("LCPSNWebApi.Classes.Comment", "FriendId");
-
                     b.HasOne("LCPSNWebApi.Classes.User", null)
                         .WithOne("Comments")
                         .HasForeignKey("LCPSNWebApi.Classes.Comment", "UserId");
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.Comment", "Comments")
+                        .WithMany()
+                        .HasForeignKey("CommentsCommentId");
+
+                    b.HasOne("LCPSNWebApi.Classes.Post", "Posts")
+                        .WithMany()
+                        .HasForeignKey("PostsPostId");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("Posts");
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
-                    b.HasOne("LCPSNWebApi.Classes.Friend", null)
-                        .WithOne("Posts")
-                        .HasForeignKey("LCPSNWebApi.Classes.Post", "FriendId");
-
                     b.HasOne("LCPSNWebApi.Classes.User", null)
                         .WithOne("Posts")
                         .HasForeignKey("LCPSNWebApi.Classes.Post", "UserId");
@@ -336,13 +335,6 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .HasForeignKey("FriendsFriendId");
 
                     b.Navigation("Friends");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>

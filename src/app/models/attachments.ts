@@ -8,5 +8,4 @@ export class Attachments {
     DateAttachmentUploaded?: Date;
     IsFeatured?: boolean;
     UserId?: number;
-    FriendId?: number;
 }

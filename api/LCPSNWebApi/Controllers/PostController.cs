@@ -77,7 +77,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="posts"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Post>> CreatePosts(Post posts)
+        public async Task<ActionResult<IEnumerable<Post>>> CreatePosts(Post posts)
         {
             return await _posts.CreatePost(posts);
         }

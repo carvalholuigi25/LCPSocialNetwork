@@ -1,5 +1,5 @@
 export class Friends {
-    UserId?: number;
+    FriendId?: number;
     Username!: string;
     Password!: string;
     Email?: string;

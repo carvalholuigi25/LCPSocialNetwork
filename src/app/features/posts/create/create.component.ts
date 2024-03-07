@@ -51,11 +51,11 @@ export class CreatePostsComponent implements OnInit {
     this.postsService.createPost(postsObj).subscribe({
       next: () => {
         this.alertsService.openAlert(`Created new post!`, 1, "success");
-        this.router.navigate(['/newsfeed']);
+        window.location.reload();
       },
-      error: error => {
-        this.alertsService.openAlert(`Error: ${error}`, 1, "error");
-        console.log(error);
+      error: (em) => {
+        this.alertsService.openAlert(`Error: ${em.message}`, 1, "error");
+        console.log(em);
       }
     });
   }

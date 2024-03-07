@@ -10,7 +10,7 @@ namespace LCPSNWebApi.Interfaces
         Task<ActionResult<IEnumerable<Post>>> GetPostById(int? id);
         IActionResult GetPostAsEnumList();
         Task<IActionResult> PutPost(int? id, Post PostData);
-        Task<ActionResult<Post>> CreatePost(Post PostData);
+        Task<ActionResult<IEnumerable<Post>>> CreatePost(Post PostData);
         Task<IActionResult> DeletePost(int? id);
         Task<IActionResult> ResetIdSeed(int rsid = 1);
         Task<IActionResult> SearchData([FromQuery] QueryParams qryp);

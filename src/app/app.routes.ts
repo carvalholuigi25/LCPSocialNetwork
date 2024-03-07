@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent, AuthComponent, LoginComponent, RegisterComponent, NewsfeedComponent, AdminComponent, DashboardComponent, NotfoundComponent, UsersComponent, SettingsComponent } from './pages';
 import { CodeConductComponent, CookiePolicyComponent, PrivacyPolicyComponent, TosComponent } from './pages/infopublic';
 import { AuthGuard, StaffGuard } from './guards';
-import { CreatePostsComponent, DeletePostsComponent, UpdatePostsComponent } from './features';
+import { CreatePostsComponent, DeletePostsComponent, ReadPostsComponent, UpdatePostsComponent } from './features';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -31,7 +31,7 @@ export const routes: Routes = [
     {
         path: 'post',
         children: [
-            { path: '', component: AuthComponent, canActivateChild: [AuthGuard] },
+            { path: '', component: ReadPostsComponent, canActivateChild: [AuthGuard] },
             { path: 'create', component: CreatePostsComponent, canActivateChild: [AuthGuard] },
             { path: 'update/:id', component: UpdatePostsComponent, canActivateChild: [AuthGuard] },
             { path: 'delete/:id', component: DeletePostsComponent, canActivateChild: [AuthGuard] },

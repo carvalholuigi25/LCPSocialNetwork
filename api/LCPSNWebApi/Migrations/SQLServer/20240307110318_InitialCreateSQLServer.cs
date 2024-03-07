@@ -24,8 +24,7 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAttachmentUploaded = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsFeatured = table.Column<bool>(type: "bit", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    FriendId = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -51,6 +50,25 @@ namespace LCPSNWebApi.Migrations.SQLServer
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DatePostCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    PostId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Friends",
                 columns: table => new
                 {
@@ -64,11 +82,18 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     Biography = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CoverUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateAccountCreated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DateAccountCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PostsPostId = table.Column<int>(type: "int", nullable: true),
+                    CommentsCommentId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Friends", x => x.FriendId);
+                    table.ForeignKey(
+                        name: "FK_Friends_Comments_CommentsCommentId",
+                        column: x => x.CommentsCommentId,
+                        principalTable: "Comments",
+                        principalColumn: "CommentId");
                 });
 
             migrationBuilder.CreateTable(
@@ -104,36 +129,6 @@ namespace LCPSNWebApi.Migrations.SQLServer
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    CommentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DatePostCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    FriendId = table.Column<int>(type: "int", nullable: true),
-                    PostId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.CommentId);
-                    table.ForeignKey(
-                        name: "FK_Comments_Friends_FriendId",
-                        column: x => x.FriendId,
-                        principalTable: "Friends",
-                        principalColumn: "FriendId");
-                    table.ForeignKey(
-                        name: "FK_Comments_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -144,18 +139,11 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DatePostCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    FriendId = table.Column<int>(type: "int", nullable: true),
-                    CommentId = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.PostId);
-                    table.ForeignKey(
-                        name: "FK_Posts_Friends_FriendId",
-                        column: x => x.FriendId,
-                        principalTable: "Friends",
-                        principalColumn: "FriendId");
                     table.ForeignKey(
                         name: "FK_Posts_Users_UserId",
                         column: x => x.UserId,
@@ -166,14 +154,7 @@ namespace LCPSNWebApi.Migrations.SQLServer
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "FriendsFriendId", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 3, 16, 19, 42, 498, DateTimeKind.Utc).AddTicks(9598), null, "Luis", null, "Carvalho", "$2a$12$qw38VToaYNsVg.nFfccUKuXhkUNElSlK.mAZvrV1ZGgA8apDIDyO.", null, new DateTime(2024, 3, 3, 16, 19, 42, 498, DateTimeKind.Utc).AddTicks(9605), "Administrator", null, "admin" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_FriendId",
-                table: "Comments",
-                column: "FriendId",
-                unique: true,
-                filter: "[FriendId] IS NOT NULL");
+                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 7, 11, 3, 17, 415, DateTimeKind.Utc).AddTicks(1460), null, "Luis", null, "Carvalho", "$2a$12$Yod1pRYF5yQl3YruRHW0BOupFh4/fwppOGxZyTkChylBgPg3WBOhG", null, new DateTime(2024, 3, 7, 11, 3, 17, 415, DateTimeKind.Utc).AddTicks(1467), "Administrator", null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_UserId",
@@ -183,11 +164,14 @@ namespace LCPSNWebApi.Migrations.SQLServer
                 filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_FriendId",
-                table: "Posts",
-                column: "FriendId",
-                unique: true,
-                filter: "[FriendId] IS NOT NULL");
+                name: "IX_Friends_CommentsCommentId",
+                table: "Friends",
+                column: "CommentsCommentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Friends_PostsPostId",
+                table: "Friends",
+                column: "PostsPostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_UserId",
@@ -200,28 +184,50 @@ namespace LCPSNWebApi.Migrations.SQLServer
                 name: "IX_Users_FriendsFriendId",
                 table: "Users",
                 column: "FriendsFriendId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comments_Users_UserId",
+                table: "Comments",
+                column: "UserId",
+                principalTable: "Users",
+                principalColumn: "UserId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Friends_Posts_PostsPostId",
+                table: "Friends",
+                column: "PostsPostId",
+                principalTable: "Posts",
+                principalColumn: "PostId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comments_Users_UserId",
+                table: "Comments");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Posts_Users_UserId",
+                table: "Posts");
+
             migrationBuilder.DropTable(
                 name: "Attachments");
 
             migrationBuilder.DropTable(
-                name: "Comments");
-
-            migrationBuilder.DropTable(
                 name: "FilesData");
-
-            migrationBuilder.DropTable(
-                name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Friends");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Posts");
         }
     }
 }
