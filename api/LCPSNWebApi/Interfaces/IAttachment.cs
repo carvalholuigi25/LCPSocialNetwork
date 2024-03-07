@@ -10,7 +10,7 @@ namespace LCPSNWebApi.Interfaces
         Task<ActionResult<IEnumerable<Attachment>>> GetAttachmentById(int? id);
         IActionResult GetAttachmentAsEnumList();
         Task<IActionResult> PutAttachment(int? id, Attachment AttachmentData);
-        Task<ActionResult<Attachment>> CreateAttachment(Attachment AttachmentData);
+        Task<ActionResult<IEnumerable<Attachment>>> CreateAttachment(Attachment AttachmentData);
         Task<IActionResult> DeleteAttachment(int? id);
         Task<IActionResult> ResetIdSeed(int rsid = 1);
         Task<IActionResult> SearchData([FromQuery] QueryParams qryp);

@@ -77,7 +77,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="Comments"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Comment>> CreateComments(Comment Comments)
+        public async Task<ActionResult<IEnumerable<Comment>>> CreateComments(Comment Comments)
         {
             return await _Comments.CreateComment(Comments);
         }

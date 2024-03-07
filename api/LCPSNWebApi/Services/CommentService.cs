@@ -77,7 +77,7 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<Comment>> CreateComment(Comment CommentData)
+        public async Task<ActionResult<IEnumerable<Comment>>> CreateComment(Comment CommentData)
         {
             if (!ModelState.IsValid)
             {
@@ -87,7 +87,8 @@ namespace LCPSNWebApi.Services
             _context.Comments.Add(CommentData);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCommentById", new { id = CommentData.CommentId }, CommentData);
+            return await GetComment();
+            // return CreatedAtAction("GetCommentById", new { id = CommentData.CommentId }, CommentData);
         }
 
         public async Task<IActionResult> DeleteComment(int? id)

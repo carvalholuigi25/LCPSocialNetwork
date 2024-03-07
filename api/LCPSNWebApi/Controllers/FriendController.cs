@@ -77,7 +77,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="Friends"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Friend>> PostFriends(Friend Friends)
+        public async Task<ActionResult<IEnumerable<Friend>>> PostFriends(Friend Friends)
         {
             return await _Friends.PostFriends(Friends);
         }

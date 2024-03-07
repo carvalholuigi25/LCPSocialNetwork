@@ -82,7 +82,7 @@ namespace LCPSNWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<User>> PostUsers(User Users)
+        public async Task<ActionResult<IEnumerable<User>>> PostUsers(User Users)
         {
             return await _users.PostUsers(Users);
         }

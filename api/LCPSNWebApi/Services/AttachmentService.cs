@@ -77,7 +77,7 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<Attachment>> CreateAttachment(Attachment AttachmentData)
+        public async Task<ActionResult<IEnumerable<Attachment>>> CreateAttachment(Attachment AttachmentData)
         {
             if (!ModelState.IsValid)
             {
@@ -87,7 +87,8 @@ namespace LCPSNWebApi.Services
             _context.Attachments.Add(AttachmentData);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAttachmentById", new { id = AttachmentData.AttachmentId }, AttachmentData);
+            return await GetAttachment();
+            // return CreatedAtAction("GetAttachmentById", new { id = AttachmentData.AttachmentId }, AttachmentData);
         }
 
         public async Task<IActionResult> DeleteAttachment(int? id)

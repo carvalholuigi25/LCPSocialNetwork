@@ -77,7 +77,7 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<FileData>> PostFilesData(FileData FileDataData)
+        public async Task<ActionResult<IEnumerable<FileData>>> PostFilesData(FileData FileDataData)
         {
             if (!ModelState.IsValid)
             {
@@ -87,7 +87,8 @@ namespace LCPSNWebApi.Services
             _context.FilesData.Add(FileDataData);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFilesDataById", new { id = FileDataData.Id }, FileDataData);
+            return await GetFilesData();
+            // return CreatedAtAction("GetFilesDataById", new { id = FileDataData.Id }, FileDataData);
         }
 
         public async Task<IActionResult> DeleteFilesData(int? id)

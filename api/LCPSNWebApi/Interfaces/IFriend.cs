@@ -10,7 +10,7 @@ namespace LCPSNWebApi.Interfaces
         Task<ActionResult<IEnumerable<Friend>>> GetFriendsById(int? id);
         IActionResult GetFriendsAsEnumList();
         Task<IActionResult> PutFriends(int? id, Friend Friends);
-        Task<ActionResult<Friend>> PostFriends(Friend FriendsData);
+        Task<ActionResult<IEnumerable<Friend>>> PostFriends(Friend FriendsData);
         Task<IActionResult> DeleteFriends(int? id);
         Task<IActionResult> ResetIdSeed(int rsid = 1);
         Task<IActionResult> SearchData([FromQuery] QueryParams qryp);

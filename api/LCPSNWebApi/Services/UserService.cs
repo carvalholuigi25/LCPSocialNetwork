@@ -83,7 +83,7 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<User>> PostUsers(User UsersData)
+        public async Task<ActionResult<IEnumerable<User>>> PostUsers(User UsersData)
         {
             if (!ModelState.IsValid)
             {
@@ -94,7 +94,8 @@ namespace LCPSNWebApi.Services
             _context.Users.Add(UsersData);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsersById", new { id = UsersData.UserId }, UsersData);
+            return await GetUsers();
+            // return CreatedAtAction("GetUsersById", new { id = UsersData.UserId }, UsersData);
         }
 
         public async Task<IActionResult> DeleteUsers(int? id)

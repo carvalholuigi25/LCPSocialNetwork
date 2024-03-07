@@ -74,7 +74,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="FilesData"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<FileData>> PostFilesData(FileData FilesData)
+        public async Task<ActionResult<IEnumerable<FileData>>> PostFilesData(FileData FilesData)
         {
             return await _filesdata.PostFilesData(FilesData);
         }

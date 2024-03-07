@@ -83,7 +83,7 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<Friend>> PostFriends(Friend FriendsData)
+        public async Task<ActionResult<IEnumerable<Friend>>> PostFriends(Friend FriendsData)
         {
             if (!ModelState.IsValid)
             {
@@ -94,7 +94,8 @@ namespace LCPSNWebApi.Services
             _context.Friends.Add(FriendsData);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFriendsById", new { id = FriendsData.FriendId }, FriendsData);
+            return await GetFriends();
+            // return CreatedAtAction("GetFriendsById", new { id = FriendsData.FriendId }, FriendsData);
         }
 
         public async Task<IActionResult> DeleteFriends(int? id)

@@ -77,7 +77,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="Attachments"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Attachment>> CreateAttachments(Attachment Attachments)
+        public async Task<ActionResult<IEnumerable<Attachment>>> CreateAttachments(Attachment Attachments)
         {
             return await _Attachments.CreateAttachment(Attachments);
         }
