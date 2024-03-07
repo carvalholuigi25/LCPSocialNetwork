@@ -25,11 +25,10 @@ export class ReadPostsComponent implements OnInit {
   }
 
   getPosts() {
-    const uid = this.authService.userValue ? this.authService.userValue["usersInfo"]["userId"] : 1;
     this.avatarId = this.authService.userValue ? this.authService.userValue["usersInfo"]["userId"] : 1;
     this.avatarName = this.authService.userValue ? this.authService.userValue["usersInfo"]["username"] : "guest";
     this.avatarUrl = this.authService.userValue ? this.authService.userValue["usersInfo"]["avatarUrl"] : "images/bkg.jpeg";
-    this.postsService.getAllById(uid).subscribe({
+    this.postsService.getAll().subscribe({
       next: (r) => {
         this.dataAll = r;
       },

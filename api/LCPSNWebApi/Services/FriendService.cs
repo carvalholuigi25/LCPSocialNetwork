@@ -113,7 +113,7 @@ namespace LCPSNWebApi.Services
 
             _context.Friends.Remove(Friends);
             await _context.SaveChangesAsync();
-            await ResetIdSeed(0);
+            await ResetIdSeed(_context.Friends.Count());
 
             return NoContent();
         }

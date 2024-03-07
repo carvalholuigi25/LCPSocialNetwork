@@ -106,7 +106,7 @@ namespace LCPSNWebApi.Services
 
             _context.Comments.Remove(Comment);
             await _context.SaveChangesAsync();
-            await ResetIdSeed(0);
+            await ResetIdSeed(_context.Comments.Count());
 
             return NoContent();
         }

@@ -106,7 +106,7 @@ namespace LCPSNWebApi.Services
 
             _context.Posts.Remove(Post);
             await _context.SaveChangesAsync();
-            await ResetIdSeed(0);
+            await ResetIdSeed(_context.Posts.Count());
 
             return NoContent();
         }
