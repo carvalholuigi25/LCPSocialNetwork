@@ -1,9 +1,11 @@
-<div class="themeswitchblk">
-    <mat-form-field appearance="outline">
-        <mat-select id="themeswitch" class="themeswitch" [value]="selectedTheme" (selectionChange)="switchTheme($event.value)" placeholder="Select theme">
-            <mat-option *ngFor="let xt of aryThemes" [value]="xt.ThemeValue" data-id="{{xt.ThemeId}}">
-                {{xt.ThemeTitle}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-</div>
+@if(aryThemes) {
+    <div class="themeswitchblk">
+        <mat-form-field appearance="outline">
+            <mat-select id="themeswitch" class="themeswitch" [value]="selectedTheme" (selectionChange)="switchTheme($event.value)" placeholder="Select theme">
+                <mat-option *ngFor="let xt of aryThemes" [value]="xt.ThemeValue" data-id="{{xt.ThemeId}}">
+                    {{xt.ThemeTitle}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>    
+}
