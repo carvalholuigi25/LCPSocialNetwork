@@ -122,6 +122,46 @@
         }
     }
 
+    .themeswitchblk {
+        @if($theme == "glass") {
+            color: white;
+        } @else if ($theme == "dark") {
+            color: white;
+        } @else if ($theme == "light") {
+            color: black;
+        } @else {
+            color: black;
+        }
+
+        .themeswitch {
+            @if($theme == "glass") {
+                color: white;
+            } @else if ($theme == "dark") {
+                color: white;
+            } @else if ($theme == "light") {
+                color: black;
+            } @else {
+                color: black;
+            }
+
+            border-color: inherit;
+            
+            .mdc-notched-outline {
+                border: 1px solid;
+            }
+    
+            .mat-mdc-select-min-line {
+                color: inherit;
+            }
+    
+            * {
+                --mat-select-enabled-trigger-text-color: inherit;
+                color: inherit;
+                border-color: inherit;
+            }
+        }
+    }
+
     input:webkit-autofill {
         border-color: rgba(17, 25, 40, 0.75);
     }

@@ -14,14 +14,34 @@ export class ThemesService {
   }
 
   getTheme() {
-    return this.ls!.getItem("mytheme") ?? "default";
+    return !!this.ls ? this.ls!.getItem("mytheme") : "default";
   }
 
   setTheme(currentTheme: string = "default") {
-    if(!this.ls!.getItem("mytheme")) {
-      const themeval = "mytheme-"+currentTheme;
+    if(!!this.ls) {
+      this.removeAllThemes();
+
+      const themeval = !currentTheme.includes("mytheme-") ? "mytheme-"+currentTheme : currentTheme;
       this.ls!.setItem("mytheme", themeval);
       this.document.body.classList.add(themeval);
+    }
+  }
+
+  removeTheme(currentTheme: string = "default") {
+    if(!!this.ls) {
+      this.ls!.removeItem("mytheme-"+currentTheme);
+    }
+  }
+
+  removeAllThemes() {
+    var arythemes = ["default", "glass", "dark", "light"];
+
+    if(arythemes.length > 0) {
+      arythemes.forEach((x) => {
+        if(this.document.body.classList.contains("mytheme-"+x)) {
+          this.document.body.classList.remove("mytheme-"+x);
+        }
+      });
     }
   }
 }

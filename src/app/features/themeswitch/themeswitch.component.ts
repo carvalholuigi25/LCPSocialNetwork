@@ -12,6 +12,7 @@ import { ThemesService } from '@app/services';
 })
 export class ThemeswitchComponent implements OnInit {
   aryThemes!: Themes[];
+  selectedTheme!: string;
 
   constructor(private themesService: ThemesService) {}
 
@@ -20,11 +21,13 @@ export class ThemeswitchComponent implements OnInit {
   }
 
   switchTheme(themeval: string) {
+    this.selectedTheme = themeval;
+    this.themesService.removeTheme(themeval);
     this.themesService.setTheme(themeval);
   }
 
   loadThemes() {
-    this.aryThemes.push({
+    this.aryThemes = [{
       ThemeId: 1,
       ThemeTitle: "Default",
       ThemeValue: "default"
@@ -43,6 +46,8 @@ export class ThemeswitchComponent implements OnInit {
       ThemeId: 4,
       ThemeTitle: "Light",
       ThemeValue: "light"
-    });
+    }];
+
+    this.selectedTheme = this.themesService.getTheme()!.replace("mytheme-", "");
   }
 }

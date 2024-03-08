@@ -30,12 +30,11 @@ export class AppComponent {
     private alertsService: AlertsService,
     private themesService: ThemesService
   ) { 
-    this.themesService.setTheme("default");
     this.DoRouterStuff();
   }
 
   ngOnInit() {
-    this.themesService.getTheme();
+    this.themesService.setTheme(this.themesService.getTheme()!);
     this.LoadMediaObserver();
   }
 
