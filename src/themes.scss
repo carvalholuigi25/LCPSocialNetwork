@@ -1,11 +1,11 @@
 @mixin setContentTheme($theme) {
     .colhome {
-        @if($name == "glass") {
+        @if($theme == "glass") {
             background-color: transparent;
-        } @else if($name == "dark") {
+        } @else if($theme == "dark") {
             background-color: black;
             color: white;
-        } @else if($name == "light") {
+        } @else if($theme == "light") {
             background-color: white;
             color: black;
         } @else {
@@ -20,16 +20,16 @@
     .mat-mdc-card, .postsForm,
     .postsCreateForm, .postsUpdateForm,
     .postsDeleteForm, .errblk {
-        @if($name == "glass") {
+        @if($theme == "glass") {
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
             background-color: rgba(17, 25, 40, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.125);
             color: white;
-        } @else if($name == "dark") {
+        } @else if($theme == "dark") {
             background-color: black;
             color: white;
-        } @else if($name == "light") {
+        } @else if($theme == "light") {
             background-color: white;
             color: black;
         } @else {
@@ -39,16 +39,16 @@
     }
 
     .mat-drawer-container {
-        @if ($name == "glass") {
+        @if ($theme == "glass") {
             background-image: url('/assets/images/bkg.jpeg');
             background-attachment: fixed;
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
-        } @else if($name == "dark") {
+        } @else if($theme == "dark") {
             background-color: black;
             color: white;
-        } @else if($name == "light") {
+        } @else if($theme == "light") {
             background-color: white;
             color: black;
         } @else {
@@ -58,17 +58,17 @@
     }
 
     .mynavbar, .myfooter {
-        @if($name == "glass") {
+        @if($theme == "glass") {
             backdrop-filter: blur(16px) saturate(180%) !important;
             -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
             background-color: rgba(17, 25, 40, 0.75) !important;
             border-radius: 0;
             border: 0 !important;
             color: white;
-        } @else if($name == "dark") {
+        } @else if($theme == "dark") {
             background-color: black;
             color: white;
-        } @else if($name == "light") {
+        } @else if($theme == "light") {
             background-color: white;
             color: black;
         } @else {
@@ -89,16 +89,16 @@
     }
 
     .mat-drawer.mat-drawer-side {
-        @if($name == "glass") {
+        @if($theme == "glass") {
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
             background-color: rgba(17, 25, 40, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.125);
             color: white;
-        } @else if($name == "dark") {
+        } @else if($theme == "dark") {
             background-color: black;
             color: white;
-        } @else if($name == "light") {
+        } @else if($theme == "light") {
             background-color: white;
             color: black;
         } @else {
