@@ -27,10 +27,10 @@
             border: 1px solid rgba(255, 255, 255, 0.125);
             color: white;
         } @else if($theme == "dark") {
-            background-color: black;
+            background-color: rgb(20, 20, 20);
             color: white;
         } @else if($theme == "light") {
-            background-color: white;
+            background-color: rgb(243, 243, 243);
             color: black;
         } @else {
             background-color: inherit;
@@ -66,10 +66,10 @@
             border: 0 !important;
             color: white;
         } @else if($theme == "dark") {
-            background-color: black;
+            background-color: rgb(20, 20, 20);
             color: white;
         } @else if($theme == "light") {
-            background-color: white;
+            background-color: rgb(243, 243, 243);
             color: black;
         } @else {
             background-color: inherit;
@@ -96,10 +96,10 @@
             border: 1px solid rgba(255, 255, 255, 0.125);
             color: white;
         } @else if($theme == "dark") {
-            background-color: black;
+            background-color: rgb(20, 20, 20);
             color: white;
         } @else if($theme == "light") {
-            background-color: white;
+            background-color: rgb(243, 243, 243);
             color: black;
         } @else {
             background-color: inherit;
