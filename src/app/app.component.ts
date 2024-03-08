@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { SharedModule } from './modules';
 import { AuthService } from './services/auth.service';
@@ -6,6 +6,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CookieConsentComponent } from './features';
 import { AlertsService } from './services';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -21,14 +22,17 @@ export class AppComponent {
   isCollapsed = true;
   isNavMenuHiddenForPages = true;
   rname?: string;
+  currentTheme: string = 'default';
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   
   constructor(
     private authService: AuthService, 
     private observer: BreakpointObserver,
     private router: Router,
-    private alertsService: AlertsService
+    private alertsService: AlertsService,
+    @Inject(DOCUMENT) private document: Document
   ) { 
+    this.document.body.classList.add("mytheme-"+this.currentTheme);
     this.DoRouterStuff();
   }
 

@@ -1,10 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
 @import "bootstrap/scss/bootstrap";
-/*
-or import only the bootstrap scss files that your application actually needs,
-as described in the Bootstrap customization guide:
-https://getbootstrap.com/docs/5.2/customize/sass/#importing
-*/
+@import "themes.scss";
+
 * {
     box-sizing: border-box;
     white-space: normal;
@@ -54,6 +50,7 @@ body {
 
 .mbkgimg {
     background-image: url('/assets/images/bkg.jpeg');
+    background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -61,11 +58,9 @@ body {
 
 .colhome {
     position: relative;
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(17, 25, 40, 0.75);
+    background-color: transparent;
     min-height: 100vh;    
-    color: white;
+    color: black;
 
     .blklogo {
         position: absolute;
@@ -140,9 +135,7 @@ body {
 .pageprivacypolicy, .pagecookiepolicy {
     display: block;
     position: relative;
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(17, 25, 40, 0.75);
+    background-color: white;
     min-height: 100vh;
     text-align: center;
     padding: 15px;
@@ -160,18 +153,18 @@ body {
         justify-content: center;
         align-content: center;
         flex-direction: column;
-        color: white;
+        color: inherit;
     }
 
     .title {
         margin: 15px;
-        color: white;
+        color: inherit;
     }
 
     .desc {
         text-align: justify;
         line-height: 2rem;
-        color: white;
+        color: inherit;
     }
 
     .footer {
@@ -180,7 +173,7 @@ body {
         bottom: 0;
         left: 0;
         right: 0;
-        color: white;
+        color: inherit;
 
         .pagelinks {
             color: inherit;
@@ -216,14 +209,42 @@ input {
     text-align: left;
 }
 
-.mdc-text-field--outlined .mat-mdc-form-field-infix, 
-.mdc-text-field--no-label .mat-mdc-form-field-infix,
-.mdc-select-field--outlined .mat-mdc-form-field-infix, 
-.mdc-select-field--no-label .mat-mdc-form-field-infix,
-.mdc-textarea-field--outlined .mat-mdc-form-field-infix, 
-.mdc-textarea-field--no-label .mat-mdc-form-field-infix {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+form {
+    .mdc-text-field--outlined .mat-mdc-form-field-infix, 
+    .mdc-text-field--no-label .mat-mdc-form-field-infix,
+    .mdc-select--outlined .mat-mdc-form-field-infix, 
+    .mdc-select--no-label .mat-mdc-form-field-infix,
+    .mdc-textarea-field--outlined .mat-mdc-form-field-infix, 
+    .mdc-textarea-field--no-label .mat-mdc-form-field-infix {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
+
+.themeblk {
+    margin: 15px auto;
+    color: white;
+
+    .sthemeblk {
+        color: white;
+        border-color: white;
+        
+        .mdc-notched-outline {
+            border: 0;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        .mat-mdc-select-min-line {
+            color: white;
+        }
+
+        * {
+            --mat-select-enabled-trigger-text-color: white;
+            color: white;
+            border-color: white;
+        }
+    }
 }
 
 @media all and (width >= 769px) and (width <= 992px) {

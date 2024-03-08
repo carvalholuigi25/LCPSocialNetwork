@@ -1,0 +1,86 @@
+@mixin setTheme($name) {
+    .mytheme.mytheme-#{$name}{
+      @if($name == "glass") {
+        .colhome {
+            background-color: transparent;
+        }
+
+        .colhomeinfo, .pagetos, .pagecoc, 
+        .pageprivacypolicy, .pagecookiepolicy, .settings,
+        .mat-mdc-card, .postsForm, .postsCreateForm, 
+        .postsUpdateForm, .postsDeleteForm, .errblk {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(17, 25, 40, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            color: white;
+        }
+
+        .postsForm {
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .mat-drawer-container {
+            background-image: url('/assets/images/bkg.jpeg');
+            background-attachment: fixed;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .mynavbar, .myfooter {
+            backdrop-filter: blur(16px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+            background-color: rgba(17, 25, 40, 0.75) !important;
+            border-radius: 0;
+            border: 0 !important;
+            color: white;
+        }
+
+        .mat-stepper-vertical, .mat-stepper-horizontal {
+            --mat-stepper-container-color: white; 
+            background-color: transparent;
+            color: white;
+
+            * {
+                color: white;
+                border-color: white;
+            }
+        }
+        
+        .mat-drawer.mat-drawer-side {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(17, 25, 40, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            color: white;
+
+            * {
+                color: inherit;
+            }
+        }
+
+        form {
+            * {
+                color: white !important;
+                border-color: white !important;
+            }
+
+            .form-control:focus {
+                background-color: transparent;
+            }
+        }
+
+        
+        input:webkit-autofill {
+            border-color: rgba(17, 25, 40, 0.75);
+        }
+        input:autofill {
+            border-color: rgba(17, 25, 40, 0.75);
+        }
+      }
+    }
+}
+  
+@include setTheme("glass");

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FooterComponent } from '@app/components';
 import { Posts } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { AlertsService, AuthService, PostsService } from '@app/services';
@@ -8,12 +9,13 @@ import { AlertsService, AuthService, PostsService } from '@app/services';
 @Component({
   selector: 'app-updateposts',
   standalone: true,
-  imports: [SharedModule],
+  imports: [FooterComponent, SharedModule],
   templateUrl: './update.component.html',
   styleUrl: './update.component.scss'
 })
 export class UpdatePostsComponent implements OnInit {
   id: number = -1;
+  isAnyPostsData: boolean = false;
   postsUpdateFrm!: FormGroup;
   submitted = false;
 
@@ -40,6 +42,7 @@ export class UpdatePostsComponent implements OnInit {
     if(this.id != -1) {
       this.postsService.getAllById(this.id!).subscribe({
         next: (dataP: any) => {
+          this.isAnyPostsData = dataP.length > 0 ? true : false;
           this.postsUpdateFrm.patchValue({
             Title: dataP[0].title,
             Description: dataP[0].description,
@@ -48,9 +51,12 @@ export class UpdatePostsComponent implements OnInit {
           });
         },
         error: error => {
+          this.isAnyPostsData = false;
           console.log(error);
         }
       });
+    } else {
+      this.isAnyPostsData = false;
     }
   }
 

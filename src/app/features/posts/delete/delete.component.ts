@@ -5,11 +5,12 @@ import { AlertsService, PostsService } from '@app/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Posts } from '@app/models';
 import { first } from 'rxjs';
+import { FooterComponent } from '@app/components';
 
 @Component({
   selector: 'app-deleteposts',
   standalone: true,
-  imports: [SharedModule],
+  imports: [FooterComponent, SharedModule],
   templateUrl: './delete.component.html',
   styleUrl: './delete.component.scss'
 })
