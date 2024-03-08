@@ -1,0 +1,7 @@
+<div class="themeswitchblk">
+    <mat-select id="themeswitch" class="themeswitch" (selectionChange)="switchTheme($event.value)">
+        <mat-option *ngFor="let xt of aryThemes" value="{{xt.ThemeValue}}" data-id="{{xt.ThemeId}}">
+            {{xt.ThemeTitle}}
+        </mat-option>
+    </mat-select>
+</div>

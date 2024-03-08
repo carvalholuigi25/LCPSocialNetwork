@@ -5,8 +5,7 @@ import { AuthService } from './services/auth.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CookieConsentComponent } from './features';
-import { AlertsService } from './services';
-import { DOCUMENT } from '@angular/common';
+import { AlertsService, ThemesService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +21,6 @@ export class AppComponent {
   isCollapsed = true;
   isNavMenuHiddenForPages = true;
   rname?: string;
-  currentTheme: string = 'default';
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   
   constructor(
@@ -30,13 +28,14 @@ export class AppComponent {
     private observer: BreakpointObserver,
     private router: Router,
     private alertsService: AlertsService,
-    @Inject(DOCUMENT) private document: Document
+    private themesService: ThemesService
   ) { 
-    this.document.body.classList.add("mytheme-"+this.currentTheme);
+    this.themesService.setTheme("default");
     this.DoRouterStuff();
   }
 
   ngOnInit() {
+    this.themesService.getTheme();
     this.LoadMediaObserver();
   }
 

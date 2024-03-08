@@ -1,86 +1,143 @@
-@mixin setTheme($name) {
-    .mytheme.mytheme-#{$name}{
-      @if($name == "glass") {
-        .colhome {
+@mixin setContentTheme($theme) {
+    .colhome {
+        @if($name == "glass") {
             background-color: transparent;
+        } @else if($name == "dark") {
+            background-color: black;
+            color: white;
+        } @else if($name == "light") {
+            background-color: white;
+            color: black;
+        } @else {
+            background-color: inherit;
+            color: inherit;
         }
+    }
 
-        .colhomeinfo, .pagetos, .pagecoc, 
-        .pageprivacypolicy, .pagecookiepolicy, .settings,
-        .mat-mdc-card, .postsForm, .postsCreateForm, 
-        .postsUpdateForm, .postsDeleteForm, .errblk {
+    .colhomeinfo, .pagetos,
+    .pagecoc, .pageprivacypolicy,
+    .pagecookiepolicy, .settings,
+    .mat-mdc-card, .postsForm,
+    .postsCreateForm, .postsUpdateForm,
+    .postsDeleteForm, .errblk {
+        @if($name == "glass") {
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
             background-color: rgba(17, 25, 40, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.125);
             color: white;
+        } @else if($name == "dark") {
+            background-color: black;
+            color: white;
+        } @else if($name == "light") {
+            background-color: white;
+            color: black;
+        } @else {
+            background-color: inherit;
+            color: inherit;
         }
+    }
 
-        .postsForm {
-            padding: 15px;
-            margin-top: 15px;
-        }
-
-        .mat-drawer-container {
+    .mat-drawer-container {
+        @if ($name == "glass") {
             background-image: url('/assets/images/bkg.jpeg');
             background-attachment: fixed;
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
+        } @else if($name == "dark") {
+            background-color: black;
+            color: white;
+        } @else if($name == "light") {
+            background-color: white;
+            color: black;
+        } @else {
+            background-color: inherit;
+            color: inherit;
         }
+    }
 
-        .mynavbar, .myfooter {
+    .mynavbar, .myfooter {
+        @if($name == "glass") {
             backdrop-filter: blur(16px) saturate(180%) !important;
             -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
             background-color: rgba(17, 25, 40, 0.75) !important;
             border-radius: 0;
             border: 0 !important;
             color: white;
-        }
-
-        .mat-stepper-vertical, .mat-stepper-horizontal {
-            --mat-stepper-container-color: white; 
-            background-color: transparent;
+        } @else if($name == "dark") {
+            background-color: black;
             color: white;
-
-            * {
-                color: white;
-                border-color: white;
-            }
+        } @else if($name == "light") {
+            background-color: white;
+            color: black;
+        } @else {
+            background-color: inherit;
+            color: inherit;
         }
-        
-        .mat-drawer.mat-drawer-side {
+    }
+
+    .mat-stepper-vertical, .mat-stepper-horizontal {
+        --mat-stepper-container-color: white;
+        background-color: transparent;
+        color: white;
+
+        * {
+            color: white;
+            border-color: white;
+        }
+    }
+
+    .mat-drawer.mat-drawer-side {
+        @if($name == "glass") {
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
             background-color: rgba(17, 25, 40, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.125);
             color: white;
-
-            * {
-                color: inherit;
-            }
+        } @else if($name == "dark") {
+            background-color: black;
+            color: white;
+        } @else if($name == "light") {
+            background-color: white;
+            color: black;
+        } @else {
+            background-color: inherit;
+            color: inherit;
         }
 
-        form {
-            * {
-                color: white !important;
-                border-color: white !important;
-            }
+        * {
+            color: inherit;
+        }
+    }
 
-            .form-control:focus {
-                background-color: transparent;
-            }
+    form {
+        * {
+            color: white !important;
+            border-color: white !important;
         }
 
-        
-        input:webkit-autofill {
-            border-color: rgba(17, 25, 40, 0.75);
+        .form-control:focus {
+            background-color: transparent;
         }
-        input:autofill {
-            border-color: rgba(17, 25, 40, 0.75);
-        }
-      }
+    }
+
+    input:webkit-autofill {
+        border-color: rgba(17, 25, 40, 0.75);
+    }
+
+    input:autofill {
+        border-color: rgba(17, 25, 40, 0.75);
     }
 }
-  
-@include setTheme("glass");
+
+@mixin setTheme($themes) {
+    @each $theme in $themes {
+        .mytheme.mytheme-#{$theme} {
+            @include setContentTheme($theme);
+        }
+    }
+}
+
+$arythemes: "glass", "dark", "light";
+@include setTheme($arythemes);

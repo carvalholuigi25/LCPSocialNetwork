@@ -5,3 +5,4 @@ export * from '../services/comments.service';
 export * from '../services/friends.service';
 export * from '../services/posts.service';
 export * from '../services/users.service';
+export * from '../services/themes.service';
