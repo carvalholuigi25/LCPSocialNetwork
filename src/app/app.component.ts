@@ -69,7 +69,7 @@ export class AppComponent {
 
   DoRouterStuff() {
     this.router.events.subscribe((rd:any) => { 
-      this.isNavMenuHiddenForPages = ["/auth", "/auth/login", "/auth/register", "/", "/home", "/tos", "/privacypolicy", "/codeconduct", "/cookiepolicy"].includes(rd.url) ? true : false;
+      this.isNavMenuHiddenForPages = ["/auth", "/auth/login", "/auth/login?returnUrl=%2Fnewsfeed", "/auth/register", "/", "/home", "/tos", "/privacypolicy", "/codeconduct", "/cookiepolicy"].includes(rd.url) ? true : false;
     });
     this.authService.user.subscribe(x => this.user = x);
   }

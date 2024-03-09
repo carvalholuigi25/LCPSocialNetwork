@@ -21,7 +21,7 @@ export class ThemesService {
     if(!!this.ls) {
       this.removeAllThemes();
 
-      const themeval = !currentTheme.includes("mytheme-") ? "mytheme-"+currentTheme : currentTheme;
+      const themeval = currentTheme != null && !currentTheme.includes("mytheme-") ? "mytheme-"+currentTheme : currentTheme;
       this.ls!.setItem("mytheme", themeval);
       this.document.body.classList.add(themeval);
     }

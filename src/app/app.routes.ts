@@ -26,7 +26,8 @@ export const routes: Routes = [
     },
     { 
         path: 'newsfeed', 
-        component: NewsfeedComponent
+        component: NewsfeedComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'post',

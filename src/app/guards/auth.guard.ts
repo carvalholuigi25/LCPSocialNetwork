@@ -13,7 +13,7 @@ export class AuthGuard {
         const user = this.authService.userValue;
         const aryroles = ["User", "user"];
 
-        if (user && aryroles.includes(user.Role?.toString()!)) {
+        if (user || (user && aryroles.includes(user.Role?.toString()!))) {
             // logged in so return true
             return true;
         }
