@@ -48,7 +48,7 @@ export const routes: Routes = [
         ],
         canActivate: [StaffGuard] 
     },
-    { path: 'settings', component: SettingsComponent },
+    { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'tos', component: TosComponent },
     { path: 'privacypolicy', component: PrivacyPolicyComponent },
     { path: 'codeconduct', component: CodeConductComponent },
