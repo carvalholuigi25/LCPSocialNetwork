@@ -3,10 +3,10 @@
         @if($theme == "glass") {
             background-color: transparent;
         } @else if($theme == "dark") {
-            background-color: black;
+            background-color: rgba(20, 20, 20, .5);
             color: white;
         } @else if($theme == "light") {
-            background-color: white;
+            background-color: rgba(243, 243, 243, .5);
             color: black;
         } @else {
             background-color: inherit;
@@ -14,9 +14,44 @@
         }
     }
 
-    .colhomeinfo, .pagetos,
+    .pagetos,
     .pagecoc, .pageprivacypolicy,
-    .pagecookiepolicy, .settings,
+    .pagecookiepolicy {
+        @if($theme == "glass") {
+            background-color: rgba(17, 25, 40, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            color: white;
+        } @else if($theme == "dark") {
+            background-color: rgb(20, 20, 20);
+            color: white;
+        } @else if($theme == "light") {
+            background-color: rgba(243, 243, 243, .7);
+            color: black;
+        } @else {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .blklogo {
+            @if($theme == "glass") {
+                background-color: rgba(17, 25, 40, 0.75);
+                border: 1px solid rgba(255, 255, 255, 0.125);
+                color: white;
+            } @else if($theme == "dark") {
+                background-color: black;
+                color: white;
+            } @else if($theme == "light") {
+                background-color: rgba(243, 243, 243, .7);
+                color: black;
+            } @else {
+                background-color: inherit;
+                color: inherit;
+            }
+            color: inherit;
+        }
+    }
+
+    .colhomeinfo, .settings,
     .mat-mdc-card, .postsForm,
     .postsCreateForm, .postsUpdateForm,
     .postsDeleteForm, .errblk {
@@ -30,7 +65,7 @@
             background-color: rgb(20, 20, 20);
             color: white;
         } @else if($theme == "light") {
-            background-color: rgb(243, 243, 243);
+            background-color: rgba(243, 243, 243, .7);
             color: black;
         } @else {
             background-color: inherit;
@@ -57,7 +92,7 @@
         }
     }
 
-    .mynavbar, .myfooter {
+    .mynavbar, .myfooter, .footer {
         @if($theme == "glass") {
             backdrop-filter: blur(16px) saturate(180%) !important;
             -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
@@ -66,13 +101,13 @@
             border: 0 !important;
             color: white;
         } @else if($theme == "dark") {
-            background-color: rgb(20, 20, 20);
+            background-color: rgb(20, 20, 20) !important;
             color: white;
         } @else if($theme == "light") {
-            background-color: rgb(243, 243, 243);
+            background-color: rgb(243, 243, 243) !important;
             color: black;
         } @else {
-            background-color: inherit;
+            background-color: inherit !important;
             color: inherit;
         }
     }
@@ -130,7 +165,24 @@
         } @else if ($theme == "light") {
             color: black;
         } @else {
-            color: black;
+            color: inherit;
+        }
+
+        .mat-mdc-form-field {
+            @if($theme == "glass") {
+                backdrop-filter: blur(16px) saturate(180%);
+                -webkit-backdrop-filter: blur(16px) saturate(180%);
+                background-color: rgba(17, 25, 40, 0.75);
+                border: 1px solid rgba(255, 255, 255, 0.125);
+            } @else if ($theme == "dark") {
+                background-color: black;
+            } @else if ($theme == "light") {
+                background-color: white;
+            } @else {
+                background-color: #3f51b5;
+            }
+
+            border-color: inherit;
         }
 
         .themeswitch {
@@ -141,14 +193,10 @@
             } @else if ($theme == "light") {
                 color: black;
             } @else {
-                color: black;
+                color: white;
             }
 
             border-color: inherit;
-            
-            .mdc-notched-outline {
-                border: 1px solid;
-            }
     
             .mat-mdc-select-min-line {
                 color: inherit;

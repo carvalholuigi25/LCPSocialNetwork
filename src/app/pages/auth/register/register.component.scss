@@ -5,3 +5,7 @@
     align-items: stretch;
     width: 50%;
 }
+
+::ng-deep .register .myfooter {
+    position: absolute !important;
+}

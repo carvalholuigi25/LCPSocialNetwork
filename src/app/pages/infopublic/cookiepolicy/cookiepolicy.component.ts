@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { FooterPagesComponent } from '@app/components';
+import { FooterComponent } from '@app/components';
 
 @Component({
   selector: 'app-cookiepolicy',
   standalone: true,
-  imports: [MatButtonModule, FooterPagesComponent],
+  imports: [MatButtonModule, FooterComponent],
   templateUrl: './cookiepolicy.component.html',
   styleUrl: './cookiepolicy.component.scss'
 })

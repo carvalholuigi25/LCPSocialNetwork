@@ -78,14 +78,16 @@ body {
         }
     }
 
-    .footer {
+    .myfooter, .footer {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         padding: 15px;
         text-align: center;
+        background: #3f51b5;
         color: white;
+        z-index: 0;
 
         .pagelinks {
             color: inherit;
@@ -146,6 +148,7 @@ body {
     max-height: 100%;
 
     .blklogo {
+        background-color: #3f51b5;
         padding: 0;
         height: 15vh;
         text-align: center;
@@ -153,7 +156,7 @@ body {
         justify-content: center;
         align-content: center;
         flex-direction: column;
-        color: inherit;
+        color: white;
     }
 
     .title {
@@ -167,13 +170,14 @@ body {
         color: inherit;
     }
 
-    .footer {
+    .myfooter, .footer {
         position: relative;
         top: auto;
         bottom: 0;
         left: 0;
         right: 0;
         color: inherit;
+        z-index: 0;
 
         .pagelinks {
             color: inherit;
@@ -227,8 +231,30 @@ form {
 }
 
 .themeswitchblk {
-    margin: 15px auto;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    margin: 0;
     color: white;
+    z-index: 1;
+    border-radius: 24px;
+
+    .mat-mdc-form-field {
+        background-color: #3f51b5;
+        color: white;
+        border-color: inherit;
+        border-radius: inherit;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before {
+        display: none;
+    }
+
+    .mdc-notched-outline {
+        display: none;
+    }
 
     .themeswitch {
         color: white;
@@ -237,7 +263,7 @@ form {
         .mdc-notched-outline {
             border: 0;
             border: 1px solid white;
-            border-radius: 5px;
+            border-radius: inherit;
         }
 
         .mat-mdc-select-min-line {

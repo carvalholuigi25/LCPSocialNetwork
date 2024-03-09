@@ -6,11 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
 import { first } from 'rxjs';
 import { AlertsService } from '@app/services';
+import { FooterComponent } from '@app/components';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, FooterComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
