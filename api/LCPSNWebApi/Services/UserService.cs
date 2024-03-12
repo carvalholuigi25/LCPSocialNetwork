@@ -90,6 +90,16 @@ namespace LCPSNWebApi.Services
                 return BadRequest(ModelState);
             }
 
+            if(!string.IsNullOrEmpty(UsersData.Username) && _context.Users.Any(e => e.Username == UsersData.Username)) 
+            {
+                return BadRequest("This username is already taken!");
+            }
+
+            if(!string.IsNullOrEmpty(UsersData.Email) &&_context.Users.Any(e => e.Email == UsersData.Email)) 
+            {
+                return BadRequest("This email is already taken!");
+            }
+
             UsersData.Password = BC.HashPassword(UsersData.Password, BC.GenerateSalt(12), false, BCrypt.Net.HashType.SHA256);
             _context.Users.Add(UsersData);
             await _context.SaveChangesAsync();

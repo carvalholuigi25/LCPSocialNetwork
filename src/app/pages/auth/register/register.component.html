@@ -9,13 +9,23 @@
         <div class="col-12 col-md-6 colhomeinfo">
             <h2 class="title">Register</h2>
             <mat-stepper [linear]="true" #stepper>
-                <mat-step [stepControl]="regForm">
-                    <form [formGroup]="regForm" class="regform mx-auto">
-                        <ng-template matStepLabel>Username</ng-template>
+                <mat-step [stepControl]="regForm" label="Auth Details">
+                    <form [formGroup]="regForm" class="regform mx-auto" autocomplete="off">
                         <mat-form-field class="mt-3">
                             <mat-label for="username">Username</mat-label>
                             <input id="username" type="text" formControlName="Username"
-                                class="form-control text-start mt-3" title="Write here your username" required
+                                class="form-control text-start mt-3" title="Username" placeholder="Write here your username" required
+                                matInput />
+                        </mat-form-field>
+                        <mat-form-field class="mt-3">
+                            <mat-label for="email">Email</mat-label>
+                            <input id="email" type="email" formControlName="Email" class="form-control text-start mt-3"
+                                title="Email" placeholder="Write here your email" required matInput />
+                        </mat-form-field>
+                        <mat-form-field class="mt-3">
+                            <mat-label for="password">Password</mat-label>
+                            <input id="password" type="password" formControlName="Password"
+                                class="form-control text-start mt-3" title="Password" placeholder="Write here your password" required
                                 matInput />
                         </mat-form-field>
                         <div class="form-group mt-3">
@@ -24,18 +34,37 @@
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="regForm2" label="Email & Password">
-                    <form [formGroup]="regForm2" class="regform mx-auto" (ngSubmit)="onSubmit()">
+                <mat-step [stepControl]="regForm2" label="User info details">
+                    <form [formGroup]="regForm2" class="regform mx-auto" (ngSubmit)="onSubmit()" autocomplete="off">
                         <mat-form-field class="mt-3">
-                            <mat-label for="email">Email</mat-label>
-                            <input id="email" type="email" formControlName="Email" class="form-control text-start mt-3"
-                                title="Write here your email" required matInput />
+                            <mat-label for="firstname">First Name</mat-label>
+                            <input id="firstname" type="text" formControlName="FirstName"
+                                class="form-control text-start mt-3" title="FirstName" placeholder="Write here your first name" required
+                                matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
-                            <mat-label for="password">Password</mat-label>
-                            <input id="password" type="password" formControlName="Password"
-                                class="form-control text-start mt-3" title="Write here your password" required
+                            <mat-label for="lastname">Last Name</mat-label>
+                            <input id="lastname" type="text" formControlName="LastName"
+                                class="form-control text-start mt-3" title="LastName" placeholder="Write here your last name" required
                                 matInput />
+                        </mat-form-field>
+                        <div class="form-group mt-3">
+                            <button type="button" title="back" mat-flat-button color="primary"
+                                matStepperPrevious>Previous</button>
+                            <button type="button" title="next" class="ms-3" mat-flat-button color="accent"
+                                matStepperNext [disabled]="!regForm2.valid">Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="regForm3" label="User cover & avatar">
+                    <form [formGroup]="regForm3" class="regform mx-auto" (ngSubmit)="onSubmit()" autocomplete="off">
+                        <mat-form-field class="mt-3">
+                            <mat-label for="avatarurl">Avatar URL</mat-label>
+                            <input id="avatarurl" type="text" formControlName="AvatarUrl" class="form-control text-start mt-3" title="AvatarUrl" placeholder="Write here your avatar url" matInput />
+                        </mat-form-field>
+                        <mat-form-field class="mt-3">
+                            <mat-label for="coverurl">Cover URL</mat-label>
+                            <input id="coverurl" type="text" formControlName="CoverUrl" class="form-control text-start mt-3" title="CoverUrl" placeholder="Write here your cover url" matInput />
                         </mat-form-field>
                         <div class="form-group mt-3">
                             <button type="button" title="back" mat-flat-button color="primary"

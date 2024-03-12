@@ -214,6 +214,9 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("PostId");
 
                     b.ToTable("Posts", t =>
@@ -291,11 +294,11 @@ namespace LCPSNWebApi.Migrations.SQLServer
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 7, 13, 51, 45, 561, DateTimeKind.Utc).AddTicks(5860),
+                            DateAccountCreated = new DateTime(2024, 3, 12, 15, 47, 11, 745, DateTimeKind.Utc).AddTicks(9882),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$xRk.Myeo4NyhopaUuBw5neQ/lTMr77oc8HKDhy4/DdBG2eJYnMchi",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 7, 13, 51, 45, 561, DateTimeKind.Utc).AddTicks(5868),
+                            Password = "$2a$12$QPqjHwZKNMB0zeaJ.N57rOEGG498dtsUzjmruMJUZiFeXW9BSWdCq",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 12, 15, 47, 11, 745, DateTimeKind.Utc).AddTicks(9889),
                             Role = "Administrator",
                             Username = "admin"
                         });

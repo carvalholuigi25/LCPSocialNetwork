@@ -10,5 +10,6 @@ public class Post
     [DataType(DataType.Text)] public string? ImgUrl { get; set; } = "assets/images/bkg.jpeg";
     [DataType(DataType.Text)] public string? Status { get; set; } = "public";
     [DataType(DataType.DateTime)] public DateTime? DatePostCreated { get; set; } = DateTime.UtcNow;
+    public int? UserId { get; set; } = 1;
     public bool? IsFeatured { get; set; } = false;
 }

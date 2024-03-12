@@ -98,6 +98,7 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DatePostCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     IsFeatured = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
@@ -134,7 +135,7 @@ namespace LCPSNWebApi.Migrations.SQLServer
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 7, 13, 51, 45, 561, DateTimeKind.Utc).AddTicks(5860), null, "Luis", "Carvalho", "$2a$12$xRk.Myeo4NyhopaUuBw5neQ/lTMr77oc8HKDhy4/DdBG2eJYnMchi", null, new DateTime(2024, 3, 7, 13, 51, 45, 561, DateTimeKind.Utc).AddTicks(5868), "Administrator", null, "admin" });
+                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 12, 15, 47, 11, 745, DateTimeKind.Utc).AddTicks(9882), null, "Luis", "Carvalho", "$2a$12$QPqjHwZKNMB0zeaJ.N57rOEGG498dtsUzjmruMJUZiFeXW9BSWdCq", null, new DateTime(2024, 3, 12, 15, 47, 11, 745, DateTimeKind.Utc).AddTicks(9889), "Administrator", null, "admin" });
         }
 
         /// <inheritdoc />

@@ -40,6 +40,17 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint retrives specific post by user id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetPostsByUserId(int? userId)
+        {
+            return await _posts.GetPostByUserId(userId);
+        }
+
+        /// <summary>
         /// This endpoint retrives list of enums of posts for search feature
         /// </summary>
         /// <returns></returns>

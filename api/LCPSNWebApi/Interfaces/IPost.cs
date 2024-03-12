@@ -8,6 +8,7 @@ namespace LCPSNWebApi.Interfaces
     {
         Task<ActionResult<IEnumerable<Post>>> GetPost();
         Task<ActionResult<IEnumerable<Post>>> GetPostById(int? id);
+        Task<ActionResult<IEnumerable<Post>>> GetPostByUserId(int? userId);
         IActionResult GetPostAsEnumList();
         Task<IActionResult> PutPost(int? id, Post PostData);
         Task<ActionResult<IEnumerable<Post>>> CreatePost(Post PostData);

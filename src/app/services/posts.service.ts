@@ -27,14 +27,19 @@ export class PostsService {
         return this.http.get<Posts[]>(`${environment.apiUrl}/post`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    getAllWithUsers() {
-        let posts = this.http.get<Posts[]>(`${environment.apiUrl}/post`, { headers: this.setHeadersObj() });
+    getAllWithUsers(userId = -1) {
+        let pid = userId !== -1 ? `/user/${userId}`: '';
+        let posts = this.http.get<Posts[]>(`${environment.apiUrl}/post${pid}`, { headers: this.setHeadersObj() });
         let users = this.http.get<Users[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });
         return forkJoin([posts, users]);
     }
 
     getAllById(id: number) {
         return this.http.get<Posts>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    getAllByUsersId(userId: number) {
+        return this.http.get<Posts>(`${environment.apiUrl}/post/user/${userId}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     createPost(posts: Posts) {

@@ -39,6 +39,18 @@ namespace LCPSNWebApi.Services
             return Post;
         }
 
+        public async Task<ActionResult<IEnumerable<Post>>> GetPostByUserId(int? userId)
+        {
+            var Post = await _context.Posts.Where(x => x.UserId == userId).ToListAsync();
+
+            if (Post == null)
+            {
+                return NotFound();
+            }
+
+            return Post;
+        }
+
         public IActionResult GetPostAsEnumList()
         {
             return Ok(typeof(Post).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
