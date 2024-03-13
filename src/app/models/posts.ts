@@ -5,5 +5,11 @@ export class Posts {
     ImgUrl?: string;
     Status?: string;
     DatePostCreated?: Date | string;
+    TypeTxtPost?: string | TypeTxtPostEnum;
     UserId?: number;
+}
+
+export enum TypeTxtPostEnum {
+    html,
+    markdown
 }

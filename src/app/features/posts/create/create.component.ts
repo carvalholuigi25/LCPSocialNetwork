@@ -23,8 +23,9 @@ export class CreatePostsComponent implements OnInit {
       this.postsFrm = new FormGroup({
         Title: new FormControl('', Validators.required),
         Description: new FormControl('', Validators.required),
-        ImgUrl: new FormControl('images/bkg.jpeg'),
-        Status: new FormControl('public')
+        ImgUrl: new FormControl('assets/images/bkg.jpeg'),
+        Status: new FormControl('public'),
+        TypeTxtPost: new FormControl('html')
       });
   }
 

@@ -11,9 +11,8 @@
                             <th>Description</th>
                             <th>Img Url</th>
                             <th>Status</th>
+                            <th>Type Text Post</th>
                             <th>User Id</th>
-                            <th>Friend Id</th>
-                            <th>Comment Id</th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let dp of dataPosts">
@@ -23,9 +22,8 @@
                             <td>{{dp.description}}</td>
                             <td>{{dp.imgUrl}}</td>
                             <td>{{dp.status}}</td>
+                            <td>{{dp.typeTxtPost}}</td>
                             <td>{{dp.userId}}</td>
-                            <td>{{dp.friendId}}</td>
-                            <td>{{dp.commentId}}</td>
                         </tr>
                     </tbody>
                 </table>

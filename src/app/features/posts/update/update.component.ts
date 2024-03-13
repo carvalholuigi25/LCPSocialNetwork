@@ -35,8 +35,9 @@ export class UpdatePostsComponent implements OnInit {
     this.postsUpdateFrm = new FormGroup({
       Title: new FormControl('', Validators.required),
       Description: new FormControl('', Validators.required),
-      ImgUrl: new FormControl('images/bkg.jpeg'),
-      Status: new FormControl('public')
+      ImgUrl: new FormControl('assets/images/bkg.jpeg'),
+      Status: new FormControl('public'),
+      TypeTxtPost: new FormControl('html')
     });
 
     if(this.id != -1) {
@@ -47,7 +48,8 @@ export class UpdatePostsComponent implements OnInit {
             Title: dataP[0].title,
             Description: dataP[0].description,
             ImgUrl: dataP[0].imgUrl,
-            Status: dataP[0].status
+            Status: dataP[0].status,
+            TypeTxtPost: dataP[0].typeTxtPost
           });
         },
         error: error => {
@@ -85,10 +87,9 @@ export class UpdatePostsComponent implements OnInit {
         Description: this.f["Description"].value.toString(),
         ImgUrl: this.f["ImgUrl"].value.toString(),
         Status: this.f["Status"].value.toString(),
+        TypeTxtPost: this.f["TypeTxtPost"].value.toString(),
         UserId: this.authService.userValue["usersInfo"]["userId"] ?? 1
       };
-
-      console.log(postsObj)
 
       this.postsService.updatePost(this.id, postsObj).subscribe({
         next: () => {

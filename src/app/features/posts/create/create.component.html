@@ -21,6 +21,13 @@
                 <mat-option value="private">Private</mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field class="mt-3">
+            <mat-label for="typeTxtPost">Type Text Post</mat-label>
+            <mat-select id="typeTxtPost" formControlName="TypeTxtPost" class="text-start mt-3" title="Select the type text of post">
+                <mat-option value="html">HTML</mat-option>
+                <mat-option value="markdown">Markdown</mat-option>
+            </mat-select>
+        </mat-form-field>
         <div class="form-group mt-3">
             <button type="reset" mat-flat-button color="primary">Clear</button>
             <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!postsFrm.valid">Submit</button>

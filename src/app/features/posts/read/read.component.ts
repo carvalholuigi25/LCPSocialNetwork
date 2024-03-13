@@ -14,6 +14,8 @@ import { AlertsService, AuthService, PostsService } from '@app/services';
 export class ReadPostsComponent implements OnInit {
   dataPosts?: Posts[] | any;
   dataUsers?: Users[] | any;
+  avatarId: number = 1;
+  avatarRole: string = "User";
   ctLikes: number = 0;
   ctComments: number = 0;
   ctShares: number = 0;
@@ -25,6 +27,8 @@ export class ReadPostsComponent implements OnInit {
   }
 
   getPosts() {
+    this.avatarId = this.authService.userValue["usersInfo"]["userId"];
+    this.avatarRole = this.authService.userValue["usersInfo"]["role"];
     this.postsService.getAllWithUsers(-1).subscribe({
       next: (r) => {
         this.dataPosts = r[0];

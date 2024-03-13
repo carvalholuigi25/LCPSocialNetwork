@@ -57,6 +57,20 @@ namespace LCPSNWebApi.Services
                 return BadRequest();
             }
 
+            if(!string.IsNullOrEmpty(Users.Username)) 
+            {
+                if(_context.Users.Any(e => e.Username == Users.Username)) {
+                    return BadRequest("This username is already taken!");
+                }
+
+                CheckIfRoleIsForbiddenInUserName();
+            }
+
+            if(!string.IsNullOrEmpty(Users.Email) &&_context.Users.Any(e => e.Email == Users.Email)) 
+            {
+                return BadRequest("This email is already taken!");
+            }
+
             if (!string.IsNullOrEmpty(Users.Password))
             {
                 Users.Password = BC.HashPassword(Users.Password, BC.GenerateSalt(12), false, BCrypt.Net.HashType.SHA256);
@@ -90,9 +104,13 @@ namespace LCPSNWebApi.Services
                 return BadRequest(ModelState);
             }
 
-            if(!string.IsNullOrEmpty(UsersData.Username) && _context.Users.Any(e => e.Username == UsersData.Username)) 
+            if(!string.IsNullOrEmpty(UsersData.Username)) 
             {
-                return BadRequest("This username is already taken!");
+                if(_context.Users.Any(e => e.Username == UsersData.Username)) {
+                    return BadRequest("This username is already taken!");
+                }
+
+                CheckIfRoleIsForbiddenInUserName();
             }
 
             if(!string.IsNullOrEmpty(UsersData.Email) &&_context.Users.Any(e => e.Email == UsersData.Email)) 
@@ -278,6 +296,21 @@ namespace LCPSNWebApi.Services
             }
 
             return queryable.Where(newexp);
+        }
+
+        private BadRequestObjectResult CheckIfRoleIsForbiddenInUserName() {
+            string[] forbiddenRoleNamesList = ["Administrator", "Moderator"];
+            string msg = "";
+
+            if(forbiddenRoleNamesList.Length > 0) {
+                for(var c = 0; c < forbiddenRoleNamesList.Length; c++) {
+                    if(_context.Users.Any(e => e.Username.Contains(forbiddenRoleNamesList[c]).ToString().Length > 1)) {
+                        msg = $"This username shouldnt contain of this name: {forbiddenRoleNamesList[c]} because its forbidden!";
+                    }
+                }
+            }
+
+            return BadRequest(msg);
         }
     }
 }

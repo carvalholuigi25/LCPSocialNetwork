@@ -191,6 +191,9 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("TypeTxtPost")
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
@@ -265,11 +268,11 @@ namespace LCPSNWebApi.Migrations.SQLite
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 12, 15, 45, 51, 357, DateTimeKind.Utc).AddTicks(9934),
+                            DateAccountCreated = new DateTime(2024, 3, 13, 15, 2, 2, 944, DateTimeKind.Utc).AddTicks(9119),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$Tbi.ghkVDRiM7b361i36meIZG12STIf6zBh.3ZKMyrKQZC8Rp4Dv.",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 12, 15, 45, 51, 357, DateTimeKind.Utc).AddTicks(9941),
+                            Password = "$2a$12$2pUlqGe8d597NNh/6l9Igun7vfK73wvo/b0tUwuMdSlcQierIs.5i",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 13, 15, 2, 2, 944, DateTimeKind.Utc).AddTicks(9127),
                             Role = "Administrator",
                             Username = "admin"
                         });

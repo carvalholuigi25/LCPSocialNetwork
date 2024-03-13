@@ -99,6 +99,7 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     ImgUrl = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<string>(type: "text", nullable: true),
                     DatePostCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    TypeTxtPost = table.Column<string>(type: "text", nullable: true),
                     UserId = table.Column<int>(type: "integer", nullable: true),
                     IsFeatured = table.Column<bool>(type: "boolean", nullable: true)
                 },
@@ -136,7 +137,7 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 12, 15, 46, 10, 326, DateTimeKind.Utc).AddTicks(3866), null, "Luis", "Carvalho", "$2a$12$b8/QdaC0JXHuKWYHUcctu.DWhkUgePxYsq6a.0.BpKokrPOHQ/8lK", null, new DateTime(2024, 3, 12, 15, 46, 10, 326, DateTimeKind.Utc).AddTicks(3872), "Administrator", null, "admin" });
+                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 13, 15, 2, 24, 696, DateTimeKind.Utc).AddTicks(1181), null, "Luis", "Carvalho", "$2a$12$oibQyA8zKIVW.MfGeuS4/uQe8/IiKOJAFeqwzVNjKUee.6.tGk75G", null, new DateTime(2024, 3, 13, 15, 2, 24, 696, DateTimeKind.Utc).AddTicks(1188), "Administrator", null, "admin" });
         }
 
         /// <inheritdoc />

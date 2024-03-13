@@ -130,6 +130,8 @@ namespace LCPSNWebApi.Migrations.MySQL
                     Status = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DatePostCreated = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    TypeTxtPost = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     IsFeatured = table.Column<bool>(type: "tinyint(1)", nullable: true)
                 },
@@ -181,7 +183,7 @@ namespace LCPSNWebApi.Migrations.MySQL
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 12, 15, 46, 31, 42, DateTimeKind.Utc).AddTicks(6575), null, "Luis", "Carvalho", "$2a$12$yvnPqi1xH7MfHG9AuwiWrOVQBBWRXTVkudi5Oaj2Flw9UjE6flHQy", null, new DateTime(2024, 3, 12, 15, 46, 31, 42, DateTimeKind.Utc).AddTicks(6582), "Administrator", null, "admin" });
+                values: new object[] { 1, "images/users/avatars/luis.jpg", null, "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 13, 15, 2, 48, 141, DateTimeKind.Utc).AddTicks(1560), null, "Luis", "Carvalho", "$2a$12$dO0DGmKc4tbVhQiylpKDTuKpc9ySOv/4oM3AOqYwMIQ8I82et60l6", null, new DateTime(2024, 3, 13, 15, 2, 48, 141, DateTimeKind.Utc).AddTicks(1567), "Administrator", null, "admin" });
         }
 
         /// <inheritdoc />

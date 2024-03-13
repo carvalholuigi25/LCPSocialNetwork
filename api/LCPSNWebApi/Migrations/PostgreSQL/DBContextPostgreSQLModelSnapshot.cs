@@ -206,6 +206,9 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("TypeTxtPost")
+                        .HasColumnType("text");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
@@ -282,11 +285,11 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 12, 15, 46, 10, 326, DateTimeKind.Utc).AddTicks(3866),
+                            DateAccountCreated = new DateTime(2024, 3, 13, 15, 2, 24, 696, DateTimeKind.Utc).AddTicks(1181),
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$b8/QdaC0JXHuKWYHUcctu.DWhkUgePxYsq6a.0.BpKokrPOHQ/8lK",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 12, 15, 46, 10, 326, DateTimeKind.Utc).AddTicks(3872),
+                            Password = "$2a$12$oibQyA8zKIVW.MfGeuS4/uQe8/IiKOJAFeqwzVNjKUee.6.tGk75G",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 13, 15, 2, 24, 696, DateTimeKind.Utc).AddTicks(1188),
                             Role = "Administrator",
                             Username = "admin"
                         });

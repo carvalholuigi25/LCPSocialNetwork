@@ -2,6 +2,7 @@
 // usage: <div [innerHtml]="textdata | safe: 'html'"></div>
 
 import { Pipe, PipeTransform } from '@angular/core';
+import { marked } from 'marked';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 
 @Pipe({
@@ -18,6 +19,7 @@ export class SafePipe implements PipeTransform {
       case 'script': return this.sanitizer.bypassSecurityTrustScript(value);
       case 'url': return this.sanitizer.bypassSecurityTrustUrl(value);
       case 'resourceUrl': return this.sanitizer.bypassSecurityTrustResourceUrl(value);
+      case 'markdown': return marked(value);
       default: throw new Error(`Invalid safe type specified: ${type}`);
     }
   }
