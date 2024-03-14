@@ -3,12 +3,12 @@ import { FooterComponent } from '../../components';
 import { SharedModule } from '../../modules';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '@app/services/users.service';
-import { Users } from '@app/models';
+import { ReadPostsComponent } from '@app/features';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [FooterComponent, SharedModule],
+  imports: [FooterComponent, ReadPostsComponent, SharedModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })

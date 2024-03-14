@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Posts, Users } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { SafePipe } from '@app/pipes';
@@ -12,6 +13,8 @@ import { AlertsService, AuthService, PostsService } from '@app/services';
   styleUrl: './read.component.scss'
 })
 export class ReadPostsComponent implements OnInit {
+  id: number = -1;
+
   dataPosts?: Posts[] | any;
   dataUsers?: Users[] | any;
   avatarId: number = 1;
@@ -20,7 +23,11 @@ export class ReadPostsComponent implements OnInit {
   ctComments: number = 0;
   ctShares: number = 0;
 
-  constructor(private postsService: PostsService, private alertsService: AlertsService, private authService: AuthService) { }
+  constructor(private postsService: PostsService, private alertsService: AlertsService, private route: ActivatedRoute, private authService: AuthService) { 
+    this.route.params.subscribe(params => {
+      this.id = params["id"];
+    });
+  }
 
   ngOnInit(): void {
     this.getPosts();
@@ -29,7 +36,7 @@ export class ReadPostsComponent implements OnInit {
   getPosts() {
     this.avatarId = this.authService.userValue["usersInfo"]["userId"];
     this.avatarRole = this.authService.userValue["usersInfo"]["role"];
-    this.postsService.getAllWithUsers(-1).subscribe({
+    this.postsService.getAllWithUsers(this.id ?? -1).subscribe({
       next: (r) => {
         this.dataPosts = r[0];
         this.dataUsers = r[1];
