@@ -4,16 +4,19 @@
   "scripts": {
     "ng": "ng",
     "start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=1 ng serve",
+    "startp": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=1 ng serve --configuration production",
     "startssl": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 ng serve --ssl true --ssl-key ssl\\server.key --ssl-cert ssl\\server.crt",
+    "startsslp": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 ng serve --ssl true --ssl-key ssl\\server.key --ssl-cert ssl\\server.crt -c production",
     "startapi": "cd api\\LCPSNWebApi && dotnet watch",
+    "startapip": "cd api\\LCPSNWebApi && dotnet watch --launch-profile LCPSNWebApi-Production",
     "startall": "concurrently 'npm:startapi' 'npm:start'",
+    "startallp": "concurrently 'npm:startapip' 'npm:startp'",
     "startallssl": "concurrently 'npm:startapi' 'npm:startssl'",
+    "startallsslp": "concurrently 'npm:startapip' 'npm:startsslp'",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:LCPSocialNetwork": "node dist/lcpsocial-network/server/server.mjs",
-    "disableSSLVerification": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0",
-    "enableSSLVerification": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=1"
+    "serve:ssr:LCPSocialNetwork": "node dist/lcpsocial-network/server/server.mjs"
   },
   "private": true,
   "dependencies": {

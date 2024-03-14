@@ -152,10 +152,21 @@ builder.Services.AddResponseCompression(opts =>
 
 var app = builder.Build();
 
-var isMigServiceScopeEnabled = false;
+app.UseSwagger(options =>
+{
+    options.SerializeAsV2 = false;
+});
+
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.EnablePersistAuthorization();
+});
 
 if (app.Environment.IsDevelopment())
 {
+    var isMigServiceScopeEnabled = false;
+
     if(isMigServiceScopeEnabled)
     {
         using (var serviceScope = app.Services.CreateScope())
@@ -165,16 +176,6 @@ if (app.Environment.IsDevelopment())
             // or dbContext.Database.EnsureCreatedAsync();
         }
     }
-
-    app.UseSwagger(options =>
-    {
-        options.SerializeAsV2 = false;
-    });
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.EnablePersistAuthorization();
-    });
 
     app.UseWebAssemblyDebugging();
 }
