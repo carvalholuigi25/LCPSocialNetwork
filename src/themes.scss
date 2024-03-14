@@ -1,6 +1,6 @@
-@use "themes/glass.scss" as *;
-@use "themes/dark.scss" as *;
-@use "themes/light.scss" as *;
+@use "themes/glass" as *;
+@use "themes/dark" as *;
+@use "themes/light" as *;
 
 @mixin setTheme($themes) {
     @each $theme in $themes {
