@@ -1,0 +1,133 @@
+@mixin setContentGlass {
+    $bkgColorPrimary: rgba(17, 25, 40, 0.75);
+    $bkgColorSecondary: transparent;
+    $backDropFilter: blur(16px) saturate(180%);
+    $border: 1px solid rgba(255, 255, 255, 0.125);
+    $color: white;
+    $bkgImage: url('/assets/images/bkg.jpeg');
+    $bkgAttachment: fixed;
+    $bkgPosition: center center;
+    $bkgRepeat: no-repeat;
+    $bkgSize: cover;
+
+    .colhome {
+        background-color: $bkgColorSecondary;
+    }
+
+    .pagetos,
+    .pagecoc, .pageprivacypolicy,
+    .pagecookiepolicy {
+        background-color: $bkgColorPrimary;
+        border: $border;
+        color: $color;
+
+        .blklogo {
+            background-color: $bkgColorPrimary;
+            border: $border;
+            color: $color;
+        }
+    }
+
+    .colhomeinfo, .settings,
+    .mat-mdc-card, .postsForm,
+    .postsCreateForm, .postsUpdateForm,
+    .postsDeleteForm, .errblk {
+        -webkit-backdrop-filter: $backDropFilter;
+        backdrop-filter: $backDropFilter;
+        background-color: $bkgColorPrimary;
+        border: $border;
+        color: $color;
+    }
+
+    .mat-drawer-container {
+        background-image: $bkgImage;
+        background-attachment: $bkgAttachment;
+        background-position: $bkgPosition;
+        background-repeat: $bkgRepeat;
+        background-size: $bkgSize;
+    }
+
+    .mynavbar, .myfooter, .footer {
+        -webkit-backdrop-filter: $backDropFilter !important;
+        backdrop-filter: $backDropFilter !important;
+        background-color: $bkgColorPrimary !important;
+        border-radius: 0;
+        border: 0 !important;
+        color: $color;
+    }
+
+    .mat-stepper-vertical, .mat-stepper-horizontal {
+        --mat-stepper-container-color: $color;
+        background-color: transparent;
+        color: $color;
+
+        * {
+            color: $color;
+            border-color: $color;
+        }
+    }
+
+    .mat-drawer.mat-drawer-side {
+        -webkit-backdrop-filter: $backDropFilter;
+        backdrop-filter: $backDropFilter;
+        background-color: $bkgColorPrimary;
+        border: $border;
+        color: $color;
+
+        * {
+            color: inherit;
+        }
+    }
+
+    form {
+        * {
+            color: $color !important;
+            border-color: $color !important;
+        }
+
+        .form-control:focus {
+            background-color: transparent;
+        }
+    }
+
+    .themeswitchblk {
+        color: $color;
+
+        .mat-mdc-form-field {
+            backdrop-filter: $backDropFilter;
+            -webkit-backdrop-filter: $backDropFilter;
+            background-color: $bkgColorPrimary;
+            border: $border;
+            border-color: inherit;
+        }
+
+        .themeswitch {
+            color: $color;
+            border-color: inherit;
+    
+            .mat-mdc-select-min-line {
+                color: inherit;
+            }
+    
+            * {
+                --mat-select-enabled-trigger-text-color: inherit;
+                color: inherit;
+                border-color: inherit;
+            }
+        }
+    }
+
+    input:webkit-autofill {
+        border-color: $bkgColorPrimary;
+    }
+
+    input:autofill {
+        border-color: $bkgColorPrimary;
+    }
+}
+
+@mixin setThemeGlass {
+    .mytheme.mytheme-glass {
+        @include setContentGlass;
+    }
+}

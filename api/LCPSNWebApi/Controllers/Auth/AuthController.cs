@@ -57,7 +57,23 @@ namespace LCPSNWebApi.Controllers.Auth
             {
                 Token = accessToken,
                 RefreshToken = refreshToken,
-                UsersInfo = user
+                UsersInfo = new User() {
+                    UserId = user.UserId,
+                    Username = user.Username,
+                    Password = null!,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Role = user.Role,
+                    Status = user.Status,
+                    Biography = user.Biography,
+                    AvatarUrl = user.AvatarUrl,
+                    CoverUrl = user.CoverUrl,
+                    DateAccountCreated = user.DateAccountCreated,
+                    CurrentToken = user.CurrentToken,
+                    RefreshToken = user.RefreshToken,
+                    RefreshTokenExpiryTime = user.RefreshTokenExpiryTime                    
+                }
             });
         }
     }

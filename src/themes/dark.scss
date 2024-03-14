@@ -1,0 +1,110 @@
+@mixin setContentDark {
+    $bkgColorPrimary: black;
+    $bkgColorSecondary: rgba(20, 20, 20, .5);
+    $bkgColorSecondaryFullOp: rgba(20, 20, 20, 1);
+    $color: white;
+    
+    .colhome {
+        background-color: $bkgColorSecondary;
+        color: $color;
+    }
+
+    .pagetos,
+    .pagecoc, .pageprivacypolicy,
+    .pagecookiepolicy {
+        background-color: $bkgColorSecondaryFullOp;
+        color: $color;
+
+        .blklogo {
+            background-color: $bkgColorPrimary;
+            color: $color;
+        }
+    }
+
+    .colhomeinfo, .settings,
+    .mat-mdc-card, .postsForm,
+    .postsCreateForm, .postsUpdateForm,
+    .postsDeleteForm, .errblk {
+        background-color: $bkgColorSecondaryFullOp;
+        color: $color;
+    }
+
+    .mat-drawer-container {
+        background-color: $bkgColorPrimary;
+        color: $color;
+    }
+
+    .mynavbar, .myfooter, .footer {
+        background-color: $bkgColorSecondaryFullOp !important;
+        color: $color;
+    }
+
+    .mat-stepper-vertical, .mat-stepper-horizontal {
+        --mat-stepper-container-color: $color;
+        background-color: transparent;
+        color: $color;
+
+        * {
+            color: $color;
+            border-color: $color;
+        }
+    }
+
+    .mat-drawer.mat-drawer-side {
+        background-color: $bkgColorSecondaryFullOp;
+        color: $color;
+
+        * {
+            color: inherit;
+        }
+    }
+
+    form {
+        * {
+            color: $color !important;
+            border-color: $color !important;
+        }
+
+        .form-control:focus {
+            background-color: transparent;
+        }
+    }
+
+    .themeswitchblk {
+        color: $color;
+
+        .mat-mdc-form-field {
+            background-color: $bkgColorPrimary;
+            border-color: inherit;
+        }
+
+        .themeswitch {
+            color: $color;
+            border-color: inherit;
+    
+            .mat-mdc-select-min-line {
+                color: inherit;
+            }
+    
+            * {
+                --mat-select-enabled-trigger-text-color: inherit;
+                color: inherit;
+                border-color: inherit;
+            }
+        }
+    }
+
+    input:webkit-autofill {
+        border-color: rgba(17, 25, 40, 0.75);
+    }
+
+    input:autofill {
+        border-color: rgba(17, 25, 40, 0.75);
+    }
+}
+
+@mixin setThemeDark {
+    .mytheme.mytheme-dark {
+        @include setContentDark;
+    }
+}
