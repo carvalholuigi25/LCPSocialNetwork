@@ -1,58 +1,35 @@
 import { Routes } from '@angular/router';
-import { HomeComponent, AuthComponent, LoginComponent, RegisterComponent, NewsfeedComponent, AdminComponent, DashboardComponent, NotfoundComponent, UsersComponent, SettingsComponent } from './pages';
-import { CodeConductComponent, CookiePolicyComponent, PrivacyPolicyComponent, TosComponent } from './pages/infopublic';
 import { AuthGuard, StaffGuard } from './guards';
-import { CreatePostsComponent, DeletePostsComponent, ReadPostsComponent, UpdatePostsComponent } from './features';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/home' },
-    { path: 'home', component: HomeComponent },
-    { 
-        path: 'users', 
-        children: [
-            { path: '', component: UsersComponent, canActivateChild: [AuthGuard] },
-            { path: ':id', component: UsersComponent, canActivateChild: [AuthGuard] },
-            { path: '**', component: NotfoundComponent }
-        ]
+    { path: 'home', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
+    {
+        path: 'users',
+        loadChildren: () => import('./pages/users/users.routing').then(m => m.USERS_ROUTES)
     },
     {
         path: 'auth',
-        children: [
-            { path: '', component: AuthComponent, canActivateChild: [AuthGuard] },
-            { path: 'login', component: LoginComponent, canActivateChild: [AuthGuard] },
-            { path: 'register', component: RegisterComponent },
-            { path: '**', component: NotfoundComponent }
-        ]
+        loadChildren: () => import('./pages/auth/auth.routing').then(m => m.AUTH_ROUTES)
     },
-    { 
-        path: 'newsfeed', 
-        component: NewsfeedComponent,
+    {
+        path: 'newsfeed',
+        loadComponent: () => import('./pages/newsfeed/newsfeed.component').then(m => m.NewsfeedComponent),
         canActivate: [AuthGuard]
     },
     {
         path: 'post',
-        children: [
-            { path: ':id', component: ReadPostsComponent, canActivateChild: [AuthGuard] },
-            { path: 'create', component: CreatePostsComponent, canActivateChild: [AuthGuard] },
-            { path: 'read/:id', component: ReadPostsComponent, canActivateChild: [AuthGuard] },
-            { path: 'update/:id', component: UpdatePostsComponent, canActivateChild: [AuthGuard] },
-            { path: 'delete/:id', component: DeletePostsComponent, canActivateChild: [AuthGuard] },
-            { path: '**', component: NotfoundComponent }
-        ]
+        loadChildren: () => import('./features/posts/posts.routing').then(m => m.POSTS_ROUTES)
     },
-    { 
-        path: 'admin', 
-        children: [
-           { path: '', component: AdminComponent },
-           { path: 'dashboard', component: DashboardComponent },
-           { path: '**', component: NotfoundComponent }
-        ],
-        canActivate: [StaffGuard] 
+    {
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.routing').then(m => m.ADMIN_ROUTES),
+        canActivate: [StaffGuard]
     },
-    { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-    { path: 'tos', component: TosComponent },
-    { path: 'privacypolicy', component: PrivacyPolicyComponent },
-    { path: 'codeconduct', component: CodeConductComponent },
-    { path: 'cookiepolicy', component: CookiePolicyComponent },
-    { path: '**', component: NotfoundComponent }
+    { path: 'settings', loadComponent: () => import('./pages/settings/settings.component').then(m => m.SettingsComponent), canActivate: [AuthGuard] },
+    { path: 'tos', loadComponent: () => import('./pages/infopublic/tos/tos.component').then(m => m.TosComponent) },
+    { path: 'privacypolicy', loadComponent: () => import('./pages/infopublic/privacypolicy/privacypolicy.component').then(m => m.PrivacyPolicyComponent) },
+    { path: 'codeconduct', loadComponent: () => import('./pages/infopublic/codeconduct/codeconduct.component').then(m => m.CodeConductComponent) },
+    { path: 'cookiepolicy', loadComponent: () => import('./pages/infopublic/cookiepolicy/cookiepolicy.component').then(m => m.CookiePolicyComponent) },
+    { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent) }
 ];
