@@ -39,6 +39,20 @@
         color: $color;
     }
 
+    .postlist {
+        .post_avatar_blk {
+            img {
+                background-color: $color;
+            }
+        }
+        
+        .post_avatar_subtitle { 
+          .subpost_avatar_subtitle {
+            color: $color;
+          }
+        }
+    }
+
     .mat-drawer-container {
         background-image: $bkgImage;
         background-attachment: $bkgAttachment;

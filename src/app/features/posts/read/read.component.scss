@@ -31,6 +31,61 @@
     .example-spacer {
         flex: 1 1 auto;
     }
+
+    .post_avatar_blk {        
+        img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-bottom: 0;
+            object-fit: cover;
+        }
+    }
+
+    .post_avatar_title {
+        text-align: left;
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    .post_avatar_subtitle {
+        margin-top: -16px;
+    
+        .subpost_avatar_subtitle {
+            font-size: .8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            margin: 0;
+
+            .date_avatar_subpost {
+                a {
+                    text-decoration: none;
+                    color: inherit;
+                }
+            }
+    
+            .date_avatar_subpost, 
+            .icon_avatar_subpost {
+                font-size: inherit;
+                line-height: inherit;
+                width: auto;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .icon_avatar_subpost {
+                margin-left: 5px;
+            }
+        }
+    }
     
     .padcardfooter {
         padding: 6px;

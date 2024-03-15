@@ -1,4 +1,9 @@
 .users {
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
     .headercard {
         position: relative;
         padding: 0;
@@ -99,5 +104,13 @@
     .tjustify {
         text-align: justify;
         line-height: 2rem;
+    }
+}
+
+@media all and (width <= 992px) {
+    .usersdetails {
+        .img-cover {
+            height: auto;
+        }
     }
 }

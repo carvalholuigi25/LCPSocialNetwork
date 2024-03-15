@@ -3,6 +3,7 @@
     $bkgColorSecondary: rgba(243, 243, 243, .7);
     $bkgColorSecondaryFullOp: rgba(243, 243, 243, 1);
     $color: black;
+    $colorSecondary: white;
 
     .colhome {
         background-color: $bkgColorPrimary;
@@ -27,6 +28,20 @@
     .postsDeleteForm, .errblk {
         background-color: $bkgColorSecondary;
         color: $color;
+    }
+
+    .postlist {
+        .post_avatar_blk {
+            img {
+                background-color: $colorSecondary;
+            }
+        }
+
+        .post_avatar_subtitle { 
+          .subpost_avatar_subtitle {
+            color: $color;
+          }
+        }
     }
 
     .mat-drawer-container {
