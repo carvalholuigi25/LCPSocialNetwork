@@ -34,14 +34,15 @@
     - [x]  Posts
     - [ ]  Replies
     - [ ]  Comments
+    - [x]  Lazy loading routes
     - [x]  JWT & Cookies
     - [ ]  Social Login
     - [ ]  Attachments & Gallery
     - [x]  Administration
-    - [ ]  Achievements & Rank levels with exp points
-    - [ ]  Rewards
-    - [ ]  Map
-    - [ ]  Minigames
+    - [ ]  Achievements & Rank levels with exp points (optional)
+    - [ ]  Rewards (optional)
+    - [ ]  Map (optional)
+    - [ ]  Minigames (optional)
     - [ ]  Subscriptions
     - [ ]  Newsletters
     - [ ]  Allowed & Blocked Users
@@ -96,7 +97,7 @@
     - [ ]  Infinite Scroll
     - [ ]  Smooth Scroll
     - [ ]  Events
-    - [ ]  Giveaways
+    - [ ]  Giveaways (optional)
     - [ ]  Drafts
     - [ ]  Invites
     - [ ]  Notes
@@ -105,8 +106,8 @@
     - [ ]  Localization / Language Selector
 - [ ]  3 - Finale
     - [ ]  Transform layout to the modern layout with best responsive & full accessibility for all pages
-    - [ ]  Add TOS, Privacy Policy Pages, Code of Conduct pages
-    - [ ]  Add Cookies consent banner with info and button (Allow, Disallow, Custom) from GDPR with links and button close as well.
+    - [x]  Add TOS, Privacy Policy, Code of Conduct & Cookie Policy pages
+    - [x]  Add Cookies consent banner with info and button (Allow, Disallow, Custom) from GDPR with links and button close as well.
     - [ ]  Add social links in footer
     - [ ]  Privatize or protect or remove all sensitive data in database
     - [ ]  Unit tests (optional)
