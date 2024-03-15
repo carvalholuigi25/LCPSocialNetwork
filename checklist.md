@@ -10,12 +10,12 @@
         - [x]  Create database
         - [x]  Add multi database connections (SQL Server, SQLite, MySQL & PostgreSQL)
         - [ ]  Add & Configurate database relationship
-        - [ ]  Add authentication & authorization (including JWT, Cookies, Roles, Claims & Policies)
+        - [x]  Add authentication & authorization (including JWT, Cookies, Roles, Claims & Policies)
         - [x]  Add interfaces, repositories (or services) & controllers
         - [x]  Add CRUD (create, read, update, delete) functions from context of your database for repositories (or services) and call them to the controllers
         - [x]  Add api info
         - [x]  Add description for each api endpoint
-        - [ ]  Add error model validation for each api endpoint or class
+        - [x]  Add error model validation for each api endpoint or class
         - [x]  Add table data (seed) to test in development
         - [x]  Realtime data with signalr
         - [ ]  Secure all api stuff
@@ -24,19 +24,20 @@
         - [x]  Pagination & Filteration & Search for data
         - [x]  Query builder’n’runner
         - [ ]  Localization
+        - [x]  Upload files
         - [ ]  Remove all table data (seed) for production
         - [ ]  Unit test for each endpoint (optional)
         - [x]  Build
 - [ ]  2 - Frontend
-    - [ ]  Users
-    - [ ]  Roles & Auth (Login, Logout, Registration, etc)
-    - [ ]  Posts
+    - [x]  Users
+    - [x]  Roles & Auth (Login, Logout, Registration, etc)
+    - [x]  Posts
     - [ ]  Replies
     - [ ]  Comments
-    - [ ]  JWT & Cookies
+    - [x]  JWT & Cookies
     - [ ]  Social Login
     - [ ]  Attachments & Gallery
-    - [ ]  Administration
+    - [x]  Administration
     - [ ]  Achievements & Rank levels with exp points
     - [ ]  Rewards
     - [ ]  Map
@@ -44,21 +45,22 @@
     - [ ]  Subscriptions
     - [ ]  Newsletters
     - [ ]  Allowed & Blocked Users
-    - [ ]  Likes & Shares
+    - [x]  Likes & Shares
     - [ ]  Upload files
-    - [ ]  Authorization
+    - [x]  Authorization
     - [ ]  Moderation
     - [ ]  Admin Dashboard
-    - [ ]  Graphics, Private Messages & Users List with crud operation
+    - [ ]  Graphics and Private Messages
+    - [x]  Users List with crud operation
     - [ ]  Reviews
-    - [ ]  Profiles
     - [ ]  Friends
     - [ ]  Status, School & University & Company Infos
     - [ ]  Groups
-    - [ ]  Email & Phone number
-    - [ ]  Cover
-    - [ ]  Avatar
-    - [ ]  Biography
+    - [x]  Email
+    - [ ]  Phone number
+    - [x]  Cover
+    - [x]  Avatar
+    - [x]  Biography
     - [ ]  Pinned posts
     - [ ]  Lock & unlock posts, replies and etc
     - [ ]  Update & Add & Remove single or many posts
@@ -67,7 +69,7 @@
     - [ ]  Add & Remove Friends.
     - [ ]  Hide Friends
     - [ ]  Hobbies
-    - [ ]  Post  & reply status
+    - [ ]  Post & reply status
     - [ ]  Collections and Favorites
     - [ ]  Public posts in newsfeed
     - [ ]  Pages
@@ -75,9 +77,9 @@
     - [ ]  Search
     - [ ]  Chat discussion
     - [ ]  Notifications
-    - [ ]  Settings
-    - [ ]  Privacy
-    - [ ]  Navmenu of user logged
+    - [x]  Settings
+    - [x]  Privacy
+    - [x]  Navmenu of user logged
     - [ ]  Custom roles & reactions
     - [ ]  Counters (likes, comments, replies, reactions, shares, etc)
     - [ ]  Realtime data with signalr
