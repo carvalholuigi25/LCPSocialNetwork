@@ -46,7 +46,9 @@ else
 }
 
 builder.Services.AddScoped<IUser, UserService>();
-builder.Services.AddScoped<IFriend, FriendService>();
+builder.Services.AddScoped<IUserFriendRequest, UserFriendRequestService>();
+builder.Services.AddScoped<IUserNotifications, UserNotificationService>();
+builder.Services.AddScoped<IUserMessages, UserMessageService>();
 builder.Services.AddScoped<IPost, PostService>();
 builder.Services.AddScoped<IComment, CommentService>();
 builder.Services.AddScoped<IAttachment, AttachmentService>();

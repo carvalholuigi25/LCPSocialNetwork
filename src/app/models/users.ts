@@ -1,4 +1,4 @@
-import { Friends, Posts, Comments } from ".";
+import { Posts, Comments, UserFriendRequests, UserMessages, UserNotifications } from ".";
 
 export class Users {
     UserId?: number;
@@ -16,7 +16,9 @@ export class Users {
     CurrentToken?: string;
     RefreshToken?: string;
     RefreshTokenExpiryTime?: string;
-    Friend?: Friends[];
+    UserFriendRequest?: UserFriendRequests[];
+    UserMessage?: UserMessages[];
+    UserNotification?: UserNotifications[];
     Post?: Posts[];
     Comment?: Comments[];
 }

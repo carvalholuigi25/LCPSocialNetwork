@@ -12,7 +12,9 @@ public class DBContext : DbContext
     private readonly IConfiguration _config;
     private readonly IHostEnvironment _environment;
     public DbSet<User> Users { get; set; }
-    public DbSet<Friend> Friends { get; set; }
+    public DbSet<UserNotification> UserNotifications { get; set; }
+    public DbSet<UserFriendRequest> UserFriendRequests { get; set; }
+    public DbSet<UserMessage> UserMessages { get; set; }
     public DbSet<Post> Posts { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Attachment> Attachments { get; set; }

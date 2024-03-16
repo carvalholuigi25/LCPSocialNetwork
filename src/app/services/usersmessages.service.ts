@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Friends } from '../models';
+import { UserMessages } from '../models';
 import { DOCUMENT } from '@angular/common';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class FriendsService {
+export class UsersMessagesService {
     private ls: Storage | undefined;
 
     constructor(
@@ -24,23 +24,23 @@ export class FriendsService {
     }
 
     getAll() {
-        return this.http.get<Friends[]>(`${environment.apiUrl}/friend`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<UserMessages[]>(`${environment.apiUrl}/usermessage`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     getAllById(id: number) {
-        return this.http.get<Friends>(`${environment.apiUrl}/friend/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<UserMessages>(`${environment.apiUrl}/usermessage/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    createFriend(friends: Friends) {
-        return this.http.post<Friends>(`${environment.apiUrl}/friend`, friends, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    createUsersMessages(UsersMessages: UserMessages) {
+        return this.http.post<UserMessages>(`${environment.apiUrl}/usermessage`, UsersMessages, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    updateFriend(id: number, friends: Friends) {
-        return this.http.put<Friends>(`${environment.apiUrl}/friend/${id}`, friends, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    updateUsersMessages(id: number, UsersMessages: UserMessages) {
+        return this.http.put<UserMessages>(`${environment.apiUrl}/usermessage/${id}`, UsersMessages, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    deleteFriend(id: number) {
-        return this.http.delete<Friends>(`${environment.apiUrl}/friend/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    deleteUsersMessages(id: number) {
+        return this.http.delete<UserMessages>(`${environment.apiUrl}/usermessage/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     private handleError(error: HttpErrorResponse) {

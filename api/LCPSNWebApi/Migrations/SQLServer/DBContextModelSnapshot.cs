@@ -46,6 +46,9 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     b.Property<bool?>("IsFeatured")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
@@ -53,7 +56,12 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("AttachmentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Attachments", t =>
                         {
@@ -70,6 +78,9 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("CommentId"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DatePostCreated")
                         .HasColumnType("datetime2");
@@ -91,7 +102,12 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("CommentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments", t =>
                         {
@@ -139,53 +155,6 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
                 });
 
-            modelBuilder.Entity("LCPSNWebApi.Classes.Friend", b =>
-                {
-                    b.Property<int?>("FriendId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("FriendId"));
-
-                    b.Property<string>("AvatarUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Biography")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CoverUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DateAccountCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FriendId");
-
-                    b.ToTable("Friends", t =>
-                        {
-                            t.HasTrigger("Friends_Trigger");
-                        });
-
-                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
-                });
-
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
                     b.Property<int?>("PostId")
@@ -193,6 +162,9 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("PostId"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DatePostCreated")
                         .HasColumnType("datetime2");
@@ -205,6 +177,9 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsFeatured")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsPinned")
                         .HasColumnType("bit");
 
                     b.Property<string>("Status")
@@ -296,15 +271,201 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         {
                             UserId = 1,
                             AvatarUrl = "images/users/avatars/luis.jpg",
+                            Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 13, 15, 3, 21, 806, DateTimeKind.Utc).AddTicks(7505),
+                            DateAccountCreated = new DateTime(2024, 3, 16, 14, 23, 39, 641, DateTimeKind.Utc).AddTicks(3284),
+                            Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$OG4eAvChF/F3V7AGBSaTZO08inlbGKDuxgCeAKdp8Ydkb8XlLMZSS",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 13, 15, 3, 21, 806, DateTimeKind.Utc).AddTicks(7514),
+                            Password = "$2a$12$37K7E/AJ7kZTELqNb7BLnOnZs.SEUoCEY6e3lYB8UWJ02922mkWri",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 16, 14, 23, 39, 641, DateTimeKind.Utc).AddTicks(3296),
                             Role = "Administrator",
+                            Status = "public",
                             Username = "admin"
                         });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.UserFriendRequest", b =>
+                {
+                    b.Property<int?>("UserFriendRequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("UserFriendRequestId"));
+
+                    b.Property<DateTime?>("DateUserFriendRequestAccepted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUserFriendRequestCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUserFriendRequestDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsAccepted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserFriendRequestId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFriendRequests", t =>
+                        {
+                            t.HasTrigger("UserFriendRequests_Trigger");
+                        });
+
+                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.UserMessage", b =>
+                {
+                    b.Property<int?>("UserMessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("UserMessageId"));
+
+                    b.Property<DateTime?>("DateUserMessageCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUserMessageDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUserMessageReaded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUserMessageUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserMessageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserMessages", t =>
+                        {
+                            t.HasTrigger("UserMessages_Trigger");
+                        });
+
+                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.UserNotification", b =>
+                {
+                    b.Property<int?>("UserNotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("UserNotificationId"));
+
+                    b.Property<DateTime?>("DateUserNotificationCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUserNotificationDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUserNotificationMarked")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUserNotificationUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsMarkRead")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsPinned")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserNotificationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserNotifications", t =>
+                        {
+                            t.HasTrigger("UserNotifications_Trigger");
+                        });
+
+                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Attachment", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.User", null)
+                        .WithMany("Attachments")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.User", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.UserFriendRequest", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.User", null)
+                        .WithMany("UserFriendRequests")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.UserMessage", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.User", null)
+                        .WithMany("UserMessages")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.UserNotification", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.User", null)
+                        .WithMany("UserNotifications")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.User", b =>
+                {
+                    b.Navigation("Attachments");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("UserFriendRequests");
+
+                    b.Navigation("UserMessages");
+
+                    b.Navigation("UserNotifications");
                 });
 #pragma warning restore 612, 618
         }

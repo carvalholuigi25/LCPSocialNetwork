@@ -22,6 +22,11 @@ public class User
     [DisplayName("CurrentToken")][DataType("text")] public string? CurrentToken { get; set; }
     [DisplayName("RefreshToken")][DataType("text")] public string? RefreshToken { get; set; }
     [DisplayName("RefreshTokenExpiryTime")][DataType(DataType.DateTime)] public DateTime? RefreshTokenExpiryTime { get; set; } = DateTime.UtcNow;
+    public ICollection<Attachment>? Attachments { get; set; }
+    public ICollection<Comment>? Comments { get; set; }
+    public ICollection<UserFriendRequest>? UserFriendRequests { get; set; }
+    public ICollection<UserMessage>? UserMessages { get; set; }
+    public ICollection<UserNotification>? UserNotifications { get; set; }
 }
 
 public class UserAuth
