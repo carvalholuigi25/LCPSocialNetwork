@@ -47,9 +47,12 @@ else
 }
 
 builder.Services.AddScoped<IUser, UserService>();
-builder.Services.AddScoped<IUserFriendRequest, UserFriendRequestService>();
-builder.Services.AddScoped<IUserNotifications, UserNotificationService>();
-builder.Services.AddScoped<IUserMessages, UserMessageService>();
+builder.Services.AddScoped<IFriendRequest, FriendRequestService>();
+builder.Services.AddScoped<INotification, NotificationService>();
+builder.Services.AddScoped<IChatMessage, ChatMessageService>();
+builder.Services.AddScoped<IReaction, ReactionService>();
+builder.Services.AddScoped<IReply, ReplyService>();
+builder.Services.AddScoped<IShare, ShareService>();
 builder.Services.AddScoped<IPost, PostService>();
 builder.Services.AddScoped<IComment, CommentService>();
 builder.Services.AddScoped<IAttachment, AttachmentService>();

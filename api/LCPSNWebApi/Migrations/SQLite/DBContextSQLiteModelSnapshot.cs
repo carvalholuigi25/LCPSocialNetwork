@@ -30,6 +30,15 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("DateAttachmentDeleted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateAttachmentUpdated")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("DateAttachmentUploaded")
                         .HasColumnType("TEXT");
 
@@ -40,6 +49,15 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("PostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ShareId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Status")
@@ -62,6 +80,62 @@ namespace LCPSNWebApi.Migrations.SQLite
                         });
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.ChatMessage", b =>
+                {
+                    b.Property<int?>("ChatMessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("DateChatMessageCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateChatMessageDeleted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateChatMessageReaded")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateChatMessageUpdated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool?>("IsRead")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ShareId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ChatMessageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ChatMessages", t =>
+                        {
+                            t.HasTrigger("ChatMessages_Trigger");
+                        });
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
                     b.Property<int?>("CommentId")
@@ -71,7 +145,13 @@ namespace LCPSNWebApi.Migrations.SQLite
                     b.Property<int?>("AttachmentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("DatePostCreated")
+                    b.Property<DateTime?>("DateCommentCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateCommentDeleted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateCommentUpdated")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -82,6 +162,18 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .HasColumnType("TEXT");
 
                     b.Property<bool?>("IsFeatured")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ShareId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Status")
@@ -138,6 +230,106 @@ namespace LCPSNWebApi.Migrations.SQLite
                         });
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.FriendRequest", b =>
+                {
+                    b.Property<int?>("FriendRequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("DateFriendRequestAccepted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateFriendRequestCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateFriendRequestDeleted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("FriendRequestType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool?>("IsAccepted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("FriendRequestId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("FriendRequests", t =>
+                        {
+                            t.HasTrigger("FriendRequests_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Notification", b =>
+                {
+                    b.Property<int?>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("DateUserNotificationCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateUserNotificationDeleted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateUserNotificationMarked")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateUserNotificationUpdated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool?>("IsMarkRead")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool?>("IsPinned")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("NotificationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications", t =>
+                        {
+                            t.HasTrigger("Notifications_Trigger");
+                        });
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
                     b.Property<int?>("PostId")
@@ -147,7 +339,16 @@ namespace LCPSNWebApi.Migrations.SQLite
                     b.Property<int?>("AttachmentId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime?>("DatePostCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DatePostDeleted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DatePostUpdated")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -160,7 +361,13 @@ namespace LCPSNWebApi.Migrations.SQLite
                     b.Property<bool?>("IsFeatured")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool?>("IsPinned")
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ShareId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Status")
@@ -181,6 +388,137 @@ namespace LCPSNWebApi.Migrations.SQLite
                     b.ToTable("Posts", t =>
                         {
                             t.HasTrigger("Posts_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Reaction", b =>
+                {
+                    b.Property<int?>("ReactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("DateReacted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReactionCounter")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReactionType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ReactionId");
+
+                    b.ToTable("Reactions", t =>
+                        {
+                            t.HasTrigger("Reactions_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Reply", b =>
+                {
+                    b.Property<int?>("ReplyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("DateReplyCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateReplyDeleted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DateReplyUpdated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ShareId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ReplyId");
+
+                    b.ToTable("Replies", t =>
+                        {
+                            t.HasTrigger("Replies_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Share", b =>
+                {
+                    b.Property<int?>("ShareId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("DateShared")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ShareCounter")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ShareId");
+
+                    b.ToTable("Shares", t =>
+                        {
+                            t.HasTrigger("Shares_Trigger");
                         });
                 });
 
@@ -248,138 +586,15 @@ namespace LCPSNWebApi.Migrations.SQLite
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 16, 14, 22, 6, 581, DateTimeKind.Utc).AddTicks(8712),
+                            DateAccountCreated = new DateTime(2024, 3, 18, 15, 54, 17, 863, DateTimeKind.Utc).AddTicks(239),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$/2MQadXyw/VbIHbzSncxsukqz/SMbNRjlsmBVmljRLvjM8Um0tlwe",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 16, 14, 22, 6, 581, DateTimeKind.Utc).AddTicks(8719),
+                            Password = "$2a$12$KoXQ99vP0yXzMWm7.VY8zuv0Kmn3Xrw6SWlfgWCRFGEra3mp3jDWi",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 18, 15, 54, 17, 863, DateTimeKind.Utc).AddTicks(247),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
-                        });
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserFriendRequest", b =>
-                {
-                    b.Property<int?>("UserFriendRequestId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("DateUserFriendRequestAccepted")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateUserFriendRequestCreated")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateUserFriendRequestDeleted")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool?>("IsAccepted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserFriendRequestId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserFriendRequests", t =>
-                        {
-                            t.HasTrigger("UserFriendRequests_Trigger");
-                        });
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserMessage", b =>
-                {
-                    b.Property<int?>("UserMessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("DateUserMessageCreated")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateUserMessageDeleted")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateUserMessageReaded")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateUserMessageUpdated")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool?>("IsRead")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserMessageId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserMessages", t =>
-                        {
-                            t.HasTrigger("UserMessages_Trigger");
-                        });
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserNotification", b =>
-                {
-                    b.Property<int?>("UserNotificationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("DateUserNotificationCreated")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateUserNotificationDeleted")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateUserNotificationMarked")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("DateUserNotificationUpdated")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool?>("IsMarkRead")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool?>("IsPinned")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserNotificationId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserNotifications", t =>
-                        {
-                            t.HasTrigger("UserNotifications_Trigger");
                         });
                 });
 
@@ -390,6 +605,13 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.ChatMessage", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.User", null)
+                        .WithMany("ChatMessages")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
                     b.HasOne("LCPSNWebApi.Classes.User", null)
@@ -397,24 +619,17 @@ namespace LCPSNWebApi.Migrations.SQLite
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserFriendRequest", b =>
+            modelBuilder.Entity("LCPSNWebApi.Classes.FriendRequest", b =>
                 {
                     b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithMany("UserFriendRequests")
+                        .WithMany("FriendRequests")
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserMessage", b =>
+            modelBuilder.Entity("LCPSNWebApi.Classes.Notification", b =>
                 {
                     b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithMany("UserMessages")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserNotification", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithMany("UserNotifications")
+                        .WithMany("Notifications")
                         .HasForeignKey("UserId");
                 });
 
@@ -422,13 +637,13 @@ namespace LCPSNWebApi.Migrations.SQLite
                 {
                     b.Navigation("Attachments");
 
+                    b.Navigation("ChatMessages");
+
                     b.Navigation("Comments");
 
-                    b.Navigation("UserFriendRequests");
+                    b.Navigation("FriendRequests");
 
-                    b.Navigation("UserMessages");
-
-                    b.Navigation("UserNotifications");
+                    b.Navigation("Notifications");
                 });
 #pragma warning restore 612, 618
         }

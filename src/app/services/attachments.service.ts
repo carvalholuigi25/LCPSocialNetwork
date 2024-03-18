@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Attachments } from '../models';
+import { Attachment } from '../models';
 import { DOCUMENT } from '@angular/common';
 import { catchError, throwError } from 'rxjs';
 
@@ -24,23 +24,23 @@ export class AttachmentsService {
     }
 
     getAll() {
-        return this.http.get<Attachments[]>(`${environment.apiUrl}/attachment`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<Attachment[]>(`${environment.apiUrl}/attachment`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     getAllById(id: number) {
-        return this.http.get<Attachments>(`${environment.apiUrl}/attachment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<Attachment>(`${environment.apiUrl}/attachment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    createAttachment(attachments: Attachments) {
-        return this.http.post<Attachments>(`${environment.apiUrl}/attachment`, attachments, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    createAttachment(attachment: Attachment) {
+        return this.http.post<Attachment>(`${environment.apiUrl}/attachment`, attachment, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    updateAttachment(id: number, attachments: Attachments) {
-        return this.http.put<Attachments>(`${environment.apiUrl}/attachment/${id}`, attachments, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    updateAttachment(id: number, attachment: Attachment) {
+        return this.http.put<Attachment>(`${environment.apiUrl}/attachment/${id}`, attachment, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     deleteAttachment(id: number) {
-        return this.http.delete<Attachments>(`${environment.apiUrl}/attachment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.delete<Attachment>(`${environment.apiUrl}/attachment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     private handleError(error: HttpErrorResponse) {

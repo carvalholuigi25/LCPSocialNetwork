@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SharedModule } from '@app/modules';
 import { AlertsService, PostsService } from '@app/services';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Posts } from '@app/models';
+import { Post } from '@app/models';
 import { first } from 'rxjs';
 import { FooterComponent } from '@app/components';
 
@@ -16,7 +16,7 @@ import { FooterComponent } from '@app/components';
 })
 export class DeletePostsComponent implements OnInit {
   id: number = -1;
-  dataPosts?: Posts | any;
+  dataPosts?: Post | any;
   postsDeleteFrm!: FormGroup;
   submitted = false;
 
@@ -54,7 +54,7 @@ export class DeletePostsComponent implements OnInit {
     if(this.id != -1) {
       this.submitted = true;
 
-      this.postsService.deletePost(this.id).subscribe({
+      this.postsService.deletePosts(this.id).subscribe({
         next: () => {
           this.alertsService.openAlert(`Deleted post (Id: ${this.id}) sucessfully!`, 1, "success");
           this.router.navigate(['/newsfeed']);

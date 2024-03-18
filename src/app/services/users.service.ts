@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Users } from '../models';
+import { User } from '../models';
 import { DOCUMENT } from '@angular/common';
 import { catchError, throwError } from 'rxjs';
 
@@ -24,23 +24,23 @@ export class UsersService {
     }
 
     getAll() {
-        return this.http.get<Users[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<User[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     getAllById(id: number) {
-        return this.http.get<Users>(`${environment.apiUrl}/user/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<User>(`${environment.apiUrl}/user/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    createUser(users: Users) {
-        return this.http.post<Users>(`${environment.apiUrl}/user`, users, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    createUser(users: User) {
+        return this.http.post<User>(`${environment.apiUrl}/user`, users, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    updateUser(id: number, users: Users) {
-        return this.http.put<Users>(`${environment.apiUrl}/user/${id}`, users, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    updateUser(id: number, users: User) {
+        return this.http.put<User>(`${environment.apiUrl}/user/${id}`, users, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     deleteUser(id: number) {
-        return this.http.delete<Users>(`${environment.apiUrl}/user/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.delete<User>(`${environment.apiUrl}/user/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     private handleError(error: HttpErrorResponse) {

@@ -4,14 +4,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '@environments/environment';
-import { Users, UsersAuth } from '../models';
+import { User, UserAuth } from '../models';
 import { DOCUMENT } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private ls: Storage | undefined;
-    private userSubject: BehaviorSubject<Users | any | null>;
-    public user: Observable<Users | null>;
+    private userSubject: BehaviorSubject<User | any | null>;
+    public user: Observable<User | null>;
 
     constructor(
         private router: Router,
@@ -27,7 +27,7 @@ export class AuthService {
         return this.userSubject.value;
     }
 
-    login(users: UsersAuth) {
+    login(users: UserAuth) {
         return this.http.post<any>(`${environment.apiUrl}/auth/login`, { Username: users.Username, Password: users.Password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -37,7 +37,7 @@ export class AuthService {
             }), catchError(this.handleError));
     }
 
-    register(users: Users) {
+    register(users: User) {
         return this.http.post<any>(`${environment.apiUrl}/users`, users).pipe(catchError(this.handleError));
     }
 

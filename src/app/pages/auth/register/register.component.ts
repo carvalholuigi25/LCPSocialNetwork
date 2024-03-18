@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../../../modules';
-import { Users } from '../../../models';
+import { User } from '../../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
 import { first } from 'rxjs';
@@ -72,7 +72,7 @@ export class RegisterComponent {
       return;
     }
 
-    const regRequest: Users = {
+    const regRequest: User = {
       Username: this.regForm.value.Username,
       Email: this.regForm.value.Email,
       Password: this.regForm.value.Password,

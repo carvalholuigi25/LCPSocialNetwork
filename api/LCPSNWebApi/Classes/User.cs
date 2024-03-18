@@ -24,9 +24,9 @@ public class User
     [DisplayName("RefreshTokenExpiryTime")][DataType(DataType.DateTime)] public DateTime? RefreshTokenExpiryTime { get; set; } = DateTime.UtcNow;
     public ICollection<Attachment>? Attachments { get; set; }
     public ICollection<Comment>? Comments { get; set; }
-    public ICollection<UserFriendRequest>? UserFriendRequests { get; set; }
-    public ICollection<UserMessage>? UserMessages { get; set; }
-    public ICollection<UserNotification>? UserNotifications { get; set; }
+    public ICollection<FriendRequest>? FriendRequests { get; set; }
+    public ICollection<ChatMessage>? ChatMessages { get; set; }
+    public ICollection<Notification>? Notifications { get; set; }
 }
 
 public class UserAuth
@@ -41,5 +41,5 @@ public enum UserRoles
     [Description("Guest")] Guest,
     [Description("User")] User,
     [Description("Moderator")] Moderator,
-    [Description("Administrator")] Administrator,
+    [Description("Administrator")] Administrator
 }

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Posts, Users } from '../models';
+import { Post, User } from '../models';
 import { DOCUMENT } from '@angular/common';
 import { catchError, forkJoin, throwError } from 'rxjs';
 
@@ -24,34 +24,34 @@ export class PostsService {
     }
 
     getAll() {
-        return this.http.get<Posts[]>(`${environment.apiUrl}/post`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<Post[]>(`${environment.apiUrl}/post`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     getAllWithUsers(userId = -1) {
         let pid = userId !== -1 ? `/user/${userId}`: '';
-        let posts = this.http.get<Posts[]>(`${environment.apiUrl}/post${pid}`, { headers: this.setHeadersObj() });
-        let users = this.http.get<Users[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });
-        return forkJoin([posts, users]);
+        let post = this.http.get<Post[]>(`${environment.apiUrl}/post${pid}`, { headers: this.setHeadersObj() });
+        let user = this.http.get<User[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });
+        return forkJoin([post, user]);
     }
 
     getAllById(id: number) {
-        return this.http.get<Posts>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<Post>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     getAllByUsersId(userId: number) {
-        return this.http.get<Posts>(`${environment.apiUrl}/post/user/${userId}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<Post>(`${environment.apiUrl}/post/user/${userId}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    createPost(posts: Posts) {
-        return this.http.post<Posts>(`${environment.apiUrl}/post`, posts, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    createPosts(post: Post) {
+        return this.http.post<Post>(`${environment.apiUrl}/post`, post, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    updatePost(id: number, posts: Posts) {
-        return this.http.put<Posts>(`${environment.apiUrl}/post/${id}`, posts, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    updatePosts(id: number, post: Post) {
+        return this.http.put<Post>(`${environment.apiUrl}/post/${id}`, post, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    deletePost(id: number) {
-        return this.http.delete<Posts>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    deletePosts(id: number) {
+        return this.http.delete<Post>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     private handleError(error: HttpErrorResponse) {

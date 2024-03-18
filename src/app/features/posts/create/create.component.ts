@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Posts } from '@app/models';
+import { Post } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { AlertsService, AuthService, PostsService } from '@app/services';
 
@@ -38,7 +38,7 @@ export class CreatePostsComponent implements OnInit {
       return;
     }
 
-    const postsObj: Posts = {
+    const postsObj: Post = {
       Title: this.f["Title"].value!.toString(),
       Description: this.f["Description"].value!.toString(),
       ImgUrl: this.f["ImgUrl"].value!.toString(),
@@ -47,9 +47,7 @@ export class CreatePostsComponent implements OnInit {
       UserId: this.authService.userValue["usersInfo"]["userId"] ?? 1
     };
 
-    console.log(postsObj)
-
-    this.postsService.createPost(postsObj).subscribe({
+    this.postsService.createPosts(postsObj).subscribe({
       next: () => {
         this.alertsService.openAlert(`Created new post!`, 1, "success");
         window.location.reload();

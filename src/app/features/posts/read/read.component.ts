@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Posts, Users } from '@app/models';
+import { Post, User } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { SafePipe } from '@app/pipes';
 import { AlertsService, AuthService, PostsService } from '@app/services';
@@ -15,8 +15,8 @@ import { AlertsService, AuthService, PostsService } from '@app/services';
 export class ReadPostsComponent implements OnInit {
   id: number = -1;
 
-  dataPosts?: Posts[] | any;
-  dataUsers?: Users[] | any;
+  dataPosts?: Post[] | any;
+  dataUsers?: User[] | any;
   avatarId: number = 1;
   avatarRole: string = "User";
   ctLikes: number = 0;

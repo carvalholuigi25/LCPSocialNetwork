@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { Users } from '../models';
+import { User } from '../models';
 
-const users: Users[] = [{ UserId: 1, Username: 'test', Password: 'test', FirstName: 'test', LastName: 'test', Email: 'test@local.loc', Role: 'user' }];
+const users: User[] = [{ UserId: 1, Username: 'test', Password: 'test', FirstName: 'test', LastName: 'test', Email: 'test@local.loc', Role: 'user' }];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {

@@ -37,6 +37,15 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DateAttachmentDeleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateAttachmentUpdated")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<DateTime?>("DateAttachmentUploaded")
                         .HasColumnType("timestamp without time zone");
 
@@ -47,6 +56,15 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .HasColumnType("boolean");
 
                     b.Property<int?>("PostId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ShareId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Status")
@@ -69,6 +87,64 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         });
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.ChatMessage", b =>
+                {
+                    b.Property<int?>("ChatMessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("ChatMessageId"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DateChatMessageCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateChatMessageDeleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateChatMessageReaded")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateChatMessageUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsRead")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ShareId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ChatMessageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ChatMessages", t =>
+                        {
+                            t.HasTrigger("ChatMessages_Trigger");
+                        });
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
                     b.Property<int?>("CommentId")
@@ -80,7 +156,13 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<int?>("AttachmentId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("DatePostCreated")
+                    b.Property<DateTime?>("DateCommentCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateCommentDeleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateCommentUpdated")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
@@ -92,6 +174,18 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
                     b.Property<bool?>("IsFeatured")
                         .HasColumnType("boolean");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ShareId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Status")
                         .HasColumnType("text");
@@ -149,6 +243,110 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         });
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.FriendRequest", b =>
+                {
+                    b.Property<int?>("FriendRequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("FriendRequestId"));
+
+                    b.Property<DateTime?>("DateFriendRequestAccepted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateFriendRequestCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateFriendRequestDeleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("FriendRequestType")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("IsAccepted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("FriendRequestId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("FriendRequests", t =>
+                        {
+                            t.HasTrigger("FriendRequests_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Notification", b =>
+                {
+                    b.Property<int?>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("NotificationId"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DateUserNotificationCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateUserNotificationDeleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateUserNotificationMarked")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateUserNotificationUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsMarkRead")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("IsPinned")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("NotificationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications", t =>
+                        {
+                            t.HasTrigger("Notifications_Trigger");
+                        });
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Post", b =>
                 {
                     b.Property<int?>("PostId")
@@ -160,7 +358,16 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<int?>("AttachmentId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("DatePostCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DatePostDeleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DatePostUpdated")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
@@ -173,8 +380,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<bool?>("IsFeatured")
                         .HasColumnType("boolean");
 
-                    b.Property<bool?>("IsPinned")
-                        .HasColumnType("boolean");
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ShareId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Status")
                         .HasColumnType("text");
@@ -194,6 +407,143 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.ToTable("Posts", t =>
                         {
                             t.HasTrigger("Posts_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Reaction", b =>
+                {
+                    b.Property<int?>("ReactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("ReactionId"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DateReacted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReactionCounter")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReactionType")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ReactionId");
+
+                    b.ToTable("Reactions", t =>
+                        {
+                            t.HasTrigger("Reactions_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Reply", b =>
+                {
+                    b.Property<int?>("ReplyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("ReplyId"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DateReplyCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateReplyDeleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateReplyUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReactionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ShareId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ReplyId");
+
+                    b.ToTable("Replies", t =>
+                        {
+                            t.HasTrigger("Replies_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Share", b =>
+                {
+                    b.Property<int?>("ShareId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("ShareId"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DateShared")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ShareCounter")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ShareId");
+
+                    b.ToTable("Shares", t =>
+                        {
+                            t.HasTrigger("Shares_Trigger");
                         });
                 });
 
@@ -263,144 +613,15 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 16, 14, 22, 31, 293, DateTimeKind.Utc).AddTicks(4702),
+                            DateAccountCreated = new DateTime(2024, 3, 18, 15, 54, 40, 620, DateTimeKind.Utc).AddTicks(2163),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$Q56F8JQj8iSepLh8WCgK7esb3gny0if0wJomLgc9gqmSipnSvMqKG",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 16, 14, 22, 31, 293, DateTimeKind.Utc).AddTicks(4708),
+                            Password = "$2a$12$Nd4PuBHjLFRwxvVEAwWrLeB5H1Mlk5.3DO3vmPNpq9U6tJ4D3BBDS",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 18, 15, 54, 40, 620, DateTimeKind.Utc).AddTicks(2174),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
-                        });
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserFriendRequest", b =>
-                {
-                    b.Property<int?>("UserFriendRequestId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("UserFriendRequestId"));
-
-                    b.Property<DateTime?>("DateUserFriendRequestAccepted")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DateUserFriendRequestCreated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DateUserFriendRequestDeleted")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("IsAccepted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("UserFriendRequestId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserFriendRequests", t =>
-                        {
-                            t.HasTrigger("UserFriendRequests_Trigger");
-                        });
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserMessage", b =>
-                {
-                    b.Property<int?>("UserMessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("UserMessageId"));
-
-                    b.Property<DateTime?>("DateUserMessageCreated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DateUserMessageDeleted")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DateUserMessageReaded")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DateUserMessageUpdated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("IsRead")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("UserMessageId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserMessages", t =>
-                        {
-                            t.HasTrigger("UserMessages_Trigger");
-                        });
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserNotification", b =>
-                {
-                    b.Property<int?>("UserNotificationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("UserNotificationId"));
-
-                    b.Property<DateTime?>("DateUserNotificationCreated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DateUserNotificationDeleted")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DateUserNotificationMarked")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("DateUserNotificationUpdated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("IsMarkRead")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool?>("IsPinned")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("UserNotificationId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserNotifications", t =>
-                        {
-                            t.HasTrigger("UserNotifications_Trigger");
                         });
                 });
 
@@ -411,6 +632,13 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.ChatMessage", b =>
+                {
+                    b.HasOne("LCPSNWebApi.Classes.User", null)
+                        .WithMany("ChatMessages")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Comment", b =>
                 {
                     b.HasOne("LCPSNWebApi.Classes.User", null)
@@ -418,24 +646,17 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserFriendRequest", b =>
+            modelBuilder.Entity("LCPSNWebApi.Classes.FriendRequest", b =>
                 {
                     b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithMany("UserFriendRequests")
+                        .WithMany("FriendRequests")
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserMessage", b =>
+            modelBuilder.Entity("LCPSNWebApi.Classes.Notification", b =>
                 {
                     b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithMany("UserMessages")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("LCPSNWebApi.Classes.UserNotification", b =>
-                {
-                    b.HasOne("LCPSNWebApi.Classes.User", null)
-                        .WithMany("UserNotifications")
+                        .WithMany("Notifications")
                         .HasForeignKey("UserId");
                 });
 
@@ -443,13 +664,13 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                 {
                     b.Navigation("Attachments");
 
+                    b.Navigation("ChatMessages");
+
                     b.Navigation("Comments");
 
-                    b.Navigation("UserFriendRequests");
+                    b.Navigation("FriendRequests");
 
-                    b.Navigation("UserMessages");
-
-                    b.Navigation("UserNotifications");
+                    b.Navigation("Notifications");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../../../modules';
-import { UsersAuth } from '../../../models';
+import { UserAuth } from '../../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
 import { first } from 'rxjs';
@@ -48,7 +48,7 @@ export class LoginComponent {
       return;
     }
 
-    const loginRequest: UsersAuth = {
+    const loginRequest: UserAuth = {
       Username: this.f["Username"].value!.toString(),
       Password: this.f["Password"].value!.toString()
     };

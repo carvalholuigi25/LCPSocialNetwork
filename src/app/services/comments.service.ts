@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Comments } from '../models';
+import { Comment } from '../models';
 import { DOCUMENT } from '@angular/common';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class CommentsService {
+export class CommentService {
     private ls: Storage | undefined;
 
     constructor(
@@ -24,23 +24,23 @@ export class CommentsService {
     }
 
     getAll() {
-        return this.http.get<Comments[]>(`${environment.apiUrl}/comment`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<Comment[]>(`${environment.apiUrl}/comment`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     getAllById(id: number) {
-        return this.http.get<Comments>(`${environment.apiUrl}/comment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<Comment>(`${environment.apiUrl}/comment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    createComment(comments: Comments) {
-        return this.http.post<Comments>(`${environment.apiUrl}/comment`, comments, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    createComments(comment: Comment) {
+        return this.http.post<Comment>(`${environment.apiUrl}/comment`, comment, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    updateComment(id: number, comments: Comments) {
-        return this.http.put<Comments>(`${environment.apiUrl}/comment/${id}`, comments, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    updateComments(id: number, comment: Comment) {
+        return this.http.put<Comment>(`${environment.apiUrl}/comment/${id}`, comment, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    deleteComment(id: number) {
-        return this.http.delete<Comments>(`${environment.apiUrl}/comment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    deleteComments(id: number) {
+        return this.http.delete<Comment>(`${environment.apiUrl}/comment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     private handleError(error: HttpErrorResponse) {

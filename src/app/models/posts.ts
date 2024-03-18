@@ -1,12 +1,20 @@
-export class Posts {
+export interface Post {
     PostId?: number;
-    Title!: string;
-    Description!: string;
+    Title: string;
+    Description: string;
     ImgUrl?: string;
     Status?: string;
-    DatePostCreated?: Date | string;
-    TypeTxtPost?: string | TypeTxtPostEnum;
+    DatePostCreated?: string | Date;
+    DatePostUpdated?: string | Date;
+    DatePostDeleted?: string | Date;
+    TypeTxtPost?: string;
+    IsFeatured?: boolean;
     UserId?: number;
+    CommentId?: number;
+    ReplyId?: number;
+    ShareId?: number;
+    ReactionId?: number;
+    AttachmentId?: number;
 }
 
 export enum TypeTxtPostEnum {
