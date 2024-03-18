@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using AspNetCoreRateLimit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -81,6 +82,15 @@ builder.Services.AddRouting(options =>
 });
 
 builder.Services.AddRazorPages();
+
+if(builder.Environment.IsProduction()) {
+    builder.Services.AddMemoryCache();
+    builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+    builder.Services.Configure<ClientRateLimitOptions>(builder.Configuration.GetSection("ClientRateLimiting"));
+    builder.Services.AddInMemoryRateLimiting();
+    builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+}
+
 builder.Services.AddMvc();
 
 builder.Services.AddSwaggerGen(options =>
@@ -185,6 +195,8 @@ else
 {
     app.UseHsts();
     app.UseResponseCompression();
+    app.UseIpRateLimiting();
+    app.UseClientRateLimiting();
 }
 
 app.UseRewriter(new RewriteOptions().Add(new RedirectLowerCaseRule()));

@@ -20,7 +20,7 @@
         - [x]  Realtime data with signalr
         - [ ]  Secure all api stuff
         - [ ]  DTO
-        - [ ]  Rate Limit
+        - [x]  Rate limiting for production
         - [x]  Pagination & Filteration & Search for data
         - [x]  Query builder’n’runner
         - [ ]  Localization
