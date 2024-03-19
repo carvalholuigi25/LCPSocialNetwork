@@ -1,25 +1,30 @@
 using LCPSNWebApi.Extensions;
 using LCPSNWebApi.Context;
 using LCPSNWebApi.Interfaces;
+using LCPSNWebApi.Classes;
+using LCPSNWebApi.Classes.Filter;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
-using LCPSNWebApi.Classes.Filter;
+using LCPSNWebApi.Resource;
+using Microsoft.Extensions.Localization;
 using LCPSNWebApi.Classes.Files;
 
 namespace LCPSNWebApi.Services
 {
     public class FilesListService : ControllerBase, IFilesList
     {
+        private readonly IStringLocalizer<SharedResource> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public FilesListService(DBContext context, IConfiguration configuration)
+        public FilesListService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
         {
             _context = context;
             _configuration = configuration;
+            _shResLoc = shResLoc;
         }
 
         public async Task<ActionResult<IEnumerable<FileData>>> GetFilesData()
@@ -29,14 +34,14 @@ namespace LCPSNWebApi.Services
 
         public async Task<ActionResult<IEnumerable<FileData>>> GetFilesDataById(int? id)
         {
-            var FileData = await _context.FilesData.Where(x => x.Id == id).ToListAsync();
+            var FileDatas = await _context.FilesData.Where(x => x.Id == id).ToListAsync();
 
-            if (FileData == null)
+            if (FileDatas == null)
             {
                 return NotFound();
             }
 
-            return FileData;
+            return FileDatas;
         }
 
         public IActionResult GetFilesDataAsEnumList()
@@ -44,19 +49,19 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(FileData).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
-        public async Task<IActionResult> PutFilesData(int? id, FileData FileData)
+        public async Task<IActionResult> PutFilesData(int? id, FileData FileDatas)
         {
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            if (id != FileData.Id)
+            if (id != FileDatas.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(FileData).State = EntityState.Modified;
+            _context.Entry(FileDatas).State = EntityState.Modified;
 
             try
             {
@@ -64,7 +69,7 @@ namespace LCPSNWebApi.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FileDataExists(id))
+                if (!FileDatasExists(id))
                 {
                     return NotFound();
                 }
@@ -77,34 +82,34 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<IEnumerable<FileData>>> PostFilesData(FileData FileDataData)
+        public async Task<ActionResult<IEnumerable<FileData>>> PostFilesData(FileData FileDatasData)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            _context.FilesData.Add(FileDataData);
+            _context.FilesData.Add(FileDatasData);
             await _context.SaveChangesAsync();
 
             return await GetFilesData();
-            // return CreatedAtAction("GetFilesDataById", new { id = FileDataData.Id }, FileDataData);
+            // return CreatedAtAction("GetFilesDataById", new { id = FileDatasData.Id }, FileDatasData);
         }
 
         public async Task<IActionResult> DeleteFilesData(int? id)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            var FileData = await _context.FilesData.FindAsync(id);
-            if (FileData == null)
+            var FileDatas = await _context.FilesData.FindAsync(id);
+            if (FileDatas == null)
             {
                 return NotFound();
             }
 
-            _context.FilesData.Remove(FileData);
+            _context.FilesData.Remove(FileDatas);
             await _context.SaveChangesAsync();
             await ResetIdSeed(_context.FilesData.Count());
 
@@ -117,7 +122,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.FilesData.AsQueryable();
@@ -160,7 +165,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -170,7 +175,7 @@ namespace LCPSNWebApi.Services
             {
                 int result;
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"DBCC CHECKIDENT('dbo.FilesData', RESEED, @rsid)";
+                string queryString = $@"DBCC CHECKIDENT('dbo.FileDatas', RESEED, @rsid)";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -181,12 +186,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = $"Id of table FilesData has been reset to {rsid}!", qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -196,7 +201,7 @@ namespace LCPSNWebApi.Services
             {
                 string msg = "";
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"SELECT MAX(id) FROM FilesData";
+                string queryString = $@"SELECT MAX(Id) FROM FileDatas";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -216,11 +221,11 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
-        private bool FileDataExists(int? id)
+        private bool FileDatasExists(int? id)
         {
             return _context.FilesData.Any(e => e.Id == id);
         }

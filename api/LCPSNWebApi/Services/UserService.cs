@@ -1,11 +1,13 @@
-﻿using LCPSNWebApi.Extensions;
-using LCPSNWebApi.Context;
-using LCPSNWebApi.Interfaces;
+﻿using LCPSNWebApi.Context;
 using LCPSNWebApi.Classes;
 using LCPSNWebApi.Classes.Filter;
+using LCPSNWebApi.Extensions;
+using LCPSNWebApi.Interfaces;
+using LCPSNWebApi.Resource;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using System.Reflection;
 using System.Linq.Expressions;
 using BC = BCrypt.Net.BCrypt;
@@ -14,13 +16,15 @@ namespace LCPSNWebApi.Services
 {
     public class UserService : ControllerBase, IUser
     {
+        private readonly IStringLocalizer<SharedResource> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public UserService(DBContext context, IConfiguration configuration)
+        public UserService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
         {
             _context = context;
             _configuration = configuration;
+            _shResLoc = shResLoc;
         }
 
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
@@ -49,7 +53,7 @@ namespace LCPSNWebApi.Services
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
             if (id != Users.UserId)
@@ -60,7 +64,7 @@ namespace LCPSNWebApi.Services
             if(!string.IsNullOrEmpty(Users.Username)) 
             {
                 if(_context.Users.Any(e => e.Username == Users.Username)) {
-                    return BadRequest("This username is already taken!");
+                    return BadRequest(string.Format(_shResLoc.GetString("UsernameTaken").Value, Users.Username));
                 }
 
                 CheckIfRoleIsForbiddenInUserName();
@@ -68,7 +72,7 @@ namespace LCPSNWebApi.Services
 
             if(!string.IsNullOrEmpty(Users.Email) &&_context.Users.Any(e => e.Email == Users.Email)) 
             {
-                return BadRequest("This email is already taken!");
+                return BadRequest(string.Format(_shResLoc.GetString("EmailTaken").Value, Users.Email));
             }
 
             if (!string.IsNullOrEmpty(Users.Password))
@@ -101,13 +105,13 @@ namespace LCPSNWebApi.Services
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
             if(!string.IsNullOrEmpty(UsersData.Username)) 
             {
                 if(_context.Users.Any(e => e.Username == UsersData.Username)) {
-                    return BadRequest("This username is already taken!");
+                    return BadRequest(string.Format(_shResLoc.GetString("UsernameTaken").Value, UsersData.Username));
                 }
 
                 CheckIfRoleIsForbiddenInUserName();
@@ -115,7 +119,7 @@ namespace LCPSNWebApi.Services
 
             if(!string.IsNullOrEmpty(UsersData.Email) &&_context.Users.Any(e => e.Email == UsersData.Email)) 
             {
-                return BadRequest("This email is already taken!");
+                return BadRequest(string.Format(_shResLoc.GetString("EmailTaken").Value, UsersData.Email));
             }
 
             UsersData.Password = BC.HashPassword(UsersData.Password, BC.GenerateSalt(12), false, BCrypt.Net.HashType.SHA256);
@@ -130,7 +134,7 @@ namespace LCPSNWebApi.Services
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
             var Users = await _context.Users.FindAsync(id);
@@ -152,7 +156,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.Users.AsQueryable();
@@ -195,7 +199,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, $"{ex.Message}"));
             }
         }
 
@@ -216,12 +220,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = $"Id of table Users has been reset to {rsid}!", qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset"), rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, $"{ex.Message}"));
             }
         }
 
@@ -251,7 +255,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, $"{ex.Message}"));
             }
         }
 
@@ -305,7 +309,7 @@ namespace LCPSNWebApi.Services
             if(forbiddenRoleNamesList.Length > 0) {
                 for(var c = 0; c < forbiddenRoleNamesList.Length; c++) {
                     if(_context.Users.Any(e => e.Username.Contains(forbiddenRoleNamesList[c]).ToString().Length > 1)) {
-                        msg = $"This username shouldnt contain of this name: {forbiddenRoleNamesList[c]} because its forbidden!";
+                        msg = string.Format(_shResLoc.GetString("ChkRoleNameInUserName").Value, $"{forbiddenRoleNamesList[c]}");
                     }
                 }
             }

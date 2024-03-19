@@ -8,18 +8,22 @@ using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
 using LCPSNWebApi.Classes.Filter;
+using LCPSNWebApi.Resource;
+using Microsoft.Extensions.Localization;
 
 namespace LCPSNWebApi.Services
 {
     public class PostService : ControllerBase, IPost
     {
+        private readonly IStringLocalizer<SharedResource> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public PostService(DBContext context, IConfiguration configuration)
+        public PostService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
         {
             _context = context;
             _configuration = configuration;
+            _shResLoc = shResLoc;
         }
 
         public async Task<ActionResult<IEnumerable<Post>>> GetPost()
@@ -29,26 +33,26 @@ namespace LCPSNWebApi.Services
 
         public async Task<ActionResult<IEnumerable<Post>>> GetPostById(int? id)
         {
-            var Post = await _context.Posts.Where(x => x.PostId == id).ToListAsync();
+            var Posts = await _context.Posts.Where(x => x.PostId == id).ToListAsync();
 
-            if (Post == null)
+            if (Posts == null)
             {
                 return NotFound();
             }
 
-            return Post;
+            return Posts;
         }
 
-        public async Task<ActionResult<IEnumerable<Post>>> GetPostByUserId(int? userId)
+        public async Task<ActionResult<IEnumerable<Post>>> GetPostByUserId(int? id)
         {
-            var Post = await _context.Posts.Where(x => x.UserId == userId).ToListAsync();
+            var Users = await _context.Posts.Where(x => x.UserId == id).ToListAsync();
 
-            if (Post == null)
+            if (Users == null)
             {
                 return NotFound();
             }
 
-            return Post;
+            return Users;
         }
 
         public IActionResult GetPostAsEnumList()
@@ -56,19 +60,19 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(Post).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
-        public async Task<IActionResult> PutPost(int? id, Post PostData)
+        public async Task<IActionResult> PutPost(int? id, Post Posts)
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            if (id != PostData.PostId)
+            if (id != Posts.PostId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(PostData).State = EntityState.Modified;
+            _context.Entry(Posts).State = EntityState.Modified;
 
             try
             {
@@ -76,7 +80,7 @@ namespace LCPSNWebApi.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PostExists(id))
+                if (!PostsExists(id))
                 {
                     return NotFound();
                 }
@@ -89,34 +93,34 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<IEnumerable<Post>>> CreatePost(Post PostData)
+        public async Task<ActionResult<IEnumerable<Post>>> CreatePost(Post PostsData)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            _context.Posts.Add(PostData);
+            _context.Posts.Add(PostsData);
             await _context.SaveChangesAsync();
 
             return await GetPost();
-            // return CreatedAtAction("GetPostById", new { id = PostData.PostId }, PostData);
+            // return CreatedAtAction("GetPostById", new { id = PostsData.PostId }, PostsData);
         }
 
         public async Task<IActionResult> DeletePost(int? id)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            var Post = await _context.Posts.FindAsync(id);
-            if (Post == null)
+            var Posts = await _context.Posts.FindAsync(id);
+            if (Posts == null)
             {
                 return NotFound();
             }
 
-            _context.Posts.Remove(Post);
+            _context.Posts.Remove(Posts);
             await _context.SaveChangesAsync();
             await ResetIdSeed(_context.Posts.Count());
 
@@ -129,7 +133,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.Posts.AsQueryable();
@@ -172,7 +176,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -193,12 +197,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = $"Id of table Posts has been reset to {rsid}!", qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -228,11 +232,11 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
-        private bool PostExists(int? id)
+        private bool PostsExists(int? id)
         {
             return _context.Posts.Any(e => e.PostId == id);
         }

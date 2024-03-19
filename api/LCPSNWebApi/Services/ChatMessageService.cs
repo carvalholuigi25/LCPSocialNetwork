@@ -8,18 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
+using LCPSNWebApi.Resource;
+using Microsoft.Extensions.Localization;
 
 namespace LCPSNWebApi.Services
 {
     public class ChatMessageService : ControllerBase, IChatMessage
     {
+        private readonly IStringLocalizer<SharedResource> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public ChatMessageService(DBContext context, IConfiguration configuration)
+        public ChatMessageService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
         {
             _context = context;
             _configuration = configuration;
+            _shResLoc = shResLoc;
         }
 
         public async Task<ActionResult<IEnumerable<ChatMessage>>> GetChatMessages()
@@ -48,7 +52,7 @@ namespace LCPSNWebApi.Services
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
             if (id != ChatMessages.ChatMessageId)
@@ -81,7 +85,7 @@ namespace LCPSNWebApi.Services
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
             _context.ChatMessages.Add(ChatMessagesData);
@@ -95,7 +99,7 @@ namespace LCPSNWebApi.Services
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
             var ChatMessages = await _context.ChatMessages.FindAsync(id);
@@ -117,7 +121,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.ChatMessages.AsQueryable();
@@ -160,7 +164,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -181,12 +185,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = $"Id of table ChatMessages has been reset to {rsid}!", qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -216,7 +220,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 

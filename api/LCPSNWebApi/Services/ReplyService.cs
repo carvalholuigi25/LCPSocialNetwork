@@ -8,18 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
+using LCPSNWebApi.Resource;
+using Microsoft.Extensions.Localization;
 
 namespace LCPSNWebApi.Services
 {
     public class ReplyService : ControllerBase, IReply
     {
+        private readonly IStringLocalizer<SharedResource> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public ReplyService(DBContext context, IConfiguration configuration)
+        public ReplyService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
         {
             _context = context;
             _configuration = configuration;
+            _shResLoc = shResLoc;
         }
 
         public async Task<ActionResult<IEnumerable<Reply>>> GetReply()
@@ -29,26 +33,26 @@ namespace LCPSNWebApi.Services
 
         public async Task<ActionResult<IEnumerable<Reply>>> GetReplyById(int? id)
         {
-            var Replies = await _context.Replies.Where(x => x.ReplyId == id).ToListAsync();
+            var Reply = await _context.Replies.Where(x => x.ReplyId == id).ToListAsync();
 
-            if (Replies == null)
+            if (Reply == null)
             {
                 return NotFound();
             }
 
-            return Replies;
+            return Reply;
         }
 
         public async Task<ActionResult<IEnumerable<Reply>>> GetReplyByUserId(int? id)
         {
-            var users = await _context.Replies.Where(x => x.UserId == id).ToListAsync();
+            var Reply = await _context.Replies.Where(x => x.UserId == id).ToListAsync();
 
-            if (users == null)
+            if (Reply == null)
             {
                 return NotFound();
             }
 
-            return users;
+            return Reply;
         }
 
         public IActionResult GetReplyAsEnumList()
@@ -56,19 +60,19 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(Reply).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
-        public async Task<IActionResult> PutReply(int? id, Reply Replies)
+        public async Task<IActionResult> PutReply(int? id, Reply Reply)
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            if (id != Replies.ReplyId)
+            if (id != Reply.ReplyId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(Replies).State = EntityState.Modified;
+            _context.Entry(Reply).State = EntityState.Modified;
 
             try
             {
@@ -76,7 +80,7 @@ namespace LCPSNWebApi.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RepliesExists(id))
+                if (!ReplyExists(id))
                 {
                     return NotFound();
                 }
@@ -89,33 +93,34 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<IEnumerable<Reply>>> CreateReply(Reply RepliesData)
+        public async Task<ActionResult<IEnumerable<Reply>>> CreateReply(Reply ReplyData)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            _context.Replies.Add(RepliesData);
+            _context.Replies.Add(ReplyData);
             await _context.SaveChangesAsync();
 
             return await GetReply();
+            // return CreatedAtAction("GetReplyById", new { id = ReplyData.ReplyId }, ReplyData);
         }
 
         public async Task<IActionResult> DeleteReply(int? id)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            var Replies = await _context.Replies.FindAsync(id);
-            if (Replies == null)
+            var Reply = await _context.Replies.FindAsync(id);
+            if (Reply == null)
             {
                 return NotFound();
             }
 
-            _context.Replies.Remove(Replies);
+            _context.Replies.Remove(Reply);
             await _context.SaveChangesAsync();
             await ResetIdSeed(_context.Replies.Count());
 
@@ -128,7 +133,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.Replies.AsQueryable();
@@ -171,7 +176,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -181,7 +186,7 @@ namespace LCPSNWebApi.Services
             {
                 int result;
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"DBCC CHECKIDENT('dbo.Replies', RESEED, @rsid)";
+                string queryString = $@"DBCC CHECKIDENT('dbo.Reply', RESEED, @rsid)";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -192,12 +197,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = $"Id of table Replies has been reset to {rsid}!", qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -207,7 +212,7 @@ namespace LCPSNWebApi.Services
             {
                 string msg = "";
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"SELECT MAX(ReplyId) FROM Replies";
+                string queryString = $@"SELECT MAX(ReplyId) FROM Reply";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -227,11 +232,11 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
-        private bool RepliesExists(int? id)
+        private bool ReplyExists(int? id)
         {
             return _context.Replies.Any(e => e.ReplyId == id);
         }

@@ -8,18 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
+using LCPSNWebApi.Resource;
+using Microsoft.Extensions.Localization;
 
 namespace LCPSNWebApi.Services
 {
     public class ShareService : ControllerBase, IShare
     {
+        private readonly IStringLocalizer<SharedResource> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public ShareService(DBContext context, IConfiguration configuration)
+        public ShareService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
         {
             _context = context;
             _configuration = configuration;
+            _shResLoc = shResLoc;
         }
 
         public async Task<ActionResult<IEnumerable<Share>>> GetShares()
@@ -29,14 +33,14 @@ namespace LCPSNWebApi.Services
 
         public async Task<ActionResult<IEnumerable<Share>>> GetSharesById(int? id)
         {
-            var Shares = await _context.Shares.Where(x => x.ShareId == id).ToListAsync();
+            var Share = await _context.Shares.Where(x => x.ShareId == id).ToListAsync();
 
-            if (Shares == null)
+            if (Share == null)
             {
                 return NotFound();
             }
 
-            return Shares;
+            return Share;
         }
 
         public IActionResult GetSharesAsEnumList()
@@ -44,19 +48,19 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(Share).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
-        public async Task<IActionResult> PutShares(int? id, Share Shares)
+        public async Task<IActionResult> PutShares(int? id, Share Share)
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            if (id != Shares.ShareId)
+            if (id != Share.ShareId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(Shares).State = EntityState.Modified;
+            _context.Entry(Share).State = EntityState.Modified;
 
             try
             {
@@ -64,7 +68,7 @@ namespace LCPSNWebApi.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SharesExists(id))
+                if (!ShareExists(id))
                 {
                     return NotFound();
                 }
@@ -77,34 +81,34 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<IEnumerable<Share>>> PostShares(Share SharesData)
+        public async Task<ActionResult<IEnumerable<Share>>> PostShares(Share ShareData)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            _context.Shares.Add(SharesData);
+            _context.Shares.Add(ShareData);
             await _context.SaveChangesAsync();
 
             return await GetShares();
-            // return CreatedAtAction("GetSharesById", new { id = SharesData.ShareId }, SharesData);
+            // return CreatedAtAction("GetSharesById", new { id = ShareData.ShareId }, ShareData);
         }
 
         public async Task<IActionResult> DeleteShares(int? id)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            var Shares = await _context.Shares.FindAsync(id);
-            if (Shares == null)
+            var Share = await _context.Shares.FindAsync(id);
+            if (Share == null)
             {
                 return NotFound();
             }
 
-            _context.Shares.Remove(Shares);
+            _context.Shares.Remove(Share);
             await _context.SaveChangesAsync();
             await ResetIdSeed(_context.Shares.Count());
 
@@ -117,7 +121,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.Shares.AsQueryable();
@@ -160,7 +164,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -170,7 +174,7 @@ namespace LCPSNWebApi.Services
             {
                 int result;
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"DBCC CHECKIDENT('dbo.Shares', RESEED, @rsid)";
+                string queryString = $@"DBCC CHECKIDENT('dbo.Share', RESEED, @rsid)";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -181,12 +185,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = $"Id of table Shares has been reset to {rsid}!", qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -196,7 +200,7 @@ namespace LCPSNWebApi.Services
             {
                 string msg = "";
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
-                string queryString = $@"SELECT MAX(ShareId) FROM Shares";
+                string queryString = $@"SELECT MAX(ShareId) FROM Share";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -216,11 +220,11 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
-        private bool SharesExists(int? id)
+        private bool ShareExists(int? id)
         {
             return _context.Shares.Any(e => e.ShareId == id);
         }

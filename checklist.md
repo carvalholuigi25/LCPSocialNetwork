@@ -23,7 +23,7 @@
         - [x]  Rate limiting for production
         - [x]  Pagination & Filteration & Search for data
         - [x]  Query builder’n’runner
-        - [ ]  Localization
+        - [x]  Localization
         - [x]  Upload files
         - [ ]  Remove all table data (seed) for production
         - [ ]  Unit test for each endpoint (optional)

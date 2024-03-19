@@ -2,24 +2,28 @@ using LCPSNWebApi.Extensions;
 using LCPSNWebApi.Context;
 using LCPSNWebApi.Interfaces;
 using LCPSNWebApi.Classes;
+using LCPSNWebApi.Classes.Filter;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
-using LCPSNWebApi.Classes.Filter;
+using LCPSNWebApi.Resource;
+using Microsoft.Extensions.Localization;
 
 namespace LCPSNWebApi.Services
 {
     public class CommentService : ControllerBase, IComment
     {
+        private readonly IStringLocalizer<SharedResource> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public CommentService(DBContext context, IConfiguration configuration)
+        public CommentService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
         {
             _context = context;
             _configuration = configuration;
+            _shResLoc = shResLoc;
         }
 
         public async Task<ActionResult<IEnumerable<Comment>>> GetComment()
@@ -29,14 +33,14 @@ namespace LCPSNWebApi.Services
 
         public async Task<ActionResult<IEnumerable<Comment>>> GetCommentById(int? id)
         {
-            var Comment = await _context.Comments.Where(x => x.CommentId == id).ToListAsync();
+            var Comments = await _context.Comments.Where(x => x.CommentId == id).ToListAsync();
 
-            if (Comment == null)
+            if (Comments == null)
             {
                 return NotFound();
             }
 
-            return Comment;
+            return Comments;
         }
 
         public IActionResult GetCommentAsEnumList()
@@ -44,19 +48,19 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(Comment).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
-        public async Task<IActionResult> PutComment(int? id, Comment CommentData)
+        public async Task<IActionResult> PutComment(int? id, Comment Comments)
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            if (id != CommentData.CommentId)
+            if (id != Comments.CommentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(CommentData).State = EntityState.Modified;
+            _context.Entry(Comments).State = EntityState.Modified;
 
             try
             {
@@ -64,7 +68,7 @@ namespace LCPSNWebApi.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CommentExists(id))
+                if (!CommentsExists(id))
                 {
                     return NotFound();
                 }
@@ -77,34 +81,34 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
-        public async Task<ActionResult<IEnumerable<Comment>>> CreateComment(Comment CommentData)
+        public async Task<ActionResult<IEnumerable<Comment>>> CreateComment(Comment CommentsData)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            _context.Comments.Add(CommentData);
+            _context.Comments.Add(CommentsData);
             await _context.SaveChangesAsync();
 
             return await GetComment();
-            // return CreatedAtAction("GetCommentById", new { id = CommentData.CommentId }, CommentData);
+            // return CreatedAtAction("GetCommentById", new { id = CommentsData.CommentId }, CommentsData);
         }
 
         public async Task<IActionResult> DeleteComment(int? id)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
             }
 
-            var Comment = await _context.Comments.FindAsync(id);
-            if (Comment == null)
+            var Comments = await _context.Comments.FindAsync(id);
+            if (Comments == null)
             {
                 return NotFound();
             }
 
-            _context.Comments.Remove(Comment);
+            _context.Comments.Remove(Comments);
             await _context.SaveChangesAsync();
             await ResetIdSeed(_context.Comments.Count());
 
@@ -117,7 +121,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.Comments.AsQueryable();
@@ -160,7 +164,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -181,12 +185,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = $"Id of table Comments has been reset to {rsid}!", qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -216,11 +220,11 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, new { msg = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
-        private bool CommentExists(int? id)
+        private bool CommentsExists(int? id)
         {
             return _context.Comments.Any(e => e.CommentId == id);
         }
@@ -229,51 +233,18 @@ namespace LCPSNWebApi.Services
         {
             Expression<Func<Comment, bool>> newexp;
 
-            if (qryp.SortBy!.Contains(nameof(Comment.Title)))
-            {
-                newexp = qryp.Operator!.Value == FilterOperatorEnum.Equals ? (x => x.Title! == qryp.Search!) : 
-                qryp.Operator!.Value == FilterOperatorEnum.DoesntEqual ? (x => x.Title! != qryp.Search!) :
-                qryp.Operator!.Value == FilterOperatorEnum.GreaterThan ? (x => x.Title!.Length > qryp.Search!.Length) :
-                qryp.Operator!.Value == FilterOperatorEnum.GreaterThanOrEqual ? (x => x.Title!.Length >= qryp.Search!.Length) :
-                qryp.Operator!.Value == FilterOperatorEnum.LessThan ? (x => x.Title!.Length < qryp.Search!.Length) :
-                qryp.Operator!.Value == FilterOperatorEnum.LessThanOrEqual ? (x => x.Title!.Length < qryp.Search!.Length) :
-                qryp.Operator!.Value == FilterOperatorEnum.Contains ? (x => x.Title!.Contains(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.NotContains ? (x => !x.Title!.Contains(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.StartsWith ? (x => x.Title!.StartsWith(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.EndsWith ? (x => x.Title!.EndsWith(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.IsEmpty ? (x => x.Title!.Length == 0) :
-                qryp.Operator!.Value == FilterOperatorEnum.IsNotEmpty ? (x => x.Title!.Length > 0) : (x => x.Title!.Contains(qryp.Search!));
-            }
-            else if (qryp.SortBy!.Contains(nameof(Comment.Description)))
-            {
-                newexp = qryp.Operator!.Value == FilterOperatorEnum.Equals ? (x => x.Description! == qryp.Search!) :
-                qryp.Operator!.Value == FilterOperatorEnum.DoesntEqual ? (x => x.Description! != qryp.Search!) :
-                qryp.Operator!.Value == FilterOperatorEnum.GreaterThan ? (x => x.Description!.Length > qryp.Search!.Length) :
-                qryp.Operator!.Value == FilterOperatorEnum.GreaterThanOrEqual ? (x => x.Description!.Length >= qryp.Search!.Length) :
-                qryp.Operator!.Value == FilterOperatorEnum.LessThan ? (x => x.Description!.Length < qryp.Search!.Length) :
-                qryp.Operator!.Value == FilterOperatorEnum.LessThanOrEqual ? (x => x.Description!.Length < qryp.Search!.Length) :
-                qryp.Operator!.Value == FilterOperatorEnum.Contains ? (x => x.Description!.Contains(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.NotContains ? (x => !x.Description!.Contains(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.StartsWith ? (x => x.Description!.StartsWith(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.EndsWith ? (x => x.Description!.EndsWith(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.IsEmpty ? (x => x.Description!.Length == 0) :
-                qryp.Operator!.Value == FilterOperatorEnum.IsNotEmpty ? (x => x.Description!.Length > 0) : (x => x.Description!.Contains(qryp.Search!));
-            }
-            else
-            {
-                newexp = qryp.Operator!.Value == FilterOperatorEnum.Equals ? (x => x.CommentId! == int.Parse(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.DoesntEqual ? (x => x.CommentId! != int.Parse(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.GreaterThan ? (x => x.CommentId! > int.Parse(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.GreaterThanOrEqual ? (x => x.CommentId! >= int.Parse(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.LessThan ? (x => x.CommentId! < int.Parse(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.LessThanOrEqual ? (x => x.CommentId! <= int.Parse(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.Contains ? (x => x.CommentId!.ToString()!.Contains(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.NotContains ? (x => !x.CommentId!.ToString()!.Contains(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.StartsWith ? (x => x.CommentId!.ToString()!.StartsWith(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.EndsWith ? (x => x.CommentId!.ToString()!.EndsWith(qryp.Search!)) :
-                qryp.Operator!.Value == FilterOperatorEnum.IsEmpty ? (x => x.CommentId!.ToString()!.Length == 0) :
-                qryp.Operator!.Value == FilterOperatorEnum.IsNotEmpty ? (x => x.CommentId!.ToString()!.Length > 0) : (x => x.CommentId! == int.Parse(qryp.Search!));
-            }
+            newexp = qryp.Operator!.Value == FilterOperatorEnum.Equals ? (x => x.CommentId! == int.Parse(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.DoesntEqual ? (x => x.CommentId! != int.Parse(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.GreaterThan ? (x => x.CommentId! > int.Parse(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.GreaterThanOrEqual ? (x => x.CommentId! >= int.Parse(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.LessThan ? (x => x.CommentId! < int.Parse(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.LessThanOrEqual ? (x => x.CommentId! <= int.Parse(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.Contains ? (x => x.CommentId!.ToString()!.Contains(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.NotContains ? (x => !x.CommentId!.ToString()!.Contains(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.StartsWith ? (x => x.CommentId!.ToString()!.StartsWith(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.EndsWith ? (x => x.CommentId!.ToString()!.EndsWith(qryp.Search!)) :
+            qryp.Operator!.Value == FilterOperatorEnum.IsEmpty ? (x => x.CommentId!.ToString()!.Length == 0) :
+            qryp.Operator!.Value == FilterOperatorEnum.IsNotEmpty ? (x => x.CommentId!.ToString()!.Length > 0) : (x => x.CommentId! == int.Parse(qryp.Search!));
 
             return queryable.Where(newexp);
         }

@@ -18,6 +18,17 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AspNetCoreRateLimit;
+using Microsoft.Extensions.Options;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+
+var supportedCultures = new[]
+{
+    new CultureInfo("de"), new CultureInfo("en"), new CultureInfo("es"),
+    new CultureInfo("fr"), new CultureInfo("hw"), new CultureInfo("it"), 
+    new CultureInfo("jp"), new CultureInfo("pt"), new CultureInfo("ru"),
+    new CultureInfo("uk")
+};
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +39,14 @@ var logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.Configure<RequestLocalizationOptions>(options => {
+    options.DefaultRequestCulture = new RequestCulture("en");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 
 if (builder.Configuration["DBMode"]!.Contains("SQLite", StringComparison.InvariantCultureIgnoreCase))
 {
@@ -216,6 +235,9 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
 app.MapRazorPages();
 app.MapControllers();
 app.MapHub<ChatHub>("/chathub");
