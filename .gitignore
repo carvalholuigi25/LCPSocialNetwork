@@ -45,11 +45,17 @@ Thumbs.db
 api/LCPSNWebApi/bin
 api/LCPSNWebApi/obj
 api/LCPSNWebApi/[Ll]ogs/*.log
+!api/LCPSNWebApi/[Uu]ploads
 
 # Queries Stuff
 [Qq]ueries
 [Qq]ueries/*.sql
 api/LCPSNWebApi/[Qq]ueries
 api/LCPSNWebApi/[Qq]ueries/*.sql
+
+# Other Stuff
 /.vs
-/LCPSNLibrary/obj
+LCPSNLibrary/obj
+LCPSNLibrary/obj/*
+LCPSNLibrary/bin
+LCPSNLibrary/bin/*
