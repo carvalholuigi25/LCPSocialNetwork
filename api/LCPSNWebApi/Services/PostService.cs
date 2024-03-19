@@ -8,18 +8,18 @@ using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
 using LCPSNWebApi.Classes.Filter;
-using LCPSNWebApi.Resource;
 using Microsoft.Extensions.Localization;
+using LCPSNLibrary.Resources;
 
 namespace LCPSNWebApi.Services
 {
-    public class PostService : ControllerBase, IPost
+  public class PostService : ControllerBase, IPost
     {
-        private readonly IStringLocalizer<SharedResource> _shResLoc;
+        private readonly IStringLocalizer<MyResources> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public PostService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
+        public PostService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> shResLoc)
         {
             _context = context;
             _configuration = configuration;

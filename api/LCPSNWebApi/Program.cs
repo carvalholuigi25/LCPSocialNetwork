@@ -21,14 +21,7 @@ using AspNetCoreRateLimit;
 using Microsoft.Extensions.Options;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
-
-var supportedCultures = new[]
-{
-    new CultureInfo("de"), new CultureInfo("en"), new CultureInfo("es"),
-    new CultureInfo("fr"), new CultureInfo("hw"), new CultureInfo("it"), 
-    new CultureInfo("jp"), new CultureInfo("pt"), new CultureInfo("ru"),
-    new CultureInfo("uk")
-};
+using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,14 +32,6 @@ var logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
-
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-builder.Services.Configure<RequestLocalizationOptions>(options => {
-    options.DefaultRequestCulture = new RequestCulture("en");
-    options.SupportedCultures = supportedCultures;
-    options.SupportedUICultures = supportedCultures;
-});
 
 if (builder.Configuration["DBMode"]!.Contains("SQLite", StringComparison.InvariantCultureIgnoreCase))
 {
@@ -112,8 +97,6 @@ if(builder.Environment.IsProduction()) {
     builder.Services.AddInMemoryRateLimiting();
     builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 }
-
-builder.Services.AddMvc();
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -184,7 +167,28 @@ builder.Services.AddResponseCompression(opts =>
     opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "application/octet-stream" });
 });
 
+builder.Services.AddLocalization();
+
+builder.Services.Configure<RequestLocalizationOptions>(options => {
+  var supportedCultures = new[]
+  {
+    new CultureInfo("en"), new CultureInfo("de-DE"), new CultureInfo("en-US"), new CultureInfo("es-ES"),
+    new CultureInfo("fr-FR"), new CultureInfo("haw-US"), new CultureInfo("it-IT"), new CultureInfo("jp-JP"),
+    new CultureInfo("pt-PT"), new CultureInfo("ru-RU"), new CultureInfo("uk-UA")
+  };
+
+  options.DefaultRequestCulture = new RequestCulture("en");
+  options.SupportedCultures = supportedCultures;
+  options.SupportedUICultures = supportedCultures;
+});
+
+builder.Services.AddMvc()
+  .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+  .AddDataAnnotationsLocalization();
+
 var app = builder.Build();
+
+app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
 app.UseSwagger(options =>
 {
@@ -235,8 +239,6 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
 app.MapRazorPages();
 app.MapControllers();

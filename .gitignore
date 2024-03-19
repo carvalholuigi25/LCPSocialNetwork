@@ -51,3 +51,5 @@ api/LCPSNWebApi/[Ll]ogs/*.log
 [Qq]ueries/*.sql
 api/LCPSNWebApi/[Qq]ueries
 api/LCPSNWebApi/[Qq]ueries/*.sql
+/.vs
+/LCPSNLibrary/obj

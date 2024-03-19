@@ -1,4 +1,4 @@
-﻿using LCPSNWebApi.Extensions;
+using LCPSNWebApi.Extensions;
 using LCPSNWebApi.Context;
 using LCPSNWebApi.Interfaces;
 using LCPSNWebApi.Classes;
@@ -8,18 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
-using LCPSNWebApi.Resource;
 using Microsoft.Extensions.Localization;
+using LCPSNLibrary.Resources;
 
 namespace LCPSNWebApi.Services
 {
-    public class ShareService : ControllerBase, IShare
+  public class ShareService : ControllerBase, IShare
     {
-        private readonly IStringLocalizer<SharedResource> _shResLoc;
+        private readonly IStringLocalizer<MyResources> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public ShareService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
+        public ShareService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> shResLoc)
         {
             _context = context;
             _configuration = configuration;

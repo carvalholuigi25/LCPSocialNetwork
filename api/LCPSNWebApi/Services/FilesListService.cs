@@ -8,19 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using System.Reflection;
 using System.Linq.Expressions;
-using LCPSNWebApi.Resource;
 using Microsoft.Extensions.Localization;
 using LCPSNWebApi.Classes.Files;
+using LCPSNLibrary.Resources;
 
 namespace LCPSNWebApi.Services
 {
-    public class FilesListService : ControllerBase, IFilesList
+  public class FilesListService : ControllerBase, IFilesList
     {
-        private readonly IStringLocalizer<SharedResource> _shResLoc;
+        private readonly IStringLocalizer<MyResources> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public FilesListService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
+        public FilesListService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> shResLoc)
         {
             _context = context;
             _configuration = configuration;

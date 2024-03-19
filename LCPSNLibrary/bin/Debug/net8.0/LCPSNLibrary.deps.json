@@ -1,0 +1,52 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "LCPSNLibrary/1.0.0": {
+        "runtime": {
+          "LCPSNLibrary.dll": {}
+        },
+        "resources": {
+          "de-DE/LCPSNLibrary.resources.dll": {
+            "locale": "de-DE"
+          },
+          "es-ES/LCPSNLibrary.resources.dll": {
+            "locale": "es-ES"
+          },
+          "fr-FR/LCPSNLibrary.resources.dll": {
+            "locale": "fr-FR"
+          },
+          "haw-US/LCPSNLibrary.resources.dll": {
+            "locale": "haw-US"
+          },
+          "it-IT/LCPSNLibrary.resources.dll": {
+            "locale": "it-IT"
+          },
+          "ja-JP/LCPSNLibrary.resources.dll": {
+            "locale": "ja-JP"
+          },
+          "pt-PT/LCPSNLibrary.resources.dll": {
+            "locale": "pt-PT"
+          },
+          "ru-RU/LCPSNLibrary.resources.dll": {
+            "locale": "ru-RU"
+          },
+          "uk-UA/LCPSNLibrary.resources.dll": {
+            "locale": "uk-UA"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LCPSNLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

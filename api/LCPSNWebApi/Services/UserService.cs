@@ -1,9 +1,8 @@
-﻿using LCPSNWebApi.Context;
+using LCPSNWebApi.Context;
 using LCPSNWebApi.Classes;
 using LCPSNWebApi.Classes.Filter;
 using LCPSNWebApi.Extensions;
 using LCPSNWebApi.Interfaces;
-using LCPSNWebApi.Resource;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -11,16 +10,17 @@ using Microsoft.Extensions.Localization;
 using System.Reflection;
 using System.Linq.Expressions;
 using BC = BCrypt.Net.BCrypt;
+using LCPSNLibrary.Resources;
 
 namespace LCPSNWebApi.Services
 {
-    public class UserService : ControllerBase, IUser
+  public class UserService : ControllerBase, IUser
     {
-        private readonly IStringLocalizer<SharedResource> _shResLoc;
+        private readonly IStringLocalizer<MyResources> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public UserService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
+        public UserService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> shResLoc)
         {
             _context = context;
             _configuration = configuration;

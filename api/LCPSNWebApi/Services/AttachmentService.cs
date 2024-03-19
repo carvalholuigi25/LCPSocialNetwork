@@ -9,17 +9,17 @@ using System.Reflection;
 using System.Linq.Expressions;
 using LCPSNWebApi.Classes.Filter;
 using Microsoft.Extensions.Localization;
-using LCPSNWebApi.Resource;
+using LCPSNLibrary.Resources;
 
 namespace LCPSNWebApi.Services
 {
-    public class AttachmentService : ControllerBase, IAttachment
+  public class AttachmentService : ControllerBase, IAttachment
     {
-        private readonly IStringLocalizer<SharedResource> _shResLoc;
+        private readonly IStringLocalizer<MyResources> _shResLoc;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public AttachmentService(DBContext context, IConfiguration configuration, IStringLocalizer<SharedResource> shResLoc)
+        public AttachmentService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> shResLoc)
         {
             _context = context;
             _configuration = configuration;
