@@ -22,6 +22,8 @@ using Microsoft.Extensions.Options;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
+using LCPSNWebApi.Functions;
+using LCPSNLibrary.Classes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -170,17 +172,11 @@ builder.Services.AddResponseCompression(opts =>
 
 builder.Services.AddLocalization();
 
-builder.Services.Configure<RequestLocalizationOptions>(options => {
-  var supportedCultures = new[]
-  {
-    new CultureInfo("en"), new CultureInfo("de-DE"), new CultureInfo("en-US"), new CultureInfo("es-ES"),
-    new CultureInfo("fr-FR"), new CultureInfo("haw-US"), new CultureInfo("it-IT"), new CultureInfo("ja-JP"),
-    new CultureInfo("pt-PT"), new CultureInfo("ru-RU"), new CultureInfo("uk-UA")
-  };
-
-  options.DefaultRequestCulture = new RequestCulture("en");
-  options.SupportedCultures = supportedCultures;
-  options.SupportedUICultures = supportedCultures;
+builder.Services.Configure<RequestLocalizationOptions>(async options => {
+    IList<CultureInfo> supportedCultures = await MyFunctions.GetListCultures();
+    options.DefaultRequestCulture = new RequestCulture(supportedCultures[0]);
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
 });
 
 builder.Services.AddMvc()

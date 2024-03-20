@@ -1,5 +1,6 @@
 using System.Text.Json;
 using LCPSNLibrary.Classes;
+using LCPSNWebApi.Functions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
@@ -40,10 +41,7 @@ namespace LCPSNWebApi.Controllers
         [HttpGet("langlist")]
         public async Task<ActionResult<List<LanguagesCl>>> GetLanguageList()
         {
-            var pthlib = Path.GetDirectoryName(Directory.GetCurrentDirectory())!.ToString().Replace(@"\api", @"\LCPSNLibrary\Data");
-            using FileStream stream = System.IO.File.OpenRead(pthlib + @"\languages.json");
-            var datares = await JsonSerializer.DeserializeAsync<List<LanguagesCl>>(stream, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-            return Ok(datares!.OrderBy(x => x.Name).ToList());
+            return Ok(await MyFunctions.GetLanguages());
         }
     }
 }
