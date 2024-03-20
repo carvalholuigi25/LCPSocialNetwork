@@ -79,6 +79,7 @@ builder.Services.AddAuthentication(opt => {
 });
 
 builder.Services.AddControllersWithViews().AddJsonOptions(options => {
+    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
     options.JsonSerializerOptions.WriteIndented = true;
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
@@ -173,7 +174,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options => {
   var supportedCultures = new[]
   {
     new CultureInfo("en"), new CultureInfo("de-DE"), new CultureInfo("en-US"), new CultureInfo("es-ES"),
-    new CultureInfo("fr-FR"), new CultureInfo("haw-US"), new CultureInfo("it-IT"), new CultureInfo("jp-JP"),
+    new CultureInfo("fr-FR"), new CultureInfo("haw-US"), new CultureInfo("it-IT"), new CultureInfo("ja-JP"),
     new CultureInfo("pt-PT"), new CultureInfo("ru-RU"), new CultureInfo("uk-UA")
   };
 
