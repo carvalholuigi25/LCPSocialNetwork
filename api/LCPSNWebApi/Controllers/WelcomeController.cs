@@ -1,4 +1,3 @@
-using System.Text.Json;
 using LCPSNLibrary.Classes;
 using LCPSNWebApi.Functions;
 using Microsoft.AspNetCore.Mvc;
