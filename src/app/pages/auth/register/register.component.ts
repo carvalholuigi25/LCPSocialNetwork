@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from '../../../modules';
 import { User } from '../../../models';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@app/services/auth.service';
 import { first } from 'rxjs';
 import { AlertsService, UsersService } from '@app/services';
 import { FooterComponent } from '@app/components';
@@ -33,13 +32,14 @@ export class RegisterComponent {
   ngOnInit() {
     this.regForm = new FormGroup({
       Username: new FormControl('', Validators.required),
-      Email: new FormControl('', Validators.required),
+      Email: new FormControl('', [Validators.required, Validators.email]),
       Password: new FormControl('', Validators.required),
     });
 
     this.regForm2 = new FormGroup({
-      FirstName: new FormControl(''),
-      LastName: new FormControl('')
+      FirstName: new FormControl('', Validators.required),
+      LastName: new FormControl('', Validators.required),
+      DateBirthday: new FormControl('', Validators.required),
     });
 
     this.regForm3 = new FormGroup({
@@ -49,10 +49,11 @@ export class RegisterComponent {
 
     this.regFormFinale = new FormGroup({
       Username: new FormControl('', Validators.required),
-      Email: new FormControl('', Validators.required),
+      Email: new FormControl('', [Validators.required, Validators.email]),
       Password: new FormControl('', Validators.required),
-      FirstName: new FormControl(''),
-      LastName: new FormControl(''),
+      FirstName: new FormControl('', Validators.required),
+      LastName: new FormControl('', Validators.required),
+      DateBirthday: new FormControl('', Validators.required),
       AvatarUrl: new FormControl('images/users/avatars/guest.png'),
       CoverUrl: new FormControl('images/users/covers/guest_cover.jpeg')
     });
@@ -78,6 +79,7 @@ export class RegisterComponent {
       Password: this.regForm.value.Password,
       FirstName: this.regForm2.value.FirstName,
       LastName: this.regForm2.value.LastName,
+      DateBirthday: this.regForm2.value.DateBirthday,
       AvatarUrl: this.regForm3.value.AvatarUrl,
       CoverUrl: this.regForm3.value.CoverUrl
     };

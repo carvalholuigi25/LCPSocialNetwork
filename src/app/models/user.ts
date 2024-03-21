@@ -12,6 +12,7 @@ export interface User {
     Biography?: string;
     AvatarUrl?: string;
     CoverUrl?: string;
+    DateBirthday?: string | Date;
     DateAccountCreated?: string | Date;
     CurrentToken?: string;
     RefreshToken?: string;
