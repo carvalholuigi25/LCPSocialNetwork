@@ -1,4 +1,6 @@
-﻿using LCPSNWebApi.Interfaces.Auth;
+﻿using LCPSNLibrary.Resources;
+using LCPSNWebApi.Interfaces.Auth;
+using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,10 +12,14 @@ namespace LCPSNWebApi.Services.Auth;
 public class TokenService : ITokenService
 {
     private readonly IConfiguration _configuration;
-    public TokenService(IConfiguration configuration)
+    private readonly IStringLocalizer<MyResources> _localizer;
+
+    public TokenService(IConfiguration configuration, IStringLocalizer<MyResources> localizer)
     {
-            _configuration = configuration;
+        _configuration = configuration;
+        _localizer = localizer;
     }
+    
     public string GenerateAccessToken(IEnumerable<Claim> claims)
     {
         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTConfig:IssuerSigningKey"]!));
@@ -57,7 +63,7 @@ public class TokenService : ITokenService
         var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
         var jwtSecurityToken = securityToken as JwtSecurityToken;
         if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
-            throw new SecurityTokenException("Invalid token");
+            throw new SecurityTokenException(_localizer.GetString("AuthTokenInvalid").Value ?? "Invalid token");
 
         return principal;
     }

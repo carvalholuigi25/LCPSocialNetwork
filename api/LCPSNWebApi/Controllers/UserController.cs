@@ -22,7 +22,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _users.GetUsers();
@@ -34,7 +34,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsersById(int? id)
         {
             return await _users.GetUsersById(id);
@@ -45,7 +45,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("enumslist")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetUsersAsEnumList()
         {
             return _users.GetUsersAsEnumList();
@@ -56,7 +56,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("fopenumslist")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetFilterOperationEnumList()
         {
             return Ok(Enum.GetNames(typeof(FilterOperatorEnum)));
@@ -117,7 +117,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="qryp"></param>
         /// <returns></returns>
         [HttpGet("filter")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> SearchUsers([FromQuery] QueryParams qryp)
         {
             return await _users.SearchData(qryp);
@@ -128,7 +128,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("lastid")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> GetLastId()
         {
             return await _users.GetLastId();

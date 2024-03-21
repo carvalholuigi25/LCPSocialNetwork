@@ -15,15 +15,15 @@ namespace LCPSNWebApi.Services
 {
   public class ReplyService : ControllerBase, IReply
     {
-        private readonly IStringLocalizer<MyResources> _shResLoc;
+        private readonly IStringLocalizer<MyResources> _localizer;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public ReplyService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> shResLoc)
+        public ReplyService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> localizer)
         {
             _context = context;
             _configuration = configuration;
-            _shResLoc = shResLoc;
+            _localizer = localizer;
         }
 
         public async Task<ActionResult<IEnumerable<Reply>>> GetReply()
@@ -37,7 +37,7 @@ namespace LCPSNWebApi.Services
 
             if (Reply == null)
             {
-                return NotFound();
+                return NotFound(_localizer.GetString("DataNotFound").Value);
             }
 
             return Reply;
@@ -49,7 +49,7 @@ namespace LCPSNWebApi.Services
 
             if (Reply == null)
             {
-                return NotFound();
+                return NotFound(_localizer.GetString("DataNotFound").Value);
             }
 
             return Reply;
@@ -64,7 +64,7 @@ namespace LCPSNWebApi.Services
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
             }
 
             if (id != Reply.ReplyId)
@@ -82,7 +82,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ReplyExists(id))
                 {
-                    return NotFound();
+                    return NotFound(_localizer.GetString("DataNotFound").Value);
                 }
                 else
                 {
@@ -97,7 +97,7 @@ namespace LCPSNWebApi.Services
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
             }
 
             _context.Replies.Add(ReplyData);
@@ -111,13 +111,13 @@ namespace LCPSNWebApi.Services
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
             }
 
             var Reply = await _context.Replies.FindAsync(id);
             if (Reply == null)
             {
-                return NotFound();
+                return NotFound(_localizer.GetString("DataNotFound").Value);
             }
 
             _context.Replies.Remove(Reply);
@@ -133,7 +133,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
+                    return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.Replies.AsQueryable();
@@ -176,7 +176,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
+                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -197,12 +197,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_localizer.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
+                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -232,7 +232,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
+                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, ex.Message));
             }
         }
 

@@ -50,6 +50,7 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsFeatured")
@@ -590,18 +591,25 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     b.Property<DateTime?>("DateAccountCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DateBirthday")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
@@ -635,15 +643,33 @@ namespace LCPSNWebApi.Migrations.SQLServer
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 18, 15, 55, 46, 282, DateTimeKind.Utc).AddTicks(3738),
+                            DateAccountCreated = new DateTime(2024, 3, 21, 14, 39, 35, 188, DateTimeKind.Utc).AddTicks(3130),
+                            DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$kBbWyQ2CoWmakT0mFBMdouiX3urGeWpaOVcpzrpTN1jnbb3Hgw/D2",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 18, 15, 55, 46, 282, DateTimeKind.Utc).AddTicks(3745),
+                            Password = "$2a$12$kAXDxXOk1S2K1e4YgXGLJumt3ekVXc/GPEpNlrrIJGNxOniUabolS",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 21, 14, 39, 35, 188, DateTimeKind.Utc).AddTicks(3138),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            AvatarUrl = "images/users/avatars/guest.png",
+                            Biography = "Hello, I'm Guest.",
+                            CoverUrl = "images/users/covers/guest_cover.jpeg",
+                            DateAccountCreated = new DateTime(2024, 3, 21, 14, 39, 35, 587, DateTimeKind.Utc).AddTicks(299),
+                            DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "guest@localhost.loc",
+                            FirstName = "Guest",
+                            LastName = "Convidado",
+                            Password = "$2a$12$bWYg2Pw7bJfQC1AVtxdQveFfic5AIp7V0E6qeOVnmSGFIB3rlaRB2",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 21, 14, 39, 35, 587, DateTimeKind.Utc).AddTicks(305),
+                            Role = "Guest",
+                            Status = "public",
+                            Username = "guest"
                         });
                 });
 

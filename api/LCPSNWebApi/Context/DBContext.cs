@@ -3,7 +3,6 @@ using LCPSNWebApi.Classes.Files;
 using LCPSNWebApi.Context.Conventions;
 using LCPSNWebApi.Extensions;
 using Microsoft.EntityFrameworkCore;
-using BC = BCrypt.Net.BCrypt;
 
 namespace LCPSNWebApi.Context;
 
@@ -22,7 +21,7 @@ public class DBContext : DbContext
     public DbSet<Reaction> Reactions { get; set; }
     public DbSet<Reply> Replies { get; set; }
     public DbSet<Share> Shares { get; set; }
-    
+
     public DBContext(IConfiguration config, IHostEnvironment environment) : base()
     {
         _config = config;
@@ -53,24 +52,7 @@ public class DBContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyUtcDateTimeConverter();
-        modelBuilder.Entity<User>().HasData(new User
-        {
-            UserId = 1,
-            Username = "admin",
-            Password = BC.HashPassword("admin2024", BC.GenerateSalt(12), false, BCrypt.Net.HashType.SHA256),
-            FirstName = "Luis",
-            LastName = "Carvalho",
-            Email = "luiscarvalho239@gmail.com",
-            Biography = "Hello, I'm Luis Carvalho.",
-            Status = "public",
-            AvatarUrl = "images/users/avatars/luis.jpg",
-            CoverUrl = "images/users/covers/luis_cover.jpg",
-            Role = UserRoles.Administrator.ToString(),
-            DateAccountCreated = DateTime.UtcNow,
-            CurrentToken = null,
-            RefreshToken = null,
-            RefreshTokenExpiryTime = DateTime.UtcNow
-        });
         base.OnModelCreating(modelBuilder);
+        new DBSeedData(modelBuilder).Seed(true);
     }
 }

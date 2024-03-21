@@ -1,12 +1,20 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using LCPSNLibrary.Resources;
 
 namespace LCPSNWebApi.Classes;
 public class Comment
 {
     [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int? CommentId { get; set; }
-    [Required][DataType(DataType.Text)] public string Title { get; set; } = null!;
-    [Required][DataType(DataType.Text)] public string Description { get; set; } = null!;
+
+    [Required(ErrorMessageResourceName = "TitleRequired", ErrorMessageResourceType = typeof(MyResources))] 
+    [DataType(DataType.Text)] 
+    public string Title { get; set; } = null!;
+    
+    [Required(ErrorMessageResourceName = "DescRequired", ErrorMessageResourceType = typeof(MyResources))] 
+    [DataType(DataType.Text)] 
+    public string Description { get; set; } = null!;
+    
     [DataType(DataType.Text)] public string? ImgUrl { get; set; } = "assets/images/bkg.jpeg";
     [DataType(DataType.Text)] public string? Status { get; set; } = "public";
     [DataType(DataType.DateTime)] public DateTime? DateCommentCreated { get; set; } = DateTime.UtcNow;

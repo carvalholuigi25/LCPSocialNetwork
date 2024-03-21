@@ -8,7 +8,7 @@ namespace LCPSNWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Administrator,Moderator,User")]
+    [Authorize(Roles = "Administrator,Moderator,User,Guest")]
     public class PostController : ControllerBase
     {
         private readonly IPost _posts;

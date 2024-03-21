@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace LCPSNWebApi.Migrations.SQLite
 {
     /// <inheritdoc />
@@ -128,10 +130,11 @@ namespace LCPSNWebApi.Migrations.SQLite
                     UserId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Username = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Password = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    DateBirthday = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Role = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
                     Biography = table.Column<string>(type: "TEXT", nullable: true),
@@ -154,9 +157,9 @@ namespace LCPSNWebApi.Migrations.SQLite
                     AttachmentId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
                     AttachmentUrl = table.Column<string>(type: "TEXT", nullable: false),
                     AttachmentType = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
                     DateAttachmentUploaded = table.Column<DateTime>(type: "TEXT", nullable: true),
                     DateAttachmentUpdated = table.Column<DateTime>(type: "TEXT", nullable: true),
@@ -298,8 +301,12 @@ namespace LCPSNWebApi.Migrations.SQLite
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 18, 15, 54, 17, 863, DateTimeKind.Utc).AddTicks(239), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$KoXQ99vP0yXzMWm7.VY8zuv0Kmn3Xrw6SWlfgWCRFGEra3mp3jDWi", null, new DateTime(2024, 3, 18, 15, 54, 17, 863, DateTimeKind.Utc).AddTicks(247), "Administrator", "public", "admin" });
+                columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
+                values: new object[,]
+                {
+                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 21, 14, 37, 55, 269, DateTimeKind.Utc).AddTicks(2102), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$C/0d0OkO.l/8VnlQUKY5AOp31JZeFsvd8S6rVGM3x92gigLEB5go2", null, new DateTime(2024, 3, 21, 14, 37, 55, 269, DateTimeKind.Utc).AddTicks(2108), "Administrator", "public", "admin" },
+                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 3, 21, 14, 37, 55, 627, DateTimeKind.Utc).AddTicks(2368), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$c.HSw1dcCsTy7gV9nyxDkeQ0e7.sulKW6JGuzDJmbhxMDgDy1Uq1q", null, new DateTime(2024, 3, 21, 14, 37, 55, 627, DateTimeKind.Utc).AddTicks(2375), "Guest", "public", "guest" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Attachments_UserId",

@@ -15,15 +15,15 @@ namespace LCPSNWebApi.Services
 {
   public class AttachmentService : ControllerBase, IAttachment
     {
-        private readonly IStringLocalizer<MyResources> _shResLoc;
+        private readonly IStringLocalizer<MyResources> _localizer;
         private readonly DBContext _context;
         private IConfiguration _configuration;
 
-        public AttachmentService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> shResLoc)
+        public AttachmentService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> localizer)
         {
             _context = context;
             _configuration = configuration;
-            _shResLoc = shResLoc;
+            _localizer = localizer;
         }
 
         public async Task<ActionResult<IEnumerable<Attachment>>> GetAttachment()
@@ -37,7 +37,7 @@ namespace LCPSNWebApi.Services
 
             if (Attachment == null)
             {
-                return NotFound(string.Format(_shResLoc.GetString("AttachmentIdNotFound").Value, id));
+                return NotFound(string.Format(_localizer.GetString("AttachmentIdNotFound").Value, id));
             }
 
             return Attachment;
@@ -52,12 +52,12 @@ namespace LCPSNWebApi.Services
         {
             if(!ModelState.IsValid)
             {
-                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
             }
 
             if (id != AttachmentData.AttachmentId)
             {
-                return BadRequest(string.Format(_shResLoc.GetString("AttachmentIdNotFound").Value, id));
+                return BadRequest(string.Format(_localizer.GetString("AttachmentIdNotFound").Value, id));
             }
 
             _context.Entry(AttachmentData).State = EntityState.Modified;
@@ -70,7 +70,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!AttachmentExists(id))
                 {
-                    return NotFound();
+                    return NotFound(_localizer.GetString("DataNotFound").Value);
                 }
                 else
                 {
@@ -85,7 +85,7 @@ namespace LCPSNWebApi.Services
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
             }
 
             _context.Attachments.Add(AttachmentData);
@@ -99,13 +99,13 @@ namespace LCPSNWebApi.Services
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
             }
 
             var Attachment = await _context.Attachments.FindAsync(id);
             if (Attachment == null)
             {
-                return NotFound();
+                return NotFound(_localizer.GetString("DataNotFound").Value);
             }
 
             _context.Attachments.Remove(Attachment);
@@ -121,7 +121,7 @@ namespace LCPSNWebApi.Services
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(string.Format(_shResLoc.GetString("ModelInvalid").Value, ModelState));
+                    return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
                 }
 
                 var queryable = _context.Attachments.AsQueryable();
@@ -164,7 +164,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
+                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -185,12 +185,12 @@ namespace LCPSNWebApi.Services
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = string.Format(_shResLoc.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_localizer.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
+                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, ex.Message));
             }
         }
 
@@ -220,7 +220,7 @@ namespace LCPSNWebApi.Services
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, string.Format(_shResLoc.GetString("DataCatchError").Value, ex.Message));
+                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, ex.Message));
             }
         }
 

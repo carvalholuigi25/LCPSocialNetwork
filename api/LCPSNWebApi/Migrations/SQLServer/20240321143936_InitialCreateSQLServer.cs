@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace LCPSNWebApi.Migrations.SQLServer
 {
     /// <inheritdoc />
@@ -128,10 +130,11 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateBirthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Biography = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -154,9 +157,9 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     AttachmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AttachmentUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AttachmentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateAttachmentUploaded = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateAttachmentUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -298,8 +301,12 @@ namespace LCPSNWebApi.Migrations.SQLServer
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "Email", "FirstName", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
-                values: new object[] { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 18, 15, 55, 46, 282, DateTimeKind.Utc).AddTicks(3738), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$kBbWyQ2CoWmakT0mFBMdouiX3urGeWpaOVcpzrpTN1jnbb3Hgw/D2", null, new DateTime(2024, 3, 18, 15, 55, 46, 282, DateTimeKind.Utc).AddTicks(3745), "Administrator", "public", "admin" });
+                columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
+                values: new object[,]
+                {
+                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 21, 14, 39, 35, 188, DateTimeKind.Utc).AddTicks(3130), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$kAXDxXOk1S2K1e4YgXGLJumt3ekVXc/GPEpNlrrIJGNxOniUabolS", null, new DateTime(2024, 3, 21, 14, 39, 35, 188, DateTimeKind.Utc).AddTicks(3138), "Administrator", "public", "admin" },
+                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 3, 21, 14, 39, 35, 587, DateTimeKind.Utc).AddTicks(299), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$bWYg2Pw7bJfQC1AVtxdQveFfic5AIp7V0E6qeOVnmSGFIB3rlaRB2", null, new DateTime(2024, 3, 21, 14, 39, 35, 587, DateTimeKind.Utc).AddTicks(305), "Guest", "public", "guest" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Attachments_UserId",

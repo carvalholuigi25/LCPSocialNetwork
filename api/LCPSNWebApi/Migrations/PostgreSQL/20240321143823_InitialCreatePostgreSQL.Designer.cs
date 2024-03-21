@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LCPSNWebApi.Migrations.PostgreSQL
 {
     [DbContext(typeof(DBContextPostgreSQL))]
-    [Migration("20240318155441_InitialCreatePostgreSQL")]
+    [Migration("20240321143823_InitialCreatePostgreSQL")]
     partial class InitialCreatePostgreSQL
     {
         /// <inheritdoc />
@@ -53,6 +53,7 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool?>("IsFeatured")
@@ -573,18 +574,25 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<DateTime?>("DateAccountCreated")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<DateTime>("DateBirthday")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
 
                     b.Property<string>("RefreshToken")
                         .HasColumnType("text");
@@ -616,15 +624,33 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 18, 15, 54, 40, 620, DateTimeKind.Utc).AddTicks(2163),
+                            DateAccountCreated = new DateTime(2024, 3, 21, 14, 38, 22, 112, DateTimeKind.Utc).AddTicks(3213),
+                            DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$Nd4PuBHjLFRwxvVEAwWrLeB5H1Mlk5.3DO3vmPNpq9U6tJ4D3BBDS",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 18, 15, 54, 40, 620, DateTimeKind.Utc).AddTicks(2174),
+                            Password = "$2a$12$Pr.Cab4uxbrvIF/zjwqEteX84ofAoOAAzvR0q6iMdWOTEXCPPv1Wm",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 21, 14, 38, 22, 112, DateTimeKind.Utc).AddTicks(3219),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            AvatarUrl = "images/users/avatars/guest.png",
+                            Biography = "Hello, I'm Guest.",
+                            CoverUrl = "images/users/covers/guest_cover.jpeg",
+                            DateAccountCreated = new DateTime(2024, 3, 21, 14, 38, 22, 465, DateTimeKind.Utc).AddTicks(5797),
+                            DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "guest@localhost.loc",
+                            FirstName = "Guest",
+                            LastName = "Convidado",
+                            Password = "$2a$12$Ek4gFRZz0oEAypmuBw8lkOQ29IZT5CjBzi7NGCmzn2/6.sKvs7DcW",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 21, 14, 38, 22, 465, DateTimeKind.Utc).AddTicks(5803),
+                            Role = "Guest",
+                            Status = "public",
+                            Username = "guest"
                         });
                 });
 

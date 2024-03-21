@@ -1,11 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using LCPSNLibrary.Resources;
 
 namespace LCPSNWebApi.Classes;
 public class Notification 
 {
     [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int? NotificationId { get; set; }
-    [Required][DataType(DataType.Text)] public string Description { get; set; } = null!;
+    
+    [Required(ErrorMessageResourceName = "DescRequired", ErrorMessageResourceType = typeof(MyResources))] 
+    [DataType(DataType.Text)] 
+    public string Description { get; set; } = null!;
+    
     [DataType(DataType.Text)] public string? Status { get; set; } = "public";
     [DataType(DataType.Text)] public bool? IsMarkRead { get; set; } = false;
     [DataType(DataType.Text)] public bool? IsPinned { get; set; } = false;
