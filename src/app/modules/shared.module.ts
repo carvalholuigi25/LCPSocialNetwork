@@ -20,6 +20,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const declarationsAry: any[] = [];
 
@@ -42,7 +43,8 @@ const modulesAry = [
   MatListModule,
   MatCardModule,
   MatSelectModule,
-  MatTabsModule
+  MatTabsModule,
+  MatCheckboxModule
 ];
 
 const providersAry = [

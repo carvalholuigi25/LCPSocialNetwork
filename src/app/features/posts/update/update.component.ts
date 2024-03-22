@@ -37,6 +37,7 @@ export class UpdatePostsComponent implements OnInit {
       Description: new FormControl('', Validators.required),
       ImgUrl: new FormControl('assets/images/bkg.jpeg'),
       Status: new FormControl('public'),
+      IsFeatured: new FormControl(false),
       TypeTxtPost: new FormControl('html')
     });
 
@@ -49,6 +50,7 @@ export class UpdatePostsComponent implements OnInit {
             Description: dataP[0].description,
             ImgUrl: dataP[0].imgUrl,
             Status: dataP[0].status,
+            IsFeatured: dataP[0].isFeatured,
             TypeTxtPost: dataP[0].typeTxtPost
           });
         },
@@ -87,9 +89,12 @@ export class UpdatePostsComponent implements OnInit {
         Description: this.f["Description"].value.toString(),
         ImgUrl: this.f["ImgUrl"].value.toString(),
         Status: this.f["Status"].value.toString(),
+        IsFeatured: this.f["IsFeatured"].value.toString() == "true" ? true : false,
         TypeTxtPost: this.f["TypeTxtPost"].value.toString(),
         UserId: this.authService.userValue["usersInfo"]["userId"] ?? 1
       };
+
+      console.log(postsObj)
 
       this.postsService.updatePosts(this.id, postsObj).subscribe({
         next: () => {

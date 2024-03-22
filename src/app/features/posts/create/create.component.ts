@@ -25,6 +25,7 @@ export class CreatePostsComponent implements OnInit {
         Description: new FormControl('', Validators.required),
         ImgUrl: new FormControl('assets/images/bkg.jpeg'),
         Status: new FormControl('public'),
+        IsFeatured: new FormControl(false),
         TypeTxtPost: new FormControl('html')
       });
   }
@@ -43,6 +44,7 @@ export class CreatePostsComponent implements OnInit {
       Description: this.f["Description"].value!.toString(),
       ImgUrl: this.f["ImgUrl"].value!.toString(),
       Status: this.f["Status"].value!.toString(),
+      IsFeatured: this.f["IsFeatured"].value!.toString() == "true" ? true : false,
       DatePostCreated: new Date().toISOString(),
       UserId: this.authService.userValue["usersInfo"]["userId"] ?? 1
     };

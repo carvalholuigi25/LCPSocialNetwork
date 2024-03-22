@@ -28,6 +28,9 @@
                 <mat-option value="markdown">Markdown</mat-option>
             </mat-select>
         </mat-form-field>
+        <div class="mat-form-field mt-3">
+            <mat-checkbox id="isFeatured" formControlName="IsFeatured" class="text-start" title="Select the status of featured post">Is Featured</mat-checkbox>
+        </div>
         <div class="form-group mt-3">
             <button type="reset" mat-flat-button color="primary">Clear</button>
             <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!postsFrm.valid">Submit</button>

@@ -31,6 +31,9 @@
                         <mat-option value="markdown">Markdown</mat-option>
                     </mat-select>
                 </mat-form-field>
+                <div class="mat-form-field mt-3">
+                    <mat-checkbox id="isFeatured" formControlName="IsFeatured" class="text-start" title="Select the status of featured post">Is Featured</mat-checkbox>
+                </div>
                 <div class="form-group mt-3 mx-auto">
                     <button type="button" mat-flat-button color="primary" (click)="OnNotUpdate()">Cancel</button>
                     <button type="button" mat-flat-button color="primary" (click)="OnClear()" class="ms-3">Clear</button>

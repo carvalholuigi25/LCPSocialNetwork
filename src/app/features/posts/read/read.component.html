@@ -29,6 +29,11 @@
                                     </div>
                                 </mat-card-subtitle>
                                 <span class="example-spacer"></span>
+                                <div *ngIf="y.isFeatured">
+                                    <button mat-icon-button aria-label="Post featured">
+                                        <mat-icon>star</mat-icon>
+                                    </button>
+                                </div>
                                 <div *ngIf="x.userId == this.avatarId && x.role.includes(this.avatarRole)">
                                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Post menu actions">
                                         <mat-icon>more_horiz</mat-icon>
