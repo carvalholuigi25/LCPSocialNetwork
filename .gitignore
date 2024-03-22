@@ -59,3 +59,5 @@ LCPSNLibrary/obj
 LCPSNLibrary/obj/*
 LCPSNLibrary/bin
 LCPSNLibrary/bin/*
+
+package-lock.json
