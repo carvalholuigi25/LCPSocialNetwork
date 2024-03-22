@@ -28,7 +28,7 @@ namespace LCPSNWebApi.Services
 
         public async Task<ActionResult<IEnumerable<Post>>> GetPost()
         {
-            return await _context.Posts.ToListAsync();
+            return await _context.Posts.OrderBy(x => !x.IsFeatured).ThenByDescending(x => x.DatePostCreated).ToListAsync();
         }
 
         public async Task<ActionResult<IEnumerable<Post>>> GetPostById(int? id)

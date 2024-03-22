@@ -94,8 +94,6 @@ export class UpdatePostsComponent implements OnInit {
         UserId: this.authService.userValue["usersInfo"]["userId"] ?? 1
       };
 
-      console.log(postsObj)
-
       this.postsService.updatePosts(this.id, postsObj).subscribe({
         next: () => {
           this.alertsService.openAlert(`Updated post (Id: ${this.id}) sucessfully!`, 1, "success");
