@@ -197,4 +197,8 @@
     <value>誕生日の日付は必須です</value>
     <comment/>
   </data>
+  <data name="PhoneNumberInvalid" xml:space="preserve">
+    <value>あなたの電話番号は無効です!</value>
+    <comment/>
+  </data>
 </root>

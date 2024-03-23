@@ -197,4 +197,8 @@
     <value>La date de votre anniversaire est obligatoire</value>
     <comment/>
   </data>
+  <data name="PhoneNumberInvalid" xml:space="preserve">
+    <value>Votre numéro de téléphone n'est pas valide!</value>
+    <comment/>
+  </data>
 </root>

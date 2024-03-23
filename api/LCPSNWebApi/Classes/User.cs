@@ -35,6 +35,9 @@ public class User
     [DataType(DataType.DateTime)]
     [Required(ErrorMessageResourceName = "DateBirthdayRequired", ErrorMessageResourceType = typeof(MyResources))]
     public DateTime DateBirthday { get; set; } = DateTime.UtcNow;
+
+    [DataType(DataType.PhoneNumber, ErrorMessageResourceName = "PhoneNumberInvalid", ErrorMessageResourceType = typeof(MyResources))] 
+    public string? PhoneNumber { get; set; }
     
     [DataType(DataType.Text)] public string? Role { get; set; } = UserRoles.User.ToString();
     [DataType(DataType.Text)] public string? Status { get; set; }

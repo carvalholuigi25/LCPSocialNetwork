@@ -591,6 +591,9 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
                     b.Property<string>("RefreshToken")
                         .HasColumnType("text");
 
@@ -621,13 +624,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 21, 14, 38, 22, 112, DateTimeKind.Utc).AddTicks(3213),
+                            DateAccountCreated = new DateTime(2024, 3, 23, 11, 53, 4, 285, DateTimeKind.Utc).AddTicks(7427),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$Pr.Cab4uxbrvIF/zjwqEteX84ofAoOAAzvR0q6iMdWOTEXCPPv1Wm",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 21, 14, 38, 22, 112, DateTimeKind.Utc).AddTicks(3219),
+                            Password = "$2a$12$x66TPDF3Tu/0xY5hEub5aOE26iTWJ3EOJg9It36fdBnBxnaKcZZ8a",
+                            PhoneNumber = "123456789",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 23, 11, 53, 4, 285, DateTimeKind.Utc).AddTicks(7434),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
@@ -638,13 +642,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             AvatarUrl = "images/users/avatars/guest.png",
                             Biography = "Hello, I'm Guest.",
                             CoverUrl = "images/users/covers/guest_cover.jpeg",
-                            DateAccountCreated = new DateTime(2024, 3, 21, 14, 38, 22, 465, DateTimeKind.Utc).AddTicks(5797),
+                            DateAccountCreated = new DateTime(2024, 3, 23, 11, 53, 4, 650, DateTimeKind.Utc).AddTicks(3632),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "guest@localhost.loc",
                             FirstName = "Guest",
                             LastName = "Convidado",
-                            Password = "$2a$12$Ek4gFRZz0oEAypmuBw8lkOQ29IZT5CjBzi7NGCmzn2/6.sKvs7DcW",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 21, 14, 38, 22, 465, DateTimeKind.Utc).AddTicks(5803),
+                            Password = "$2a$12$APG3VInrASeiF4ce/OOg4.IV2.qGGxvfWD8Mo/sXHDXN.NvKY6dQq",
+                            PhoneNumber = "123456789",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 23, 11, 53, 4, 650, DateTimeKind.Utc).AddTicks(3638),
                             Role = "Guest",
                             Status = "public",
                             Username = "guest"

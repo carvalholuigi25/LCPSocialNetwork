@@ -197,4 +197,8 @@
     <value>Pono ka lā o kou lā hānau</value>
     <comment/>
   </data>
+  <data name="PhoneNumberInvalid" xml:space="preserve">
+    <value>He kūpono ʻole kāu helu kelepona!</value>
+    <comment/>
+  </data>
 </root>

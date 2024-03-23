@@ -611,6 +611,9 @@ namespace LCPSNWebApi.Migrations.SQLServer
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
 
@@ -643,13 +646,14 @@ namespace LCPSNWebApi.Migrations.SQLServer
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 3, 21, 14, 39, 35, 188, DateTimeKind.Utc).AddTicks(3130),
+                            DateAccountCreated = new DateTime(2024, 3, 23, 11, 54, 5, 329, DateTimeKind.Utc).AddTicks(100),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$kAXDxXOk1S2K1e4YgXGLJumt3ekVXc/GPEpNlrrIJGNxOniUabolS",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 21, 14, 39, 35, 188, DateTimeKind.Utc).AddTicks(3138),
+                            Password = "$2a$12$7avsDvacSWLIszINJAinHuxtG94Gf8iPPeo4f2LgkIYzonNnXs1hq",
+                            PhoneNumber = "123456789",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 23, 11, 54, 5, 329, DateTimeKind.Utc).AddTicks(106),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
@@ -660,13 +664,14 @@ namespace LCPSNWebApi.Migrations.SQLServer
                             AvatarUrl = "images/users/avatars/guest.png",
                             Biography = "Hello, I'm Guest.",
                             CoverUrl = "images/users/covers/guest_cover.jpeg",
-                            DateAccountCreated = new DateTime(2024, 3, 21, 14, 39, 35, 587, DateTimeKind.Utc).AddTicks(299),
+                            DateAccountCreated = new DateTime(2024, 3, 23, 11, 54, 5, 691, DateTimeKind.Utc).AddTicks(7111),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "guest@localhost.loc",
                             FirstName = "Guest",
                             LastName = "Convidado",
-                            Password = "$2a$12$bWYg2Pw7bJfQC1AVtxdQveFfic5AIp7V0E6qeOVnmSGFIB3rlaRB2",
-                            RefreshTokenExpiryTime = new DateTime(2024, 3, 21, 14, 39, 35, 587, DateTimeKind.Utc).AddTicks(305),
+                            Password = "$2a$12$7.75JJmR3dYbqMeIQot/4O4HHVSsffSRhsWlD1VwZeZH2jkYR3O2q",
+                            PhoneNumber = "123456789",
+                            RefreshTokenExpiryTime = new DateTime(2024, 3, 23, 11, 54, 5, 691, DateTimeKind.Utc).AddTicks(7123),
                             Role = "Guest",
                             Status = "public",
                             Username = "guest"

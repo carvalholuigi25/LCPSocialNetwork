@@ -21,14 +21,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 const declarationsAry: any[] = [];
 
-const modulesAry = [
-  CommonModule,
-  HttpClientModule,
-  RouterModule,
-  ReactiveFormsModule,
+const materialModules = [
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
@@ -44,14 +43,29 @@ const modulesAry = [
   MatCardModule,
   MatSelectModule,
   MatTabsModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDatepickerModule
+];
+
+const ngxModules = [
+  NgxMatIntlTelInputComponent
+]
+
+const modulesAry = [
+  CommonModule,
+  HttpClientModule,
+  RouterModule,
+  ReactiveFormsModule,
+  materialModules,
+  ngxModules
 ];
 
 const providersAry = [
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  fakeBackendProvider
+  fakeBackendProvider,
+  provideNativeDateAdapter()
 ];
 
 @NgModule({

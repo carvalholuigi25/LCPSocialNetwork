@@ -14,7 +14,7 @@
                         <mat-form-field class="mt-3">
                             <mat-label for="username">Username</mat-label>
                             <input id="username" type="text" formControlName="Username"
-                                class="form-control text-start mt-3" title="Username" placeholder="Write here your username" required
+                                class="form-control text-start mt-3" title="Username" placeholder="Write here your username here" required
                                 matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
@@ -25,7 +25,7 @@
                         <mat-form-field class="mt-3">
                             <mat-label for="password">Password</mat-label>
                             <input id="password" type="password" formControlName="Password"
-                                class="form-control text-start mt-3" title="Password" placeholder="Write here your password" required
+                                class="form-control text-start mt-3" title="Password" placeholder="Write here your password here" required
                                 matInput />
                         </mat-form-field>
                         <div class="form-group mt-3">
@@ -39,19 +39,24 @@
                         <mat-form-field class="mt-3">
                             <mat-label for="firstname">First Name</mat-label>
                             <input id="firstname" type="text" formControlName="FirstName"
-                                class="form-control text-start mt-3" title="FirstName" placeholder="Write here your first name" required
+                                class="form-control text-start mt-3" title="FirstName" placeholder="Write here your first name here" required
                                 matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
                             <mat-label for="lastname">Last Name</mat-label>
                             <input id="lastname" type="text" formControlName="LastName"
-                                class="form-control text-start mt-3" title="LastName" placeholder="Write here your last name" required
+                                class="form-control text-start mt-3" title="LastName" placeholder="Write here your last name here" required
                                 matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
                             <mat-label for="datebirthday">Date of Birthday</mat-label>
-                            <input id="datebirthday" type="datetime-local" formControlName="DateBirthday"
-                                class="form-control text-start mt-3" title="DateBirthday" step="1" placeholder="Write or select here your date of birthday" required matInput />
+                            <input formControlName="DateBirthday" class="text-start mt-3" placeholder="Write or select here your date of birthday here" matInput [matDatepicker]="datebirthday" required />
+                            <mat-datepicker-toggle matIconSuffix [for]="datebirthday"></mat-datepicker-toggle>
+                            <mat-datepicker #datebirthday></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="mt-3">
+                            <mat-label for="phonenumber">Phone Number</mat-label>
+                            <ngx-mat-intl-tel-input [preferredCountries]="['us']" [enablePlaceholder]="true" [enableSearch]="true" name="phonenumber" id="phonenumber" class="text-start phonenumber mt-3" describedBy="phoneInput" formControlName="PhoneNumber" placeholder="Write your phone number here"></ngx-mat-intl-tel-input>
                         </mat-form-field>
                         <div class="form-group mt-3">
                             <button type="button" title="back" mat-flat-button color="primary"
@@ -65,11 +70,11 @@
                     <form [formGroup]="regForm3" class="regform mx-auto" (ngSubmit)="onSubmit()" autocomplete="off">
                         <mat-form-field class="mt-3">
                             <mat-label for="avatarurl">Avatar URL</mat-label>
-                            <input id="avatarurl" type="text" formControlName="AvatarUrl" class="form-control text-start mt-3" title="AvatarUrl" placeholder="Write here your avatar url" matInput />
+                            <input id="avatarurl" type="text" formControlName="AvatarUrl" class="form-control text-start mt-3" title="AvatarUrl" placeholder="Write here your avatar url here" matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
                             <mat-label for="coverurl">Cover URL</mat-label>
-                            <input id="coverurl" type="text" formControlName="CoverUrl" class="form-control text-start mt-3" title="CoverUrl" placeholder="Write here your cover url" matInput />
+                            <input id="coverurl" type="text" formControlName="CoverUrl" class="form-control text-start mt-3" title="CoverUrl" placeholder="Write here your cover url here" matInput />
                         </mat-form-field>
                         <div class="form-group mt-3">
                             <button type="button" title="back" mat-flat-button color="primary"

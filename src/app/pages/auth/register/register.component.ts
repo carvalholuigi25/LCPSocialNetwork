@@ -40,6 +40,7 @@ export class RegisterComponent {
       FirstName: new FormControl('', Validators.required),
       LastName: new FormControl('', Validators.required),
       DateBirthday: new FormControl('', Validators.required),
+      PhoneNumber: new FormControl('', [])
     });
 
     this.regForm3 = new FormGroup({
@@ -54,6 +55,7 @@ export class RegisterComponent {
       FirstName: new FormControl('', Validators.required),
       LastName: new FormControl('', Validators.required),
       DateBirthday: new FormControl('', Validators.required),
+      PhoneNumber: new FormControl('', []),
       AvatarUrl: new FormControl('images/users/avatars/guest.png'),
       CoverUrl: new FormControl('images/users/covers/guest_cover.jpeg')
     });
@@ -80,6 +82,7 @@ export class RegisterComponent {
       FirstName: this.regForm2.value.FirstName,
       LastName: this.regForm2.value.LastName,
       DateBirthday: this.regForm2.value.DateBirthday,
+      PhoneNumber: this.regForm2.value.PhoneNumber,
       AvatarUrl: this.regForm3.value.AvatarUrl,
       CoverUrl: this.regForm3.value.CoverUrl
     };

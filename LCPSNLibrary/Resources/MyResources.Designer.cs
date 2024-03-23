@@ -239,5 +239,14 @@ namespace LCPSNLibrary.Resources {
                 return ResourceManager.GetString("DateBirthdayRequired", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Your phone number is invalid!.
+        /// </summary>
+        public static string PhoneNumberInvalid {
+            get {
+                return ResourceManager.GetString("PhoneNumberInvalid", resourceCulture);
+            }
+        }
     }
 }

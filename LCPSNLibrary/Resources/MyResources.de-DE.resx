@@ -197,4 +197,8 @@
     <value>Das Datum Ihres Geburtstages ist erforderlich</value>
     <comment/>
   </data>
+  <data name="PhoneNumberInvalid" xml:space="preserve">
+    <value>Ihre Telefonnummer ist ungültig!</value>
+    <comment/>
+  </data>
 </root>

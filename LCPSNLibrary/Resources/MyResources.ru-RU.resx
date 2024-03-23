@@ -197,4 +197,8 @@
     <value>Требуется дата вашего дня рождения</value>
     <comment/>
   </data>
+  <data name="PhoneNumberInvalid" xml:space="preserve">
+    <value>Ваш номер телефона недействителен!</value>
+    <comment/>
+  </data>
 </root>

@@ -3,7 +3,11 @@
     flex-direction: column;
     justify-content: stretch;
     align-items: stretch;
-    width: 50%;
+    width: 80%;
+}
+
+::ng-deep .regform .phonenumber .mat-mdc-input-element {
+    margin-top: 1rem !important;
 }
 
 ::ng-deep .register .myfooter {
