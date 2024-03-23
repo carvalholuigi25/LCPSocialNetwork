@@ -1,0 +1,14 @@
+{
+    "settings": {
+        "test": "これはテストメッセージです!"
+    },
+    "cookie": {
+        "header": "サイトで Cookie が使用されています!",
+        "message": "この Web サイトでは、お客様に最高のエクスペリエンスを提供するために Cookie を使用しています。",
+        "dismiss": "わかりました!",
+        "allow": "Cookie を許可する",
+        "deny": "拒否",
+        "link": "詳細情報",
+        "policy": "クッキーポリシー"
+    }
+}

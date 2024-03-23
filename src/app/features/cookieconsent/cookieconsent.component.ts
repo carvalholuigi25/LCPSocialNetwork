@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgcCookieConsentService, NgcInitializingEvent, NgcInitializationErrorEvent } from 'ngx-cookieconsent';
+import { LanguagesService } from '@app/services';
 
 @Component({
   selector: 'app-cookieconsent',
@@ -14,9 +15,13 @@ export class CookieConsentComponent {
   private initializedSubscription!: Subscription;
   private initializationErrorSubscription!: Subscription;
 
+  langAry!: any;
+  langCodeIsoAry: any[] = [];
+
   constructor(
     private ccService: NgcCookieConsentService, 
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private langService: LanguagesService
   ) {}
 
   ngOnInit() {
@@ -47,24 +52,41 @@ export class CookieConsentComponent {
   }
 
   LoadTranslateService() {
-    this.translateService.addLangs(['de', 'en', 'es', 'fr', 'it', 'pt']);
-    this.translateService.setDefaultLang('en');
+    this.langService.getListLanguages().subscribe({
+      next: (rl: any) => {
+        this.langAry = rl;
+        
+        if(this.langAry) {
+          this.langCodeIsoAry = [];
 
-    const browserLang = this.translateService.getBrowserLang();
-    this.translateService.use(browserLang?.match(/de|en|es|fr|it|pt/) ? browserLang : 'en');
+          for(var i = 0; i < this.langAry.length; i++) {
+            this.langCodeIsoAry.push(this.langAry[i].countryCodeIso);
+          }
 
-    this.translateService.get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link', 'cookie.policy']).subscribe(data => {
-      if(this.ccService.getConfig() != null) {
-        this.ccService.getConfig().content!.header = data['cookie.header'];
-        this.ccService.getConfig().content!.message = data['cookie.message'];
-        this.ccService.getConfig().content!.dismiss = data['cookie.dismiss'];
-        this.ccService.getConfig().content!.allow = data['cookie.allow'];
-        this.ccService.getConfig().content!.deny = data['cookie.deny'];
-        this.ccService.getConfig().content!.link = data['cookie.link'];
-        this.ccService.getConfig().content!.policy = data['cookie.policy'];
-          
-        this.ccService.destroy(); // remove previous cookie bar (with default messages)
-        this.ccService.init(this.ccService.getConfig()); // update config with translated messages
+          this.translateService.addLangs(this.langCodeIsoAry);
+          this.translateService.setDefaultLang(this.langCodeIsoAry[0] ?? "en");
+
+          const browserLang = this.translateService.getBrowserLang();
+          this.translateService.use(browserLang ?? "en");
+      
+          this.translateService.get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link', 'cookie.policy']).subscribe(data => {
+            if(this.ccService.getConfig() != null) {
+              this.ccService.getConfig().content!.header = data['cookie.header'];
+              this.ccService.getConfig().content!.message = data['cookie.message'];
+              this.ccService.getConfig().content!.dismiss = data['cookie.dismiss'];
+              this.ccService.getConfig().content!.allow = data['cookie.allow'];
+              this.ccService.getConfig().content!.deny = data['cookie.deny'];
+              this.ccService.getConfig().content!.link = data['cookie.link'];
+              this.ccService.getConfig().content!.policy = data['cookie.policy'];
+                
+              this.ccService.destroy(); // remove previous cookie bar (with default messages)
+              this.ccService.init(this.ccService.getConfig()); // update config with translated messages
+            }
+          });
+        }
+      },
+      error: (er: any) => {
+        console.log(er.message);
       }
     });
   }

@@ -1,4 +1,7 @@
 {
+    "settings": {
+        "test": "¡Este es un mensaje de prueba!"
+    },
     "cookie": {
         "header": "¡Cookies utilizadas en el sitio web!",
         "message": "Este sitio web utiliza cookies para garantizar que usted obtenga la mejor experiencia en nuestro sitio web.",

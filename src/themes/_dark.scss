@@ -103,7 +103,7 @@
         }
     }
 
-    .themeswitchblk {
+    .themeswitchblk, .languageswitchblk {
         color: $color;
 
         .mat-mdc-form-field {
@@ -111,7 +111,7 @@
             border-color: inherit;
         }
 
-        .themeswitch {
+        .themeswitch, .languageswitch {
             color: $color;
             border-color: inherit;
     

@@ -1,5 +1,3 @@
-using LCPSNLibrary.Classes;
-using LCPSNWebApi.Functions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
@@ -30,17 +28,6 @@ namespace LCPSNWebApi.Controllers
             }
 
             return Ok(new { Msg = _localizer.GetString("Welcome").Value });
-        }
-
-        /// <summary>
-        /// This endpoint gets language list
-        /// </summary>
-        /// <returns></returns>
-        [Produces("application/json")]
-        [HttpGet("langlist")]
-        public async Task<ActionResult<List<LanguagesCl>>> GetLanguageList()
-        {
-            return Ok(await MyFunctions.GetLanguages());
         }
     }
 }

@@ -23,7 +23,7 @@
         - [x]  Rate limiting for production
         - [x]  Pagination & Filteration & Search for data
         - [x]  Query builder’n’runner
-        - [x]  Localization
+        - [x]  Localization & Globalization
         - [x]  Upload files
         - [ ]  Remove all table data (seed) for production
         - [ ]  Unit test for each endpoint (optional)
@@ -58,11 +58,11 @@
     - [ ]  Status, School & University & Company Infos
     - [ ]  Groups
     - [x]  Email
-    - [ ]  Phone number
+    - [x]  Phone number
     - [x]  Cover
     - [x]  Avatar
     - [x]  Biography
-    - [ ]  Pinned posts
+    - [x]  Pinned posts
     - [ ]  Lock & unlock posts, replies and etc
     - [ ]  Update & Add & Remove single or many posts
     - [ ]  Set status posts, replies, covers, attachments (Private, public, etc)
@@ -103,7 +103,7 @@
     - [ ]  Notes
     - [ ]  Time clock & Date widget in admin
     - [ ]  Tutorials
-    - [ ]  Localization / Language Selector
+    - [x]  Localization, Globalization & Language Selector
 - [ ]  3 - Finale
     - [ ]  Transform layout to the modern layout with best responsive & full accessibility for all pages
     - [x]  Add TOS, Privacy Policy, Code of Conduct & Cookie Policy pages

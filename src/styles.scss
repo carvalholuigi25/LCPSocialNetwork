@@ -230,7 +230,7 @@ form {
     }
 }
 
-.themeswitchblk {
+.themeswitchblk, .languageswitchblk {
     position: relative;
     top: auto;
     left: auto;
@@ -256,7 +256,7 @@ form {
         display: none;
     }
 
-    .themeswitch {
+    .themeswitch, .languageswitch {
         color: white;
         border-color: white;
         

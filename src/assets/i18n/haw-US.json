@@ -1,0 +1,14 @@
+{
+    "settings": {
+        "test": "He leka ho'ā'o kēia!"
+    },
+    "cookie": {
+        "header": "Ho'ohana 'ia nā kuki ma ka pūnaewele!",
+        "message": "Ho'ohana kēia pūnaewele i nā kuki e hō'oia i ka loa'a 'ana o ka 'ike maika'i loa ma kā mākou pūnaewele.",
+        "dismiss": "Ua maopopo!",
+        "allow": "'Ae i nā kuki",
+        "deny": "Ho'ole",
+        "link": "'Ike hou aku",
+        "policy": "Kuki Kuki"
+    }
+}

@@ -1,0 +1,15 @@
+@if(aryLanguages) {
+    <div class="languageswitchblk">
+        <mat-form-field appearance="outline">
+            <mat-select id="languageswitch" class="languageswitch" [value]="selectedLanguage" (selectionChange)="switchLanguage($event.value)" placeholder="Select language">
+                <mat-option *ngFor="let xl of aryLanguages" [value]="xl.countryCodeIso" data-id="{{xl.id}}">
+                    {{xl.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="d-block mt-3 testmsg">
+        <p>{{ 'settings.test' | translate }}</p>
+    </div>
+}
