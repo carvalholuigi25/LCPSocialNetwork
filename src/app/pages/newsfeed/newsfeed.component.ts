@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../modules';
-import { FooterComponent } from '../../components';
+import { FooterComponent } from '@app/components';
+import { SharedModule } from '@app/modules';
 import { CreatePostsComponent, ReadPostsComponent } from '@app/features';
 
 @Component({

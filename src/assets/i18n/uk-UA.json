@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Адміністрація",
+        "dashboard": {
+            "title": "Панель"
+        }
+    },
+    "auth": {
+        "title": "Аутентифікація",
+        "login": {
+            "title": "Підключити"
+        },
+        "register": {
+            "title": "Створити новий обліковий запис"
+        }
+    },
+    "home": {
+        "title": "Будинок"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "норми поведінки"
+        },
+        "cookiepolicy": {
+            "title": "Політика файлів cookie"
+        },
+        "privacypolicy": {
+            "title": "Політика конфіденційності"
+        },
+        "tos": {
+            "title": "Умови обслуговування"
+        }
+    },
+    "newsfeed": {
+        "title": "Стрічка новин"
+    },
+    "notfound": {
+        "title": "Сторінку не знайдено!"
+    },
+    "users": {
+        "title": "Користувачі"
+    },
     "settings": {
-        "test": "Це тестове повідомлення!"
+        "title": "Визначення",
+        "themeswitchtitle": "Зміна теми",
+        "langswitchtitle": "Зміна мови"
+    },
+    "features": {
+        "title": "Функціональні можливості",
+        "languageswitch": {
+            "title": "Зміна мови" 
+        },
+        "themeswitch": {
+            "title": "Зміна теми"
+        },
+        "posts": {
+            "title": "Дописи",
+            "create": {
+                "title": "Створіть новий пост"
+            },
+            "update": {
+                "title": "Оновіть існуючу публікацію"
+            },
+            "read": {
+                "title": "Прочитайте повідомлення"
+            },
+            "delete": {
+                "title": "Видалити існуючу публікацію"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Створений"
+        }
     },
     "cookie": {
         "header": "Файли cookie, які використовуються на сайті!",

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
 import { FooterComponent } from '@app/components';
+import { SharedModule } from '@app/modules';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [MatButtonModule, RouterModule, FooterComponent],
+  imports: [FooterComponent, SharedModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })

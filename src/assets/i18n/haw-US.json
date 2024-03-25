@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Papaho",
+        "dashboard": {
+            "title": "Pana"
+        }
+    },
+    "auth": {
+        "title": "'.Lelo hōʻoia",
+        "login": {
+            "title": "Hono-se"
+        },
+        "register": {
+            "title": "E hana i ka waihona hou"
+        }
+    },
+    "home": {
+        "title": "Cata"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "code of conducted"
+        },
+        "cookiepolicy": {
+            "title": "Nā kulekele Cook"
+        },
+        "privacypolicy": {
+            "title": "Kulekele kāohi"
+        },
+        "tos": {
+            "title": "Nā Kūlana Kūlana"
+        }
+    },
+    "newsfeed": {
+        "title": "ʻOihanaʻO News"
+    },
+    "notfound": {
+        "title": "ʻAʻole i loaʻa kaʻaoʻao!"
+    },
+    "users": {
+        "title": "Nā mea hoʻohana"
+    },
     "settings": {
-        "test": "He leka ho'ā'o kēia!"
+        "title": "Hoʻolaha",
+        "themeswitchtitle": "Ka loli o keʻano",
+        "langswitchtitle": "Hoʻololi o ka'ōlelo"
+    },
+    "features": {
+        "title": "Hana",
+        "languageswitch": {
+            "title": "Hoʻololi o ka'ōlelo" 
+        },
+        "themeswitch": {
+            "title": "Ka loli o keʻano"
+        },
+        "posts": {
+            "title": "Nā PaneHihoa",
+            "create": {
+                "title": "E hana i ka pou hou"
+            },
+            "update": {
+                "title": "Hoʻohou i ka pou i loaʻa"
+            },
+            "read": {
+                "title": "UUKAIANA HOOLAHA"
+            },
+            "delete": {
+                "title": "Hoʻopau i ka pou i loaʻa"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Ua hana 'ia e"
+        }
     },
     "cookie": {
         "header": "Ho'ohana 'ia nā kuki ma ka pūnaewele!",

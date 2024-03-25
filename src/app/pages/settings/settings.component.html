@@ -1,15 +1,15 @@
 <div class="container p-3">
     <div class="row">
         <div class="col-12 p-3 settings">
-            <h1><mat-icon>settings</mat-icon> Settings</h1>
+            <h1><mat-icon>settings</mat-icon> {{ 'settings.title' | translate }}</h1>
 
             <div class="d-block mt-3 settheme">
-                <h3><mat-icon>contrast</mat-icon> Theme</h3>
+                <h3><mat-icon>contrast</mat-icon> {{ 'settings.themeswitchtitle' | translate }}</h3>
                 <app-themeswitch></app-themeswitch>
             </div>
             
             <div class="d-block mt-3 setlang">
-                <h3><mat-icon>language</mat-icon> Language</h3>
+                <h3><mat-icon>language</mat-icon> {{ 'settings.langswitchtitle' | translate }}</h3>
                 <app-languageswitch></app-languageswitch>
             </div>
         </div>

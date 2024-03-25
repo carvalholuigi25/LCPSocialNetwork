@@ -11,5 +11,6 @@ import { LanguageswitchComponent, ThemeswitchComponent } from '@app/features';
   styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
-
+  constructor() {
+  }
 }

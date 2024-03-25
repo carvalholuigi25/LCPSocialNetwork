@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FooterComponent } from '../../components';
-import { SharedModule } from '../../modules';
+import { FooterComponent } from '@app/components';
+import { SharedModule } from '@app/modules';
 
 @Component({
   selector: 'app-admin',

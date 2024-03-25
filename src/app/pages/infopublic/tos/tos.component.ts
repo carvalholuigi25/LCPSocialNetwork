@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from '@app/components';
+import { SharedModule } from '@app/modules';
 
 @Component({
   selector: 'app-tos',
   standalone: true,
-  imports: [MatButtonModule, FooterComponent],
+  imports: [FooterComponent, SharedModule],
   templateUrl: './tos.component.html',
   styleUrl: './tos.component.scss'
 })

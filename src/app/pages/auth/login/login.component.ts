@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SharedModule } from '../../../modules';
-import { UserAuth } from '../../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
 import { first } from 'rxjs';
 import { AlertsService } from '@app/services';
 import { FooterComponent } from '@app/components';
+import { SharedModule } from '@app/modules';
+import { UserAuth } from '@app/models';
 
 @Component({
   selector: 'app-login',

@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SharedModule } from './modules';
 import { AuthService } from './services/auth.service';
@@ -7,6 +7,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { CookieConsentComponent } from './features';
 import { AlertsService, ThemesService } from './services';
 import { filter } from 'rxjs';
+import { LanguagesService } from '@app/services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +31,11 @@ export class AppComponent {
     private observer: BreakpointObserver,
     private router: Router,
     private alertsService: AlertsService,
-    private themesService: ThemesService
+    private themesService: ThemesService,
+    private languagesService: LanguagesService, 
+    public translate: TranslateService
   ) { 
+    this.translate.setDefaultLang(this.languagesService.getLanguage()! ?? "en");
     this.DoRouterStuff();
   }
 

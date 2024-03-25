@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Amministrazione",
+        "dashboard": {
+            "title": "Pannello"
+        }
+    },
+    "auth": {
+        "title": "Autenticazione",
+        "login": {
+            "title": "Connect-se"
+        },
+        "register": {
+            "title": "Crea un nuovo account"
+        }
+    },
+    "home": {
+        "title": "casa"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "codice di comportamento"
+        },
+        "cookiepolicy": {
+            "title": "Politica sui cookie"
+        },
+        "privacypolicy": {
+            "title": "politica sulla riservatezza"
+        },
+        "tos": {
+            "title": "Termini di servizio"
+        }
+    },
+    "newsfeed": {
+        "title": "Feed di notizie"
+    },
+    "notfound": {
+        "title": "Pagina non è stata trovata!"
+    },
+    "users": {
+        "title": "Utenti"
+    },
     "settings": {
-        "test": "Questo è un messaggio di prova!"
+        "title": "Definizioni",
+        "themeswitchtitle": "Cambio di tema",
+        "langswitchtitle": "Cambiamento di lingua"
+    },
+    "features": {
+        "title": "Funzionalità",
+        "languageswitch": {
+            "title": "Cambiamento di lingua" 
+        },
+        "themeswitch": {
+            "title": "Cambio di tema"
+        },
+        "posts": {
+            "title": "Pali",
+            "create": {
+                "title": "Crea nuovo post"
+            },
+            "update": {
+                "title": "Aggiorna il post esistente"
+            },
+            "read": {
+                "title": "Leggi i post"
+            },
+            "delete": {
+                "title": "Elimina il post esistente"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Creato da"
+        }
     },
     "cookie": {
         "header": "Cookie utilizzati sul sito!",

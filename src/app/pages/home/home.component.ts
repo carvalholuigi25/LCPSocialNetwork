@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from '@app/components';
+import { SharedModule } from '@app/modules';
 import { AuthService } from '@app/services/auth.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, FooterComponent],
+  imports: [FooterComponent, SharedModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Администрация",
+        "dashboard": {
+            "title": "Панель"
+        }
+    },
+    "auth": {
+        "title": "Аутентификация",
+        "login": {
+            "title": "Подключиться"
+        },
+        "register": {
+            "title": "Создать новую учетную запись"
+        }
+    },
+    "home": {
+        "title": "Дом"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "Кодекс поведения"
+        },
+        "cookiepolicy": {
+            "title": "Политика использования файлов cookie"
+        },
+        "privacypolicy": {
+            "title": "Политика конфиденциальности"
+        },
+        "tos": {
+            "title": "Условия обслуживания"
+        }
+    },
+    "newsfeed": {
+        "title": "Лента новостей"
+    },
+    "notfound": {
+        "title": "Страница не найдена!"
+    },
+    "users": {
+        "title": "Пользователи"
+    },
     "settings": {
-        "test": "Это тестовое сообщение!"
+        "title": "Настройки",
+        "themeswitchtitle": "Переключение темы",
+        "langswitchtitle": "Переключение языка"
+    },
+    "features": {
+        "title": "Особенности",
+        "languageswitch": {
+            "title": "Смена языка" 
+        },
+        "themeswitch": {
+            "title": "Смена темы"
+        },
+        "posts": {
+            "title": "Сообщения",
+            "create": {
+                "title": "Создать новый пост"
+            },
+            "update": {
+                "title": "Обновить существующую публикацию"
+            },
+            "read": {
+                "title": "Читать сообщения"
+            },
+            "delete": {
+                "title": "Удалить существующее сообщение"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Сделано"
+        }
     },
     "cookie": {
         "header": "На сайте используются файлы cookie!",

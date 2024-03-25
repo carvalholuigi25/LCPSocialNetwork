@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SharedModule } from '../../../modules';
-import { User } from '../../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AlertsService, UsersService } from '@app/services';
 import { FooterComponent } from '@app/components';
+import { User } from '@app/models';
+import { SharedModule } from '@app/modules';
 
 @Component({
   selector: 'app-register',

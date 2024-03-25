@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Administration",
+        "dashboard": {
+            "title": "Panneau"
+        }
+    },
+    "auth": {
+        "title": "Authentification",
+        "login": {
+            "title": "Connexion"
+        },
+        "register": {
+            "title": "Créer un nouveau compte"
+        }
+    },
+    "home": {
+        "title": "Casa"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "Code de conduite"
+        },
+        "cookiepolicy": {
+            "title": "Politique des cookies"
+        },
+        "privacypolicy": {
+            "title": "Politique de confidentialité"
+        },
+        "tos": {
+            "title": "Conditions de service"
+        }
+    },
+    "newsfeed": {
+        "title": "Fil d'actualité"
+    },
+    "notfound": {
+        "title": "La page n'a pas été trouvée!"
+    },
+    "users": {
+        "title": "Utilisateurs"
+    },
     "settings": {
-        "test": "Ceci est un message de test !"
+        "title": "Définitions",
+        "themeswitchtitle": "Changement de thème",
+        "langswitchtitle": "Changement de langue"
+    },
+    "features": {
+        "title": "Fonctionnalités",
+        "languageswitch": {
+            "title": "Changement de langue" 
+        },
+        "themeswitch": {
+            "title": "Changement de thème"
+        },
+        "posts": {
+            "title": "Des postes",
+            "create": {
+                "title": "Créer un nouveau message"
+            },
+            "update": {
+                "title": "Mettre à jour le message existant"
+            },
+            "read": {
+                "title": "Lire des articles"
+            },
+            "delete": {
+                "title": "Supprimer le message existant"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Créé par"
+        }
     },
     "cookie": {
         "header": "Cookies utilisés sur le site !",

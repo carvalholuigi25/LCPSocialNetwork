@@ -3,13 +3,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="pagelinks mt-3">
-                    <a routerLink="/tos" routerLinkActive="active">TOS</a>
-                    <a routerLink="/privacypolicy" routerLinkActive="active">Privacy Policy</a>
-                    <a routerLink="/codeconduct" routerLinkActive="active">Code of Conduct</a>
-                    <a routerLink="/cookiepolicy" routerLinkActive="active">Cookie Policy</a>
+                    <a routerLink="/tos" routerLinkActive="active">{{ 'infopublic.tos.title' | translate }}</a>
+                    <a routerLink="/privacypolicy" routerLinkActive="active">{{ 'infopublic.privacypolicy.title' | translate }}</a>
+                    <a routerLink="/codeconduct" routerLinkActive="active">{{ 'infopublic.codeconduct.title' | translate }}</a>
+                    <a routerLink="/cookiepolicy" routerLinkActive="active">{{ 'infopublic.cookiepolicy.title' | translate }}</a>
                 </div>
                 <div class="copyright">
-                    &copy;<span id="yearnow">{{yearnow}}</span> - LCP - Created by <a href="mailto:luiscarvalho239@gmail.com">Luis Carvalho</a>
+                    &copy;<span id="yearnow">{{yearnow}}</span> - LCP - {{ 'footer.copyright.createdby' | translate }} <a href="mailto:luiscarvalho239@gmail.com">Luis Carvalho</a>
                 </div>
             </div>
         </div>

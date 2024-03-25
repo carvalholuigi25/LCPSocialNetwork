@@ -74,15 +74,15 @@
         @if(user) {
           <a mat-list-item routerLink="/newsfeed" routerLinkActive="active">
             <span class="entry">
-              <mat-icon>house</mat-icon>
-              <span *ngIf="!isCollapsed">Home</span>
+              <mat-icon>newspaper</mat-icon>
+              <span *ngIf="!isCollapsed">{{ 'newsfeed.title' | translate }}</span>
             </span>
           </a>
         } @else {
           <a mat-list-item routerLink="/home" routerLinkActive="active">
             <span class="entry">
               <mat-icon>house</mat-icon>
-              <span *ngIf="!isCollapsed">Home</span>
+              <span *ngIf="!isCollapsed">{{ 'home.title' | translate }}</span>
             </span>
           </a>
         }

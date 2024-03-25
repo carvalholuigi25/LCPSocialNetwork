@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Administración",
+        "dashboard": {
+            "title": "Panel"
+        }
+    },
+    "auth": {
+        "title": "Autenticación",
+        "login": {
+            "title": "Conecte-se"
+        },
+        "register": {
+            "title": "Crea una cuenta nueva"
+        }
+    },
+    "home": {
+        "title": "Casa"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "Código de Conducta"
+        },
+        "cookiepolicy": {
+            "title": "Política de cookies"
+        },
+        "privacypolicy": {
+            "title": "Política de privacidad"
+        },
+        "tos": {
+            "title": "Términos de servicio"
+        }
+    },
+    "newsfeed": {
+        "title": "Feed de noticias"
+    },
+    "notfound": {
+        "title": "¡Page no fue encontrada!"
+    },
+    "users": {
+        "title": "Usuarios"
+    },
     "settings": {
-        "test": "¡Este es un mensaje de prueba!"
+        "title": "Definiciones",
+        "themeswitchtitle": "Cambio de tema",
+        "langswitchtitle": "Cambio de idioma"
+    },
+    "features": {
+        "title": "Funcionalidades",
+        "languageswitch": {
+            "title": "Cambio de lenguaje"
+        },
+        "themeswitch": {
+            "title": "Cambio de tema"
+        },
+        "posts": {
+            "title": "Postes",
+            "create": {
+                "title": "Crea una nueva publicación"
+            },
+            "update": {
+                "title": "Actualizar la publicación existente"
+            },
+            "read": {
+                "title": "Publicar publicaciones"
+            },
+            "delete": {
+                "title": "Eliminar la publicación existente"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Creado por"
+        }
     },
     "cookie": {
         "header": "¡Cookies utilizadas en el sitio web!",

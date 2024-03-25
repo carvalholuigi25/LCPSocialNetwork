@@ -24,6 +24,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+import { TranslateModule } from '@ngx-translate/core';
 
 const declarationsAry: any[] = [];
 
@@ -57,7 +58,8 @@ const modulesAry = [
   RouterModule,
   ReactiveFormsModule,
   materialModules,
-  ngxModules
+  ngxModules,
+  TranslateModule
 ];
 
 const providersAry = [

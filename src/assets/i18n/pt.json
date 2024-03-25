@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Administração",
+        "dashboard": {
+            "title": "Painel"
+        }
+    },
+    "auth": {
+        "title": "Autenticação",
+        "login": {
+            "title": "Conecte-se"
+        },
+        "register": {
+            "title": "Criar nova conta"
+        }
+    },
+    "home": {
+        "title": "Casa"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "Código de Conduta"
+        },
+        "cookiepolicy": {
+            "title": "Política de cookies"
+        },
+        "privacypolicy": {
+            "title": "Política de privacidade"
+        },
+        "tos": {
+            "title": "Termos de serviço"
+        }
+    },
+    "newsfeed": {
+        "title": "Feed de noticias"
+    },
+    "notfound": {
+        "title": "Página não foi encontrada!"
+    },
+    "users": {
+        "title": "Utilizadores"
+    },
     "settings": {
-        "test": "Esta é uma mensagem de teste!"
+        "title": "Definições",
+        "themeswitchtitle": "Mudança de tema",
+        "langswitchtitle": "Mudança de linguagem"
+    },
+    "features": {
+        "title": "Funcionalidades",
+        "languageswitch": {
+            "title": "Mudança de linguagem" 
+        },
+        "themeswitch": {
+            "title": "Mudança de tema"
+        },
+        "posts": {
+            "title": "Postagens",
+            "create": {
+                "title": "Criar nova postagem"
+            },
+            "update": {
+                "title": "Atualizar a postagem existente"
+            },
+            "read": {
+                "title": "Ler postagens"
+            },
+            "delete": {
+                "title": "Apagar a postagem existente"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Criado por"
+        }
     },
     "cookie": {
         "header": "Cookies utilizados no site!",

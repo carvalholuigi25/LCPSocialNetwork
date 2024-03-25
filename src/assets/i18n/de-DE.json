@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Verwaltung",
+        "dashboard": {
+            "title": "Armaturenbrett"
+        }
+    },
+    "auth": {
+        "title": "Authentifizierung",
+        "login": {
+            "title": "Verbinden"
+        },
+        "register": {
+            "title": "Creëer een nieuw account"
+        }
+    },
+    "home": {
+        "title": "Haus"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "Verhaltenskodex"
+        },
+        "cookiepolicy": {
+            "title": "Cookie -Richtlinie"
+        },
+        "privacypolicy": {
+            "title": "Datenschutzrichtlinie"
+        },
+        "tos": {
+            "title": "Nutzungsbedingungen"
+        }
+    },
+    "newsfeed": {
+        "title": "Neuigkeiten"
+    },
+    "notfound": {
+        "title": "Seite ist nicht gefunden!"
+    },
+    "users": {
+        "title": "Benutzer"
+    },
     "settings": {
-        "test": "Dies ist eine Testnachricht!"
+        "title": "Definitionen",
+        "themeswitchtitle": "Themenänderung",
+        "langswitchtitle": "Sprachwechsel"
+    },
+    "features": {
+        "title": "Funktionen",
+        "languageswitch": {
+            "title": "Sprachwechsel" 
+        },
+        "themeswitch": {
+            "title": "Themenänderung"
+        },
+        "posts": {
+            "title": "Die Post",
+            "create": {
+                "title": "Eine neue Nachricht machen"
+            },
+            "update": {
+                "title": "Arbeiten Sie die vorhandene Nachricht"
+            },
+            "read": {
+                "title": "Nachrichten lesen"
+            },
+            "delete": {
+                "title": "Entfernen Sie den vorhandenen Beitrag"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Erstellt von"
+        }
     },
     "cookie": {
         "header": "Auf der Website verwendete Cookies!",

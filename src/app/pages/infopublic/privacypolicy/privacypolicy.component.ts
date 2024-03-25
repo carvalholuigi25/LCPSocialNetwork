@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from '@app/components';
+import { SharedModule } from '@app/modules';
 
 @Component({
   selector: 'app-privacypolicy',
   standalone: true,
-  imports: [MatButtonModule, FooterComponent],
+  imports: [FooterComponent, SharedModule],
   templateUrl: './privacypolicy.component.html',
   styleUrl: './privacypolicy.component.scss'
 })

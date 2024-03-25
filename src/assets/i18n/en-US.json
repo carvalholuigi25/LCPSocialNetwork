@@ -1,6 +1,78 @@
 {
+    "admin": {
+        "title": "Administration",
+        "dashboard": {
+            "title": "Panel"
+        }
+    },
+    "auth": {
+        "title": "Authentication",
+        "login": {
+            "title": "Connect"
+        },
+        "register": {
+            "title": "Create New Account"
+        }
+    },
+    "home": {
+        "title": "Home"
+    },
+    "infopublic": {
+        "codeconduct": {
+            "title": "Code of Conduct"
+        },
+        "cookiepolicy": {
+            "title": "Cookies Policy"
+        },
+        "privacypolicy": {
+            "title": "Privacy Policy"
+        },
+        "tos": {
+            "title": "Terms of Service"
+        }
+    },
+    "newsfeed": {
+        "title": "News feed"
+    },
+    "notfound": {
+        "title": "Page was not found!"
+    },
+    "users": {
+        "title": "Users"
+    },
     "settings": {
-        "test": "This is a testing message!"
+        "title": "Definitions",
+        "themeswitchtitle": "Change of theme",
+        "langswitchtitle": "Change of language"
+    },
+    "features": {
+        "title": "Functionalities",
+        "languageswitch": {
+            "title": "Change of language" 
+        },
+        "themeswitch": {
+            "title": "Change of theme"
+        },
+        "posts": {
+            "title": "Posts",
+            "create": {
+                "title": "Create new post"
+            },
+            "update": {
+                "title": "Update the existing post"
+            },
+            "read": {
+                "title": "Read posts"
+            },
+            "delete": {
+                "title": "Delete the existing post"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "createdby": "Created by"
+        }
     },
     "cookie": {
         "header": "Cookies used on the website!",
