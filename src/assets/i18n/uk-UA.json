@@ -99,7 +99,7 @@
             "inpPassword": "Напишіть тут свій пароль",
             "btnClear": "ясно",
             "btnSubmit": "Надіслати",
-            "linkRegNewAc": "У вас немає облікового запису? ",
+            "linkRegNewAc": "У вас немає облікового запису? Будь ласка, <a href='auth/register'>зареєструйтеся тут</a>.",
             "btnBack": "Назад"
         },
         "register": {

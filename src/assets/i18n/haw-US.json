@@ -99,7 +99,7 @@
             "inpPassword": "Kākau ma ʻaneʻi i kāu ʻōlelo huna",
             "btnClear": "Akaka",
             "btnSubmit": "Waiho mai",
-            "linkRegNewAc": "ʻAʻohe ou moʻokāki? ",
+            "linkRegNewAc": "ʻAʻohe ou moʻokāki? E ʻoluʻolu <a href='auth/register'>e hoʻopaʻa inoa ma ʻaneʻi</a>.",
             "btnBack": "Ke kua"
         },
         "register": {

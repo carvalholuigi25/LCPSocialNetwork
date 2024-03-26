@@ -99,7 +99,7 @@
             "inpPassword": "Escribe aquí tu contraseña",
             "btnClear": "Claro",
             "btnSubmit": "Entregar",
-            "linkRegNewAc": "¿No tienes cuenta? ",
+            "linkRegNewAc": "¿No tienes cuenta? Por favor <a href='auth/register'>regístrese aquí</a>.",
             "btnBack": "Atrás"
         },
         "register": {

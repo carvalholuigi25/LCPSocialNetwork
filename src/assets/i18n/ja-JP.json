@@ -99,7 +99,7 @@
             "inpPassword": "ここにパスワードを書いてください",
             "btnClear": "クリア",
             "btnSubmit": "提出する",
-            "linkRegNewAc": "アカウントをお持ちではありませんか? ",
+            "linkRegNewAc": "アカウントをお持ちではありませんか? <a href='auth/register'>ここから登録</a>してください。",
             "btnBack": "戻る"
         },
         "register": {

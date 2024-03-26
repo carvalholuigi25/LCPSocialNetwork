@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AlertsService, UsersService } from '@app/services';
+import { AlertsService, LanguagesService, UsersService } from '@app/services';
 import { FooterComponent } from '@app/components';
 import { User } from '@app/models';
 import { SharedModule } from '@app/modules';
@@ -21,12 +21,14 @@ export class RegisterComponent {
   regForm3!: FormGroup;
   regFormFinale!: FormGroup;
   submitted = false;
+  preferredCountries: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private usersService: UsersService,
-    private alertsService: AlertsService
+    private alertsService: AlertsService,
+    private languagesService: LanguagesService
   ) { }
 
   ngOnInit() {
@@ -59,6 +61,9 @@ export class RegisterComponent {
       AvatarUrl: new FormControl('images/users/avatars/guest.png'),
       CoverUrl: new FormControl('images/users/covers/guest_cover.jpeg')
     });
+
+    const ctlv = this.languagesService.getLanguage()!.includes('-') ? this.languagesService.getLanguage()!.split('-')[1].toLowerCase() : 'gb';
+    this.preferredCountries.push(ctlv);
   }
 
   onClear() {
