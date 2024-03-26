@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Languages } from '@app/models';
 import { environment } from '@environments/environment';
@@ -18,15 +18,8 @@ export class LanguagesService {
     this.ls = this.document.defaultView?.localStorage;
   }
 
-  setHeadersObj() {
-    return new HttpHeaders({
-        "Content-Type": "application/json",
-        "Authorization": this.ls ? `Bearer ${this.ls!.getItem('user')! ? JSON.parse(this.ls!.getItem('user')!).token : null}` : ""
-    });
-  }
-
   getListLanguages() {
-    return this.http.get<Languages[]>(`${environment.apiUrl}/language`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    return this.http.get<Languages[]>(`${environment.apiUrl}/language`).pipe(catchError(this.handleError));
   }
 
   getLanguage() {

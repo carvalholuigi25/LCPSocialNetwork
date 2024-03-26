@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     private languagesService: LanguagesService, 
     public translate: TranslateService
   ) { 
-    this.translate.use(this.languagesService.getLanguage()!);
+    this.translate.use(this.languagesService.getLanguage()! ?? "en");
     this.DoRouterStuff();
   }
 
