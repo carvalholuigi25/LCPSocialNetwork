@@ -12,7 +12,9 @@
         },
         "register": {
             "title": "Create New Account"
-        }
+        },
+        "btnGo": "Go",
+        "btnBack": "Back"
     },
     "home": {
         "title": "Home"
@@ -41,12 +43,12 @@
         "title": "Users"
     },
     "settings": {
-        "title": "Definitions",
+        "title": "Settings",
         "themeswitchtitle": "Change of theme",
         "langswitchtitle": "Change of language"
     },
     "features": {
-        "title": "Functionalities",
+        "title": "Features",
         "languageswitch": {
             "title": "Change of language" 
         },
@@ -72,6 +74,63 @@
     "footer": {
         "copyright": {
             "createdby": "Created by"
+        }
+    },
+    "navbar": {
+        "btnSearch": "Search",
+        "btnFriendRequests": "Friend Requests",
+        "btnNotifications": "Notifications",
+        "btnChatMessages": "Chat Messages",
+        "phSearch": "Search something here...",
+        "notificationsData": "0 notifications!",
+        "friendRequestsData": "0 friend requests!",
+        "chatMessagesData": "0 chat messages!",
+        "linkSettings": "Settings",
+        "linkLogout": "Logout",
+        "linkLogin": "Login",
+        "linkNewsfeed": "Newsfeed",
+        "linkHome": "Home"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "Username",
+            "inpUsername": "Write here your username",
+            "txtPassword": "Password",
+            "inpPassword": "Write here your password",
+            "btnClear": "Clear",
+            "btnSubmit": "Submit",
+            "linkRegNewAc": "You dont have account? Please <a href='auth/register'>register here</a>.",
+            "btnBack": "Back"
+        },
+        "register": {
+            "lblAuthDetails": "Auth Details",
+            "txtUsername": "Username",
+            "inpUsername": "Write here your username",
+            "txtEmail": "Email",
+            "inpEmail": "Write here your email",
+            "txtPassword": "Password",
+            "inpPassword": "Write here your password",
+            "lblUserInfoDetails": "User info details",
+            "txtFirstName": "First Name",
+            "inpFirstName": "Write here your first name",
+            "txtLastName": "Last Name",
+            "inpLastName": "Write here your last name",
+            "txtDateBirthday": "Date of Birthday",
+            "inpDateBirthday": "Write or select here your date of birthday here",
+            "txtPhoneNumber": "Phone Number",
+            "inpPhoneNumber": "Write your phone number here",
+            "lblUserCoverAvatar": "User cover & avatar",
+            "txtAvatarURL": "Avatar URL",
+            "inpAvatarURL": "Write here your avatar url here",
+            "txtCoverURL": "Cover URL",
+            "inpCoverURL": "Write here your cover url here",
+            "lblDone": "Done",
+            "btnBack": "Back",
+            "btnNext": "Next",
+            "btnClear": "Clear",
+            "btnSubmit": "Submit",
+            "btnPrevious": "Previous",
+            "btnReset": "Reset"
         }
     },
     "cookie": {

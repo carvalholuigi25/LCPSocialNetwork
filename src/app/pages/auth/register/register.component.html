@@ -9,115 +9,121 @@
         <div class="col-12 col-md-6 colhomeinfo">
             <h2 class="title">{{ 'auth.register.title' | translate }}</h2>
             <mat-stepper [linear]="true" #stepper>
-                <mat-step [stepControl]="regForm" label="Auth Details">
+                <mat-step [stepControl]="regForm" label="{{ 'forms.register.lblAuthDetails' | translate }}">
                     <form [formGroup]="regForm" class="regform mx-auto" autocomplete="off">
                         <mat-form-field class="mt-3">
-                            <mat-label for="username">Username</mat-label>
+                            <mat-label for="username">{{ 'forms.register.txtUsername' | translate }}</mat-label>
                             <input id="username" type="text" formControlName="Username"
-                                class="form-control text-start mt-3" title="Username" placeholder="Write here your username here" required
-                                matInput />
+                                class="form-control text-start mt-3" title="Username"
+                                placeholder="{{ 'forms.register.inpUsername' | translate }}" required matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
-                            <mat-label for="email">Email</mat-label>
+                            <mat-label for="email">{{ 'forms.register.txtEmail' | translate }}</mat-label>
                             <input id="email" type="email" formControlName="Email" class="form-control text-start mt-3"
-                                title="Email" placeholder="Write here your email" required matInput />
+                                title="Email" placeholder="{{ 'forms.register.inpEmail' | translate }}" required
+                                matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
-                            <mat-label for="password">Password</mat-label>
+                            <mat-label for="password">{{ 'forms.register.txtPassword' | translate }}</mat-label>
                             <input id="password" type="password" formControlName="Password"
-                                class="form-control text-start mt-3" title="Password" placeholder="Write here your password here" required
-                                matInput />
+                                class="form-control text-start mt-3" title="Password"
+                                placeholder="{{ 'forms.register.inpPassword' | translate }}" required matInput />
                         </mat-form-field>
                         <div class="form-group mt-3">
-                            <button type="button" title="next" mat-flat-button color="accent"
-                                matStepperNext [disabled]="!regForm.valid">Next</button>
+                            <button type="button" title="next" mat-flat-button color="accent" matStepperNext
+                                [disabled]="!regForm.valid">{{ 'forms.register.btnNext' | translate }}</button>
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="regForm2" label="User info details">
+                <mat-step [stepControl]="regForm2" label="{{ 'forms.register.lblUserInfoDetails' | translate }}">
                     <form [formGroup]="regForm2" class="regform mx-auto" (ngSubmit)="onSubmit()" autocomplete="off">
                         <mat-form-field class="mt-3">
-                            <mat-label for="firstname">First Name</mat-label>
+                            <mat-label for="firstname">{{ 'forms.register.txtFirstName' | translate }}</mat-label>
                             <input id="firstname" type="text" formControlName="FirstName"
-                                class="form-control text-start mt-3" title="FirstName" placeholder="Write here your first name here" required
-                                matInput />
+                                class="form-control text-start mt-3" title="FirstName"
+                                placeholder="{{ 'forms.register.inpFirstName' | translate }}" required matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
-                            <mat-label for="lastname">Last Name</mat-label>
+                            <mat-label for="lastname">{{ 'forms.register.txtLastName' | translate }}</mat-label>
                             <input id="lastname" type="text" formControlName="LastName"
-                                class="form-control text-start mt-3" title="LastName" placeholder="Write here your last name here" required
-                                matInput />
+                                class="form-control text-start mt-3" title="LastName"
+                                placeholder="{{ 'forms.register.inpLastName' | translate }}" required matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
-                            <mat-label for="datebirthday">Date of Birthday</mat-label>
-                            <input formControlName="DateBirthday" class="text-start mt-3" placeholder="Write or select here your date of birthday here" matInput [matDatepicker]="datebirthday" required />
+                            <mat-label for="datebirthday">{{ 'forms.register.txtDateBirthday' | translate }}</mat-label>
+                            <input formControlName="DateBirthday" class="text-start mt-3"
+                                placeholder="{{ 'forms.register.inpDateBirthday' | translate }}" matInput
+                                [matDatepicker]="datebirthday" required />
                             <mat-datepicker-toggle matIconSuffix [for]="datebirthday"></mat-datepicker-toggle>
                             <mat-datepicker #datebirthday></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field class="mt-3">
-                            <mat-label for="phonenumber">Phone Number</mat-label>
-                            <ngx-mat-intl-tel-input [preferredCountries]="['us']" [enablePlaceholder]="true" [enableSearch]="true" name="phonenumber" id="phonenumber" class="text-start phonenumber mt-3" describedBy="phoneInput" formControlName="PhoneNumber" placeholder="Write your phone number here"></ngx-mat-intl-tel-input>
+                            <mat-label for="phonenumber">{{ 'forms.register.txtPhoneNumber' | translate }}</mat-label>
+                            <ngx-mat-intl-tel-input [preferredCountries]="['us']" [enablePlaceholder]="true"
+                                [enableSearch]="true" [placeholder]="'forms.register.inpPhoneNumber' | translate"
+                                name="phonenumber" id="phonenumber" class="text-start phonenumber mt-3"
+                                describedBy="phoneInput" formControlName="PhoneNumber"></ngx-mat-intl-tel-input>
                         </mat-form-field>
                         <div class="form-group mt-3">
-                            <button type="button" title="back" mat-flat-button color="primary"
-                                matStepperPrevious>Previous</button>
-                            <button type="button" title="next" class="ms-3" mat-flat-button color="accent"
-                                matStepperNext [disabled]="!regForm2.valid">Next</button>
+                            <button type="button" title="{{ 'forms.register.btnBack' | translate }}" mat-flat-button
+                                color="primary" matStepperPrevious>{{ 'forms.register.btnBack' | translate }}</button>
+                            <button type="button" title="{{ 'forms.register.btnNext' | translate }}" class="ms-3"
+                                mat-flat-button color="accent" matStepperNext [disabled]="!regForm2.valid">{{
+                                'forms.register.btnNext' | translate }}</button>
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="regForm3" label="User cover & avatar">
+                <mat-step [stepControl]="regForm3" label="{{ 'forms.register.lblUserCoverAvatar' | translate }}">
                     <form [formGroup]="regForm3" class="regform mx-auto" (ngSubmit)="onSubmit()" autocomplete="off">
                         <mat-form-field class="mt-3">
-                            <mat-label for="avatarurl">Avatar URL</mat-label>
-                            <input id="avatarurl" type="text" formControlName="AvatarUrl" class="form-control text-start mt-3" title="AvatarUrl" placeholder="Write here your avatar url here" matInput />
+                            <mat-label for="avatarurl">{{ 'forms.register.txtAvatarURL' | translate }}</mat-label>
+                            <input id="avatarurl" type="text" formControlName="AvatarUrl"
+                                class="form-control text-start mt-3" title="AvatarUrl"
+                                placeholder="{{ 'forms.register.inpAvatarURL' | translate }}" matInput />
                         </mat-form-field>
                         <mat-form-field class="mt-3">
-                            <mat-label for="coverurl">Cover URL</mat-label>
-                            <input id="coverurl" type="text" formControlName="CoverUrl" class="form-control text-start mt-3" title="CoverUrl" placeholder="Write here your cover url here" matInput />
+                            <mat-label for="coverurl">{{ 'forms.register.txtCoverURL' | translate }}</mat-label>
+                            <input id="coverurl" type="text" formControlName="CoverUrl"
+                                class="form-control text-start mt-3" title="CoverUrl"
+                                placeholder="{{ 'forms.register.txtCoverURL' | translate }}" matInput />
                         </mat-form-field>
                         <div class="form-group mt-3">
-                            <button type="button" title="back" mat-flat-button color="primary"
-                                matStepperPrevious>Previous</button>
-                            <button type="button" title="next" class="ms-3" mat-flat-button color="accent"
-                                matStepperNext [disabled]="!regForm2.valid">Next</button>
+                            <button type="button" title="{{ 'forms.register.btnPrevious' | translate }}" mat-flat-button
+                                color="primary" matStepperPrevious>{{ 'forms.register.btnPrevious' | translate
+                                }}</button>
+                            <button type="button" title="{{ 'forms.register.btnNext' | translate }}" class="ms-3"
+                                mat-flat-button color="accent" matStepperNext [disabled]="!regForm2.valid">{{
+                                'forms.register.btnNext' | translate }}</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>Done</ng-template>
+                    <ng-template matStepLabel>{{ 'forms.register.lblDone' | translate }}</ng-template>
                     <form [formGroup]="regFormFinale" class="regform mx-auto" (ngSubmit)="onSubmit()">
                         <div class="form-group mt-3">
-                            <button type="button" mat-flat-button color="primary" (click)="onClear()">Clear</button>
-                            <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!regForm.valid && !regForm2.valid">Submit</button>
+                            <button type="button" mat-flat-button color="primary" (click)="onClear()">
+                                {{ 'forms.register.btnClear' | translate }}
+                            </button>
+                            <button type="submit" class="ms-3" mat-flat-button color="accent"
+                                [disabled]="!regForm.valid && !regForm2.valid">
+                                {{ 'forms.register.btnSubmit' | translate }}
+                            </button>
                         </div>
                     </form>
                     <div class="form-group mt-3">
-                        <button type="button" title="back" mat-flat-button color="primary" matStepperPrevious>Previous</button>
-                        <button mat-flat-button color="warn" class="ms-3" (click)="stepper.reset()">Reset</button>
+                        <button type="button" title="back" mat-flat-button color="primary" matStepperPrevious>
+                            {{ 'forms.register.btnPrevious' | translate }}
+                        </button>
+                        <button mat-flat-button color="warn" class="ms-3" (click)="stepper.reset()">
+                            {{ 'forms.register.btnReset' | translate }}
+                        </button>
                     </div>
                 </mat-step>
             </mat-stepper>
 
-            <!-- <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="regform">
-                <mat-form-field class="mt-3">
-                    <mat-label for="username">Username</mat-label>
-                    <input id="username" type="text" formControlName="username" class="form-control text-start mt-3" title="Write here your username" required matInput />
-                </mat-form-field>
-                <mat-form-field class="mt-3">
-                    <mat-label for="email">Email</mat-label>
-                    <input id="email" type="email" formControlName="email" class="form-control text-start mt-3" title="Write here your email" required matInput />
-                </mat-form-field>
-                <mat-form-field class="mt-3">
-                    <mat-label for="password">Password</mat-label>
-                    <input id="password" type="password" formControlName="password" class="form-control text-start mt-3" title="Write here your password" required matInput />
-                </mat-form-field>
-                <div class="form-group mt-3">
-                    <button type="reset" mat-flat-button color="primary">Clear</button>
-                    <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!regForm.valid">Submit</button>
-                </div>
-            </form> -->
-            <a mat-flat-button class="mt-3" href="home" color="primary">Back</a>
+            <a mat-flat-button class="mt-3" href="home" color="primary">
+                {{ 'forms.register.btnBack' | translate }}
+            </a>
         </div>
     </div>
 </div>

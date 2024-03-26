@@ -8,47 +8,49 @@
     "auth": {
         "title": "Authentification",
         "login": {
-            "title": "Connexion"
+            "title": "Connecter"
         },
         "register": {
             "title": "Créer un nouveau compte"
-        }
+        },
+        "btnGo": "Aller",
+        "btnBack": "Dos"
     },
     "home": {
-        "title": "Casa"
+        "title": "Maison"
     },
     "infopublic": {
         "codeconduct": {
             "title": "Code de conduite"
         },
         "cookiepolicy": {
-            "title": "Politique des cookies"
+            "title": "Politique de cookies"
         },
         "privacypolicy": {
-            "title": "Politique de confidentialité"
+            "title": "politique de confidentialité"
         },
         "tos": {
-            "title": "Conditions de service"
+            "title": "Conditions d'utilisation"
         }
     },
     "newsfeed": {
         "title": "Fil d'actualité"
     },
     "notfound": {
-        "title": "La page n'a pas été trouvée!"
+        "title": "La page n'a pas été trouvée !"
     },
     "users": {
         "title": "Utilisateurs"
     },
     "settings": {
-        "title": "Définitions",
+        "title": "Paramètres",
         "themeswitchtitle": "Changement de thème",
         "langswitchtitle": "Changement de langue"
     },
     "features": {
-        "title": "Fonctionnalités",
+        "title": "Caractéristiques",
         "languageswitch": {
-            "title": "Changement de langue" 
+            "title": "Changement de langue"
         },
         "themeswitch": {
             "title": "Changement de thème"
@@ -62,7 +64,7 @@
                 "title": "Mettre à jour le message existant"
             },
             "read": {
-                "title": "Lire des articles"
+                "title": "Lire les articles"
             },
             "delete": {
                 "title": "Supprimer le message existant"
@@ -74,13 +76,70 @@
             "createdby": "Créé par"
         }
     },
+    "navbar": {
+        "btnSearch": "Recherche",
+        "btnFriendRequests": "Demandes d'ami",
+        "btnNotifications": "Notifications",
+        "btnChatMessages": "Messages de discussion",
+        "phSearch": "Recherchez quelque chose ici...",
+        "notificationsData": "0 notification !",
+        "friendRequestsData": "0 demande d'ami !",
+        "chatMessagesData": "0 message de chat !",
+        "linkSettings": "Paramètres",
+        "linkLogout": "Se déconnecter",
+        "linkLogin": "Se connecter",
+        "linkNewsfeed": "Fil d'actualité",
+        "linkHome": "Maison"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "Nom d'utilisateur",
+            "inpUsername": "Écrivez ici votre nom d'utilisateur",
+            "txtPassword": "Mot de passe",
+            "inpPassword": "Écrivez ici votre mot de passe",
+            "btnClear": "Clair",
+            "btnSubmit": "Soumettre",
+            "linkRegNewAc": "Vous n'avez pas de compte ? ",
+            "btnBack": "Dos"
+        },
+        "register": {
+            "lblAuthDetails": "Détails d'authentification",
+            "txtUsername": "Nom d'utilisateur",
+            "inpUsername": "Écrivez ici votre nom d'utilisateur",
+            "txtEmail": "E-mail",
+            "inpEmail": "Écrivez ici votre email",
+            "txtPassword": "Mot de passe",
+            "inpPassword": "Écrivez ici votre mot de passe",
+            "lblUserInfoDetails": "Détails des informations utilisateur",
+            "txtFirstName": "Prénom",
+            "inpFirstName": "Écrivez ici votre prénom",
+            "txtLastName": "Nom de famille",
+            "inpLastName": "Écrivez ici votre nom de famille",
+            "txtDateBirthday": "Date d'anniversaire",
+            "inpDateBirthday": "Ecrivez ou sélectionnez ici votre date d'anniversaire ici",
+            "txtPhoneNumber": "Numéro de téléphone",
+            "inpPhoneNumber": "Écrivez votre numéro de téléphone ici",
+            "lblUserCoverAvatar": "Couverture et avatar de l'utilisateur",
+            "txtAvatarURL": "URL de l'avatar",
+            "inpAvatarURL": "Écrivez ici l'URL de votre avatar ici",
+            "txtCoverURL": "URL de couverture",
+            "inpCoverURL": "Écrivez ici votre URL de couverture ici",
+            "lblDone": "Fait",
+            "btnBack": "Dos",
+            "btnNext": "Suivant",
+            "btnClear": "Clair",
+            "btnSubmit": "Soumettre",
+            "btnPrevious": "Précédent",
+            "btnReset": "Réinitialiser"
+        }
+    },
     "cookie": {
         "header": "Cookies utilisés sur le site !",
         "message": "Ce site Web utilise des cookies pour vous garantir la meilleure expérience sur notre site Web.",
-        "dismiss": "Compris!",
-        "allow": "Autoriser les cookies",
-        "deny": "Refuser",
-        "link": "En savoir plus",
+        "dismiss": "J'ai compris!",
+        "allow": "Autorise les cookies",
+        "deny": "Déclin",
+        "link": "Apprendre encore plus",
         "policy": "Politique en matière de cookies"
     }
 }

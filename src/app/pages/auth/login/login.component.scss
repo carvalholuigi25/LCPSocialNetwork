@@ -4,6 +4,10 @@
     justify-content: stretch;
     align-items: stretch;
     width: 50%;
+
+    mat-label {
+        white-space: nowrap;
+    }
 }
 
 ::ng-deep .login .myfooter {

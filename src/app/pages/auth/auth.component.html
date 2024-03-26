@@ -8,8 +8,10 @@
         </div>
         <div class="col-12 col-md-6 colhomeinfo">
             <h2 class="title">{{ 'auth.title' | translate }}</h2>
-            <a mat-flat-button routerLink="/auth/login" color="accent">Ok</a>
-            <a mat-flat-button routerLink="/" color="primary">Back</a>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+                <a mat-flat-button routerLink="/auth/login" color="accent">{{ 'auth.btnGo' | translate }}</a>
+                <a mat-flat-button routerLink="/" color="primary" class="ms-2">{{ 'auth.btnBack' | translate }}</a>
+            </div>
         </div>
     </div>
 </div>

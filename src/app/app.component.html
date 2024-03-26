@@ -15,19 +15,25 @@
         <button mat-icon-button [matMenuTriggerFor]="menusearch" aria-label="Search menu">
           <mat-icon aria-hidden="false">search</mat-icon>
           <span class="cdk-visually-hidden">
-            Search
+            {{ 'navbar.btnSearch' | translate }}
+          </span>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menufriendrequests" aria-label="Friend Requests menu">
+          <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">person_add</mat-icon>
+          <span class="cdk-visually-hidden">
+            {{ 'navbar.btnFriendRequests' | translate }}
           </span>
         </button>
         <button mat-icon-button [matMenuTriggerFor]="menunotifications" aria-label="Notifications menu">
           <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
           <span class="cdk-visually-hidden">
-            Notifications
+            {{ 'navbar.btnNotifications' | translate }}
           </span>
         </button>
         <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menuchat" aria-label="Chat menu">
           <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">chat</mat-icon>
           <span class="cdk-visually-hidden">
-            Chat Messages
+            {{ 'navbar.btnChatMessages' | translate }}
           </span>
         </button>
         <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User control menu">
@@ -38,16 +44,18 @@
 
       <mat-menu class="p-3" #menusearch="matMenu">
         <mat-form-field class="searchblk" appearance="fill" color="accent" (click)="DoPreventMenuCloseAfterClicked($event);">
-          <mat-label>Search</mat-label>
-          <input class="searchinp" matInput placeholder="Search">
+          <input class="searchinp" matInput placeholder="{{ 'navbar.phSearch' | translate }}">
           <mat-icon matSuffix aria-hidden="false">search</mat-icon>
         </mat-form-field>
       </mat-menu>
       <mat-menu class="p-3" #menunotifications="matMenu">
-        <p>0 notifications!</p>
+        <p>{{ 'navbar.notificationsData' | translate }}</p>
+      </mat-menu>
+      <mat-menu class="p-3" #menufriendrequests="matMenu">
+        <p>{{ 'navbar.friendRequestsData' | translate }}</p>
       </mat-menu>
       <mat-menu class="p-3" #menuchat="matMenu">
-        <p>0 chat messages!</p>
+        <p>{{ 'navbar.chatMessagesData' | translate }}!</p>
       </mat-menu>
       <mat-menu #menu="matMenu">
         <a class="text-center" href="users/{{user.usersInfo.userId}}" mat-menu-item>
@@ -55,15 +63,17 @@
         </a>
         <a href="settings" mat-menu-item>
           <mat-icon>settings</mat-icon>
-          <span>Settings</span>
+          <span>{{ 'navbar.linkSettings' | translate }}</span>
         </a>
         <button (click)="logout()" mat-menu-item>
           <mat-icon>logout</mat-icon>
-          <span>Logout</span>
+          <span>{{ 'navbar.linkLogout' | translate }}</span>
         </button>
       </mat-menu>
     } @else {
-      <a mat-flat-button color="accent" href="/auth/login">Login</a>
+      <a mat-flat-button color="accent" href="/auth/login">
+        {{ 'navbar.linkLogin' | translate }}
+      </a>
     }
   </mat-toolbar>
 
@@ -75,14 +85,14 @@
           <a mat-list-item routerLink="/newsfeed" routerLinkActive="active">
             <span class="entry">
               <mat-icon>newspaper</mat-icon>
-              <span *ngIf="!isCollapsed">{{ 'newsfeed.title' | translate }}</span>
+              <span *ngIf="!isCollapsed">{{ 'navbar.linkNewsfeed' | translate }}</span>
             </span>
           </a>
         } @else {
           <a mat-list-item routerLink="/home" routerLinkActive="active">
             <span class="entry">
               <mat-icon>house</mat-icon>
-              <span *ngIf="!isCollapsed">{{ 'home.title' | translate }}</span>
+              <span *ngIf="!isCollapsed">{{ 'navbar.linkHome' | translate }}</span>
             </span>
           </a>
         }

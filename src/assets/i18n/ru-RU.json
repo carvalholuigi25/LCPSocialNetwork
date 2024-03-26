@@ -8,31 +8,33 @@
     "auth": {
         "title": "Аутентификация",
         "login": {
-            "title": "Подключиться"
+            "title": "Соединять"
         },
         "register": {
-            "title": "Создать новую учетную запись"
-        }
+            "title": "Создать новый аккаунт"
+        },
+        "btnGo": "Идти",
+        "btnBack": "Назад"
     },
     "home": {
         "title": "Дом"
     },
     "infopublic": {
         "codeconduct": {
-            "title": "Кодекс поведения"
+            "title": "Нормы поведения"
         },
         "cookiepolicy": {
             "title": "Политика использования файлов cookie"
         },
         "privacypolicy": {
-            "title": "Политика конфиденциальности"
+            "title": "политика конфиденциальности"
         },
         "tos": {
-            "title": "Условия обслуживания"
+            "title": "Условия использования"
         }
     },
     "newsfeed": {
-        "title": "Лента новостей"
+        "title": "Новостная лента"
     },
     "notfound": {
         "title": "Страница не найдена!"
@@ -42,16 +44,16 @@
     },
     "settings": {
         "title": "Настройки",
-        "themeswitchtitle": "Переключение темы",
-        "langswitchtitle": "Переключение языка"
+        "themeswitchtitle": "Изменение темы",
+        "langswitchtitle": "Изменение языка"
     },
     "features": {
-        "title": "Особенности",
+        "title": "Функции",
         "languageswitch": {
-            "title": "Смена языка" 
+            "title": "Изменение языка"
         },
         "themeswitch": {
-            "title": "Смена темы"
+            "title": "Изменение темы"
         },
         "posts": {
             "title": "Сообщения",
@@ -74,13 +76,70 @@
             "createdby": "Сделано"
         }
     },
+    "navbar": {
+        "btnSearch": "Поиск",
+        "btnFriendRequests": "Запросы в друзья",
+        "btnNotifications": "Уведомления",
+        "btnChatMessages": "Сообщения чата",
+        "phSearch": "Поищите здесь что-нибудь...",
+        "notificationsData": "0 уведомлений!",
+        "friendRequestsData": "0 запросов в друзья!",
+        "chatMessagesData": "0 сообщений в чате!",
+        "linkSettings": "Настройки",
+        "linkLogout": "Выйти",
+        "linkLogin": "Авторизоваться",
+        "linkNewsfeed": "Новостная лента",
+        "linkHome": "Дом"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "Имя пользователя",
+            "inpUsername": "Напишите здесь свое имя пользователя",
+            "txtPassword": "Пароль",
+            "inpPassword": "Напишите здесь свой пароль",
+            "btnClear": "Прозрачный",
+            "btnSubmit": "Представлять на рассмотрение",
+            "linkRegNewAc": "У вас нет аккаунта? ",
+            "btnBack": "Назад"
+        },
+        "register": {
+            "lblAuthDetails": "Детали аутентификации",
+            "txtUsername": "Имя пользователя",
+            "inpUsername": "Напишите здесь свое имя пользователя",
+            "txtEmail": "Электронная почта",
+            "inpEmail": "Напишите здесь свой адрес электронной почты",
+            "txtPassword": "Пароль",
+            "inpPassword": "Напишите здесь свой пароль",
+            "lblUserInfoDetails": "Подробности информации о пользователе",
+            "txtFirstName": "Имя",
+            "inpFirstName": "Напишите здесь свое имя",
+            "txtLastName": "Фамилия",
+            "inpLastName": "Напишите здесь свою фамилию",
+            "txtDateBirthday": "Дата рождения",
+            "inpDateBirthday": "Напишите или выберите здесь дату вашего дня рождения здесь",
+            "txtPhoneNumber": "Номер телефона",
+            "inpPhoneNumber": "Напишите здесь свой номер телефона",
+            "lblUserCoverAvatar": "Обложка и аватар пользователя",
+            "txtAvatarURL": "URL-адрес аватара",
+            "inpAvatarURL": "Напишите здесь URL вашего аватара",
+            "txtCoverURL": "URL-адрес обложки",
+            "inpCoverURL": "Напишите здесь свой URL-адрес обложки",
+            "lblDone": "Сделанный",
+            "btnBack": "Назад",
+            "btnNext": "Следующий",
+            "btnClear": "Прозрачный",
+            "btnSubmit": "Представлять на рассмотрение",
+            "btnPrevious": "Предыдущий",
+            "btnReset": "Перезагрузить"
+        }
+    },
     "cookie": {
         "header": "На сайте используются файлы cookie!",
         "message": "Этот веб-сайт использует файлы cookie, чтобы обеспечить вам максимально эффективное использование нашего веб-сайта.",
         "dismiss": "Понятно!",
         "allow": "Разрешить файлы cookie",
-        "deny": "Отказаться",
-        "link": "Подробнее",
+        "deny": "Отклонить",
+        "link": "Узнать больше",
         "policy": "Политика использования файлов cookie"
     }
 }

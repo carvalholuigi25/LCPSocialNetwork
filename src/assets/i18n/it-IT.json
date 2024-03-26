@@ -8,18 +8,20 @@
     "auth": {
         "title": "Autenticazione",
         "login": {
-            "title": "Connect-se"
+            "title": "Collegare"
         },
         "register": {
             "title": "Crea un nuovo account"
-        }
+        },
+        "btnGo": "Andare",
+        "btnBack": "Indietro"
     },
     "home": {
-        "title": "casa"
+        "title": "Casa"
     },
     "infopublic": {
         "codeconduct": {
-            "title": "codice di comportamento"
+            "title": "Codice di comportamento"
         },
         "cookiepolicy": {
             "title": "Politica sui cookie"
@@ -35,28 +37,28 @@
         "title": "Feed di notizie"
     },
     "notfound": {
-        "title": "Pagina non è stata trovata!"
+        "title": "La pagina non è stata trovata!"
     },
     "users": {
         "title": "Utenti"
     },
     "settings": {
-        "title": "Definizioni",
+        "title": "Impostazioni",
         "themeswitchtitle": "Cambio di tema",
-        "langswitchtitle": "Cambiamento di lingua"
+        "langswitchtitle": "Cambio di lingua"
     },
     "features": {
-        "title": "Funzionalità",
+        "title": "Caratteristiche",
         "languageswitch": {
-            "title": "Cambiamento di lingua" 
+            "title": "Cambio di lingua"
         },
         "themeswitch": {
             "title": "Cambio di tema"
         },
         "posts": {
-            "title": "Pali",
+            "title": "Messaggi",
             "create": {
-                "title": "Crea nuovo post"
+                "title": "Crea nuovo messaggio"
             },
             "update": {
                 "title": "Aggiorna il post esistente"
@@ -74,13 +76,70 @@
             "createdby": "Creato da"
         }
     },
+    "navbar": {
+        "btnSearch": "Ricerca",
+        "btnFriendRequests": "Richieste di amicizia",
+        "btnNotifications": "Notifiche",
+        "btnChatMessages": "Messaggi di chat",
+        "phSearch": "Cerca qualcosa qui...",
+        "notificationsData": "0 notifiche!",
+        "friendRequestsData": "0 richieste di amicizia!",
+        "chatMessagesData": "0 messaggi di chat!",
+        "linkSettings": "Impostazioni",
+        "linkLogout": "Disconnettersi",
+        "linkLogin": "Login",
+        "linkNewsfeed": "Feed di notizie",
+        "linkHome": "Casa"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "Nome utente",
+            "inpUsername": "Scrivi qui il tuo nome utente",
+            "txtPassword": "Parola d'ordine",
+            "inpPassword": "Scrivi qui la tua password",
+            "btnClear": "Chiaro",
+            "btnSubmit": "Invia",
+            "linkRegNewAc": "Non hai un conto? ",
+            "btnBack": "Indietro"
+        },
+        "register": {
+            "lblAuthDetails": "Dettagli autenticazione",
+            "txtUsername": "Nome utente",
+            "inpUsername": "Scrivi qui il tuo nome utente",
+            "txtEmail": "E-mail",
+            "inpEmail": "Scrivi qui la tua email",
+            "txtPassword": "Parola d'ordine",
+            "inpPassword": "Scrivi qui la tua password",
+            "lblUserInfoDetails": "Dettagli delle informazioni sull'utente",
+            "txtFirstName": "Nome di battesimo",
+            "inpFirstName": "Scrivi qui il tuo nome",
+            "txtLastName": "Cognome",
+            "inpLastName": "Scrivi qui il tuo cognome",
+            "txtDateBirthday": "Data del compleanno",
+            "inpDateBirthday": "Scrivi o seleziona qui la tua data di compleanno qui",
+            "txtPhoneNumber": "Numero di telefono",
+            "inpPhoneNumber": "Scrivi qui il tuo numero di telefono",
+            "lblUserCoverAvatar": "Copertina e avatar dell'utente",
+            "txtAvatarURL": "URL dell'avatar",
+            "inpAvatarURL": "Scrivi qui l'URL del tuo avatar",
+            "txtCoverURL": "URL della copertina",
+            "inpCoverURL": "Scrivi qui l'URL della tua copertina",
+            "lblDone": "Fatto",
+            "btnBack": "Indietro",
+            "btnNext": "Prossimo",
+            "btnClear": "Chiaro",
+            "btnSubmit": "Invia",
+            "btnPrevious": "Precedente",
+            "btnReset": "Ripristina"
+        }
+    },
     "cookie": {
-        "header": "Cookie utilizzati sul sito!",
-        "message": "Questo sito web utilizza i cookie per assicurarti la migliore esperienza sul nostro sito web.",
-        "dismiss": "Capito!",
-        "allow": "Consenti cookie",
-        "deny": "Rifiuta",
-        "link": "Ulteriori informazioni",
-        "policy": "Politica sui cookie"
+        "header": "Cookie utilizzati nel sito!",
+        "message": "Questo sito utilizza i cookie per assicurarti la migliore esperienza sul nostro sito.",
+        "dismiss": "Fatto!",
+        "allow": "Consenti i cookie",
+        "deny": "Declino",
+        "link": "Saperne di più",
+        "policy": "Gestione dei Cookie"
     }
 }

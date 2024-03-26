@@ -8,11 +8,13 @@
     "auth": {
         "title": "Autenticação",
         "login": {
-            "title": "Conecte-se"
+            "title": "Conectar"
         },
         "register": {
             "title": "Criar nova conta"
-        }
+        },
+        "btnGo": "Ir",
+        "btnBack": "Voltar"
     },
     "home": {
         "title": "Casa"
@@ -22,33 +24,33 @@
             "title": "Código de Conduta"
         },
         "cookiepolicy": {
-            "title": "Política de cookies"
+            "title": "Política de Cookies"
         },
         "privacypolicy": {
-            "title": "Política de privacidade"
+            "title": "Política de Privacidade"
         },
         "tos": {
-            "title": "Termos de serviço"
+            "title": "Termos de Serviço"
         }
     },
     "newsfeed": {
-        "title": "Feed de noticias"
+        "title": "Notícias"
     },
     "notfound": {
-        "title": "Página não foi encontrada!"
+        "title": "A página não foi encontrada!"
     },
     "users": {
-        "title": "Utilizadores"
+        "title": "Usuários"
     },
     "settings": {
-        "title": "Definições",
+        "title": "Configurações",
         "themeswitchtitle": "Mudança de tema",
-        "langswitchtitle": "Mudança de linguagem"
+        "langswitchtitle": "Mudança de idioma"
     },
     "features": {
-        "title": "Funcionalidades",
+        "title": "Características",
         "languageswitch": {
-            "title": "Mudança de linguagem" 
+            "title": "Mudança de idioma"
         },
         "themeswitch": {
             "title": "Mudança de tema"
@@ -65,7 +67,7 @@
                 "title": "Ler postagens"
             },
             "delete": {
-                "title": "Apagar a postagem existente"
+                "title": "Exclua a postagem existente"
             }
         }
     },
@@ -74,13 +76,70 @@
             "createdby": "Criado por"
         }
     },
+    "navbar": {
+        "btnSearch": "Procurar",
+        "btnFriendRequests": "Pedidos de amizade",
+        "btnNotifications": "Notificações",
+        "btnChatMessages": "Mensagens de bate-papo",
+        "phSearch": "Pesquise algo aqui...",
+        "notificationsData": "0 notificações!",
+        "friendRequestsData": "0 pedidos de amizade!",
+        "chatMessagesData": "0 mensagens de bate-papo!",
+        "linkSettings": "Configurações",
+        "linkLogout": "Sair",
+        "linkLogin": "Conecte-se",
+        "linkNewsfeed": "Notícias",
+        "linkHome": "Casa"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "Nome de usuário",
+            "inpUsername": "Escreva aqui seu nome de usuário",
+            "txtPassword": "Senha",
+            "inpPassword": "Escreva aqui sua senha",
+            "btnClear": "Limpar",
+            "btnSubmit": "Enviar",
+            "linkRegNewAc": "Você não tem conta? Por favor <a href='auth/register'>registre-se aqui</a>.",
+            "btnBack": "Voltar"
+        },
+        "register": {
+            "lblAuthDetails": "Detalhes de autenticação",
+            "txtUsername": "Nome de usuário",
+            "inpUsername": "Escreva aqui seu nome de usuário",
+            "txtEmail": "E-mail",
+            "inpEmail": "Escreva aqui seu e-mail",
+            "txtPassword": "Senha",
+            "inpPassword": "Escreva aqui sua senha",
+            "lblUserInfoDetails": "Detalhes de informações do usuário",
+            "txtFirstName": "Primeiro nome",
+            "inpFirstName": "Escreva aqui seu primeiro nome",
+            "txtLastName": "Sobrenome",
+            "inpLastName": "Escreva aqui seu sobrenome",
+            "txtDateBirthday": "Data de nascimento",
+            "inpDateBirthday": "Escreva ou selecione aqui a sua data de aniversário aqui",
+            "txtPhoneNumber": "Número de telefone",
+            "inpPhoneNumber": "Escreva aqui seu número de telefone",
+            "lblUserCoverAvatar": "Capa e avatar do usuário",
+            "txtAvatarURL": "URL do avatar",
+            "inpAvatarURL": "Escreva aqui o URL do seu avatar aqui",
+            "txtCoverURL": "URL de capa",
+            "inpCoverURL": "Escreva aqui o URL da sua capa aqui",
+            "lblDone": "Feito",
+            "btnBack": "Voltar",
+            "btnNext": "Próximo",
+            "btnClear": "Limpar",
+            "btnSubmit": "Enviar",
+            "btnPrevious": "Anterior",
+            "btnReset": "Reiniciar"
+        }
+    },
     "cookie": {
         "header": "Cookies utilizados no site!",
-        "message": "Este site usa cookies para garantir que você tenha a melhor experiência em nosso site.",
+        "message": "Este site usa cookies para garantir que você obtenha a melhor experiência em nosso site.",
         "dismiss": "Entendi!",
         "allow": "Permitir cookies",
-        "deny": "Recusar",
-        "link": "Saiba mais",
+        "deny": "Declínio",
+        "link": "Saber mais",
         "policy": "Política de Cookies"
     }
 }

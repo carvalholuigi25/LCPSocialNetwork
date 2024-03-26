@@ -2,7 +2,7 @@
     "admin": {
         "title": "Verwaltung",
         "dashboard": {
-            "title": "Armaturenbrett"
+            "title": "Panel"
         }
     },
     "auth": {
@@ -11,18 +11,20 @@
             "title": "Verbinden"
         },
         "register": {
-            "title": "Creëer een nieuw account"
-        }
+            "title": "Neuen Account erstellen"
+        },
+        "btnGo": "Gehen",
+        "btnBack": "Zurück"
     },
     "home": {
-        "title": "Haus"
+        "title": "Heim"
     },
     "infopublic": {
         "codeconduct": {
             "title": "Verhaltenskodex"
         },
         "cookiepolicy": {
-            "title": "Cookie -Richtlinie"
+            "title": "Cookie-Richtlinie"
         },
         "privacypolicy": {
             "title": "Datenschutzrichtlinie"
@@ -35,37 +37,37 @@
         "title": "Neuigkeiten"
     },
     "notfound": {
-        "title": "Seite ist nicht gefunden!"
+        "title": "Seite wurde nicht gefunden!"
     },
     "users": {
         "title": "Benutzer"
     },
     "settings": {
-        "title": "Definitionen",
-        "themeswitchtitle": "Themenänderung",
+        "title": "Einstellungen",
+        "themeswitchtitle": "Themenwechsel",
         "langswitchtitle": "Sprachwechsel"
     },
     "features": {
-        "title": "Funktionen",
+        "title": "Merkmale",
         "languageswitch": {
-            "title": "Sprachwechsel" 
+            "title": "Sprachwechsel"
         },
         "themeswitch": {
-            "title": "Themenänderung"
+            "title": "Themenwechsel"
         },
         "posts": {
-            "title": "Die Post",
+            "title": "Beiträge",
             "create": {
-                "title": "Eine neue Nachricht machen"
+                "title": "Neuen Beitrag erstellen"
             },
             "update": {
-                "title": "Arbeiten Sie die vorhandene Nachricht"
+                "title": "Aktualisieren Sie den vorhandenen Beitrag"
             },
             "read": {
-                "title": "Nachrichten lesen"
+                "title": "Beiträge lesen"
             },
             "delete": {
-                "title": "Entfernen Sie den vorhandenen Beitrag"
+                "title": "Löschen Sie den vorhandenen Beitrag"
             }
         }
     },
@@ -74,13 +76,70 @@
             "createdby": "Erstellt von"
         }
     },
+    "navbar": {
+        "btnSearch": "Suchen",
+        "btnFriendRequests": "Freundschaftsanfragen",
+        "btnNotifications": "Benachrichtigungen",
+        "btnChatMessages": "Chat-Nachrichten",
+        "phSearch": "Suchen Sie hier etwas...",
+        "notificationsData": "0 Benachrichtigungen!",
+        "friendRequestsData": "0 Freundschaftsanfragen!",
+        "chatMessagesData": "0 Chatnachrichten!",
+        "linkSettings": "Einstellungen",
+        "linkLogout": "Ausloggen",
+        "linkLogin": "Anmeldung",
+        "linkNewsfeed": "Neuigkeiten",
+        "linkHome": "Heim"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "Nutzername",
+            "inpUsername": "Geben Sie hier Ihren Benutzernamen ein",
+            "txtPassword": "Passwort",
+            "inpPassword": "Geben Sie hier Ihr Passwort ein",
+            "btnClear": "Klar",
+            "btnSubmit": "Einreichen",
+            "linkRegNewAc": "Sie haben kein Konto? ",
+            "btnBack": "Zurück"
+        },
+        "register": {
+            "lblAuthDetails": "Authentifizierungsdetails",
+            "txtUsername": "Nutzername",
+            "inpUsername": "Geben Sie hier Ihren Benutzernamen ein",
+            "txtEmail": "Email",
+            "inpEmail": "Schreiben Sie hier Ihre E-Mail",
+            "txtPassword": "Passwort",
+            "inpPassword": "Geben Sie hier Ihr Passwort ein",
+            "lblUserInfoDetails": "Details zu Benutzerinformationen",
+            "txtFirstName": "Vorname",
+            "inpFirstName": "Tragen Sie hier Ihren Vornamen ein",
+            "txtLastName": "Familienname, Nachname",
+            "inpLastName": "Tragen Sie hier Ihren Nachnamen ein",
+            "txtDateBirthday": "Geburtsdatum",
+            "inpDateBirthday": "Geben Sie hier Ihr Geburtstagsdatum ein oder wählen Sie es hier aus",
+            "txtPhoneNumber": "Telefonnummer",
+            "inpPhoneNumber": "Geben Sie hier Ihre Telefonnummer ein",
+            "lblUserCoverAvatar": "Benutzercover und Avatar",
+            "txtAvatarURL": "Avatar-URL",
+            "inpAvatarURL": "Geben Sie hier Ihre Avatar-URL ein",
+            "txtCoverURL": "Cover-URL",
+            "inpCoverURL": "Geben Sie hier Ihre Cover-URL ein",
+            "lblDone": "Erledigt",
+            "btnBack": "Zurück",
+            "btnNext": "Nächste",
+            "btnClear": "Klar",
+            "btnSubmit": "Einreichen",
+            "btnPrevious": "Vorherige",
+            "btnReset": "Zurücksetzen"
+        }
+    },
     "cookie": {
         "header": "Auf der Website verwendete Cookies!",
-        "message": "Diese Website verwendet Cookies, um sicherzustellen, dass Sie das beste Erlebnis auf unserer Website haben.",
-        "dismiss": "Verstanden!",
+        "message": "Diese Website verwendet Cookies, um sicherzustellen, dass Sie das beste Erlebnis auf unserer Website erhalten.",
+        "dismiss": "Habe es!",
         "allow": "Cookies zulassen",
-        "deny": "Ablehnen",
-        "link": "Weitere Informationen",
+        "deny": "Abfall",
+        "link": "Erfahren Sie mehr",
         "policy": "Cookie-Richtlinie"
     }
 }

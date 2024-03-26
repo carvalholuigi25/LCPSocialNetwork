@@ -1,71 +1,73 @@
 {
     "admin": {
-        "title": "Papaho",
+        "title": "Hooponopono",
         "dashboard": {
-            "title": "Pana"
+            "title": "Panel"
         }
     },
     "auth": {
-        "title": "'.Lelo hōʻoia",
+        "title": "Hōʻoiaʻiʻo",
         "login": {
-            "title": "Hono-se"
+            "title": "Hoʻohui"
         },
         "register": {
-            "title": "E hana i ka waihona hou"
-        }
+            "title": "Hana i moʻokāki hou"
+        },
+        "btnGo": "Hele",
+        "btnBack": "Ke kua"
     },
     "home": {
-        "title": "Cata"
+        "title": "Home"
     },
     "infopublic": {
         "codeconduct": {
-            "title": "code of conducted"
+            "title": "Code of Conduct"
         },
         "cookiepolicy": {
-            "title": "Nā kulekele Cook"
+            "title": "Kuki Kuki"
         },
         "privacypolicy": {
-            "title": "Kulekele kāohi"
+            "title": "Kulekele pilikino"
         },
         "tos": {
-            "title": "Nā Kūlana Kūlana"
+            "title": "Kūlana o ka lawelawe"
         }
     },
     "newsfeed": {
-        "title": "ʻOihanaʻO News"
+        "title": "Nuhou hānai"
     },
     "notfound": {
-        "title": "ʻAʻole i loaʻa kaʻaoʻao!"
+        "title": "ʻAʻole i loaʻa ka ʻaoʻao!"
     },
     "users": {
         "title": "Nā mea hoʻohana"
     },
     "settings": {
-        "title": "Hoʻolaha",
-        "themeswitchtitle": "Ka loli o keʻano",
-        "langswitchtitle": "Hoʻololi o ka'ōlelo"
+        "title": "Nā hoʻonohonoho",
+        "themeswitchtitle": "Hoʻololi kumuhana",
+        "langswitchtitle": "Hoʻololi ʻōlelo"
     },
     "features": {
-        "title": "Hana",
+        "title": "Nā hiʻohiʻona",
         "languageswitch": {
-            "title": "Hoʻololi o ka'ōlelo" 
+            "title": "Hoʻololi ʻōlelo"
         },
         "themeswitch": {
-            "title": "Ka loli o keʻano"
+            "title": "Hoʻololi kumuhana"
         },
         "posts": {
-            "title": "Nā PaneHihoa",
+            "title": "Nā leka",
             "create": {
-                "title": "E hana i ka pou hou"
+                "title": "Hana i ka pou hou"
             },
             "update": {
-                "title": "Hoʻohou i ka pou i loaʻa"
+                "title": "Hoʻohou i ka memo i loaʻa"
             },
             "read": {
-                "title": "UUKAIANA HOOLAHA"
+                "title": "Heluhelu i nā pou"
             },
             "delete": {
-                "title": "Hoʻopau i ka pou i loaʻa"
+                "title": "Holoi i ka pou i loaʻa"
             }
         }
     },
@@ -74,13 +76,70 @@
             "createdby": "Ua hana 'ia e"
         }
     },
+    "navbar": {
+        "btnSearch": "Huli",
+        "btnFriendRequests": "Noi Hoaloha",
+        "btnNotifications": "Hoolaha",
+        "btnChatMessages": "Nā memo kamaʻilio",
+        "phSearch": "Huli i kekahi mea maanei...",
+        "notificationsData": "0 na hoolaha!",
+        "friendRequestsData": "0 noi hoa!",
+        "chatMessagesData": "0 kamaʻilio memo!",
+        "linkSettings": "Nā hoʻonohonoho",
+        "linkLogout": "Lele",
+        "linkLogin": "E komo",
+        "linkNewsfeed": "Nupepa",
+        "linkHome": "Home"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "inoa hoʻohana",
+            "inpUsername": "Kākau ma ʻaneʻi i kou inoa inoa",
+            "txtPassword": "Hua huna",
+            "inpPassword": "Kākau ma ʻaneʻi i kāu ʻōlelo huna",
+            "btnClear": "Akaka",
+            "btnSubmit": "Waiho mai",
+            "linkRegNewAc": "ʻAʻohe ou moʻokāki? ",
+            "btnBack": "Ke kua"
+        },
+        "register": {
+            "lblAuthDetails": "Nā kikoʻī aʻoaʻo",
+            "txtUsername": "inoa hoʻohana",
+            "inpUsername": "Kākau ma ʻaneʻi i kou inoa inoa",
+            "txtEmail": "leka uila",
+            "inpEmail": "E kākau i kāu leka uila ma ʻaneʻi",
+            "txtPassword": "Hua huna",
+            "inpPassword": "Kākau ma ʻaneʻi i kāu ʻōlelo huna",
+            "lblUserInfoDetails": "Nā kikoʻī ʻike mea hoʻohana",
+            "txtFirstName": "Inoa mua",
+            "inpFirstName": "Kākau ma ʻaneʻi i kou inoa mua",
+            "txtLastName": "Inoa hope",
+            "inpLastName": "E kākau i kou inoa hope",
+            "txtDateBirthday": "Ka lā hānau",
+            "inpDateBirthday": "Kākau a koho paha i kou lā hānau ma aneʻi",
+            "txtPhoneNumber": "Helu kelepona",
+            "inpPhoneNumber": "Kākau i kāu helu kelepona ma aneʻi",
+            "lblUserCoverAvatar": "Ka uhi a me ka avatar",
+            "txtAvatarURL": "URL Avatar",
+            "inpAvatarURL": "E kākau ma ʻaneʻi i kāu URL avatar ma aneʻi",
+            "txtCoverURL": "Uhi URL",
+            "inpCoverURL": "E kākau ma ʻaneʻi i kāu url uhi ma aneʻi",
+            "lblDone": "Pau",
+            "btnBack": "Ke kua",
+            "btnNext": "Aʻe",
+            "btnClear": "Akaka",
+            "btnSubmit": "Waiho mai",
+            "btnPrevious": "Mamua",
+            "btnReset": "Hoʻoponopono hou"
+        }
+    },
     "cookie": {
-        "header": "Ho'ohana 'ia nā kuki ma ka pūnaewele!",
-        "message": "Ho'ohana kēia pūnaewele i nā kuki e hō'oia i ka loa'a 'ana o ka 'ike maika'i loa ma kā mākou pūnaewele.",
-        "dismiss": "Ua maopopo!",
-        "allow": "'Ae i nā kuki",
-        "deny": "Ho'ole",
-        "link": "'Ike hou aku",
+        "header": "Hoʻohana ʻia nā kuki ma ka pūnaewele!",
+        "message": "Ke hoʻohana nei kēia pūnaewele i nā kuki e hōʻoia e loaʻa iā ʻoe ka ʻike maikaʻi loa ma kā mākou pūnaewele.",
+        "dismiss": "Loaʻa ia!",
+        "allow": "ʻAe i nā kuki",
+        "deny": "Hōʻole",
+        "link": "Aʻo hou mai",
         "policy": "Kuki Kuki"
     }
 }

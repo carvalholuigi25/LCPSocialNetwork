@@ -8,61 +8,63 @@
     "auth": {
         "title": "Autenticación",
         "login": {
-            "title": "Conecte-se"
+            "title": "Conectar"
         },
         "register": {
-            "title": "Crea una cuenta nueva"
-        }
+            "title": "Crear una nueva cuenta"
+        },
+        "btnGo": "Ir",
+        "btnBack": "Atrás"
     },
     "home": {
-        "title": "Casa"
+        "title": "Hogar"
     },
     "infopublic": {
         "codeconduct": {
-            "title": "Código de Conducta"
+            "title": "Código de conducta"
         },
         "cookiepolicy": {
             "title": "Política de cookies"
         },
         "privacypolicy": {
-            "title": "Política de privacidad"
+            "title": "política de privacidad"
         },
         "tos": {
             "title": "Términos de servicio"
         }
     },
     "newsfeed": {
-        "title": "Feed de noticias"
+        "title": "Noticias"
     },
     "notfound": {
-        "title": "¡Page no fue encontrada!"
+        "title": "¡La página no fue encontrada!"
     },
     "users": {
         "title": "Usuarios"
     },
     "settings": {
-        "title": "Definiciones",
+        "title": "Ajustes",
         "themeswitchtitle": "Cambio de tema",
         "langswitchtitle": "Cambio de idioma"
     },
     "features": {
-        "title": "Funcionalidades",
+        "title": "Características",
         "languageswitch": {
-            "title": "Cambio de lenguaje"
+            "title": "Cambio de idioma"
         },
         "themeswitch": {
             "title": "Cambio de tema"
         },
         "posts": {
-            "title": "Postes",
+            "title": "Publicaciones",
             "create": {
-                "title": "Crea una nueva publicación"
+                "title": "Crear nueva publicación"
             },
             "update": {
                 "title": "Actualizar la publicación existente"
             },
             "read": {
-                "title": "Publicar publicaciones"
+                "title": "Leer publicaciones"
             },
             "delete": {
                 "title": "Eliminar la publicación existente"
@@ -74,13 +76,70 @@
             "createdby": "Creado por"
         }
     },
+    "navbar": {
+        "btnSearch": "Buscar",
+        "btnFriendRequests": "Peticiones de amistad",
+        "btnNotifications": "Notificaciones",
+        "btnChatMessages": "Mensajes de chat",
+        "phSearch": "Busca algo aquí...",
+        "notificationsData": "¡0 Notificaciones!",
+        "friendRequestsData": "¡0 solicitudes de amistad!",
+        "chatMessagesData": "0 mensajes de chat!",
+        "linkSettings": "Ajustes",
+        "linkLogout": "Cerrar sesión",
+        "linkLogin": "Acceso",
+        "linkNewsfeed": "Noticias",
+        "linkHome": "Hogar"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "Nombre de usuario",
+            "inpUsername": "Escribe aquí tu nombre de usuario",
+            "txtPassword": "Contraseña",
+            "inpPassword": "Escribe aquí tu contraseña",
+            "btnClear": "Claro",
+            "btnSubmit": "Entregar",
+            "linkRegNewAc": "¿No tienes cuenta? ",
+            "btnBack": "Atrás"
+        },
+        "register": {
+            "lblAuthDetails": "Detalles de autenticación",
+            "txtUsername": "Nombre de usuario",
+            "inpUsername": "Escribe aquí tu nombre de usuario",
+            "txtEmail": "Correo electrónico",
+            "inpEmail": "Escribe aquí tu correo electrónico",
+            "txtPassword": "Contraseña",
+            "inpPassword": "Escribe aquí tu contraseña",
+            "lblUserInfoDetails": "Detalles de información del usuario",
+            "txtFirstName": "Nombre de pila",
+            "inpFirstName": "Escribe aquí tu nombre",
+            "txtLastName": "Apellido",
+            "inpLastName": "Escribe aquí tu apellido",
+            "txtDateBirthday": "Fecha de cumpleaños",
+            "inpDateBirthday": "Escribe o selecciona aquí tu fecha de cumpleaños aquí",
+            "txtPhoneNumber": "Número de teléfono",
+            "inpPhoneNumber": "Escribe aquí tu número de teléfono",
+            "lblUserCoverAvatar": "Portada de usuario y avatar",
+            "txtAvatarURL": "URL de avatar",
+            "inpAvatarURL": "Escribe aquí la URL de tu avatar aquí.",
+            "txtCoverURL": "URL de portada",
+            "inpCoverURL": "Escribe aquí tu URL de portada aquí",
+            "lblDone": "Hecho",
+            "btnBack": "Atrás",
+            "btnNext": "Próximo",
+            "btnClear": "Claro",
+            "btnSubmit": "Entregar",
+            "btnPrevious": "Anterior",
+            "btnReset": "Reiniciar"
+        }
+    },
     "cookie": {
         "header": "¡Cookies utilizadas en el sitio web!",
-        "message": "Este sitio web utiliza cookies para garantizar que usted obtenga la mejor experiencia en nuestro sitio web.",
-        "dismiss": "¡Entendido!",
+        "message": "Este sitio web utiliza cookies para garantizar que obtenga la mejor experiencia en nuestro sitio web.",
+        "dismiss": "¡Entiendo!",
         "allow": "Permitir cookies",
         "deny": "Rechazar",
-        "link": "Más información",
+        "link": "Aprende más",
         "policy": "Política de cookies"
     }
 }

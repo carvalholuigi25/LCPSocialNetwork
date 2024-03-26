@@ -7,11 +7,12 @@ import { AlertsService } from '@app/services';
 import { FooterComponent } from '@app/components';
 import { SharedModule } from '@app/modules';
 import { UserAuth } from '@app/models';
+import { SafePipe } from '@app/pipes';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [SharedModule, FooterComponent],
+  imports: [SharedModule, FooterComponent, SafePipe],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

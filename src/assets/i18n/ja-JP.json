@@ -12,10 +12,12 @@
         },
         "register": {
             "title": "新しいアカウントを作成する"
-        }
+        },
+        "btnGo": "行く",
+        "btnBack": "戻る"
     },
     "home": {
-        "title": "カサ"
+        "title": "家"
     },
     "infopublic": {
         "codeconduct": {
@@ -28,30 +30,30 @@
             "title": "プライバシーポリシー"
         },
         "tos": {
-            "title": "サービス条件"
+            "title": "利用規約"
         }
     },
     "newsfeed": {
         "title": "ニュースフィード"
     },
     "notfound": {
-        "title": "ページは見つかりませんでした！"
+        "title": "ページが見つかりませんでした!"
     },
     "users": {
         "title": "ユーザー"
     },
     "settings": {
-        "title": "定義",
-        "themeswitchtitle": "テーマの変化",
-        "langswitchtitle": "言語の変化"
+        "title": "設定",
+        "themeswitchtitle": "テーマの変更",
+        "langswitchtitle": "言語の変更"
     },
     "features": {
-        "title": "機能",
+        "title": "特徴",
         "languageswitch": {
-            "title": "言語の変化"
+            "title": "言語の変更"
         },
         "themeswitch": {
-            "title": "テーマの変化"
+            "title": "テーマの変更"
         },
         "posts": {
             "title": "投稿",
@@ -65,7 +67,7 @@
                 "title": "投稿を読む"
             },
             "delete": {
-                "title": "既存の投稿を削除"
+                "title": "既存の投稿を削除する"
             }
         }
     },
@@ -74,13 +76,70 @@
             "createdby": "によって作成された"
         }
     },
+    "navbar": {
+        "btnSearch": "検索",
+        "btnFriendRequests": "友達リクエスト",
+        "btnNotifications": "通知",
+        "btnChatMessages": "チャットメッセージ",
+        "phSearch": "ここで何かを検索してください...",
+        "notificationsData": "通知は0件です！",
+        "friendRequestsData": "友達リクエストは0件です！",
+        "chatMessagesData": "チャットメッセージは0件です！",
+        "linkSettings": "設定",
+        "linkLogout": "ログアウト",
+        "linkLogin": "ログイン",
+        "linkNewsfeed": "ニュースフィード",
+        "linkHome": "家"
+    },
+    "forms": {
+        "login": {
+            "txtUsername": "ユーザー名",
+            "inpUsername": "ここにユーザー名を書いてください",
+            "txtPassword": "パスワード",
+            "inpPassword": "ここにパスワードを書いてください",
+            "btnClear": "クリア",
+            "btnSubmit": "提出する",
+            "linkRegNewAc": "アカウントをお持ちではありませんか? ",
+            "btnBack": "戻る"
+        },
+        "register": {
+            "lblAuthDetails": "認証の詳細",
+            "txtUsername": "ユーザー名",
+            "inpUsername": "ここにユーザー名を書いてください",
+            "txtEmail": "Eメール",
+            "inpEmail": "ここにメールを書いてください",
+            "txtPassword": "パスワード",
+            "inpPassword": "ここにパスワードを書いてください",
+            "lblUserInfoDetails": "ユーザー情報の詳細",
+            "txtFirstName": "ファーストネーム",
+            "inpFirstName": "ここにあなたの名前を書いてください",
+            "txtLastName": "苗字",
+            "inpLastName": "ここにあなたの姓を書いてください",
+            "txtDateBirthday": "誕生日",
+            "inpDateBirthday": "ここにあなたの誕生日を書くか選択してください",
+            "txtPhoneNumber": "電話番号",
+            "inpPhoneNumber": "ここに電話番号を書いてください",
+            "lblUserCoverAvatar": "ユーザーカバーとアバター",
+            "txtAvatarURL": "アバターURL",
+            "inpAvatarURL": "ここにあなたのアバターの URL を書いてください",
+            "txtCoverURL": "表紙のURL",
+            "inpCoverURL": "ここにカバーの URL を書いてください",
+            "lblDone": "終わり",
+            "btnBack": "戻る",
+            "btnNext": "次",
+            "btnClear": "クリア",
+            "btnSubmit": "提出する",
+            "btnPrevious": "前の",
+            "btnReset": "リセット"
+        }
+    },
     "cookie": {
-        "header": "サイトで Cookie が使用されています!",
+        "header": "ウェブサイトではCookieが使用されています！",
         "message": "この Web サイトでは、お客様に最高のエクスペリエンスを提供するために Cookie を使用しています。",
-        "dismiss": "わかりました!",
+        "dismiss": "わかった！",
         "allow": "Cookie を許可する",
-        "deny": "拒否",
-        "link": "詳細情報",
+        "deny": "衰退",
+        "link": "もっと詳しく知る",
         "policy": "クッキーポリシー"
     }
 }
