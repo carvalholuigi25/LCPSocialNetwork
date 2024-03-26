@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '@app/components';
 import { SharedModule } from '@app/modules';
 import { AuthService } from '@app/services/auth.service';
@@ -10,11 +10,15 @@ import { AuthService } from '@app/services/auth.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   yearnow = new Date().getUTCFullYear();
   user?: any;
 
   constructor(private authService: AuthService) {
       this.authService.user.subscribe(x => this.user = x);
+  }
+
+  ngOnInit(): void {
+      
   }
 }

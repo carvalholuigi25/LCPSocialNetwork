@@ -1,23 +1,47 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CodeConductComponent } from './codeconduct.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { CodeConductComponent } from "./codeconduct.component";
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '@app/app.config';
+import { TranslateService, TranslateStore, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
-describe('CodeConductComponent', () => {
-  let component: CodeConductComponent;
-  let fixture: ComponentFixture<CodeConductComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CodeConductComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(CodeConductComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+describe("CodeConductComponent", () => {
+    let component: CodeConductComponent;
+    let fixture: ComponentFixture<CodeConductComponent>;
+    //let myService: MyService;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            providers: [TranslateService, TranslateStore, TranslateModule.forRoot({
+                defaultLanguage: 'en',
+                loader: {
+                    provide: TranslateLoader,
+                    useFactory: (createTranslateLoader),
+                    deps: [HttpClient]
+                }
+            })],
+            imports: []
+        }).compileComponents();
+    });
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(CodeConductComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+
+        //myService = TestBed.inject(MyService);
+    });
+
+    it('ngOnInit should...', () => {
+        // Arrange
+        // Act
+        component.ngOnInit();
+        // Assert
+        // Add your assertions here
+    });
+})
+        

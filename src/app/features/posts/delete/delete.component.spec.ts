@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeletePostsComponent } from './delete.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DeletePostsComponent', () => {
   let component: DeletePostsComponent;
@@ -8,7 +9,7 @@ describe('DeletePostsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeletePostsComponent]
+      imports: [DeletePostsComponent, RouterTestingModule]
     })
     .compileComponents();
     

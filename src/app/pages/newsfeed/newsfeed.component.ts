@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '@app/components';
 import { SharedModule } from '@app/modules';
 import { CreatePostsComponent, ReadPostsComponent } from '@app/features';
@@ -10,6 +10,9 @@ import { CreatePostsComponent, ReadPostsComponent } from '@app/features';
   templateUrl: './newsfeed.component.html',
   styleUrl: './newsfeed.component.scss'
 })
-export class NewsfeedComponent {
+export class NewsfeedComponent implements OnInit {
 
+  ngOnInit(): void {
+      
+  }
 }

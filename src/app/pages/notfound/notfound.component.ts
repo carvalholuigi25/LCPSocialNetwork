@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../../components';
 import { SharedModule } from '../../modules';
 
@@ -9,6 +9,8 @@ import { SharedModule } from '../../modules';
   templateUrl: './notfound.component.html',
   styleUrl: './notfound.component.scss'
 })
-export class NotfoundComponent {
-
+export class NotfoundComponent implements OnInit {
+  ngOnInit() {
+      
+  }
 }

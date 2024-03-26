@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '@app/components';
 import { SharedModule } from '@app/modules';
 
@@ -9,6 +9,8 @@ import { SharedModule } from '@app/modules';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
-
+export class DashboardComponent implements OnInit {
+  ngOnInit(): void {
+      
+  }
 }

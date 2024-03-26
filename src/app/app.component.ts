@@ -50,15 +50,23 @@ export class AppComponent implements OnInit {
   }
 
   DoPreventMenuCloseAfterClicked($event:any){
-    $event.stopPropagation();
+    if($event) {
+      $event.stopPropagation();
+    }
   }
 
   toggleMenu() {
     if(this.isMobile){
-      this.sidenav.toggle();
+      if(this.sidenav) {
+        this.sidenav.toggle();
+      }
+
       this.isCollapsed = false; // On mobile, the menu can never be collapsed
     } else {
-      this.sidenav.open(); // On desktop/tablet, the menu can never be fully closed
+      if(this.sidenav) {
+        this.sidenav.open(); // On desktop/tablet, the menu can never be fully closed
+      }
+      
       this.isCollapsed = !this.isCollapsed;
     }
   }

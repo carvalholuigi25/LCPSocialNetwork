@@ -1,29 +1,106 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
-  });
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { AppComponent } from "./app.component";
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { AlertsService, ThemesService } from './services';
+import { LanguagesService } from '@app/services';
+import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from './modules';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from './app.config';
+import { NgcCookieConsentConfig, NgcCookieConsentService, WindowService } from 'ngx-cookieconsent';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-  it(`should have the 'LCPSocialNetwork' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('LCPSocialNetwork');
-  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, LCPSocialNetwork');
-  });
-});
+describe("AppComponent", () => {
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
+    let $event: any;
+
+    //let myService: MyService;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            providers: [AuthService, BreakpointObserver, Router, AlertsService, ThemesService, LanguagesService, TranslateService, TranslateStore, NgcCookieConsentService, WindowService, NgcCookieConsentConfig],
+            imports: [
+                RouterTestingModule, 
+                BrowserAnimationsModule, 
+                RouterOutlet, 
+                SharedModule, 
+                TranslateModule.forRoot({
+                    defaultLanguage: 'en',
+                    loader: {
+                        provide: TranslateLoader,
+                        useFactory: (createTranslateLoader),
+                        deps: [HttpClient]
+                    }
+                })
+            ]
+        }).compileComponents();
+    });
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+
+        //myService = TestBed.inject(MyService);
+    });
+
+    it('ngOnInit should...', () => {
+        // Arrange
+        // Act
+        component.ngOnInit();
+        // Assert
+        // Add your assertions here
+    });
+
+    it('logout should...', () => {
+        // Arrange
+        // Act
+        component.logout();
+        // Assert
+        // Add your assertions here
+    });
+
+    it('DoPreventMenuCloseAfterClicked should...', () => {
+        // Arrange
+        // Act
+        component.DoPreventMenuCloseAfterClicked($event);
+        // Assert
+        // Add your assertions here
+    });
+
+    it('toggleMenu should...', () => {
+        // Arrange
+        // Act
+        component.toggleMenu();
+        // Assert
+        // Add your assertions here
+    });
+
+    it('LoadMediaObserver should...', () => {
+        // Arrange
+        // Act
+        component.LoadMediaObserver();
+        // Assert
+        // Add your assertions here
+    });
+
+    it('DoRouterStuff should...', () => {
+        // Arrange
+        // Act
+        component.DoRouterStuff();
+        // Assert
+        // Add your assertions here
+    });
+
+
+})

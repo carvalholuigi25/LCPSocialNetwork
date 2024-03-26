@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '@app/modules';
 
 @Component({
@@ -8,6 +8,10 @@ import { SharedModule } from '@app/modules';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
   yearnow = new Date().getUTCFullYear();
+
+  ngOnInit(): void {
+      
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '@app/components';
 import { SharedModule } from '@app/modules';
 
@@ -9,7 +9,10 @@ import { SharedModule } from '@app/modules';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   yearnow = new Date().getUTCFullYear();
 
+  ngOnInit(): void {
+      
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '@app/components';
 import { SharedModule } from '@app/modules';
 
@@ -9,7 +9,10 @@ import { SharedModule } from '@app/modules';
   templateUrl: './cookiepolicy.component.html',
   styleUrl: './cookiepolicy.component.scss'
 })
-export class CookiePolicyComponent {
+export class CookiePolicyComponent implements OnInit {
   yearnow = new Date().getUTCFullYear();
 
+  ngOnInit(): void {
+      
+  }
 }

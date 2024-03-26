@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../../components';
 import { SharedModule } from '../../modules';
 import { LanguageswitchComponent, ThemeswitchComponent } from '@app/features';
@@ -10,7 +10,11 @@ import { LanguageswitchComponent, ThemeswitchComponent } from '@app/features';
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   constructor() {
+  }
+
+  ngOnInit(): void {
+      
   }
 }

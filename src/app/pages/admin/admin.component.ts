@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '@app/components';
 import { SharedModule } from '@app/modules';
 
@@ -9,6 +9,8 @@ import { SharedModule } from '@app/modules';
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
-export class AdminComponent {
-
+export class AdminComponent implements OnInit {
+  ngOnInit(): void {
+      
+  }
 }

@@ -48,6 +48,6 @@ export class ThemeswitchComponent implements OnInit {
       ThemeValue: "light"
     }];
 
-    this.selectedTheme = this.themesService.getTheme()!.replace("mytheme-", "");
+    this.selectedTheme = this.themesService.getTheme()! ? this.themesService.getTheme()!.replace("mytheme-", "") : "default";
   }
 }
