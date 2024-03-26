@@ -64,10 +64,7 @@ export class CookieConsentComponent {
           }
 
           this.translateService.addLangs(this.langCodeIsoAry);
-          this.translateService.setDefaultLang(this.langCodeIsoAry[0] ?? "en");
-
-          const browserLang = this.translateService.getBrowserLang();
-          this.translateService.use(browserLang ?? "en");
+          this.translateService.setDefaultLang(this.langCodeIsoAry[0]);
       
           this.translateService.get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link', 'cookie.policy']).subscribe(data => {
             if(this.ccService.getConfig() != null) {

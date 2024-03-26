@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SharedModule } from './modules';
 import { AuthService } from './services/auth.service';
@@ -17,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'LCPSocialNetwork';
   user?: any;
   isMobile = true;
@@ -35,7 +35,7 @@ export class AppComponent {
     private languagesService: LanguagesService, 
     public translate: TranslateService
   ) { 
-    this.translate.setDefaultLang(this.languagesService.getLanguage()! ?? "en");
+    this.translate.use(this.languagesService.getLanguage()!);
     this.DoRouterStuff();
   }
 
