@@ -1,17 +1,16 @@
 
 import { TestBed } from '@angular/core/testing';
-import { PostsService } from './posts.service';
-import { Post } from '@app/models';
+import { Reply } from '@app/models';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
+import { RepliesService } from './replies.service';
 
-describe('PostsService', () => {
-    let service: PostsService;
+describe('RepliesService', () => {
+    let service: RepliesService;
     let httpMock: HttpTestingController;
     let authSrv: AuthService;
     let id: number = 1;
-    let userId: number = 1;
-    let posts: Post;
+    let reply: Reply;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -21,7 +20,7 @@ describe('PostsService', () => {
             ],
         });
         
-        service = TestBed.inject(PostsService);
+        service = TestBed.inject(RepliesService);
         authSrv = TestBed.inject(AuthService);
         httpMock = TestBed.inject(HttpTestingController);
     });
@@ -36,11 +35,11 @@ describe('PostsService', () => {
         authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
             let mydata = rlog;
 
-            service.getAll().subscribe((res: Post[]) => {
+            service.getAll().subscribe((res: Reply[]) => {
                 expect(res).toEqual(mydata);
             });
     
-            const req = httpMock.expectOne('/api/post');
+            const req = httpMock.expectOne('/api/reply');
             expect(req.request.method).toEqual("GET");
             req.flush(mydata);
 
@@ -50,37 +49,15 @@ describe('PostsService', () => {
         expect(service.getAll).toBeTruthy();
     });
 
-    it('getAllWithUsers should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
-
-            service.getAllWithUsers(userId).subscribe((res) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/post/'+(id !== -1 ? '/user/' + id : id));
-            expect(req.request.method).toEqual("GET");
-
-            const req2 = httpMock.expectOne('/api/user/'+id);
-            expect(req2.request.method).toEqual("GET");
-
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.getAllWithUsers).toBeTruthy();
-    });
-
     it('getAllById should...', () => {
         authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
             let mydata = rlog;
 
-            service.getAllById(id).subscribe((res: Post) => {
+            service.getAllById(id).subscribe((res: Reply) => {
                 expect(res).toEqual(mydata);
             });
     
-            const req = httpMock.expectOne('/api/post/'+id);
+            const req = httpMock.expectOne('/api/reply/'+id);
             expect(req.request.method).toEqual("GET");
             req.flush(mydata);
 
@@ -90,76 +67,58 @@ describe('PostsService', () => {
         expect(service.getAllById).toBeTruthy();
     });
 
-    it('getAllByUsersId should...', () => {
+    it('createReplies should...', () => {
         authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
             let mydata = rlog;
 
-            service.getAllByUsersId(userId).subscribe((res: Post) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/post/user/'+id);
-            expect(req.request.method).toEqual("GET");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.getAllByUsersId).toBeTruthy();
-    });
-
-    it('createPosts should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
-
-            service.createPosts(posts).subscribe((res: Post) => {
+            service.createReplies(reply).subscribe((res: Reply) => {
                 expect(res).toEqual(mydata);
             });
 
-            const req = httpMock.expectOne('/api/post');
+            const req = httpMock.expectOne('/api/reply');
             expect(req.request.method).toEqual("POST");
             req.flush(mydata);
 
             httpMock.verify();
         });
 
-        expect(service.createPosts).toBeTruthy();
+        expect(service.createReplies).toBeTruthy();
     });
 
-    it('updatePosts should...', () => {
+    it('updateReplies should...', () => {
         authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
             let mydata = rlog;
 
-            service.updatePosts(id, posts).subscribe((res: Post) => {
+            service.updateReplies(id, reply).subscribe((res: Reply) => {
                 expect(res).toEqual(mydata);
             });
 
-            const req = httpMock.expectOne('/api/post/'+id);
+            const req = httpMock.expectOne('/api/reply/'+id);
             expect(req.request.method).toEqual("PUT");
             req.flush(mydata);
 
             httpMock.verify();
         });
 
-        expect(service.updatePosts).toBeTruthy();
+        expect(service.updateReplies).toBeTruthy();
     });
 
-    it('deletePosts should...', () => {
+    it('deleteReplies should...', () => {
         authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
             let mydata = rlog;
 
-            service.deletePosts(id).subscribe((res: Post) => {
+            service.deleteReplies(id).subscribe((res: Reply) => {
                 expect(res).toEqual(mydata);
             });
 
-            const req = httpMock.expectOne('/api/post/'+id);
+            const req = httpMock.expectOne('/api/reply/'+id);
             expect(req.request.method).toEqual("DELETE");
             req.flush(mydata);
 
             httpMock.verify();
         });
 
-        expect(service.deletePosts).toBeTruthy();
+        expect(service.deleteReplies).toBeTruthy();
     });
 });
       
