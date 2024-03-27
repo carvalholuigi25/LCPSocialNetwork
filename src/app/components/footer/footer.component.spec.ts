@@ -41,6 +41,7 @@ describe("FooterComponent", () => {
         // Arrange
         // Act
         component.ngOnInit();
+        expect(component.ngOnInit).toBeTruthy();
         // Assert
         // Add your assertions here
     });

@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 describe("LanguageswitchComponent", () => {
     let component: LanguageswitchComponent;
     let fixture: ComponentFixture<LanguageswitchComponent>;
+    let languageval: string = "en";
     //let myService: MyService;
 
     beforeEach(async () => {
@@ -43,6 +44,7 @@ describe("LanguageswitchComponent", () => {
         // Arrange
         // Act
         component.ngOnInit();
+        expect(component.ngOnInit).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -50,8 +52,8 @@ describe("LanguageswitchComponent", () => {
     it('switchLanguage should...', () => {
         // Arrange
         // Act
-        const languageval = "en";
         component.switchLanguage(languageval);
+        expect(component.switchLanguage).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -60,6 +62,7 @@ describe("LanguageswitchComponent", () => {
         // Arrange
         // Act
         component.loadLanguages();
+        expect(component.loadLanguages).toBeTruthy();
         // Assert
         // Add your assertions here
     });

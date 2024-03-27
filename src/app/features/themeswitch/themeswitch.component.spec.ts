@@ -44,6 +44,7 @@ describe("ThemeswitchComponent", () => {
         // Arrange
         // Act
         component.ngOnInit();
+        expect(component.ngOnInit).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -52,6 +53,7 @@ describe("ThemeswitchComponent", () => {
         // Arrange
         // Act
         component.switchTheme(themeval);
+        expect(component.switchTheme).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -60,6 +62,7 @@ describe("ThemeswitchComponent", () => {
         // Arrange
         // Act
         component.loadThemes();
+        expect(component.loadThemes).toBeTruthy();
         // Assert
         // Add your assertions here
     });

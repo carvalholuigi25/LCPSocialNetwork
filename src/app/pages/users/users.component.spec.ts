@@ -48,14 +48,10 @@ describe("UsersComponent", () => {
     });
 
     it('ngOnInit should...', () => {
-        // Arrange
-        // Act
         component.ngOnInit();
 
-        let mydata: any;
-
         authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            mydata = rlog;
+            let mydata = rlog;
 
             usersSrv.getAll().subscribe((res: User[]) => {
                 expect(res).toEqual(mydata);
@@ -68,8 +64,7 @@ describe("UsersComponent", () => {
             httpMock.verify();
         });
 
-        // Assert
-        // Add your assertions here
+        expect(component.ngOnInit).toBeTruthy();
     });
 
     

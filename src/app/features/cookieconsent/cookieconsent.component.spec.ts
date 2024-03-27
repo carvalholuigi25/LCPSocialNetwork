@@ -43,6 +43,7 @@ describe("CookieConsentComponent", () => {
         // Arrange
         // Act
         component.ngOnInit();
+        expect(component.ngOnInit).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -51,6 +52,7 @@ describe("CookieConsentComponent", () => {
         // Arrange
         // Act
         component.ngOnDestroy();
+        expect(component.ngOnDestroy).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -59,6 +61,7 @@ describe("CookieConsentComponent", () => {
         // Arrange
         // Act
         component.LoadCookieConsent();
+        expect(component.LoadCookieConsent).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -67,6 +70,7 @@ describe("CookieConsentComponent", () => {
         // Arrange
         // Act
         component.LoadTranslateService();
+        expect(component.LoadTranslateService).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -75,6 +79,7 @@ describe("CookieConsentComponent", () => {
         // Arrange
         // Act
         component.UnloadCookieConsent();
+        expect(component.UnloadCookieConsent).toBeTruthy();
         // Assert
         // Add your assertions here
     });

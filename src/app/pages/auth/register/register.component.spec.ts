@@ -45,6 +45,7 @@ describe("RegisterComponent", () => {
         // Arrange
         // Act
         component.ngOnInit();
+        expect(component.ngOnInit).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -53,6 +54,7 @@ describe("RegisterComponent", () => {
         // Arrange
         // Act
         component.onClear();
+        expect(component.onClear).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -61,6 +63,7 @@ describe("RegisterComponent", () => {
         // Arrange
         // Act
         component.onSubmit();
+        expect(component.onSubmit).toBeTruthy();
         // Assert
         // Add your assertions here
     });

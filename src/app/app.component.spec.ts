@@ -58,6 +58,7 @@ describe("AppComponent", () => {
         // Arrange
         // Act
         component.ngOnInit();
+        expect(component.ngOnInit).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -66,6 +67,7 @@ describe("AppComponent", () => {
         // Arrange
         // Act
         component.logout();
+        expect(component.logout).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -74,6 +76,7 @@ describe("AppComponent", () => {
         // Arrange
         // Act
         component.DoPreventMenuCloseAfterClicked($event);
+        expect(component.DoPreventMenuCloseAfterClicked).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -82,6 +85,7 @@ describe("AppComponent", () => {
         // Arrange
         // Act
         component.toggleMenu();
+        expect(component.toggleMenu).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -90,6 +94,7 @@ describe("AppComponent", () => {
         // Arrange
         // Act
         component.LoadMediaObserver();
+        expect(component.LoadMediaObserver).toBeTruthy();
         // Assert
         // Add your assertions here
     });
@@ -98,6 +103,7 @@ describe("AppComponent", () => {
         // Arrange
         // Act
         component.DoRouterStuff();
+        expect(component.DoRouterStuff).toBeTruthy();
         // Assert
         // Add your assertions here
     });

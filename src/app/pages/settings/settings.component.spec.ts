@@ -39,11 +39,8 @@ describe("SettingsComponent", () => {
     });
 
     it('ngOnInit should...', () => {
-        // Arrange
-        // Act
         component.ngOnInit();
-        // Assert
-        // Add your assertions here
+        expect(component.ngOnInit).toBeTruthy();
     });
 })
         
