@@ -91,7 +91,7 @@ export class UpdatePostsComponent implements OnInit {
         Status: this.f["Status"].value.toString(),
         IsFeatured: this.f["IsFeatured"].value.toString() == "true" ? true : false,
         TypeTxtPost: this.f["TypeTxtPost"].value.toString(),
-        UserId: this.authService.userValue["usersInfo"]["userId"] ?? 1
+        UserId: this.authService.userValue != null ? (this.authService.userValue["usersInfo"]["userId"] ?? 1) : 1
       };
 
       this.postsService.updatePosts(this.id, postsObj).subscribe({

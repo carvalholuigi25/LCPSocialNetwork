@@ -34,8 +34,8 @@ export class ReadPostsComponent implements OnInit {
   }
 
   getPosts() {
-    this.avatarId = this.authService.userValue["usersInfo"]["userId"];
-    this.avatarRole = this.authService.userValue["usersInfo"]["role"];
+    this.avatarId = this.authService.userValue != null ? this.authService.userValue["usersInfo"]["userId"] : 1;
+    this.avatarRole = this.authService.userValue != null ? this.authService.userValue["usersInfo"]["role"] : "user";
     this.postsService.getAllWithUsers(this.id ?? -1).subscribe({
       next: (r) => {
         this.dataPosts = r[0];

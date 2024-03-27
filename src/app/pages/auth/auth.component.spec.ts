@@ -2,9 +2,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { AuthComponent } from "./auth.component";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { createTranslateLoader } from '@app/app.config';
 import { TranslateService, TranslateStore, TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe("AuthComponent", () => {
@@ -16,15 +17,15 @@ describe("AuthComponent", () => {
         await TestBed.configureTestingModule({
             declarations: [],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [TranslateService, TranslateStore, TranslateModule.forRoot({
+            providers: [TranslateService, TranslateStore],
+            imports: [HttpClientModule, RouterTestingModule, TranslateModule.forRoot({
                 defaultLanguage: 'en',
                 loader: {
                     provide: TranslateLoader,
                     useFactory: (createTranslateLoader),
                     deps: [HttpClient]
                 }
-            })],
-            imports: []
+            })]
         }).compileComponents();
     });
 

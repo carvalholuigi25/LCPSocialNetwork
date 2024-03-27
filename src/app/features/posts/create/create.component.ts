@@ -46,7 +46,7 @@ export class CreatePostsComponent implements OnInit {
       Status: this.f["Status"].value!.toString(),
       IsFeatured: this.f["IsFeatured"].value!.toString() == "true" ? true : false,
       DatePostCreated: new Date().toISOString(),
-      UserId: this.authService.userValue["usersInfo"]["userId"] ?? 1
+      UserId: this.authService.userValue != null ? (this.authService.userValue["usersInfo"]["userId"] ?? 1) : 1
     };
 
     this.postsService.createPosts(postsObj).subscribe({

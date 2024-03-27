@@ -4,9 +4,11 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ThemeswitchComponent } from "./themeswitch.component";
 
 import { ThemesService } from '@app/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { createTranslateLoader } from '@app/app.config';
 import { TranslateService, TranslateStore, TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe("ThemeswitchComponent", () => {
     let component: ThemeswitchComponent;
@@ -18,15 +20,15 @@ describe("ThemeswitchComponent", () => {
         await TestBed.configureTestingModule({
             declarations: [],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [ThemesService,TranslateService, TranslateStore, TranslateModule.forRoot({
+            providers: [ThemesService,TranslateService, TranslateStore],
+            imports: [BrowserAnimationsModule, HttpClientModule, RouterTestingModule, TranslateModule.forRoot({
                 defaultLanguage: 'en',
                 loader: {
                     provide: TranslateLoader,
                     useFactory: (createTranslateLoader),
                     deps: [HttpClient]
                 }
-            })],
-            imports: []
+            })]
         }).compileComponents();
     });
 

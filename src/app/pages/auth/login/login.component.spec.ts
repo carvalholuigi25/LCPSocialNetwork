@@ -6,9 +6,11 @@ import { LoginComponent } from "./login.component";
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
 import { AlertsService } from '@app/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { createTranslateLoader } from '@app/app.config';
 import { TranslateService, TranslateStore, TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe("LoginComponent", () => {
     let component: LoginComponent;
@@ -19,15 +21,15 @@ describe("LoginComponent", () => {
         await TestBed.configureTestingModule({
             declarations: [],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [ActivatedRoute,Router,AuthService,AlertsService,TranslateService, TranslateStore, TranslateModule.forRoot({
+            providers: [Router,AuthService,AlertsService,TranslateService, TranslateStore],
+            imports: [BrowserAnimationsModule, HttpClientModule, RouterTestingModule, TranslateModule.forRoot({
                 defaultLanguage: 'en',
                 loader: {
                     provide: TranslateLoader,
                     useFactory: (createTranslateLoader),
                     deps: [HttpClient]
                 }
-            })],
-            imports: []
+            })]
         }).compileComponents();
     });
 

@@ -5,10 +5,11 @@ import { RegisterComponent } from "./register.component";
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertsService, LanguagesService, UsersService } from '@app/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { createTranslateLoader } from '@app/app.config';
 import { TranslateService, TranslateStore, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe("RegisterComponent", () => {
     let component: RegisterComponent;
@@ -19,7 +20,8 @@ describe("RegisterComponent", () => {
         await TestBed.configureTestingModule({
             declarations: [],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [ActivatedRoute,Router,UsersService,AlertsService,LanguagesService,TranslateService, TranslateStore, TranslateModule.forRoot({
+            providers: [Router,UsersService,AlertsService,LanguagesService,TranslateService, TranslateStore],
+            imports: [BrowserAnimationsModule, HttpClientModule, RouterTestingModule, TranslateModule.forRoot({
                 defaultLanguage: 'en',
                 loader: {
                     provide: TranslateLoader,
@@ -27,7 +29,7 @@ describe("RegisterComponent", () => {
                     deps: [HttpClient]
                 }
             })],
-            imports: [RouterTestingModule]
+            teardown: {destroyAfterEach: false}
         }).compileComponents();
     });
 

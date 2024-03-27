@@ -4,9 +4,10 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { HomeComponent } from "./home.component";
 
 import { AuthService } from '@app/services/auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { createTranslateLoader } from '@app/app.config';
 import { TranslateService, TranslateStore, TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe("HomeComponent", () => {
     let component: HomeComponent;
@@ -17,15 +18,15 @@ describe("HomeComponent", () => {
         await TestBed.configureTestingModule({
             declarations: [],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [AuthService,TranslateService, TranslateStore, TranslateModule.forRoot({
+            providers: [AuthService,TranslateService, TranslateStore],
+            imports: [HttpClientModule, RouterTestingModule, TranslateModule.forRoot({
                 defaultLanguage: 'en',
                 loader: {
                     provide: TranslateLoader,
                     useFactory: (createTranslateLoader),
                     deps: [HttpClient]
                 }
-            })],
-            imports: []
+            })]
         }).compileComponents();
     });
 

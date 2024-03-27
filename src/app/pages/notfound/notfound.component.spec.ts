@@ -4,8 +4,9 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NotfoundComponent } from "./notfound.component";
 import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { SharedModule } from '@app/modules';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { createTranslateLoader } from '@app/app.config';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe("NotfoundComponent", () => {
@@ -17,15 +18,15 @@ describe("NotfoundComponent", () => {
         await TestBed.configureTestingModule({
             declarations: [],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [TranslateService, TranslateStore, TranslateModule.forRoot({
+            providers: [TranslateService, TranslateStore],
+            imports: [SharedModule, HttpClientModule, RouterTestingModule, TranslateModule.forRoot({
                 defaultLanguage: 'en',
                 loader: {
                     provide: TranslateLoader,
                     useFactory: (createTranslateLoader),
                     deps: [HttpClient]
                 }
-            })],
-            imports: [SharedModule]
+            })]
         }).compileComponents();
     });
 

@@ -67,7 +67,7 @@ export class CookieConsentComponent {
           this.translateService.setDefaultLang(this.langCodeIsoAry[0]);
       
           this.translateService.get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link', 'cookie.policy']).subscribe(data => {
-            if(this.ccService.getConfig() != null) {
+            if(this.ccService.getConfig() != null && this.ccService.getConfig().content != null) {
               this.ccService.getConfig().content!.header = data['cookie.header'];
               this.ccService.getConfig().content!.message = data['cookie.message'];
               this.ccService.getConfig().content!.dismiss = data['cookie.dismiss'];
