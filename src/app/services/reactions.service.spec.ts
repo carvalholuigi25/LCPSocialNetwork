@@ -1,124 +1,119 @@
-
 import { TestBed } from '@angular/core/testing';
-import { Reaction } from '@app/models';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { AuthService } from './auth.service';
 import { ReactionsService } from './reactions.service';
+import { DOCUMENT } from '@angular/common';
+import { Reaction, ReactionTypeEnum } from '../models';
+import { environment } from '@environments/environment';
+// import { HttpErrorResponse } from '@angular/common/http';
 
 describe('ReactionsService', () => {
-    let service: ReactionsService;
-    let httpMock: HttpTestingController;
-    let authSrv: AuthService;
-    let id: number = 1;
-    let reaction: Reaction;
+  let service: ReactionsService;
+  let httpTestingController: HttpTestingController;
+  let mockDocument: Document;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                Document,
-            ],
-        });
-        
-        service = TestBed.inject(ReactionsService);
-        authSrv = TestBed.inject(AuthService);
-        httpMock = TestBed.inject(HttpTestingController);
+  beforeEach(() => {
+    mockDocument = document;
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        ReactionsService,
+        { provide: DOCUMENT, useValue: mockDocument }
+      ]
     });
-    
+    service = TestBed.inject(ReactionsService);
+    httpTestingController = TestBed.inject(HttpTestingController);
 
-    it('setHeadersObj should...', () => {
-        service.setHeadersObj();
-        expect(service.setHeadersObj).toBeTruthy();
-    });
+    // Mock local storage
+    let store: any = {};
+    spyOn(localStorage, 'getItem').and.callFake((key: string) => store[key]);
+    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string) => store[key] = `${value}`);
+    // Set a mock user token in local storage for authorization
+    localStorage.setItem('user', JSON.stringify({ token: 'mockToken' }));
+  });
 
-    it('getAll should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+  afterEach(() => {
+    httpTestingController.verify(); // Verifies that no requests are outstanding.
+  });
 
-            service.getAll().subscribe((res: Reaction[]) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/reaction');
-            expect(req.request.method).toEqual("GET");
-            req.flush(mydata);
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 
-            httpMock.verify();
-        });
+  it('#getAll should retrieve reactions', () => {
+    const mockReactions: Reaction[] = [
+        { reactionId: 1, reactionType: ReactionTypeEnum.laugh, dateReacted: "2024-03-28T13:00:00", reactionCounter: 1, userId: 1, postId: 1, replyId: 1, commentId: 1, attachmentId: 1 }
+    ];
 
-        expect(service.getAll).toBeTruthy();
-    });
-
-    it('getAllById should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
-
-            service.getAllById(id).subscribe((res: Reaction) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/reaction/'+id);
-            expect(req.request.method).toEqual("GET");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.getAllById).toBeTruthy();
+    service.getAll().subscribe(reactions => {
+      expect(reactions.length).toBe(1);
+      expect(reactions).toEqual(mockReactions);
     });
 
-    it('createReactions should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/reaction`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockReactions);
+  });
 
-            service.createReactions(reaction).subscribe((res: Reaction) => {
-                expect(res).toEqual(mydata);
-            });
+  it('#getAllById should retrieve reaction', () => {
+    const mockReactions: Reaction = { reactionId: 1, reactionType: ReactionTypeEnum.laugh, dateReacted: "2024-03-28T13:00:00", reactionCounter: 1, userId: 1, postId: 1, replyId: 1, commentId: 1, attachmentId: 1 };
 
-            const req = httpMock.expectOne('/api/reaction');
-            expect(req.request.method).toEqual("POST");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.createReactions).toBeTruthy();
+    service.getAllById(1).subscribe(reactions => {
+      expect(reactions).toEqual(mockReactions);
     });
 
-    it('updateReactions should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/reaction/1`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockReactions);
+  });
 
-            service.updateReactions(id, reaction).subscribe((res: Reaction) => {
-                expect(res).toEqual(mydata);
-            });
+  it('#createReactions should add a new reaction', () => {
+    const newReaction: Reaction = { reactionId: 2, reactionType: ReactionTypeEnum.like, dateReacted: "2024-03-28T12:00:00", reactionCounter: 1, userId: 1, postId: 1, replyId: 1, commentId: 1, attachmentId: 1 };
 
-            const req = httpMock.expectOne('/api/reaction/'+id);
-            expect(req.request.method).toEqual("PUT");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.updateReactions).toBeTruthy();
+    service.createReactions(newReaction).subscribe(reaction => {
+      expect(reaction).toEqual(newReaction);
     });
 
-    it('deleteReactions should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/reaction`);
+    expect(req.request.method).toBe('POST');
+    req.flush(newReaction);
+  });
 
-            service.deleteReactions(id).subscribe((res: Reaction) => {
-                expect(res).toEqual(mydata);
-            });
+  it('#updateReactions should update the current reaction', () => {
+    const newReaction: Reaction = { reactionId: 2, reactionType: ReactionTypeEnum.love, dateReacted: "2024-03-28T13:00:00", reactionCounter: 1, userId: 1, postId: 1, replyId: 1, commentId: 1, attachmentId: 1 };
 
-            const req = httpMock.expectOne('/api/reaction/'+id);
-            expect(req.request.method).toEqual("DELETE");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.deleteReactions).toBeTruthy();
+    service.updateReactions(2, newReaction).subscribe(reaction => {
+      expect(reaction).toEqual(newReaction);
     });
+
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/reaction/2`);
+    expect(req.request.method).toBe('PUT');
+    req.flush(newReaction);
+  });
+
+  it('#deleteReactions should delete the current reaction', () => {
+    const newReaction: Reaction = { reactionId: 2, reactionType: ReactionTypeEnum.love, dateReacted: "2024-03-28T13:00:00", reactionCounter: 1, userId: 1, postId: 1, replyId: 1, commentId: 1, attachmentId: 1 };
+
+    service.deleteReactions(2).subscribe(reaction => {
+      expect(reaction).toEqual(newReaction);
+    });
+
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/reaction/2`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(newReaction);
+  });
+
+//   it('#handleError should return an error message', () => {
+//     const errorResponse = new HttpErrorResponse({
+//       error: 'test error',
+//       status: 404,
+//       statusText: 'Not Found',
+//     });
+
+//     service.handleError(errorResponse).subscribe({
+//       next: () => fail('expected an error, not reactions'),
+//       error: (error: Error) => {
+//         expect(error.message).toContain('Something bad happened; please try again later.');
+//       }
+//     });
+//   });
 });
-      

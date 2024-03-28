@@ -27,7 +27,7 @@ export class PostsService {
         return this.http.get<Post[]>(`${environment.apiUrl}/post`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    getAllWithUsers(userId = -1) {
+    getAllWithUsers(userId: number) {
         let pid = userId !== -1 ? `/user/${userId}`: '';
         let post = this.http.get<Post[]>(`${environment.apiUrl}/post${pid}`, { headers: this.setHeadersObj() });
         let user = this.http.get<User[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });

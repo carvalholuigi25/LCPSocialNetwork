@@ -1,124 +1,119 @@
-
 import { TestBed } from '@angular/core/testing';
-import { Notification } from '@app/models';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { AuthService } from './auth.service';
 import { NotificationsService } from './notifications.service';
+import { DOCUMENT } from '@angular/common';
+import { Notification } from '../models';
+import { environment } from '@environments/environment';
+// import { HttpErrorResponse } from '@angular/common/http';
 
 describe('NotificationsService', () => {
-    let service: NotificationsService;
-    let httpMock: HttpTestingController;
-    let authSrv: AuthService;
-    let id: number = 1;
-    let notifications: Notification;
+  let service: NotificationsService;
+  let httpTestingController: HttpTestingController;
+  let mockDocument: Document;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                Document,
-            ],
-        });
-        
-        service = TestBed.inject(NotificationsService);
-        authSrv = TestBed.inject(AuthService);
-        httpMock = TestBed.inject(HttpTestingController);
+  beforeEach(() => {
+    mockDocument = document;
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        NotificationsService,
+        { provide: DOCUMENT, useValue: mockDocument }
+      ]
     });
-    
+    service = TestBed.inject(NotificationsService);
+    httpTestingController = TestBed.inject(HttpTestingController);
 
-    it('setHeadersObj should...', () => {
-        service.setHeadersObj();
-        expect(service.setHeadersObj).toBeTruthy();
-    });
+    // Mock local storage
+    let store: any = {};
+    spyOn(localStorage, 'getItem').and.callFake((key: string) => store[key]);
+    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string) => store[key] = `${value}`);
+    // Set a mock user token in local storage for authorization
+    localStorage.setItem('user', JSON.stringify({ token: 'mockToken' }));
+  });
 
-    it('getAll should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+  afterEach(() => {
+    httpTestingController.verify(); // Verifies that no requests are outstanding.
+  });
 
-            service.getAll().subscribe((res: Notification[]) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/notification');
-            expect(req.request.method).toEqual("GET");
-            req.flush(mydata);
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 
-            httpMock.verify();
-        });
+  it('#getAll should retrieve notifications', () => {
+    const mockNotifications: Notification[] = [
+      { notificationId: 1, description: "Notification 1", status: "", isMarkRead: true, isPinned: false, dateUserNotificationCreated: "2024-03-28T12:00:00", dateUserNotificationDeleted: "2024-03-28T12:00:00", dateUserNotificationUpdated: "2024-03-28T12:00:00", dateUserNotificationMarked: "2024-03-28T12:00:00", userId: 1, postId: 1, replyId: 1, commentId: 1, reactionId: 1, attachmentId: 1 }
+    ];
 
-        expect(service.getAll).toBeTruthy();
-    });
-
-    it('getAllById should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
-
-            service.getAllById(id).subscribe((res: Notification) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/notification/'+id);
-            expect(req.request.method).toEqual("GET");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.getAllById).toBeTruthy();
+    service.getAll().subscribe(notifications => {
+      expect(notifications.length).toBe(1);
+      expect(notifications).toEqual(mockNotifications);
     });
 
-    it('createNotification should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/notification`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockNotifications);
+  });
 
-            service.createNotification(notifications).subscribe((res: Notification) => {
-                expect(res).toEqual(mydata);
-            });
+  it('#getAllById should retrieve notification', () => {
+    const mockNotifications: Notification = { notificationId: 1, description: "Notification 1", status: "", isMarkRead: true, isPinned: false, dateUserNotificationCreated: "2024-03-28T12:00:00", dateUserNotificationDeleted: "2024-03-28T12:00:00", dateUserNotificationUpdated: "2024-03-28T12:00:00", dateUserNotificationMarked: "2024-03-28T12:00:00", userId: 1, postId: 1, replyId: 1, commentId: 1, reactionId: 1, attachmentId: 1 };
 
-            const req = httpMock.expectOne('/api/notification');
-            expect(req.request.method).toEqual("POST");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.createNotification).toBeTruthy();
+    service.getAllById(1).subscribe(notifications => {
+      expect(notifications).toEqual(mockNotifications);
     });
 
-    it('updateNotification should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/notification/1`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockNotifications);
+  });
 
-            service.updateNotification(id, notifications).subscribe((res: Notification) => {
-                expect(res).toEqual(mydata);
-            });
+  it('#createNotifications should add a new notification', () => {
+    const newNotification: Notification = { notificationId: 2, description: "Notification 2", status: "", isMarkRead: true, isPinned: false, dateUserNotificationCreated: "2024-03-28T12:00:00", dateUserNotificationDeleted: "2024-03-28T12:00:00", dateUserNotificationUpdated: "2024-03-28T12:00:00", dateUserNotificationMarked: "2024-03-28T12:00:00", userId: 1, postId: 1, replyId: 1, commentId: 1, reactionId: 1, attachmentId: 1 };
 
-            const req = httpMock.expectOne('/api/notification/'+id);
-            expect(req.request.method).toEqual("PUT");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.updateNotification).toBeTruthy();
+    service.createNotification(newNotification).subscribe(notification => {
+      expect(notification).toEqual(newNotification);
     });
 
-    it('deleteNotification should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/notification`);
+    expect(req.request.method).toBe('POST');
+    req.flush(newNotification);
+  });
 
-            service.deleteNotification(id).subscribe((res: Notification) => {
-                expect(res).toEqual(mydata);
-            });
+  it('#updateNotifications should update the current notification', () => {
+    const newNotification: Notification = { notificationId: 2, description: "Notification 2", status: "", isMarkRead: true, isPinned: false, dateUserNotificationCreated: "2024-03-28T13:00:00", dateUserNotificationDeleted: "2024-03-28T13:00:00", dateUserNotificationUpdated: "2024-03-28T13:00:00", dateUserNotificationMarked: "2024-03-28T13:00:00", userId: 1, postId: 1, replyId: 1, commentId: 1, reactionId: 1, attachmentId: 1 };
 
-            const req = httpMock.expectOne('/api/notification/'+id);
-            expect(req.request.method).toEqual("DELETE");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.deleteNotification).toBeTruthy();
+    service.updateNotification(2, newNotification).subscribe(notification => {
+      expect(notification).toEqual(newNotification);
     });
+
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/notification/2`);
+    expect(req.request.method).toBe('PUT');
+    req.flush(newNotification);
+  });
+
+  it('#deleteNotifications should delete the current notification', () => {
+    const newNotification: Notification = { notificationId: 2, description: "Notification 2", status: "", isMarkRead: true, isPinned: false, dateUserNotificationCreated: "2024-03-28T13:00:00", dateUserNotificationDeleted: "2024-03-28T13:00:00", dateUserNotificationUpdated: "2024-03-28T13:00:00", dateUserNotificationMarked: "2024-03-28T13:00:00", userId: 1, postId: 1, replyId: 1, commentId: 1, reactionId: 1, attachmentId: 1 };
+
+    service.deleteNotification(2).subscribe(notification => {
+      expect(notification).toEqual(newNotification);
+    });
+
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/notification/2`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(newNotification);
+  });
+
+//   it('#handleError should return an error message', () => {
+//     const errorResponse = new HttpErrorResponse({
+//       error: 'test error',
+//       status: 404,
+//       statusText: 'Not Found',
+//     });
+
+//     service.handleError(errorResponse).subscribe({
+//       next: () => fail('expected an error, not notifications'),
+//       error: (error: Error) => {
+//         expect(error.message).toContain('Something bad happened; please try again later.');
+//       }
+//     });
+//   });
 });
-      

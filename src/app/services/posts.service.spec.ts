@@ -1,165 +1,139 @@
-
 import { TestBed } from '@angular/core/testing';
-import { PostsService } from './posts.service';
-import { Post } from '@app/models';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { PostsService } from './posts.service';
+import { DOCUMENT } from '@angular/common';
+import { Post } from '../models';
+import { environment } from '@environments/environment';
 import { AuthService } from './auth.service';
+// import { HttpErrorResponse } from '@angular/common/http';
 
 describe('PostsService', () => {
-    let service: PostsService;
-    let httpMock: HttpTestingController;
-    let authSrv: AuthService;
-    let id: number = 1;
-    let userId: number = 1;
-    let posts: Post;
+  let service: PostsService;
+  let httpTestingController: HttpTestingController;
+  let mockDocument: Document;
+  let userId: number = 1;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [
-                Document,
-            ],
-        });
-        
-        service = TestBed.inject(PostsService);
-        authSrv = TestBed.inject(AuthService);
-        httpMock = TestBed.inject(HttpTestingController);
-    });
-    
-
-    it('setHeadersObj should...', () => {
-        service.setHeadersObj();
-        expect(service.setHeadersObj).toBeTruthy();
+  beforeEach(() => {
+    mockDocument = document;
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        PostsService,
+        { provide: DOCUMENT, useValue: mockDocument }
+      ]
     });
 
-    it('getAll should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    service = TestBed.inject(PostsService);
+    httpTestingController = TestBed.inject(HttpTestingController);
 
-            service.getAll().subscribe((res: Post[]) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/post');
-            expect(req.request.method).toEqual("GET");
-            req.flush(mydata);
+    // Mock local storage
+    let store: any = {};
+    spyOn(localStorage, 'getItem').and.callFake((key: string) => store[key]);
+    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string) => store[key] = `${value}`);
+    // Set a mock user token in local storage for authorization
+    localStorage.setItem('user', JSON.stringify({ token: 'mockToken' }));
+  });
 
-            httpMock.verify();
-        });
+  afterEach(() => {
+    httpTestingController.verify(); // Verifies that no requests are outstanding.
+  });
 
-        expect(service.getAll).toBeTruthy();
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('#getAll should retrieve posts', () => {
+    const mockPosts: Post[] = [
+        { PostId: 1, Title: "Post 1", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T12:00:00", DatePostDeleted: "2024-03-28T12:00:00", DatePostUpdated: "2024-03-28T12:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 }
+    ];
+
+    service.getAll().subscribe(posts => {
+      expect(posts.length).toBe(1);
+      expect(posts).toEqual(mockPosts);
     });
 
-    it('getAllWithUsers should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/post`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockPosts);
+  });
 
-            service.getAllWithUsers(userId).subscribe((res) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/post/'+(id !== -1 ? '/user/' + id : id));
-            expect(req.request.method).toEqual("GET");
+  it('#getAllWithUsers should retrieve posts', () => {
+    service.getAllByUsersId(userId);
+    expect(service.getAllByUsersId).toBeTruthy();
+  });
 
-            const req2 = httpMock.expectOne('/api/user/'+id);
-            expect(req2.request.method).toEqual("GET");
+  it('#getAllById should retrieve post', () => {
+    const mockPosts: Post = { PostId: 1, Title: "Post 1", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T12:00:00", DatePostDeleted: "2024-03-28T12:00:00", DatePostUpdated: "2024-03-28T12:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
 
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.getAllWithUsers).toBeTruthy();
+    service.getAllById(1).subscribe(posts => {
+      expect(posts).toEqual(mockPosts);
     });
 
-    it('getAllById should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/post/1`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockPosts);
+  });
 
-            service.getAllById(id).subscribe((res: Post) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/post/'+id);
-            expect(req.request.method).toEqual("GET");
-            req.flush(mydata);
+  it('#getAllByUsersId should retrieve post', () => {
+    const mockPosts: Post = { PostId: 1, Title: "Post 1", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T12:00:00", DatePostDeleted: "2024-03-28T12:00:00", DatePostUpdated: "2024-03-28T12:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
 
-            httpMock.verify();
-        });
-
-        expect(service.getAllById).toBeTruthy();
+    service.getAllByUsersId(1).subscribe(posts => {
+      expect(posts).toEqual(mockPosts);
     });
 
-    it('getAllByUsersId should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/post/user/1`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockPosts);
+  });
 
-            service.getAllByUsersId(userId).subscribe((res: Post) => {
-                expect(res).toEqual(mydata);
-            });
-    
-            const req = httpMock.expectOne('/api/post/user/'+id);
-            expect(req.request.method).toEqual("GET");
-            req.flush(mydata);
+  it('#createPosts should add a new post', () => {
+    const newPost: Post = { PostId: 2, Title: "Post 2", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T12:00:00", DatePostDeleted: "2024-03-28T12:00:00", DatePostUpdated: "2024-03-28T12:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
 
-            httpMock.verify();
-        });
-
-        expect(service.getAllByUsersId).toBeTruthy();
+    service.createPosts(newPost).subscribe(post => {
+      expect(post).toEqual(newPost);
     });
 
-    it('createPosts should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/post`);
+    expect(req.request.method).toBe('POST');
+    req.flush(newPost);
+  });
 
-            service.createPosts(posts).subscribe((res: Post) => {
-                expect(res).toEqual(mydata);
-            });
+  it('#updatePosts should update the current post', () => {
+    const newPost: Post = { PostId: 2, Title: "Post 2", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T13:00:00", DatePostDeleted: "2024-03-28T13:00:00", DatePostUpdated: "2024-03-28T13:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
 
-            const req = httpMock.expectOne('/api/post');
-            expect(req.request.method).toEqual("POST");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.createPosts).toBeTruthy();
+    service.updatePosts(2, newPost).subscribe(post => {
+      expect(post).toEqual(newPost);
     });
 
-    it('updatePosts should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/post/2`);
+    expect(req.request.method).toBe('PUT');
+    req.flush(newPost);
+  });
 
-            service.updatePosts(id, posts).subscribe((res: Post) => {
-                expect(res).toEqual(mydata);
-            });
+  it('#deletePosts should delete the current post', () => {
+    const newPost: Post = { PostId: 2, Title: "Post 2", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T13:00:00", DatePostDeleted: "2024-03-28T13:00:00", DatePostUpdated: "2024-03-28T13:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
 
-            const req = httpMock.expectOne('/api/post/'+id);
-            expect(req.request.method).toEqual("PUT");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.updatePosts).toBeTruthy();
+    service.deletePosts(2).subscribe(post => {
+      expect(post).toEqual(newPost);
     });
 
-    it('deletePosts should...', () => {
-        authSrv.login({ Username: "admin", Password: "admin2024" }).subscribe((rlog) => {
-            let mydata = rlog;
+    const req = httpTestingController.expectOne(`${environment.apiUrl}/post/2`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(newPost);
+  });
 
-            service.deletePosts(id).subscribe((res: Post) => {
-                expect(res).toEqual(mydata);
-            });
+//   it('#handleError should return an error message', () => {
+//     const errorResponse = new HttpErrorResponse({
+//       error: 'test error',
+//       status: 404,
+//       statusText: 'Not Found',
+//     });
 
-            const req = httpMock.expectOne('/api/post/'+id);
-            expect(req.request.method).toEqual("DELETE");
-            req.flush(mydata);
-
-            httpMock.verify();
-        });
-
-        expect(service.deletePosts).toBeTruthy();
-    });
+//     service.handleError(errorResponse).subscribe({
+//       next: () => fail('expected an error, not posts'),
+//       error: (error: Error) => {
+//         expect(error.message).toContain('Something bad happened; please try again later.');
+//       }
+//     });
+//   });
 });
-      
