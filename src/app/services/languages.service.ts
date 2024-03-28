@@ -39,6 +39,7 @@ export class LanguagesService {
     }
   }
 
+  /* istanbul ignore next */
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

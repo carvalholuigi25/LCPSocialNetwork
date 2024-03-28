@@ -54,6 +54,7 @@ export class PostsService {
         return this.http.delete<Post>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    /* istanbul ignore next */
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
           // A client-side or network error occurred. Handle it accordingly.

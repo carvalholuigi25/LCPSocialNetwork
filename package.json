@@ -17,8 +17,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "testcc": "ng test --no-watch --code-coverage",
+    "testccw": "ng test --watch --code-coverage",
     "testall": "concurrently 'npm:startapi' 'npm:test'",
     "testallcc": "concurrently 'npm:startapi' 'npm:testcc'",
+    "testallccw": "concurrently 'npm:startapi' 'npm:testccw'",
     "serve:ssr:LCPSocialNetwork": "node dist/lcpsocial-network/server/server.mjs"
   },
   "private": true,
