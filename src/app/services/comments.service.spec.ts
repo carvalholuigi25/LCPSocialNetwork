@@ -25,8 +25,8 @@ describe('CommentsService', () => {
 
     // Mock local storage
     let store: any = {};
-    spyOn(localStorage, 'getItem').and.callFake((key: string) => store[key]);
-    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string) => store[key] = `${value}`);
+    jest.spyOn(localStorage, 'getItem').mockImplementation((key: string) => store[key]);
+    jest.spyOn(localStorage, 'setItem').mockImplementation((key: string, value: string) => store[key] = `${value}`);
     // Set a mock user token in local storage for authorization
     localStorage.setItem('user', JSON.stringify({ token: 'mockToken' }));
   });

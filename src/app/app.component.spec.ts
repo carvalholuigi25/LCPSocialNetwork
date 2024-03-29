@@ -31,7 +31,7 @@ describe("AppComponent", () => {
             providers: [AuthService, BreakpointObserver, Router, AlertsService, ThemesService, LanguagesService, TranslateService, TranslateStore, NgcCookieConsentService, WindowService, NgcCookieConsentConfig],
             imports: [
                 RouterTestingModule, 
-                BrowserAnimationsModule, 
+                BrowserAnimationsModule,
                 RouterOutlet, 
                 SharedModule, 
                 TranslateModule.forRoot({

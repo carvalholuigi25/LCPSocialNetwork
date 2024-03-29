@@ -4,7 +4,6 @@ import { SharesService } from './shares.service';
 import { DOCUMENT } from '@angular/common';
 import { Share } from '../models';
 import { environment } from '@environments/environment';
-// import { HttpErrorResponse } from '@angular/common/http';
 
 describe('SharesService', () => {
   let service: SharesService;
@@ -25,8 +24,8 @@ describe('SharesService', () => {
 
     // Mock local storage
     let store: any = {};
-    spyOn(localStorage, 'getItem').and.callFake((key: string) => store[key]);
-    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string) => store[key] = `${value}`);
+    jest.spyOn(localStorage, 'getItem').mockImplementation((key: string) => store[key]);
+    jest.spyOn(localStorage, 'setItem').mockImplementation((key: string, value: string) => store[key] = `${value}`);
     // Set a mock user token in local storage for authorization
     localStorage.setItem('user', JSON.stringify({ token: 'mockToken' }));
   });
@@ -65,14 +64,14 @@ describe('SharesService', () => {
 
   it('#getAllById should retrieve share', () => {
     const mockShares: Share = {
-        shareId: 1,
-        shareCounter: 0,
-        dateShared: "2024-03-28T12:26:00",
-        attachmentId: 1,
-        postId: 1,
-        commentId: 1,
-        replyId: 1,
-        userId: 1
+      shareId: 1,
+      shareCounter: 0,
+      dateShared: "2024-03-28T12:26:00",
+      attachmentId: 1,
+      postId: 1,
+      commentId: 1,
+      replyId: 1,
+      userId: 1
     };
 
     service.getAllById(1).subscribe(shares => {
@@ -86,14 +85,14 @@ describe('SharesService', () => {
 
   it('#createShares should add a new share', () => {
     const newShare: Share = {
-        shareId: 2,
-        shareCounter: 0,
-        dateShared: "2024-03-28T12:26:00",
-        attachmentId: 1,
-        postId: 1,
-        commentId: 1,
-        replyId: 1,
-        userId: 1
+      shareId: 2,
+      shareCounter: 0,
+      dateShared: "2024-03-28T12:26:00",
+      attachmentId: 1,
+      postId: 1,
+      commentId: 1,
+      replyId: 1,
+      userId: 1
     };
 
     service.createShares(newShare).subscribe(share => {
@@ -107,15 +106,15 @@ describe('SharesService', () => {
 
   it('#updateShares should update the current share', () => {
     const newShare: Share = {
-        shareId: 2,
-        shareCounter: 1,
-        dateShared: "2024-03-28T13:26:00",
-        attachmentId: 1,
-        postId: 1,
-        commentId: 1,
-        replyId: 1,
-        userId: 1
-    }
+      shareId: 2,
+      shareCounter: 1,
+      dateShared: "2024-03-28T13:26:00",
+      attachmentId: 1,
+      postId: 1,
+      commentId: 1,
+      replyId: 1,
+      userId: 1
+    };
 
     service.updateShares(2, newShare).subscribe(share => {
       expect(share).toEqual(newShare);
@@ -128,14 +127,14 @@ describe('SharesService', () => {
 
   it('#deleteShares should delete the current share', () => {
     const newShare: Share = {
-        shareId: 2,
-        shareCounter: 1,
-        dateShared: "2024-03-28T13:26:00",
-        attachmentId: 1,
-        postId: 1,
-        commentId: 1,
-        replyId: 1,
-        userId: 1
+      shareId: 2,
+      shareCounter: 1,
+      dateShared: "2024-03-28T13:26:00",
+      attachmentId: 1,
+      postId: 1,
+      commentId: 1,
+      replyId: 1,
+      userId: 1
     };
 
     service.deleteShares(2).subscribe(share => {
@@ -146,19 +145,4 @@ describe('SharesService', () => {
     expect(req.request.method).toBe('DELETE');
     req.flush(newShare);
   });
-
-//   it('#handleError should return an error message', () => {
-//     const errorResponse = new HttpErrorResponse({
-//       error: 'test error',
-//       status: 404,
-//       statusText: 'Not Found',
-//     });
-
-//     service.handleError(errorResponse).subscribe({
-//       next: () => fail('expected an error, not shares'),
-//       error: (error: Error) => {
-//         expect(error.message).toContain('Something bad happened; please try again later.');
-//       }
-//     });
-//   });
 });
