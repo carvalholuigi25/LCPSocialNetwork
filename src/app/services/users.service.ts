@@ -43,8 +43,7 @@ export class UsersService {
         return this.http.delete<User>(`${environment.apiUrl}/user/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    /* istanbul ignore next */
-    private handleError(error: HttpErrorResponse) {
+    handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error);
