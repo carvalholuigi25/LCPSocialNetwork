@@ -1,119 +1,165 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CommentService } from './comments.service';
-import { DOCUMENT } from '@angular/common';
-import { Comment } from '../models';
 import { environment } from '@environments/environment';
-// import { HttpErrorResponse } from '@angular/common/http';
+import { Comment } from '../models';
+import { DOCUMENT } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
-describe('CommentsService', () => {
+describe('CommentService', () => {
   let service: CommentService;
-  let httpTestingController: HttpTestingController;
-  let mockDocument: Document;
+  let httpMock: HttpTestingController;
+  let documentMock: any;
 
   beforeEach(() => {
-    mockDocument = document;
+    documentMock = {
+      defaultView: {
+        localStorage: {
+          getItem: jest.fn()
+        }
+      }
+    };
+
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         CommentService,
-        { provide: DOCUMENT, useValue: mockDocument }
+        { provide: DOCUMENT, useValue: documentMock }
       ]
     });
     service = TestBed.inject(CommentService);
-    httpTestingController = TestBed.inject(HttpTestingController);
-
-    // Mock local storage
-    let store: any = {};
-    jest.spyOn(localStorage, 'getItem').mockImplementation((key: string) => store[key]);
-    jest.spyOn(localStorage, 'setItem').mockImplementation((key: string, value: string) => store[key] = `${value}`);
-    // Set a mock user token in local storage for authorization
-    localStorage.setItem('user', JSON.stringify({ token: 'mockToken' }));
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    httpTestingController.verify(); // Verifies that no requests are outstanding.
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('#getAll should retrieve comments', () => {
-    const mockComments: Comment[] = [
-      { commentId: 1, title: "Comment 1", description: "", imgUrl: "", status: "", dateCommentCreated: "2024-03-28T12:00:00", dateCommentDeleted: "2024-03-28T12:00:00", dateCommentUpdated: "2024-03-28T12:00:00", isFeatured: true, userId: 1, postId: 1, replyId: 1, shareId: 1, reactionId: 1, attachmentId: 1 }
-    ];
-
-    service.getAll().subscribe(comments => {
-      expect(comments.length).toBe(1);
-      expect(comments).toEqual(mockComments);
+  describe('setHeadersObj', () => {
+    it('should return HttpHeaders with Authorization header if comment is present in localStorage', () => {
+      const mockToken = 'mockToken';
+      documentMock.defaultView.localStorage.getItem.mockReturnValueOnce(JSON.stringify({ token: mockToken }));
+      
+      const headers = service.setHeadersObj();
+      
+      expect(headers.get('Authorization')).toBe(`Bearer ${mockToken}`);
+      expect(headers.get('Content-Type')).toBe('application/json');
     });
 
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/comment`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockComments);
-  });
-
-  it('#getAllById should retrieve comment', () => {
-    const mockComments: Comment = { commentId: 1, title: "Comment 1", description: "", imgUrl: "", status: "", dateCommentCreated: "2024-03-28T12:00:00", dateCommentDeleted: "2024-03-28T12:00:00", dateCommentUpdated: "2024-03-28T12:00:00", isFeatured: true, userId: 1, postId: 1, replyId: 1, shareId: 1, reactionId: 1, attachmentId: 1 };
-
-    service.getAllById(1).subscribe(comments => {
-      expect(comments).toEqual(mockComments);
+    it('should return HttpHeaders without Authorization header if comment is not present in localStorage', () => {
+      documentMock.defaultView.localStorage.getItem.mockReturnValueOnce(null);
+      
+      const headers = service.setHeadersObj();
+      
+      expect(headers.get('Authorization')).toBeFalsy();
+      expect(headers.get('Content-Type')).toBe('application/json');
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/comment/1`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockComments);
   });
 
-  it('#createComments should add a new comment', () => {
-    const newComment: Comment = { commentId: 2, title: "Comment 2", description: "", imgUrl: "", status: "", dateCommentCreated: "2024-03-28T12:00:00", dateCommentDeleted: "2024-03-28T12:00:00", dateCommentUpdated: "2024-03-28T12:00:00", isFeatured: true, userId: 1, postId: 1, replyId: 1, shareId: 1, reactionId: 1, attachmentId: 1 };
-
-    service.createComments(newComment).subscribe(comment => {
-      expect(comment).toEqual(newComment);
+  describe('getAll', () => {
+    it('should make GET request to fetch all comments', () => {
+      const mockComments: Comment[] = [{ commentId: 1, title: "", description: "", status: "", imgUrl: "", dateCommentCreated: "", dateCommentDeleted: "", dateCommentUpdated: "", isFeatured: true, userId: 1, postId: 1, replyId: 1, reactionId: 1, shareId: 1, attachmentId: 1 }];
+      
+      service.getAll().subscribe(comments => {
+        expect(comments).toEqual(mockComments);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/comment`);
+      expect(req.request.method).toBe('GET');
+      req.flush(mockComments);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/comment`);
-    expect(req.request.method).toBe('POST');
-    req.flush(newComment);
   });
 
-  it('#updateComments should update the current comment', () => {
-    const newComment: Comment = { commentId: 2, title: "Comment 2", description: "", imgUrl: "", status: "", dateCommentCreated: "2024-03-28T13:00:00", dateCommentDeleted: "2024-03-28T13:00:00", dateCommentUpdated: "2024-03-28T13:00:00", isFeatured: true, userId: 1, postId: 1, replyId: 1, shareId: 1, reactionId: 1, attachmentId: 1 };
-
-    service.updateComments(2, newComment).subscribe(comment => {
-      expect(comment).toEqual(newComment);
+  describe('getAllById', () => {
+    it('should make GET request to fetch a specific comment by id', () => {
+      const commentId = 1;
+      const mockComment: Comment = { commentId: 1, title: "", description: "", status: "", imgUrl: "", dateCommentCreated: "", dateCommentDeleted: "", dateCommentUpdated: "", isFeatured: true, userId: 1, postId: 1, replyId: 1, reactionId: 1, shareId: 1, attachmentId: 1 };
+      
+      service.getAllById(commentId).subscribe(comment => {
+        expect(comment).toEqual(mockComment);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/comment/${commentId}`);
+      expect(req.request.method).toBe('GET');
+      req.flush(mockComment);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/comment/2`);
-    expect(req.request.method).toBe('PUT');
-    req.flush(newComment);
   });
 
-  it('#deleteComments should delete the current comment', () => {
-    const newComment: Comment = { commentId: 2, title: "Comment 2", description: "", imgUrl: "", status: "", dateCommentCreated: "2024-03-28T13:00:00", dateCommentDeleted: "2024-03-28T13:00:00", dateCommentUpdated: "2024-03-28T13:00:00", isFeatured: true, userId: 1, postId: 1, replyId: 1, shareId: 1, reactionId: 1, attachmentId: 1 };
-
-    service.deleteComments(2).subscribe(comment => {
-      expect(comment).toEqual(newComment);
+  describe('createComments', () => {
+    it('should make POST request to create a new comment', () => {
+      const newComment: Comment = { commentId: 1, title: "", description: "", status: "", imgUrl: "", dateCommentCreated: "", dateCommentDeleted: "", dateCommentUpdated: "", isFeatured: true, userId: 1, postId: 1, replyId: 1, reactionId: 1, shareId: 1, attachmentId: 1 };
+      const createdComment: Comment = { ...newComment };
+      
+      service.createComments(newComment).subscribe(comment => {
+        expect(comment).toEqual(createdComment);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/comment`);
+      expect(req.request.method).toBe('POST');
+      req.flush(createdComment);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/comment/2`);
-    expect(req.request.method).toBe('DELETE');
-    req.flush(newComment);
   });
 
-//   it('#handleError should return an error message', () => {
-//     const errorResponse = new HttpErrorResponse({
-//       error: 'test error',
-//       status: 404,
-//       statusText: 'Not Found',
-//     });
+  describe('updateComments', () => {
+    it('should make PUT request to update an existing comment', () => {
+      const commentId = 1;
+      const updatedComment: Comment = { commentId: 1, title: "", description: "", status: "", imgUrl: "", dateCommentCreated: "", dateCommentDeleted: "", dateCommentUpdated: "", isFeatured: true, userId: 1, postId: 1, replyId: 1, reactionId: 1, shareId: 1, attachmentId: 1 };
+      
+      service.updateComments(commentId, updatedComment).subscribe(comment => {
+        expect(comment).toEqual(updatedComment);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/comment/${commentId}`);
+      expect(req.request.method).toBe('PUT');
+      req.flush(updatedComment);
+    });
+  });
 
-//     service.handleError(errorResponse).subscribe({
-//       next: () => fail('expected an error, not comments'),
-//       error: (error: Error) => {
-//         expect(error.message).toContain('Something bad happened; please try again later.');
-//       }
-//     });
-//   });
+  describe('deleteComments', () => {
+    it('should make DELETE request to delete a comment by id', () => {
+      const commentId = 1;
+      
+      service.deleteComments(commentId).subscribe();
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/comment/${commentId}`);
+      expect(req.request.method).toBe('DELETE');
+      req.flush({});
+    });
+  });
+
+  it('should handle client-side or network error correctly', () => {
+    const errorResponse = new HttpErrorResponse({ status: 0, statusText: 'error' });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith('An error occurred:', errorResponse.error);
+    consoleErrorSpy.mockRestore();
+  });
+
+  it('should handle backend error correctly', () => {
+    const errorResponse = new HttpErrorResponse({ status: 500, statusText: 'Internal Server Error', error: 'Server Error' });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith(`Backend returned code ${errorResponse.status}, body was: `, errorResponse.error);
+    consoleErrorSpy.mockRestore();
+  });
+
+  it('should return an observable with a comment-facing error message', () => {
+    const errorResponse = new HttpErrorResponse({ status: 404, statusText: 'Not Found', error: 'Resource Not Found' });
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(throwError(expect.any(Function)));
+  });
+
 });

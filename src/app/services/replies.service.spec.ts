@@ -1,199 +1,165 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RepliesService } from './replies.service';
-import { DOCUMENT } from '@angular/common';
-import { Reply } from '../models';
 import { environment } from '@environments/environment';
-// import { HttpErrorResponse } from '@angular/common/http';
+import { Reply } from '../models';
+import { DOCUMENT } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 describe('RepliesService', () => {
   let service: RepliesService;
-  let httpTestingController: HttpTestingController;
-  let mockDocument: Document;
+  let httpMock: HttpTestingController;
+  let documentMock: any;
 
   beforeEach(() => {
-    mockDocument = document;
+    documentMock = {
+      defaultView: {
+        localStorage: {
+          getItem: jest.fn()
+        }
+      }
+    };
+
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         RepliesService,
-        { provide: DOCUMENT, useValue: mockDocument }
+        { provide: DOCUMENT, useValue: documentMock }
       ]
     });
     service = TestBed.inject(RepliesService);
-    httpTestingController = TestBed.inject(HttpTestingController);
-
-    // Mock local storage
-    let store: any = {};
-    jest.spyOn(localStorage, 'getItem').mockImplementation((key: string) => store[key]);
-    jest.spyOn(localStorage, 'setItem').mockImplementation((key: string, value: string) => store[key] = `${value}`);
-    // Set a mock user token in local storage for authorization
-    localStorage.setItem('user', JSON.stringify({ token: 'mockToken' }));
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    httpTestingController.verify(); // Verifies that no requests are outstanding.
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('#getAll should retrieve replys', () => {
-    const mockReplys: Reply[] = [
-        { 
-            replyId: 1,
-            title: "",
-            description: "",
-            imgUrl: "",
-            status: "public",
-            dateReplyCreated: "2024-03-28T12:22:00",
-            dateReplyUpdated: "2024-03-28T12:22:00",
-            dateReplyDeleted: "2024-03-28T12:22:00",
-            isFeatured: true,
-            reactionId: 1,
-            shareId: 1,
-            userId: 1,
-            commentId: 1,
-            postId: 1,
-            attachmentId: 1
-        }
-    ];
-
-    service.getAll().subscribe(replys => {
-      expect(replys.length).toBe(1);
-      expect(replys).toEqual(mockReplys);
+  describe('setHeadersObj', () => {
+    it('should return HttpHeaders with Authorization header if replie is present in localStorage', () => {
+      const mockToken = 'mockToken';
+      documentMock.defaultView.localStorage.getItem.mockReturnValueOnce(JSON.stringify({ token: mockToken }));
+      
+      const headers = service.setHeadersObj();
+      
+      expect(headers.get('Authorization')).toBe(`Bearer ${mockToken}`);
+      expect(headers.get('Content-Type')).toBe('application/json');
     });
 
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/reply`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockReplys);
-  });
-
-  it('#getAllById should retrieve reply', () => {
-    const mockReplys: Reply = { 
-        replyId: 1,
-        title: "",
-        description: "",
-        imgUrl: "",
-        status: "public",
-        dateReplyCreated: "2024-03-28T12:22:00",
-        dateReplyUpdated: "2024-03-28T12:22:00",
-        dateReplyDeleted: "2024-03-28T12:22:00",
-        isFeatured: true,
-        reactionId: 1,
-        shareId: 1,
-        userId: 1,
-        commentId: 1,
-        postId: 1,
-        attachmentId: 1
-    };
-
-    service.getAllById(1).subscribe(replys => {
-      expect(replys).toEqual(mockReplys);
+    it('should return HttpHeaders without Authorization header if replie is not present in localStorage', () => {
+      documentMock.defaultView.localStorage.getItem.mockReturnValueOnce(null);
+      
+      const headers = service.setHeadersObj();
+      
+      expect(headers.get('Authorization')).toBeFalsy();
+      expect(headers.get('Content-Type')).toBe('application/json');
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/reply/1`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockReplys);
   });
 
-  it('#createReplies should add a new reply', () => {
-    const newReply: Reply = { 
-        replyId: 2,
-        title: "",
-        description: "",
-        imgUrl: "",
-        status: "public",
-        dateReplyCreated: "2024-03-28T12:22:00",
-        dateReplyUpdated: "2024-03-28T12:22:00",
-        dateReplyDeleted: "2024-03-28T12:22:00",
-        isFeatured: true,
-        reactionId: 1,
-        shareId: 1,
-        userId: 1,
-        commentId: 1,
-        postId: 1,
-        attachmentId: 1
-    };
-
-    service.createReplies(newReply).subscribe(reply => {
-      expect(reply).toEqual(newReply);
+  describe('getAll', () => {
+    it('should make GET request to fetch all replies', () => {
+      const mockReplies: Reply[] = [{ replyId: 1, title: "", description: "", imgUrl: "", status: "public", dateReplyCreated: "2024-03-30T10:41:00", dateReplyDeleted: "2024-03-30T10:42:00", dateReplyUpdated: "2024-03-30T10:42:00", isFeatured: true, reactionId: 1, shareId: 1, userId: 1, commentId: 1, postId: 1, attachmentId: 1 }];
+      
+      service.getAll().subscribe(replies => {
+        expect(replies).toEqual(mockReplies);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/reply`);
+      expect(req.request.method).toBe('GET');
+      req.flush(mockReplies);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/reply`);
-    expect(req.request.method).toBe('POST');
-    req.flush(newReply);
   });
 
-  it('#updateReplies should update the current reply', () => {
-    const newReply: Reply = { 
-        replyId: 2,
-        title: "",
-        description: "",
-        imgUrl: "",
-        status: "public",
-        dateReplyCreated: "2024-03-28T13:22:00",
-        dateReplyUpdated: "2024-03-28T13:22:00",
-        dateReplyDeleted: "2024-03-28T13:22:00",
-        isFeatured: true,
-        reactionId: 1,
-        shareId: 1,
-        userId: 1,
-        commentId: 1,
-        postId: 1,
-        attachmentId: 1
-    };
-
-    service.updateReplies(2, newReply).subscribe(reply => {
-      expect(reply).toEqual(newReply);
+  describe('getAllById', () => {
+    it('should make GET request to fetch a specific reply by id', () => {
+      const replyId = 1;
+      const mockReplie: Reply = { replyId: 1, title: "", description: "", imgUrl: "", status: "public", dateReplyCreated: "2024-03-30T10:41:00", dateReplyDeleted: "2024-03-30T10:42:00", dateReplyUpdated: "2024-03-30T10:42:00", isFeatured: true, reactionId: 1, shareId: 1, userId: 1, commentId: 1, postId: 1, attachmentId: 1 };
+      
+      service.getAllById(replyId).subscribe(replie => {
+        expect(replie).toEqual(mockReplie);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/reply/${replyId}`);
+      expect(req.request.method).toBe('GET');
+      req.flush(mockReplie);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/reply/2`);
-    expect(req.request.method).toBe('PUT');
-    req.flush(newReply);
   });
 
-  it('#deleteReplies should delete the current reply', () => {
-    const newReply: Reply = { 
-        replyId: 2,
-        title: "",
-        description: "",
-        imgUrl: "",
-        status: "public",
-        dateReplyCreated: "2024-03-28T13:22:00",
-        dateReplyUpdated: "2024-03-28T13:22:00",
-        dateReplyDeleted: "2024-03-28T13:22:00",
-        isFeatured: true,
-        reactionId: 1,
-        shareId: 1,
-        userId: 1,
-        commentId: 1,
-        postId: 1,
-        attachmentId: 1
-    };
-
-    service.deleteReplies(2).subscribe(reply => {
-      expect(reply).toEqual(newReply);
+  describe('createReplies', () => {
+    it('should make POST request to create a new reply', () => {
+      const newReply: Reply = { replyId: 1, title: "", description: "", imgUrl: "", status: "public", dateReplyCreated: "2024-03-30T10:41:00", dateReplyDeleted: "2024-03-30T10:42:00", dateReplyUpdated: "2024-03-30T10:42:00", isFeatured: true, reactionId: 1, shareId: 1, userId: 1, commentId: 1, postId: 1, attachmentId: 1 };
+      const createdReply: Reply = { ...newReply };
+      
+      service.createReplies(newReply).subscribe(reply => {
+        expect(reply).toEqual(createdReply);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/reply`);
+      expect(req.request.method).toBe('POST');
+      req.flush(createdReply);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/reply/2`);
-    expect(req.request.method).toBe('DELETE');
-    req.flush(newReply);
   });
 
-//   it('#handleError should return an error message', () => {
-//     const errorResponse = new HttpErrorResponse({
-//       error: 'test error',
-//       status: 404,
-//       statusText: 'Not Found',
-//     });
+  describe('updateReplies', () => {
+    it('should make PUT request to update an existing reply', () => {
+      const replyId = 1;
+      const updatedReply: Reply = { replyId: replyId, title: "", description: "", imgUrl: "", status: "public", dateReplyCreated: "2024-03-30T10:41:00", dateReplyDeleted: "2024-03-30T10:42:00", dateReplyUpdated: "2024-03-30T10:42:00", isFeatured: true, reactionId: 1, shareId: 1, userId: 1, commentId: 1, postId: 1, attachmentId: 1 };
+      
+      service.updateReplies(replyId, updatedReply).subscribe(replie => {
+        expect(replie).toEqual(updatedReply);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/reply/${replyId}`);
+      expect(req.request.method).toBe('PUT');
+      req.flush(updatedReply);
+    });
+  });
 
-//     service.handleError(errorResponse).subscribe({
-//       next: () => fail('expected an error, not replys'),
-//       error: (error: Error) => {
-//         expect(error.message).toContain('Something bad happened; please try again later.');
-//       }
-//     });
-//   });
+  describe('deleteReplies', () => {
+    it('should make DELETE request to delete a reply by id', () => {
+      const replyId = 1;
+      
+      service.deleteReplies(replyId).subscribe();
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/reply/${replyId}`);
+      expect(req.request.method).toBe('DELETE');
+      req.flush({});
+    });
+  });
+
+  it('should handle client-side or network error correctly', () => {
+    const errorResponse = new HttpErrorResponse({ status: 0, statusText: 'error' });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith('An error occurred:', errorResponse.error);
+    consoleErrorSpy.mockRestore();
+  });
+
+  it('should handle backend error correctly', () => {
+    const errorResponse = new HttpErrorResponse({ status: 500, statusText: 'Internal Server Error', error: 'Server Error' });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith(`Backend returned code ${errorResponse.status}, body was: `, errorResponse.error);
+    consoleErrorSpy.mockRestore();
+  });
+
+  it('should return an observable with a replie-facing error message', () => {
+    const errorResponse = new HttpErrorResponse({ status: 404, statusText: 'Not Found', error: 'Resource Not Found' });
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(throwError(expect.any(Function)));
+  });
+
 });

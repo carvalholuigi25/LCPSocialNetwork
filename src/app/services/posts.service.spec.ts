@@ -1,139 +1,201 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { PostsService } from './posts.service';
-import { DOCUMENT } from '@angular/common';
-import { Post } from '../models';
 import { environment } from '@environments/environment';
-import { AuthService } from './auth.service';
-// import { HttpErrorResponse } from '@angular/common/http';
+import { Post, User } from '../models';
+import { DOCUMENT } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 describe('PostsService', () => {
   let service: PostsService;
-  let httpTestingController: HttpTestingController;
-  let mockDocument: Document;
-  let userId: number = 1;
+  let httpMock: HttpTestingController;
+  let documentMock: any;
 
   beforeEach(() => {
-    mockDocument = document;
+    documentMock = {
+      defaultView: {
+        localStorage: {
+          getItem: jest.fn()
+        }
+      }
+    };
+
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         PostsService,
-        { provide: DOCUMENT, useValue: mockDocument }
+        { provide: DOCUMENT, useValue: documentMock }
       ]
     });
-
     service = TestBed.inject(PostsService);
-    httpTestingController = TestBed.inject(HttpTestingController);
-
-    // Mock local storage
-    let store: any = {};
-    jest.spyOn(localStorage, 'getItem').mockImplementation((key: string) => store[key]);
-    jest.spyOn(localStorage, 'setItem').mockImplementation((key: string, value: string) => store[key] = `${value}`);
-    // Set a mock user token in local storage for authorization
-    localStorage.setItem('user', JSON.stringify({ token: 'mockToken' }));
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    httpTestingController.verify(); // Verifies that no requests are outstanding.
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('#getAll should retrieve posts', () => {
-    const mockPosts: Post[] = [
-        { PostId: 1, Title: "Post 1", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T12:00:00", DatePostDeleted: "2024-03-28T12:00:00", DatePostUpdated: "2024-03-28T12:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 }
-    ];
-
-    service.getAll().subscribe(posts => {
-      expect(posts.length).toBe(1);
-      expect(posts).toEqual(mockPosts);
+  describe('setHeadersObj', () => {
+    it('should return HttpHeaders with Authorization header if post is present in localStorage', () => {
+      const mockToken = 'mockToken';
+      documentMock.defaultView.localStorage.getItem.mockReturnValueOnce(JSON.stringify({ token: mockToken }));
+      
+      const headers = service.setHeadersObj();
+      
+      expect(headers.get('Authorization')).toBe(`Bearer ${mockToken}`);
+      expect(headers.get('Content-Type')).toBe('application/json');
     });
 
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/post`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockPosts);
-  });
-
-  it('#getAllWithUsers should retrieve posts', () => {
-    service.getAllByUsersId(userId);
-    expect(service.getAllByUsersId).toBeTruthy();
-  });
-
-  it('#getAllById should retrieve post', () => {
-    const mockPosts: Post = { PostId: 1, Title: "Post 1", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T12:00:00", DatePostDeleted: "2024-03-28T12:00:00", DatePostUpdated: "2024-03-28T12:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
-
-    service.getAllById(1).subscribe(posts => {
-      expect(posts).toEqual(mockPosts);
+    it('should return HttpHeaders without Authorization header if post is not present in localStorage', () => {
+      documentMock.defaultView.localStorage.getItem.mockReturnValueOnce(null);
+      
+      const headers = service.setHeadersObj();
+      
+      expect(headers.get('Authorization')).toBeFalsy();
+      expect(headers.get('Content-Type')).toBe('application/json');
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/post/1`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockPosts);
   });
 
-  it('#getAllByUsersId should retrieve post', () => {
-    const mockPosts: Post = { PostId: 1, Title: "Post 1", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T12:00:00", DatePostDeleted: "2024-03-28T12:00:00", DatePostUpdated: "2024-03-28T12:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
-
-    service.getAllByUsersId(1).subscribe(posts => {
-      expect(posts).toEqual(mockPosts);
+  describe('getAll', () => {
+    it('should make GET request to fetch all posts', () => {
+      const mockPosts: Post[] = [{ PostId: 1, Title: "", Description: "", ImgUrl: "", Status: "", DatePostCreated: "", DatePostUpdated: "", DatePostDeleted: "", TypeTxtPost: "", IsFeatured: true, UserId: 1, CommentId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 }];
+      
+      service.getAll().subscribe(posts => {
+        expect(posts).toEqual(mockPosts);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/post`);
+      expect(req.request.method).toBe('GET');
+      req.flush(mockPosts);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/post/user/1`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockPosts);
   });
 
-  it('#createPosts should add a new post', () => {
-    const newPost: Post = { PostId: 2, Title: "Post 2", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T12:00:00", DatePostDeleted: "2024-03-28T12:00:00", DatePostUpdated: "2024-03-28T12:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
+  describe('getAllWithUsers', () => {
+    it('should make GET request to fetch all posts with users', () => {
+      const userId: number = 1;
+      const pid = userId !== -1 ? `/user/${userId}` : userId;
+      const mockPosts: Post[] = [{ PostId: 1, Title: "", Description: "", ImgUrl: "", Status: "", DatePostCreated: "", DatePostUpdated: "", DatePostDeleted: "", TypeTxtPost: "", IsFeatured: true, UserId: 1, CommentId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 }];
+      const mockUsers: User[] = [{ UserId: 1, Username: 'admin', Password: "admin2024" }];
+      
+      service.getAllWithUsers(userId).subscribe((r) => {
+        expect(r[0]).toEqual(mockPosts);
+        expect(r[1]).toEqual(mockUsers);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/post${pid}`);
+      expect(req.request.method).toBe('GET');
 
-    service.createPosts(newPost).subscribe(post => {
-      expect(post).toEqual(newPost);
+      const req2 = httpMock.expectOne(`${environment.apiUrl}/user`);
+      expect(req2.request.method).toBe('GET');
+      req.flush([mockPosts, mockUsers]);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/post`);
-    expect(req.request.method).toBe('POST');
-    req.flush(newPost);
   });
 
-  it('#updatePosts should update the current post', () => {
-    const newPost: Post = { PostId: 2, Title: "Post 2", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T13:00:00", DatePostDeleted: "2024-03-28T13:00:00", DatePostUpdated: "2024-03-28T13:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
-
-    service.updatePosts(2, newPost).subscribe(post => {
-      expect(post).toEqual(newPost);
+  describe('getAllById', () => {
+    it('should make GET request to fetch a specific post by id', () => {
+      const postId = 1;
+      const mockPost: Post = { PostId: 1, Title: "", Description: "", ImgUrl: "", Status: "", DatePostCreated: "", DatePostUpdated: "", DatePostDeleted: "", TypeTxtPost: "", IsFeatured: true, UserId: 1, CommentId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
+      
+      service.getAllById(postId).subscribe(post => {
+        expect(post).toEqual(mockPost);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/post/${postId}`);
+      expect(req.request.method).toBe('GET');
+      req.flush(mockPost);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/post/2`);
-    expect(req.request.method).toBe('PUT');
-    req.flush(newPost);
   });
 
-  it('#deletePosts should delete the current post', () => {
-    const newPost: Post = { PostId: 2, Title: "Post 2", Description: "", ImgUrl: "", Status: "", DatePostCreated: "2024-03-28T13:00:00", DatePostDeleted: "2024-03-28T13:00:00", DatePostUpdated: "2024-03-28T13:00:00", IsFeatured: true, UserId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
-
-    service.deletePosts(2).subscribe(post => {
-      expect(post).toEqual(newPost);
+  describe('getAllByUsersId', () => {
+    it('should make GET request to fetch a specific post by user id', () => {
+      const userId = 1;
+      const mockPost: Post = { PostId: 1, Title: "", Description: "", ImgUrl: "", Status: "", DatePostCreated: "", DatePostUpdated: "", DatePostDeleted: "", TypeTxtPost: "", IsFeatured: true, UserId: 1, CommentId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
+      
+      service.getAllByUsersId(userId).subscribe(post => {
+        expect(post).toEqual(mockPost);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/post/user/${userId}`);
+      expect(req.request.method).toBe('GET');
+      req.flush(mockPost);
     });
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/post/2`);
-    expect(req.request.method).toBe('DELETE');
-    req.flush(newPost);
   });
 
-//   it('#handleError should return an error message', () => {
-//     const errorResponse = new HttpErrorResponse({
-//       error: 'test error',
-//       status: 404,
-//       statusText: 'Not Found',
-//     });
+  describe('createPosts', () => {
+    it('should make POST request to create a new post', () => {
+      const newPost: Post = { PostId: 1, Title: "", Description: "", ImgUrl: "", Status: "", DatePostCreated: "", DatePostUpdated: "", DatePostDeleted: "", TypeTxtPost: "", IsFeatured: true, UserId: 1, CommentId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
+      const createdPost: Post = { ...newPost };
+      
+      service.createPosts(newPost).subscribe(post => {
+        expect(post).toEqual(createdPost);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/post`);
+      expect(req.request.method).toBe('POST');
+      req.flush(createdPost);
+    });
+  });
 
-//     service.handleError(errorResponse).subscribe({
-//       next: () => fail('expected an error, not posts'),
-//       error: (error: Error) => {
-//         expect(error.message).toContain('Something bad happened; please try again later.');
-//       }
-//     });
-//   });
+  describe('updatePosts', () => {
+    it('should make PUT request to update an existing post', () => {
+      const postId = 1;
+      const updatedPost: Post = { PostId: 1, Title: "", Description: "", ImgUrl: "", Status: "", DatePostCreated: "", DatePostUpdated: "", DatePostDeleted: "", TypeTxtPost: "", IsFeatured: true, UserId: 1, CommentId: 1, ReplyId: 1, ShareId: 1, ReactionId: 1, AttachmentId: 1 };
+      
+      service.updatePosts(postId, updatedPost).subscribe(post => {
+        expect(post).toEqual(updatedPost);
+      });
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/post/${postId}`);
+      expect(req.request.method).toBe('PUT');
+      req.flush(updatedPost);
+    });
+  });
+
+  describe('deletePosts', () => {
+    it('should make DELETE request to delete a post by id', () => {
+      const postId = 1;
+      
+      service.deletePosts(postId).subscribe();
+      
+      const req = httpMock.expectOne(`${environment.apiUrl}/post/${postId}`);
+      expect(req.request.method).toBe('DELETE');
+      req.flush({});
+    });
+  });
+
+  it('should handle client-side or network error correctly', () => {
+    const errorResponse = new HttpErrorResponse({ status: 0, statusText: 'error' });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith('An error occurred:', errorResponse.error);
+    consoleErrorSpy.mockRestore();
+  });
+
+  it('should handle backend error correctly', () => {
+    const errorResponse = new HttpErrorResponse({ status: 500, statusText: 'Internal Server Error', error: 'Server Error' });
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith(`Backend returned code ${errorResponse.status}, body was: `, errorResponse.error);
+    consoleErrorSpy.mockRestore();
+  });
+
+  it('should return an observable with a post-facing error message', () => {
+    const errorResponse = new HttpErrorResponse({ status: 404, statusText: 'Not Found', error: 'Resource Not Found' });
+    
+    const result = service.handleError(errorResponse);
+
+    expect(result).toEqual(throwError(expect.any(Function)));
+  });
+
 });
