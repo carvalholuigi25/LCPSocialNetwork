@@ -1,72 +1,76 @@
-
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ThemeswitchComponent } from "./themeswitch.component";
-
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ThemeswitchComponent } from './themeswitch.component';
 import { ThemesService } from '@app/services';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { createTranslateLoader } from '@app/app.config';
-import { TranslateService, TranslateStore, TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe("ThemeswitchComponent", () => {
-    let component: ThemeswitchComponent;
-    let fixture: ComponentFixture<ThemeswitchComponent>;
-    let themeval: string = "default";
-    //let myService: MyService;
+describe('ThemeswitchComponent', () => {
+  let component: ThemeswitchComponent;
+  let fixture: ComponentFixture<ThemeswitchComponent>;
+  let themesService: ThemesService;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [ThemesService,TranslateService, TranslateStore],
-            imports: [BrowserAnimationsModule, HttpClientModule, RouterTestingModule, TranslateModule.forRoot({
-                defaultLanguage: 'en',
-                loader: {
-                    provide: TranslateLoader,
-                    useFactory: (createTranslateLoader),
-                    deps: [HttpClient]
-                }
-            })]
-        }).compileComponents();
-    });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ThemeswitchComponent],
+      providers: [ThemesService]
+    }).compileComponents();
+  }));
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(ThemeswitchComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ThemeswitchComponent);
+    component = fixture.componentInstance;
+    themesService = TestBed.inject(ThemesService);
+    fixture.detectChanges();
+  });
 
-        //myService = TestBed.inject(MyService);
-    });
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
 
-    it('ngOnInit should...', () => {
-        // Arrange
-        // Act
-        component.ngOnInit();
-        expect(component.ngOnInit).toBeTruthy();
-        // Assert
-        // Add your assertions here
-    });
+  it('should load themes on initialization', () => {
+    const themes = [
+      {
+        ThemeId: 1,
+        ThemeTitle: "Default",
+        ThemeValue: "default"
+      },
+      {
+        ThemeId: 2,
+        ThemeTitle: "Glassmorphism",
+        ThemeValue: "glass"
+      },
+      {
+        ThemeId: 3,
+        ThemeTitle: "Dark",
+        ThemeValue: "dark"
+      },
+      {
+        ThemeId: 4,
+        ThemeTitle: "Light",
+        ThemeValue: "light"
+      }
+    ];
 
-    it('switchTheme should...', () => {
-        // Arrange
-        // Act
-        component.switchTheme(themeval);
-        expect(component.switchTheme).toBeTruthy();
-        // Assert
-        // Add your assertions here
-    });
+    spyOn(themesService, 'getTheme').and.returnValue('mytheme-default');
+    spyOn(themesService, 'removeTheme').and.callThrough();
+    spyOn(themesService, 'setTheme').and.callThrough();
 
-    it('loadThemes should...', () => {
-        // Arrange
-        // Act
-        component.loadThemes();
-        expect(component.loadThemes).toBeTruthy();
-        // Assert
-        // Add your assertions here
-    });
+    component.ngOnInit();
 
-    
-})
-        
+    expect(component.aryThemes).toEqual(themes);
+    expect(component.selectedTheme).toEqual('default');
+    expect(themesService.removeTheme).toHaveBeenCalledWith('default');
+    expect(themesService.setTheme).toHaveBeenCalledWith('default');
+  });
+
+  it('should switch theme properly', () => {
+    spyOn(themesService, 'removeTheme').and.callThrough();
+    spyOn(themesService, 'setTheme').and.callThrough();
+
+    component.switchTheme('glass');
+
+    expect(component.selectedTheme).toEqual('glass');
+    expect(themesService.removeTheme).toHaveBeenCalledWith('glass');
+    expect(themesService.setTheme).toHaveBeenCalledWith('glass');
+  });
+
+  // Add more test cases as needed
+});

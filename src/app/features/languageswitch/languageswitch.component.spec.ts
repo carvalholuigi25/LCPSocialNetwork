@@ -1,72 +1,76 @@
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { LanguageswitchComponent } from './languageswitch.component';
+import { LanguagesService } from '@app/services';
+import { TranslateService } from '@ngx-translate/core';
+import { of, throwError } from 'rxjs';
 
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { LanguageswitchComponent } from "./languageswitch.component";
+describe('LanguageswitchComponent', () => {
+  let component: LanguageswitchComponent;
+  let fixture: ComponentFixture<LanguageswitchComponent>;
+  let languagesService: LanguagesService;
+  let translateService: TranslateService;
 
-import { AlertsService, LanguagesService } from '@app/services';
-import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { createTranslateLoader } from '@app/app.config';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [LanguageswitchComponent],
+      providers: [LanguagesService, TranslateService]
+    }).compileComponents();
+  }));
 
-describe("LanguageswitchComponent", () => {
-    let component: LanguageswitchComponent;
-    let fixture: ComponentFixture<LanguageswitchComponent>;
-    let languageval: string = "en";
-    //let myService: MyService;
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LanguageswitchComponent);
+    component = fixture.componentInstance;
+    languagesService = TestBed.inject(LanguagesService);
+    translateService = TestBed.inject(TranslateService);
+    fixture.detectChanges();
+  });
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [LanguagesService,AlertsService,TranslateService,TranslateService, TranslateStore],
-            imports: [BrowserAnimationsModule, HttpClientModule, RouterTestingModule, TranslateModule.forRoot({
-                defaultLanguage: 'en',
-                loader: {
-                    provide: TranslateLoader,
-                    useFactory: (createTranslateLoader),
-                    deps: [HttpClient]
-                }
-            })]
-        }).compileComponents();
-    });
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(LanguageswitchComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+  it('should set default language and load languages on initialization', () => {
+    spyOn(languagesService, 'getLanguage').and.returnValue('en');
+    spyOn(languagesService, 'getListLanguages').and.returnValue(of(['English', 'Portuguese']));
+    spyOn(translateService, 'setDefaultLang').and.callThrough();
+    spyOn(component, 'switchLanguage').and.callThrough();
 
-        //myService = TestBed.inject(MyService);
-    });
+    component.ngOnInit();
 
-    it('ngOnInit should...', () => {
-        // Arrange
-        // Act
-        component.ngOnInit();
-        expect(component.ngOnInit).toBeTruthy();
-        // Assert
-        // Add your assertions here
-    });
+    expect(translateService.setDefaultLang).toHaveBeenCalledWith('en');
+    expect(component.switchLanguage).toHaveBeenCalledWith('en');
+    expect(languagesService.getListLanguages).toHaveBeenCalled();
+    expect(component.aryLanguages).toEqual(['English', 'Portuguese']);
+  });
 
-    it('switchLanguage should...', () => {
-        // Arrange
-        // Act
-        component.switchLanguage(languageval);
-        expect(component.switchLanguage).toBeTruthy();
-        // Assert
-        // Add your assertions here
-    });
+  it('should switch language properly', () => {
+    spyOn(translateService, 'use').and.callThrough();
+    spyOn(languagesService, 'setLanguage').and.callThrough();
 
-    it('loadLanguages should...', () => {
-        // Arrange
-        // Act
-        component.loadLanguages();
-        expect(component.loadLanguages).toBeTruthy();
-        // Assert
-        // Add your assertions here
-    });
+    component.switchLanguage('pt');
 
-    
-})
-        
+    expect(translateService.use).toHaveBeenCalledWith('pt');
+    expect(languagesService.setLanguage).toHaveBeenCalledWith('pt');
+    expect(component.selectedLanguage).toEqual('pt');
+  });
+
+  it('should handle error when loading languages', () => {
+    spyOn(languagesService, 'getLanguage').and.returnValue('en');
+    spyOn(languagesService, 'getListLanguages').and.returnValue(throwError({ message: 'Error message' }));
+    spyOn(console, 'error'); // Spy on console.error
+
+    component.ngOnInit();
+
+    expect(console.error).toHaveBeenCalledWith(jasmine.any(Error));
+    // You can add more expectations here based on how you handle errors in your component
+  });
+
+  it('should switch language to default when no language value is provided', () => {
+    spyOn(component, 'switchLanguage').and.callThrough();
+    spyOn(languagesService, 'getLanguage').and.returnValue(null); // Simulate no language value
+
+    component.ngOnInit();
+
+    expect(component.switchLanguage).toHaveBeenCalledWith('en');
+  });
+});

@@ -2,7 +2,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AlertsService } from './alerts.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AlertsService', () => {
     let service: AlertsService;
@@ -12,7 +12,7 @@ describe('AlertsService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [BrowserAnimationsModule],
+            imports: [NoopAnimationsModule],
             providers: [
                 MatSnackBar,
             ],

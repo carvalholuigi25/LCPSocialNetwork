@@ -11,9 +11,9 @@ import { LanguagesService } from '@app/services';
   template: ''
 })
 export class CookieConsentComponent {
-  private initializingSubscription!: Subscription;
-  private initializedSubscription!: Subscription;
-  private initializationErrorSubscription!: Subscription;
+  initializingSubscription!: Subscription;
+  initializedSubscription!: Subscription;
+  initializationErrorSubscription!: Subscription;
 
   langAry!: any;
   langCodeIsoAry: any[] = [];

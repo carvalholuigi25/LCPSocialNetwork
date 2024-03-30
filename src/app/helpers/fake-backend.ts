@@ -4,7 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from '../models';
 
-const users: User[] = [{ UserId: 1, Username: 'test', Password: 'test', FirstName: 'test', LastName: 'test', Email: 'test@local.loc', Role: 'user' }];
+const users: User[] = [{ UserId: 1, Username: 'admin', Password: 'admin2024' }];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -20,9 +20,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function handleRoute() {
             switch (true) {
-                case url.endsWith('/users/authenticate') && method === 'POST':
+                case url.endsWith('/auth/login') && method === 'POST':
                     return authenticate();
-                case url.endsWith('/users') && method === 'GET':
+                case url.endsWith('/user') && method === 'GET':
                     return getUsers();
                 default:
                     // pass through any requests not handled above

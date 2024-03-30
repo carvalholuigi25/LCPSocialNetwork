@@ -14,7 +14,7 @@ import { SharedModule } from './modules';
 import { HttpClient } from '@angular/common/http';
 import { createTranslateLoader } from './app.config';
 import { NgcCookieConsentConfig, NgcCookieConsentService, WindowService } from 'ngx-cookieconsent';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 describe("AppComponent", () => {
@@ -31,7 +31,7 @@ describe("AppComponent", () => {
             providers: [AuthService, BreakpointObserver, Router, AlertsService, ThemesService, LanguagesService, TranslateService, TranslateStore, NgcCookieConsentService, WindowService, NgcCookieConsentConfig],
             imports: [
                 RouterTestingModule, 
-                BrowserAnimationsModule,
+                NoopAnimationsModule,
                 RouterOutlet, 
                 SharedModule, 
                 TranslateModule.forRoot({
