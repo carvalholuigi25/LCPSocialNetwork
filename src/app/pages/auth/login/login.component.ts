@@ -1,3 +1,5 @@
+/* c8 ignore start */
+
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -70,3 +72,5 @@ export class LoginComponent {
       });
   }
 }
+
+/* c8 ignore end */

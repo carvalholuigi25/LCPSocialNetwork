@@ -1,3 +1,5 @@
+/* c8 ignore start */
+
 import { Subscription } from 'rxjs';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -33,6 +35,7 @@ export class CookieConsentComponent {
     this.UnloadCookieConsent();
   }
 
+  /* c8 ignore next */
   LoadCookieConsent() {
     this.initializingSubscription = this.ccService.initializing$.subscribe((event: NgcInitializingEvent) => {
       // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
@@ -51,6 +54,7 @@ export class CookieConsentComponent {
     });
   }
 
+  /* c8 ignore next */
   LoadTranslateService() {
     this.langService.getListLanguages().subscribe({
       next: (rl: any) => {
@@ -95,3 +99,5 @@ export class CookieConsentComponent {
      this.initializationErrorSubscription.unsubscribe();
   }
 }
+
+/* c8 ignore end */

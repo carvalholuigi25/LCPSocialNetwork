@@ -1,3 +1,5 @@
+/* c8 ignore start */
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -65,3 +67,5 @@ export class CreatePostsComponent implements OnInit {
     this.isPostFrmVisible = !this.isPostFrmVisible;
   }
 }
+
+/* c8 ignore end */

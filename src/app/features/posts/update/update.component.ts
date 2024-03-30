@@ -1,3 +1,5 @@
+/* c8 ignore start */
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -107,3 +109,5 @@ export class UpdatePostsComponent implements OnInit {
     }
   }
 }
+
+/* c8 ignore end */

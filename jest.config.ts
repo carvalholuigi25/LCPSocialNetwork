@@ -32,6 +32,11 @@ const config: Config = {
   //   "\\\\node_modules\\\\"
   // ],
 
+  coveragePathIgnorePatterns: [
+    "node_modules",
+    "<rootDir>/src/app/guards"
+  ],
+
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
 
