@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Linq.Expressions;
 using LCPSNWebApi.Classes.Filter;
 using Microsoft.Extensions.Localization;
-using LCPSNLibrary.Resources;
+using LCPSNWebApi.Library.Resources;
 
 namespace LCPSNWebApi.Services
 {

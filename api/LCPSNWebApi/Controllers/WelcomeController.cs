@@ -1,3 +1,4 @@
+using LCPSNWebApi.Library.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
@@ -7,9 +8,9 @@ namespace LCPSNWebApi.Controllers
     [ApiController]
     public class WelcomeController : ControllerBase
     {
-        private readonly IStringLocalizer<LCPSNLibrary.Resources.MyResources> _localizer;
+        private readonly IStringLocalizer<MyResources> _localizer;
 
-        public WelcomeController(IStringLocalizer<LCPSNLibrary.Resources.MyResources> localizer)
+        public WelcomeController(IStringLocalizer<MyResources> localizer)
         {
             _localizer = localizer;
         }

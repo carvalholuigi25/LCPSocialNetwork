@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Linq.Expressions;
 using Microsoft.Extensions.Localization;
 using LCPSNWebApi.Classes.Files;
-using LCPSNLibrary.Resources;
+using LCPSNWebApi.Library.Resources;
 
 namespace LCPSNWebApi.Services
 {

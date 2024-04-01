@@ -42,10 +42,24 @@ testem.log
 Thumbs.db
 
 # API Stuff
+api/.vs
 api/LCPSNWebApi/bin
 api/LCPSNWebApi/obj
 api/LCPSNWebApi/[Ll]ogs/*.log
 !api/LCPSNWebApi/[Uu]ploads
+
+# Library API Stuff
+api/LCPSNWebApi.Library/.vs
+api/LCPSNWebApi.Library/obj
+api/LCPSNWebApi.Library/obj/*
+api/LCPSNWebApi.Library/bin
+api/LCPSNWebApi.Library/bin/*
+
+# Unit Tests API Stuff
+api/LCPSNWebApi.Tests/.vs
+api/LCPSNWebApi.Tests/bin
+api/LCPSNWebApi.Tests/obj
+api/LCPSNWebApi.Tests/TestResults
 
 # Queries Stuff
 [Qq]ueries
@@ -55,9 +69,5 @@ api/LCPSNWebApi/[Qq]ueries/*.sql
 
 # Other Stuff
 /.vs
-LCPSNLibrary/obj
-LCPSNLibrary/obj/*
-LCPSNLibrary/bin
-LCPSNLibrary/bin/*
 
 package-lock.json

@@ -1,4 +1,4 @@
-using LCPSNLibrary.Classes;
+using LCPSNWebApi.Library.Classes;
 using System.Text.Json;
 using System.Globalization;
 
@@ -13,7 +13,7 @@ public static class MyFunctions
     }
 
     public static string GetCurLibPath() {
-        return Path.GetDirectoryName(Directory.GetCurrentDirectory())!.ToString().Replace(@"\api", @"\LCPSNLibrary");
+        return Path.GetDirectoryName(Directory.GetCurrentDirectory())!.ToString().Replace(@"\api", @"\api\LCPSNWebApi.Library");
     }
 
     public static async Task<List<LanguagesCl>> GetLanguages() {

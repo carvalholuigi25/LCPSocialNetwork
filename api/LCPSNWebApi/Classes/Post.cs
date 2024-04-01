@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using LCPSNLibrary.Resources;
+using LCPSNWebApi.Library.Resources;
 
 namespace LCPSNWebApi.Classes;
 public class Post

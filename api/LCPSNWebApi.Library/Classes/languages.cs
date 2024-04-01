@@ -1,4 +1,4 @@
-namespace LCPSNLibrary.Classes;
+namespace LCPSNWebApi.Library.Classes;
 
 public class LanguagesCl {
     public int? Id { get; set; }

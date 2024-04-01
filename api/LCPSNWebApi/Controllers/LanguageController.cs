@@ -1,4 +1,4 @@
-using LCPSNLibrary.Classes;
+using LCPSNWebApi.Library.Classes;
 using LCPSNWebApi.Functions;
 using Microsoft.AspNetCore.Mvc;
 

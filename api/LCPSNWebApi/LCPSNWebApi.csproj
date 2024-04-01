@@ -59,7 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LCPSNLibrary\LCPSNLibrary.csproj" />
+    <ProjectReference Include="..\LCPSNWebApi.Library\LCPSNWebApi.Library.csproj" />
   </ItemGroup>
 
 </Project>

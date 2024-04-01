@@ -1,4 +1,4 @@
-﻿using LCPSNLibrary.Resources;
+﻿using LCPSNWebApi.Library.Resources;
 using LCPSNWebApi.Interfaces.Auth;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;

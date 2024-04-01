@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 using System.Reflection;
 using System.Linq.Expressions;
 using BC = BCrypt.Net.BCrypt;
-using LCPSNLibrary.Resources;
+using LCPSNWebApi.Library.Resources;
 
 namespace LCPSNWebApi.Services
 {
