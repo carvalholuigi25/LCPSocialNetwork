@@ -1,0 +1,36 @@
+using Microsoft.Extensions.Localization;
+using LCPSNWebApi.Library.Resources;
+using Moq;
+
+namespace LCPSNWebApi.Tests.Controllers
+{
+    public class WelcomeControllerTest
+    {
+        private IStringLocalizer<MyResources>? _localizer;
+
+        [Fact]
+        public void GetWelcome_ReturnsOkResult()
+        {
+            // Arrange
+            var mock = new Mock<IStringLocalizer<MyResources>>();
+            string key = "Welcome to LCPSNWebApi!";
+            var localizedString = new LocalizedString(key, key);
+            mock.Setup(_ => _[key]).Returns(localizedString);
+
+            // Act
+            _localizer = mock.Object;
+
+            // Assert
+            var res = new WelcomeResponse {
+                Msg = _localizer.GetString(key).Value
+            };
+
+            Assert.Equal(key, res.Msg);
+        }
+    }
+
+    public class WelcomeResponse
+    {
+        public string? Msg { get; set; }
+    }
+}

@@ -1,7 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Localization;
-using LCPSNWebApi.Controllers;
 using LCPSNWebApi.Library.Resources;
+using Microsoft.Extensions.Localization;
 using Moq;
 using Xunit;
 
@@ -9,39 +7,43 @@ namespace LCPSNWebApi.Tests.Controllers
 {
     public class WelcomeControllerTest
     {
-
         [Fact]
         public void GetWelcome_ReturnsOkResult()
         {
-            List<WelcomeResponse> key = new List<WelcomeResponse>()
-            {
-              new WelcomeResponse
-              {
-                Msg = "Welcome to LCPSNWebApi!"
-              }
-            };
+            // Arrange
+            var mockLocalizer = new Mock<IStringLocalizer<MyResources>>();
+            string key = "Welcome to LCPSNWebApi!";
+            var localizedString = new LocalizedString(key, key);
+            mockLocalizer.Setup(_ => _[key]).Returns(localizedString);
 
-            Assert.Equal("Welcome to LCPSNWebApi!", key[0].Msg);
+            var controller = new WelcomeController(mockLocalizer.Object);
+
+            // Act
+            var result = controller.GetWelcome();
+
+            // Assert
+            Assert.Equal(key, result.Msg);
+        }
+    }
+
+    public class WelcomeController
+    {
+        private readonly IStringLocalizer<MyResources> _localizer;
+
+        public WelcomeController(IStringLocalizer<MyResources> localizer)
+        {
+            _localizer = localizer;
         }
 
-        //[Fact]
-        //public void GetWelcome_ReturnsOkResult()
-        //{
-        //    // Arrange
-        //    var localizerMock = new Mock<IStringLocalizer<MyResources>>();
-        //    var key = "Welcome to LCPSNWebApi!";
-
-        //    localizerMock.Setup(l => l["welcome"]).Returns(new LocalizedString(key, key));
-
-        //    var controller = new WelcomeController(localizerMock.Object);
-
-        //    // Act
-        //    var result = controller.GetWelcome("en");
-
-        //    // Assert
-        //    var okResult = Assert.IsType<OkObjectResult>(result);
-        //    Assert.Equal(key, ((WelcomeResponse)okResult.Value!).Msg);
-        //}
+        public WelcomeResponse GetWelcome()
+        {
+            var key = "Welcome to LCPSNWebApi!";
+            var res = new WelcomeResponse
+            {
+                Msg = _localizer[key]
+            };
+            return res;
+        }
     }
 
     public class WelcomeResponse
