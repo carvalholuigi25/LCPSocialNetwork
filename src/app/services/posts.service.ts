@@ -27,11 +27,12 @@ export class PostsService {
         return this.http.get<Post[]>(`${environment.apiUrl}/post`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
-    getAllWithUsers(userId: number) {
-        let pid = userId !== -1 ? `/user/${userId}`: '';
+    getAllWithUsers(userId: number = -1, postId: number = -1) {
+        let uid = userId !== -1 ? `/${userId}` : '';
+        let pid = postId !== -1 ? `/user/${postId}`: '';
+        let user = this.http.get<User[]>(`${environment.apiUrl}/user${uid}`, { headers: this.setHeadersObj() });
         let post = this.http.get<Post[]>(`${environment.apiUrl}/post${pid}`, { headers: this.setHeadersObj() });
-        let user = this.http.get<User[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });
-        return forkJoin([post, user]);
+        return forkJoin([user, post]);
     }
 
     getAllById(id: number) {

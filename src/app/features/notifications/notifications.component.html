@@ -1,0 +1,16 @@
+@if(notificationsItems && notificationsItems.length > 0) {
+    <div class="d-block text-end w-100">
+        <button mat-mini-fab color="primary" aria-label="Delete all notifications" (click)="DeleteAllNotifications()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center" *ngFor="let nitem of notificationsItems">
+        <a href="/post/{{nitem.userId}}/{{nitem.postId}}" class="p-3 mt-3">
+            <img src="assets/images/users/avatars/guest.png" class="img-avatar img-fluid" width="50" height="50" />
+            <span class="ms-3">{{nitem.description}}</span>
+        </a>    
+    </div>
+} @else {
+    <p>{{ 'navbar.notificationsData' | translate }}!</p>
+}

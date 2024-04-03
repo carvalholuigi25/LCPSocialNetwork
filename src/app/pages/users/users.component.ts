@@ -13,18 +13,18 @@ import { ReadPostsComponent } from '@app/features';
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
-  id: number = -1;
+  userId: number = -1;
   usersData!: any;
 
   constructor(private route: ActivatedRoute, private usersSrv: UsersService) {
     this.route.params.subscribe(params => {
-      this.id = params["id"];
+      this.userId = params["userId"];
     });
   }
 
   ngOnInit() {
-    if(this.id != -1 && this.id != undefined) {
-      this.usersSrv.getAllById(this.id).subscribe((r: any) => {
+    if(this.userId != -1 && this.userId != undefined) {
+      this.usersSrv.getAllById(this.userId).subscribe((r: any) => {
         this.usersData = r;
       });
     } else {

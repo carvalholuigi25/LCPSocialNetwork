@@ -8,9 +8,11 @@ namespace LCPSNWebApi.Interfaces
     {
         Task<ActionResult<IEnumerable<Notification>>> GetNotifications();
         Task<ActionResult<IEnumerable<Notification>>> GetNotificationsById(int? id);
+        Task<ActionResult<int>> GetNotificationsCount();
         IActionResult GetNotificationsAsEnumList();
         Task<IActionResult> PutNotifications(int? id, Notification Notifications);
         Task<ActionResult<IEnumerable<Notification>>> PostNotifications(Notification NotificationsData);
+        Task<IActionResult> DeleteAllNotifications();
         Task<IActionResult> DeleteNotifications(int? id);
         Task<IActionResult> ResetIdSeed(int rsid = 1);
         Task<IActionResult> SearchData([FromQuery] QueryParams qryp);

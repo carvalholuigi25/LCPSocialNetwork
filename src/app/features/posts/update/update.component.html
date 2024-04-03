@@ -1,5 +1,5 @@
 <div class="col-12">
-    @if(id && id != -1) {
+    @if(postId && postId != -1) {
         @if(isAnyPostsData) {
             <form [formGroup]="postsUpdateFrm" (ngSubmit)="OnUpdate()" class="postsUpdateForm p-3">
                 <mat-form-field class="mt-3">

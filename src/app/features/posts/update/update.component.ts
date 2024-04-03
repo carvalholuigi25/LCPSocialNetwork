@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from '@app/components';
 import { Post } from '@app/models';
 import { SharedModule } from '@app/modules';
-import { AlertsService, AuthService, PostsService } from '@app/services';
+import { AlertsService, AuthService, NotificationsService, PostsService } from '@app/services';
 
 @Component({
   selector: 'app-updateposts',
@@ -16,14 +16,14 @@ import { AlertsService, AuthService, PostsService } from '@app/services';
   styleUrl: './update.component.scss'
 })
 export class UpdatePostsComponent implements OnInit {
-  id: number = -1;
+  postId: number = -1;
   isAnyPostsData: boolean = false;
   postsUpdateFrm!: FormGroup;
   submitted = false;
 
-  constructor(private alertsService: AlertsService, private postsService: PostsService, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
+  constructor(private alertsService: AlertsService, private postsService: PostsService, private notificationService: NotificationsService, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
-      this.id = params["id"];
+      this.postId = params["postId"];
     });
   }
 
@@ -43,8 +43,8 @@ export class UpdatePostsComponent implements OnInit {
       TypeTxtPost: new FormControl('html')
     });
 
-    if(this.id != -1) {
-      this.postsService.getAllById(this.id!).subscribe({
+    if(this.postId != -1) {
+      this.postsService.getAllById(this.postId!).subscribe({
         next: (dataP: any) => {
           this.isAnyPostsData = dataP.length > 0 ? true : false;
           this.postsUpdateFrm.patchValue({
@@ -77,16 +77,16 @@ export class UpdatePostsComponent implements OnInit {
   }
 
   OnNotUpdate() {
-    this.alertsService.openAlert(`Cancelled the update of post (Id: ${this.id})!`, 1, "success");
+    this.alertsService.openAlert(`Cancelled the update of post (Id: ${this.postId})!`, 1, "success");
     this.router.navigate(['/newsfeed']);
   }
 
   OnUpdate() {
-    if(this.id != -1) {
+    if(this.postId != -1) {
       this.submitted = true;
 
       const postsObj: Post = {
-        PostId: this.id ?? 1,
+        PostId: this.postId ?? 1,
         Title: this.f["Title"].value.toString(),
         Description: this.f["Description"].value.toString(),
         ImgUrl: this.f["ImgUrl"].value.toString(),
@@ -96,9 +96,23 @@ export class UpdatePostsComponent implements OnInit {
         UserId: this.authService.userValue != null ? (this.authService.userValue["usersInfo"]["userId"] ?? 1) : 1
       };
 
-      this.postsService.updatePosts(this.id, postsObj).subscribe({
+      this.postsService.updatePosts(this.postId, postsObj).subscribe({
         next: () => {
-          this.alertsService.openAlert(`Updated post (Id: ${this.id}) sucessfully!`, 1, "success");
+          this.alertsService.openAlert(`Updated post (Id: ${this.postId}) sucessfully!`, 1, "success");
+          this.notificationService.updateNotification(this.postId, {
+            description: postsObj.Description,
+            status: postsObj.Status,
+            dateUserNotificationUpdated: postsObj.DatePostUpdated,
+            userId: postsObj.UserId,
+            postId: postsObj.PostId
+          }).subscribe({
+            next: () => {
+              console.log(`updated the current notification (id: ${this.postId}!`);
+            }, 
+            error: (emr) => {
+              console.log(emr.Message);
+            }
+          });
           this.router.navigate(['/newsfeed']);
         },
         error: (em: any) => {

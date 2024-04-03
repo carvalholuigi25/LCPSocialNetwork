@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Notification } from '../models';
+import { Notification, User } from '../models';
 import { DOCUMENT } from '@angular/common';
-import { catchError, throwError } from 'rxjs';
+import { catchError, forkJoin, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationsService {
@@ -31,12 +31,26 @@ export class NotificationsService {
         return this.http.get<Notification>(`${environment.apiUrl}/notification/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getAllWithUsers() {
+      let notification = this.http.get<Notification[]>(`${environment.apiUrl}/notification`, { headers: this.setHeadersObj() });
+      let user = this.http.get<User[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });
+      return forkJoin([notification, user]);
+    }
+
+    getCount() {
+        return this.http.get<Notification[]>(`${environment.apiUrl}/notification/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createNotification(Notification: Notification) {
         return this.http.post<Notification>(`${environment.apiUrl}/notification`, Notification, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     updateNotification(id: number, Notification: Notification) {
         return this.http.put<Notification>(`${environment.apiUrl}/notification/${id}`, Notification, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    deleteAllNotifications() {
+        return this.http.delete<Notification>(`${environment.apiUrl}/notification`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     deleteNotification(id: number) {

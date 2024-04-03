@@ -1,17 +1,17 @@
-export interface Notification {
-    notificationId: number | null;
-    description: string;
-    status: string | null;
-    isMarkRead: boolean | null;
-    isPinned: boolean | null;
-    dateUserNotificationCreated: string | null;
-    dateUserNotificationUpdated: string | null;
-    dateUserNotificationDeleted: string | null;
-    dateUserNotificationMarked: string | null;
-    postId: number | null;
-    commentId: number | null;
-    replyId: number | null;
-    attachmentId: number | null;
-    reactionId: number | null;
-    userId: number | null;
+export class Notification {
+    notificationId?: number;
+    description!: string;
+    status?: string;
+    isMarkRead?: boolean;
+    isPinned?: boolean;
+    dateUserNotificationCreated?: string | Date;
+    dateUserNotificationUpdated?: string | Date;
+    dateUserNotificationDeleted?: string | Date;
+    dateUserNotificationMarked?: string | Date;
+    postId?: number;
+    commentId?: number;
+    replyId?: number;
+    attachmentId?: number;
+    reactionId?: number;
+    userId?: number;
 }

@@ -4,8 +4,8 @@ import { SharedModule } from './modules';
 import { AuthService } from './services/auth.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { CookieConsentComponent } from './features';
-import { AlertsService, ThemesService } from './services';
+import { CookieConsentComponent, NotificationsComponent } from './features';
+import { AlertsService, NotificationsService, ThemesService } from './services';
 import { filter } from 'rxjs';
 import { LanguagesService } from '@app/services';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CookieConsentComponent, SharedModule],
+  imports: [RouterOutlet, CookieConsentComponent, NotificationsComponent, SharedModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   isCollapsed = true;
   isNavMenuHiddenForPages = true;
   rname?: string;
+  notificationsCounter: number = 0;
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   
   constructor(
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
     private alertsService: AlertsService,
     private themesService: ThemesService,
     private languagesService: LanguagesService, 
+    private notificationsService: NotificationsService,
     public translate: TranslateService
   ) { 
     this.translate.use(this.languagesService.getLanguage()! ?? "en");
@@ -42,6 +44,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.themesService.setTheme(this.themesService.getTheme()!);
     this.LoadMediaObserver();
+    this.LoadNotificationsCounter();
   }
 
   logout() {
@@ -69,6 +72,18 @@ export class AppComponent implements OnInit {
       
       this.isCollapsed = !this.isCollapsed;
     }
+  }
+
+  LoadNotificationsCounter() {
+    this.notificationsService.getCount().subscribe({
+      next: (r: any) => {
+        this.notificationsCounter = r;
+      },
+      error: (err: any) => {
+        this.notificationsCounter = 0;
+        console.log(err.Message);
+      }
+    })
   }
 
   LoadMediaObserver() {

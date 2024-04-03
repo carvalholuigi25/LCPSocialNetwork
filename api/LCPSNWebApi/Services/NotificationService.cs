@@ -43,6 +43,12 @@ namespace LCPSNWebApi.Services
             return Notifications;
         }
 
+        public async Task<ActionResult<int>> GetNotificationsCount()
+        {
+            var lst = await _context.Notifications.ToListAsync();
+            return lst.Count();
+        }
+
         public IActionResult GetNotificationsAsEnumList()
         {
             return Ok(typeof(Notification).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
@@ -93,6 +99,26 @@ namespace LCPSNWebApi.Services
 
             return await GetNotifications();
             // return CreatedAtAction("GetNotificationsById", new { id = NotificationsData.NotificationId }, NotificationsData);
+        }
+
+        public async Task<IActionResult> DeleteAllNotifications()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
+            }
+
+            var Notifications = await _context.Notifications.ToListAsync();
+            if (Notifications == null)
+            {
+                return NotFound(_localizer.GetString("DataNotFound").Value);
+            }
+
+            _context.Notifications.RemoveRange(Notifications);
+            await _context.SaveChangesAsync();
+            await ResetIdSeed(_context.Notifications.Count());
+
+            return NoContent();
         }
 
         public async Task<IActionResult> DeleteNotifications(int? id)

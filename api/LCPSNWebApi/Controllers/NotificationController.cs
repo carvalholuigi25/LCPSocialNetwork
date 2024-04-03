@@ -22,7 +22,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<Notification>>> GetNotifications()
         {
             return await _Notifications.GetNotifications();
@@ -34,10 +34,21 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<Notification>>> GetNotificationsById(int? id)
         {
             return await _Notifications.GetNotificationsById(id);
+        }
+
+        /// <summary>
+        /// This endpoint retrives all Notifications length.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("count")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
+        public async Task<ActionResult<int>> GetNotificationsCount()
+        {
+            return await _Notifications.GetNotificationsCount();
         }
 
         /// <summary>
@@ -45,7 +56,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("enumslist")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetNotificationsAsEnumList()
         {
             return _Notifications.GetNotificationsAsEnumList();
@@ -56,7 +67,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("fopenumslist")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetFilterOperationEnumList()
         {
             return Ok(Enum.GetNames(typeof(FilterOperatorEnum)));
@@ -69,7 +80,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="Notifications"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> PutNotifications(int? id, Notification Notifications)
         {
             return await _Notifications.PutNotifications(id, Notifications);
@@ -88,12 +99,23 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint deletes all Notifications.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
+        public async Task<IActionResult> DeleteAllNotifications()
+        {
+            return await _Notifications.DeleteAllNotifications();
+        }
+
+        /// <summary>
         /// This endpoint deletes a specific Notification by id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> DeleteNotifications(int? id)
         {
             return await _Notifications.DeleteNotifications(id);
@@ -105,7 +127,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="rsid"></param>
         /// <returns></returns>
         [HttpPost("{rsid}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> ResetIdSeed(int rsid = 1)
         {
             return await _Notifications.ResetIdSeed(rsid);
@@ -117,7 +139,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="qryp"></param>
         /// <returns></returns>
         [HttpGet("filter")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> SearchNotifications([FromQuery] QueryParams qryp)
         {
             return await _Notifications.SearchData(qryp);
@@ -128,7 +150,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("lastid")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> GetLastId()
         {
             return await _Notifications.GetLastId();

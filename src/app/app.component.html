@@ -24,16 +24,16 @@
             {{ 'navbar.btnFriendRequests' | translate }}
           </span>
         </button>
-        <button mat-icon-button [matMenuTriggerFor]="menunotifications" aria-label="Notifications menu">
-          <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
-          <span class="cdk-visually-hidden">
-            {{ 'navbar.btnNotifications' | translate }}
-          </span>
-        </button>
         <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menuchat" aria-label="Chat menu">
           <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">chat</mat-icon>
           <span class="cdk-visually-hidden">
             {{ 'navbar.btnChatMessages' | translate }}
+          </span>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menunotifications" aria-label="Notifications menu">
+          <mat-icon matBadge="{{notificationsCounter}}" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
+          <span class="cdk-visually-hidden">
+            {{ 'navbar.btnNotifications' | translate }}
           </span>
         </button>
         <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User control menu">
@@ -48,14 +48,14 @@
           <mat-icon matSuffix aria-hidden="false">search</mat-icon>
         </mat-form-field>
       </mat-menu>
-      <mat-menu class="p-3" #menunotifications="matMenu">
-        <p>{{ 'navbar.notificationsData' | translate }}</p>
-      </mat-menu>
       <mat-menu class="p-3" #menufriendrequests="matMenu">
         <p>{{ 'navbar.friendRequestsData' | translate }}</p>
       </mat-menu>
       <mat-menu class="p-3" #menuchat="matMenu">
-        <p>{{ 'navbar.chatMessagesData' | translate }}!</p>
+        <p>{{ 'navbar.chatMessagesData' | translate }}</p>
+      </mat-menu>
+      <mat-menu class="p-3" #menunotifications="matMenu">
+        <app-notifications></app-notifications>
       </mat-menu>
       <mat-menu #menu="matMenu">
         <a class="text-center" href="users/{{user.usersInfo.userId}}" mat-menu-item>

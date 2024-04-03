@@ -5,7 +5,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Post } from '@app/models';
 import { SharedModule } from '@app/modules';
-import { AlertsService, AuthService, PostsService } from '@app/services';
+import { AlertsService, AuthService, NotificationsService, PostsService } from '@app/services';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-createposts',
@@ -18,8 +19,9 @@ export class CreatePostsComponent implements OnInit {
   postsFrm!: FormGroup;
   isPostFrmVisible = false;
   submitted = false;
+  pidCtx: number = 0;
 
-  constructor(private alertsService: AlertsService, private postsService: PostsService, private router: Router, private authService: AuthService) {}
+  constructor(private alertsService: AlertsService, private postsService: PostsService, private notificationService: NotificationsService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
       this.postsFrm = new FormGroup({
@@ -29,6 +31,16 @@ export class CreatePostsComponent implements OnInit {
         Status: new FormControl('public'),
         IsFeatured: new FormControl(false),
         TypeTxtPost: new FormControl('html')
+      });
+
+      this.notificationService.getCount().subscribe({
+        next: (r: any) => {
+          this.pidCtx = r;
+        },
+        error: (err: any) => {
+          this.pidCtx = 0;
+          console.error(err.message);
+        } 
       });
   }
 
@@ -53,7 +65,22 @@ export class CreatePostsComponent implements OnInit {
 
     this.postsService.createPosts(postsObj).subscribe({
       next: () => {
+        this.pidCtx++;
         this.alertsService.openAlert(`Created new post!`, 1, "success");
+        this.notificationService.createNotification({
+          description: postsObj.Description,
+          status: postsObj.Status,
+          dateUserNotificationCreated: postsObj.DatePostCreated,
+          userId: postsObj.UserId,
+          postId: this.pidCtx
+        }).subscribe({
+          next: () => {
+            console.log("created new notification!")
+          }, 
+          error: (emr) => {
+            console.log(emr.Message);
+          }
+        });
         window.location.reload();
       },
       error: (em) => {

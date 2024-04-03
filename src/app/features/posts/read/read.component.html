@@ -21,7 +21,7 @@
                                 <mat-card-subtitle class="post_avatar_subtitle">
                                     <div class="subpost_avatar_subtitle">
                                         <span class="date_avatar_subpost">
-                                            <a routerLink="/post/{{y.postId}}">
+                                            <a routerLink="/post/{{x.userId}}/{{y.postId}}">
                                                 {{y.datePostCreated | date: 'dd/MM/YYYY HH:mm:ss' }}                                    
                                             </a>
                                         </span>
@@ -39,11 +39,11 @@
                                         <mat-icon>more_horiz</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-                                        <a href="post/update/{{y.postId}}" mat-menu-item>
+                                        <a href="/post/update/{{y.userId}}/{{y.postId}}" mat-menu-item>
                                             <mat-icon>edit</mat-icon>
                                             <span>Edit</span>
                                         </a>
-                                        <a href="post/delete/{{y.postId}}" mat-menu-item>
+                                        <a href="/post/delete/{{y.userId}}/{{y.postId}}" mat-menu-item>
                                             <mat-icon>delete</mat-icon>
                                             <span>Delete</span>
                                         </a>
@@ -84,6 +84,10 @@
                         </mat-card>
                     </div>
                 </div>
+
+                @if(userId >= 0 && postId >= 0) {
+                    <a mat-flat-button class="mt-3" [routerLink]="['/newsfeed']" color="primary">Back</a>
+                }
             } @else {
                 <div class="d-flex flex-column justify-content-center align-items-center errblk p-3 mt-3">
                     <mat-icon>error</mat-icon>

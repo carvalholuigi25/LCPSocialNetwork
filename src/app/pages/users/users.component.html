@@ -2,7 +2,7 @@
     <div class="row">
         <h3 class="mt-3 mb-3">{{ 'users.title' | translate }}</h3>
         
-        @if(id != -1 && id != undefined) {
+        @if(userId != -1 && userId != undefined) {
             <div class="col-12 p-3 usersdetails">
                 @if(usersData) {
                     <mat-card *ngFor="let user of usersData">

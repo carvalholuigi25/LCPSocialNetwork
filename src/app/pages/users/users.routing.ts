@@ -7,7 +7,7 @@ export const USERS_ROUTES: Routes = [{
     providers: [],
     children: [
         { path: '', component: UsersComponent, canActivateChild: [AuthGuard] },
-        { path: ':id', component: UsersComponent, canActivateChild: [AuthGuard] },
+        { path: ':userId', component: UsersComponent, canActivateChild: [AuthGuard] },
         { path: '**', component: NotfoundComponent }
     ]
 }];
