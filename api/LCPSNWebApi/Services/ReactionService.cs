@@ -10,6 +10,9 @@ using System.Reflection;
 using System.Linq.Expressions;
 using Microsoft.Extensions.Localization;
 using LCPSNWebApi.Library.Resources;
+using Microsoft.Data.Sqlite;
+using MySqlConnector;
+using Npgsql;
 
 namespace LCPSNWebApi.Services
 {
@@ -172,25 +175,26 @@ namespace LCPSNWebApi.Services
         {
             try
             {
-                int result;
-                string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
+                StringComparison strcomp = StringComparison.OrdinalIgnoreCase;
+                string connectionString = GetConnectionStr();
                 string queryString = $@"DBCC CHECKIDENT('dbo.Reactions', RESEED, @rsid)";
+                int result;
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (var connection = GetConnectionType(connectionString, strcomp)) 
                 {
-                    SqlCommand command = new SqlCommand(queryString, connection);
+                    var command = GetConnectionCommand(queryString, connection, strcomp);
                     command.Parameters.AddWithValue("@rsid", rsid);
 
                     await connection.OpenAsync();
                     result = await command.ExecuteNonQueryAsync();
                 }
 
-                return Ok(new { msg = string.Format(_localizer.GetString("IdTblReset").Value, rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
+                return Ok(new { msg = string.Format(_localizer.GetString("IdTblReset"), rsid), qrycmd = queryString.Replace("@rsid", "" + rsid), res = result, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, ex.Message));
+                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, $"{ex.Message}"));
             }
         }
 
@@ -198,30 +202,55 @@ namespace LCPSNWebApi.Services
         {
             try
             {
+                StringComparison strcomp = StringComparison.OrdinalIgnoreCase;
                 string msg = "";
-                string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
+                string connectionString = GetConnectionStr();
                 string queryString = $@"SELECT MAX(ReactionId) FROM Reactions";
+                var id = 0;
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (var connection = GetConnectionType(connectionString, strcomp))
                 {
-                    SqlCommand command = new SqlCommand(queryString, connection);
+                    var command = GetConnectionCommand(queryString, connection, strcomp);
 
                     await connection.OpenAsync();
-                    SqlDataReader reader = await command.ExecuteReaderAsync();
+                    var reader = await command.ExecuteReaderAsync();
 
                     while (await reader.ReadAsync())
                     {
-                        msg = "Id: " + reader.GetFieldValue<int>(0);
+                        id = reader.GetFieldValue<int>(0);
+                        msg = "Id: " + id;
                     }
                 }
 
-                return Ok(new { msg, qrycmd = queryString, status = 200 });
+                return Ok(new { msg, data = id, qrycmd = queryString, status = 200 });
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
-                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, ex.Message));
+                return StatusCode(500, string.Format(_localizer.GetString("DataCatchError").Value, $"{ex.Message}"));
             }
+        }
+
+        private string GetDBMode() => _configuration["DBMode"]!.ToString();
+
+        private string GetConnectionStr() {
+            return GetDBMode()!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : 
+            GetDBMode()!.Contains("MySQL", StringComparison.OrdinalIgnoreCase) ?  _configuration["ConnectionStrings:MySQL"]! :  
+            GetDBMode()!.Contains("PostgreSQL", StringComparison.OrdinalIgnoreCase) ?  _configuration["ConnectionStrings:PostgreSQL"]! : _configuration["ConnectionStrings:SQLServer"]!;
+        }
+
+        private dynamic GetConnectionType(string connectionString, StringComparison strcomp = StringComparison.OrdinalIgnoreCase) {
+            return GetDBMode().Contains("SQLite", strcomp) ? new SqliteConnection(connectionString) : 
+            GetDBMode().Contains("MySQL", strcomp) ? new MySqlConnection(connectionString) : 
+            GetDBMode().Contains("PostgreSQL", strcomp) ? new NpgsqlConnection(connectionString) : 
+            new SqlConnection(connectionString);
+        }
+
+        private dynamic GetConnectionCommand(string queryString, dynamic connection, StringComparison strcomp = StringComparison.OrdinalIgnoreCase) {
+            return GetDBMode().Contains("SQLite", strcomp) ? new SqliteCommand(queryString, connection) : 
+            GetDBMode().Contains("MySQL", strcomp) ? new MySqlCommand(queryString, connection) : 
+            GetDBMode().Contains("PostgreSQL", strcomp) ? new NpgsqlCommand(queryString, connection) : 
+            new SqlCommand(queryString, connection);
         }
 
         private bool ReactionsExists(int? id)
