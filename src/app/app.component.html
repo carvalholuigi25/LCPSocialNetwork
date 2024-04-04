@@ -48,13 +48,13 @@
           <mat-icon matSuffix aria-hidden="false">search</mat-icon>
         </mat-form-field>
       </mat-menu>
-      <mat-menu class="p-3" #menufriendrequests="matMenu">
+      <mat-menu class="p-3 mymenufriendrequests" #menufriendrequests="matMenu">
         <p>{{ 'navbar.friendRequestsData' | translate }}</p>
       </mat-menu>
-      <mat-menu class="p-3" #menuchat="matMenu">
+      <mat-menu class="p-3 mymenuchatmessages" #menuchat="matMenu">
         <p>{{ 'navbar.chatMessagesData' | translate }}</p>
       </mat-menu>
-      <mat-menu class="p-3" #menunotifications="matMenu">
+      <mat-menu class="p-3 mymenunotifications" #menunotifications="matMenu">
         <app-notifications></app-notifications>
       </mat-menu>
       <mat-menu #menu="matMenu">

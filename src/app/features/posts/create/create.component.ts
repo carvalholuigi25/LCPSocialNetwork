@@ -33,9 +33,9 @@ export class CreatePostsComponent implements OnInit {
         TypeTxtPost: new FormControl('html')
       });
 
-      this.notificationService.getCount().subscribe({
+      this.postsService.getLastId().subscribe({
         next: (r: any) => {
-          this.pidCtx = r;
+          this.pidCtx = r.data;
         },
         error: (err: any) => {
           this.pidCtx = 0;

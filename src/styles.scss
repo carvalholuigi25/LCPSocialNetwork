@@ -56,6 +56,25 @@ body {
     background-size: cover;
 }
 
+.mymenunotifications {
+    min-width: 500px !important;
+    max-width: 100%;
+    overflow: auto;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+
+        &:hover {
+            font-weight: bold;
+        }
+    }
+}
+
+img.img-rounded, .img-rounded {
+    border-radius: 50% !important;
+}
+
 .colhome {
     position: relative;
     background-color: transparent;

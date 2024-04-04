@@ -43,6 +43,10 @@ export class PostsService {
         return this.http.get<Post>(`${environment.apiUrl}/post/user/${userId}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getLastId() {
+        return this.http.get<Post>(`${environment.apiUrl}/post/lastid`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createPosts(post: Post) {
         return this.http.post<Post>(`${environment.apiUrl}/post`, post, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }

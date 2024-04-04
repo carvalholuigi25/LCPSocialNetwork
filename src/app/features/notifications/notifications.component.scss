@@ -1,0 +1,12 @@
+.longdesc {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 500px;
+
+    &:hover {
+        text-overflow: clip;
+        white-space: normal;
+        max-width: 100%;
+    }
+}

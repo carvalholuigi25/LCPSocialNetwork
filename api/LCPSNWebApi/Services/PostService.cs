@@ -211,6 +211,7 @@ namespace LCPSNWebApi.Services
             try
             {
                 string msg = "";
+                var id = 0;
                 string connectionString = _configuration["DBMode"]!.Contains("SQLite", StringComparison.OrdinalIgnoreCase) ? _configuration["ConnectionStrings:SQLite"]! : _configuration["ConnectionStrings:SQLServer"]!;
                 string queryString = $@"SELECT MAX(PostId) FROM Posts";
 
@@ -223,11 +224,12 @@ namespace LCPSNWebApi.Services
 
                     while (await reader.ReadAsync())
                     {
-                        msg = "Id: " + reader.GetFieldValue<int>(0);
+                        id = reader.GetFieldValue<int>(0);
+                        msg = "Id: " + id;
                     }
                 }
 
-                return Ok(new { msg, qrycmd = queryString, status = 200 });
+                return Ok(new { msg, data = id, qrycmd = queryString, status = 200 });
             }
             catch (Exception ex)
             {

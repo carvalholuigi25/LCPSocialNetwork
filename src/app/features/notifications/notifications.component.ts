@@ -12,7 +12,7 @@ import { NotificationsService } from '@app/services';
 })
 export class NotificationsComponent implements OnInit {
   notificationsItems: Notification[] = [];
-  users: User[] = [];
+  users: User[] | any;
 
   constructor(private notificationsService: NotificationsService) {}
 
