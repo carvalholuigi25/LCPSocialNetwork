@@ -51,6 +51,11 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(FriendRequest).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
+        public async Task<ActionResult<int>> GetFriendRequestsCount()
+        {
+            return (await _context.FriendRequests.ToListAsync()).Count;
+        }
+
         public async Task<IActionResult> PutFriendRequests(int? id, FriendRequest FriendRequests)
         {
             if(!ModelState.IsValid)

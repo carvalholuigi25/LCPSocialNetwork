@@ -9,6 +9,7 @@ namespace LCPSNWebApi.Interfaces
         Task<ActionResult<IEnumerable<FriendRequest>>> GetFriendRequests();
         Task<ActionResult<IEnumerable<FriendRequest>>> GetFriendRequestsById(int? id);
         IActionResult GetFriendRequestsAsEnumList();
+        Task<ActionResult<int>> GetFriendRequestsCount();
         Task<IActionResult> PutFriendRequests(int? id, FriendRequest FriendRequests);
         Task<ActionResult<IEnumerable<FriendRequest>>> PostFriendRequests(FriendRequest FriendRequestsData);
         Task<IActionResult> DeleteFriendRequests(int? id);

@@ -19,7 +19,7 @@
           </span>
         </button>
         <button mat-icon-button [matMenuTriggerFor]="menufriendrequests" aria-label="Friend Requests menu">
-          <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">person_add</mat-icon>
+          <mat-icon matBadge="{{friendRequestsCounter$ | async}}" matBadgeColor="warn" aria-hidden="false">person_add</mat-icon>
           <span class="cdk-visually-hidden">
             {{ 'navbar.btnFriendRequests' | translate }}
           </span>

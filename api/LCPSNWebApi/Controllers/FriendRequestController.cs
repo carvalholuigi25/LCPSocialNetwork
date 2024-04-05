@@ -52,6 +52,17 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint retrives all FriendRequests length.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("count")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
+        public async Task<ActionResult<int>> GetFriendRequestsCount()
+        {
+            return await _FriendRequests.GetFriendRequestsCount();
+        }
+
+        /// <summary>
         /// This endpoint retrives list of enums of filter operation for search feature
         /// </summary>
         /// <returns></returns>

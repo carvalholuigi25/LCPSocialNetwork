@@ -31,6 +31,10 @@ export class FriendsRequestsService {
         return this.http.get<FriendRequest>(`${environment.apiUrl}/friendrequest/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getCount() {
+        return this.http.get<number>(`${environment.apiUrl}/friendrequest/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createFriendsRequests(UsersFriendsRequests: FriendRequest) {
         return this.http.post<FriendRequest>(`${environment.apiUrl}/friendrequest`, UsersFriendsRequests, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
