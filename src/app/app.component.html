@@ -25,13 +25,13 @@
           </span>
         </button>
         <button class="ms-1" mat-icon-button routerLink="/chat/{{user.usersInfo.userId}}" aria-label="Chat menu">
-          <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">chat</mat-icon>
+          <mat-icon matBadge="{{chatMessagesCounter$ | async}}" matBadgeColor="warn" aria-hidden="false">chat</mat-icon>
           <span class="cdk-visually-hidden">
             {{ 'navbar.btnChatMessages' | translate }}
           </span>
         </button>
         <button mat-icon-button [matMenuTriggerFor]="menunotifications" aria-label="Notifications menu">
-          <mat-icon matBadge="{{notificationsCounter}}" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
+          <mat-icon matBadge="{{notificationsCounter$ | async}}" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
           <span class="cdk-visually-hidden">
             {{ 'navbar.btnNotifications' | translate }}
           </span>

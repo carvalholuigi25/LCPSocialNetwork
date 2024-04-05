@@ -5,8 +5,8 @@ import { AuthService } from './services/auth.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CookieConsentComponent, NotificationsComponent } from './features';
-import { AlertsService, NotificationsService, ThemesService } from './services';
-import { filter } from 'rxjs';
+import { AlertsService, ChatMessagesService, NotificationsService, ThemesService } from './services';
+import { Observable, filter } from 'rxjs';
 import { LanguagesService } from '@app/services';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -24,7 +24,9 @@ export class AppComponent implements OnInit {
   isCollapsed = true;
   isNavMenuHiddenForPages = true;
   rname?: string;
-  notificationsCounter: number = 0;
+  notificationsCounter$: Observable<number> = new Observable<number>();
+  chatMessagesCounter$: Observable<number> = new Observable<number>();
+
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   
   constructor(
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit {
     private themesService: ThemesService,
     private languagesService: LanguagesService, 
     private notificationsService: NotificationsService,
+    private chatMessagesService: ChatMessagesService,
     public translate: TranslateService
   ) { 
     this.translate.use(this.languagesService.getLanguage()! ?? "en");
@@ -44,7 +47,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.themesService.setTheme(this.themesService.getTheme()!);
     this.LoadMediaObserver();
-    this.LoadNotificationsCounter();
+    this.LoadCounters();
   }
 
   logout() {
@@ -74,16 +77,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  LoadNotificationsCounter() {
-    this.notificationsService.getCount().subscribe({
-      next: (r: any) => {
-        this.notificationsCounter = r;
-      },
-      error: (err: any) => {
-        this.notificationsCounter = 0;
-        console.log(err.Message);
-      }
-    })
+  LoadCounters() {
+    this.notificationsCounter$ = this.notificationsService.getCount();
+    this.chatMessagesCounter$ = this.chatMessagesService.getCount();
   }
 
   LoadMediaObserver() {

@@ -9,6 +9,7 @@ namespace LCPSNWebApi.Interfaces
         Task<ActionResult<IEnumerable<ChatMessage>>> GetChatMessages();
         Task<ActionResult<IEnumerable<ChatMessage>>> GetChatMessagesById(int? id);
         IActionResult GetChatMessagesAsEnumList();
+        Task<ActionResult<int>> GetChatMessagesCount();
         Task<IActionResult> PutChatMessages(int? id, ChatMessage Messages);
         Task<ActionResult<IEnumerable<ChatMessage>>> PostChatMessages(ChatMessage MessagesData);
         Task<IActionResult> DeleteChatMessages(int? id);

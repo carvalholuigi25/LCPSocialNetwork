@@ -51,6 +51,11 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(ChatMessage).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
+        public async Task<ActionResult<int>> GetChatMessagesCount()
+        {
+            return (await _context.ChatMessages.ToListAsync()).Count;
+        }
+
         public async Task<IActionResult> PutChatMessages(int? id, ChatMessage ChatMessages)
         {
             if(!ModelState.IsValid)

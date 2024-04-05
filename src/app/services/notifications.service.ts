@@ -38,7 +38,7 @@ export class NotificationsService {
     }
 
     getCount() {
-        return this.http.get<Notification[]>(`${environment.apiUrl}/notification/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+        return this.http.get<number>(`${environment.apiUrl}/notification/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     createNotification(Notification: Notification) {

@@ -31,6 +31,10 @@ export class ChatMessagesService {
         return this.http.get<ChatMessage>(`${environment.apiUrl}/chatmessage/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getCount() {
+        return this.http.get<number>(`${environment.apiUrl}/chatmessage/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createChatMessages(ChatMessages: ChatMessage) {
         return this.http.post<ChatMessage>(`${environment.apiUrl}/chatmessage`, ChatMessages, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }

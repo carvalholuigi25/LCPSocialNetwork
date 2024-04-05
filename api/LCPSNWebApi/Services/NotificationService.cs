@@ -48,8 +48,7 @@ namespace LCPSNWebApi.Services
 
         public async Task<ActionResult<int>> GetNotificationsCount()
         {
-            var lst = await _context.Notifications.ToListAsync();
-            return lst.Count();
+            return (await _context.Notifications.ToListAsync()).Count;
         }
 
         public IActionResult GetNotificationsAsEnumList()
