@@ -24,7 +24,7 @@
             {{ 'navbar.btnFriendRequests' | translate }}
           </span>
         </button>
-        <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menuchat" aria-label="Chat menu">
+        <button class="ms-1" mat-icon-button routerLink="/chat/{{user.usersInfo.userId}}" aria-label="Chat menu">
           <mat-icon matBadge="0" matBadgeColor="warn" aria-hidden="false">chat</mat-icon>
           <span class="cdk-visually-hidden">
             {{ 'navbar.btnChatMessages' | translate }}
@@ -50,9 +50,6 @@
       </mat-menu>
       <mat-menu class="p-3 mymenufriendrequests" #menufriendrequests="matMenu">
         <p>{{ 'navbar.friendRequestsData' | translate }}</p>
-      </mat-menu>
-      <mat-menu class="p-3 mymenuchatmessages" #menuchat="matMenu">
-        <p>{{ 'navbar.chatMessagesData' | translate }}</p>
       </mat-menu>
       <mat-menu class="p-3 mymenunotifications" #menunotifications="matMenu">
         <app-notifications></app-notifications>

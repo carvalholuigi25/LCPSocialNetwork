@@ -22,7 +22,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<ChatMessage>>> GetChatMessages()
         {
             return await _ChatMessages.GetChatMessages();
@@ -34,7 +34,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<ChatMessage>>> GetChatMessagesById(int? id)
         {
             return await _ChatMessages.GetChatMessagesById(id);
@@ -45,7 +45,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("enumslist")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetChatMessagesAsEnumList()
         {
             return _ChatMessages.GetChatMessagesAsEnumList();
@@ -56,7 +56,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("fopenumslist")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetFilterOperationEnumList()
         {
             return Ok(Enum.GetNames(typeof(FilterOperatorEnum)));
@@ -69,7 +69,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="ChatMessages"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> PutChatMessages(int? id, ChatMessage ChatMessages)
         {
             return await _ChatMessages.PutChatMessages(id, ChatMessages);
@@ -93,10 +93,21 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> DeleteChatMessages(int? id)
         {
             return await _ChatMessages.DeleteChatMessages(id);
+        }
+
+        /// <summary>
+        /// This endpoint deletes all ChatMessages.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("all")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
+        public async Task<IActionResult> DeleteAllChatMessages()
+        {
+            return await _ChatMessages.DeleteAllChatMessages();
         }
 
         /// <summary>
@@ -105,7 +116,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="rsid"></param>
         /// <returns></returns>
         [HttpPost("{rsid}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> ResetIdSeed(int rsid = 1)
         {
             return await _ChatMessages.ResetIdSeed(rsid);
@@ -117,7 +128,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="qryp"></param>
         /// <returns></returns>
         [HttpGet("filter")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> SearchChatMessages([FromQuery] QueryParams qryp)
         {
             return await _ChatMessages.SearchData(qryp);
@@ -128,7 +139,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("lastid")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> GetLastId()
         {
             return await _ChatMessages.GetLastId();

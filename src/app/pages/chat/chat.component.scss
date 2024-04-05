@@ -1,0 +1,48 @@
+.mchatblk {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    color: black;
+
+    .muserslistblk {
+        display: block;
+
+        .userslistblk {
+            display: block;
+
+            ul, ol {
+                list-style-position: inside;
+
+                li {
+                    list-style-type: none;
+                    list-style-position: inside;
+                }
+            }
+
+            .userchatsel {
+                background-color: yellow;
+                color: black;
+            }
+        }
+    }
+
+    .mchatmsgsblk {
+        display: block;
+
+        .chatmsgsblk {
+            display: block;
+        }
+
+        .chatmsgform {
+            textarea {
+                padding: 15px;
+            }
+        }
+    }
+}
+
+@media all and (width <= 768px) {
+    .mchatblk {
+        flex-direction: column;
+    }
+}

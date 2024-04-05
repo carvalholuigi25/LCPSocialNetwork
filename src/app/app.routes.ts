@@ -18,6 +18,11 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
+        path: 'chat/:userId',
+        loadComponent: () => import('./pages/chat/chat.component').then(m => m.ChatComponent),
+        canActivate: [AuthGuard]
+    },
+    {
         path: 'post',
         loadChildren: () => import('./features/posts/posts.routing').then(m => m.POSTS_ROUTES)
     },

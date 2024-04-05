@@ -43,6 +43,10 @@ export class ChatMessagesService {
         return this.http.delete<ChatMessage>(`${environment.apiUrl}/chatmessage/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    deleteAllChatMessages() {
+        return this.http.delete<ChatMessage>(`${environment.apiUrl}/chatmessage/all`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     /* istanbul ignore next */
     handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

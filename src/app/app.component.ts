@@ -100,6 +100,8 @@ export class AppComponent implements OnInit {
     this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd)).forEach(rd => { 
       this.isNavMenuHiddenForPages = ["/auth", "/auth/login", "/auth/login?returnUrl=%2Fnewsfeed", "/auth/register", "/", "/home", "/tos", "/privacypolicy", "/codeconduct", "/cookiepolicy"].includes(rd.url) ? true : false;
     });
-    this.authService.user.subscribe(x => this.user = x);
+    this.authService.user.subscribe(x => {
+      this.user = x;
+    });
   }
 }

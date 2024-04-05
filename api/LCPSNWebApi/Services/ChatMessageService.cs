@@ -118,6 +118,26 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
+        public async Task<IActionResult> DeleteAllChatMessages()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
+            }
+
+            var ChatMessages = await _context.ChatMessages.ToListAsync();
+            if (ChatMessages == null)
+            {
+                return NotFound(_localizer.GetString("DataNotFound").Value);
+            }
+
+            _context.ChatMessages.RemoveRange(ChatMessages);
+            await _context.SaveChangesAsync();
+            await ResetIdSeed(_context.ChatMessages.Count());
+
+            return NoContent();
+        }
+
         public async Task<IActionResult> SearchData([FromQuery] QueryParams qryp)
         {
             try

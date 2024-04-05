@@ -1,16 +1,16 @@
 export interface ChatMessage {
-    chatMessageId: number | null;
+    chatMessageId?: number | null;
     description: string;
-    status: string | null;
-    isRead: boolean | null;
-    dateChatMessageCreated: string | null;
-    dateChatMessageReaded: string | null;
-    dateChatMessageUpdated: string | null;
-    dateChatMessageDeleted: string | null;
-    commentId: number | null;
-    replyId: number | null;
+    status?: string | null;
+    isRead?: boolean | null;
+    dateChatMessageCreated?: string | null;
+    dateChatMessageReaded?: string | null;
+    dateChatMessageUpdated?: string | null;
+    dateChatMessageDeleted?: string | null;
+    commentId?: number | null;
+    replyId?: number | null;
     userId: number | null;
-    reactionId: number | null;
-    shareId: number | null;
-    attachmentId: number | null;
+    reactionId?: number | null;
+    shareId?: number | null;
+    attachmentId?: number | null;
 }
