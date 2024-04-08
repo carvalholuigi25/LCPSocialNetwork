@@ -37,6 +37,7 @@
     "@angular/platform-server": "^17.2.0",
     "@angular/router": "^17.2.0",
     "@angular/ssr": "^17.2.1",
+    "@microsoft/signalr": "^8.0.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@popperjs/core": "^2.11.8",

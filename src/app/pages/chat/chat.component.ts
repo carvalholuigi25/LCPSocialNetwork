@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChatMessage, User } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { AlertsService, AuthService, ChatMessagesService, UsersService } from '@app/services';
+import { SignalRService } from '@app/services/signalrservice.service';
 
 @Component({
   selector: 'app-chat',
@@ -23,19 +24,35 @@ export class ChatComponent implements OnInit {
   isUserSelected: boolean = false;
   isChatEnabled: boolean = true;
 
-  constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService) {
+  constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService, private signalRService: SignalRService) {
     this.authService.user.subscribe((x: any) => {
       this.userId = x.usersInfo.userId;
     });
   }
 
   ngOnInit(): void {
+    this.loadSignalRHub();
     this.loadChatMessagesForm();
     this.getUsersList();
     this.getChatMessages();
   }
 
   get f() { return this.chatMessageForm.controls; }
+
+  loadSignalRHub() {
+    this.signalRService.closeConnection();
+    this.signalRService.startConnection();
+    this.getDataSignalR();
+  }
+
+  getDataSignalR() {
+    this.signalRService.addMessageListener();
+
+    this.signalRService.hubConnection.onreconnected((connectionId) => {
+      console.log(connectionId);
+      this.getChatMessages();
+    });
+  }
 
   loadChatMessagesForm() {
     this.chatMessageForm = new FormGroup({
@@ -82,7 +99,8 @@ export class ChatComponent implements OnInit {
           this.alertsService.openAlert(`Theres no messages to be deleted!`, 1, "info");
         }
 
-        window.location.reload();
+        this.chatMessageForm.reset();
+        this.getChatMessages();
       },
       error: (err) => { 
         console.log(err); 
@@ -115,16 +133,20 @@ export class ChatComponent implements OnInit {
       targetUserId: this.targetUserId ?? 2
     };
 
+    this.signalRService.sendMessage('SendMessage', this.usersList[chatmsgval.userId!-1].username, chatmsgval.description);
+
     this.chatMessagesService.createChatMessages(chatmsgval).subscribe({
       next: (v) => { 
-        this.alertsService.openAlert(`Created new message!`, 1, "success");
         console.log("Created new message!"); 
-        window.location.reload();
+        this.alertsService.openAlert(`Created new message!`, 1, "success");
+        this.chatMessageForm.reset();
+        this.getChatMessages();
+        // location.reload();
       },
       error: (err) => { 
         console.log(err); 
         this.alertsService.openAlert(`Error: ${err}`, 1, "error");
       }
-    })
+    });
   }
 }

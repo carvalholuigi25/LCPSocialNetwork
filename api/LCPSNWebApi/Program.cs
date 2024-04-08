@@ -155,10 +155,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsAllowAll", builder =>
     {
-        builder.AllowAnyMethod()
-               .AllowAnyOrigin()
-               .AllowAnyHeader()
-               .SetIsOriginAllowed(origin => true);
+        builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true);
     });
 });
 
@@ -223,7 +223,7 @@ else
 
 app.UseRewriter(new RewriteOptions().Add(new RedirectLowerCaseRule()));
 app.UseCors("CorsAllowAll");
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions
