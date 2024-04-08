@@ -10,6 +10,7 @@ export interface ChatMessage {
     commentId?: number | null;
     replyId?: number | null;
     userId: number | null;
+    targetUserId?: number | null;
     reactionId?: number | null;
     shareId?: number | null;
     attachmentId?: number | null;

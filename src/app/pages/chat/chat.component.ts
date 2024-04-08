@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ChatMessage, User } from '@app/models';
 import { SharedModule } from '@app/modules';
-import { AlertsService, ChatMessagesService, UsersService } from '@app/services';
+import { AlertsService, AuthService, ChatMessagesService, UsersService } from '@app/services';
 
 @Component({
   selector: 'app-chat',
@@ -14,6 +14,7 @@ import { AlertsService, ChatMessagesService, UsersService } from '@app/services'
 })
 export class ChatComponent implements OnInit {
   userId?: number = 1;
+  targetUserId?: number = 1;
   submitted!: boolean;
   chatMessage: ChatMessage | any;
   chatMessagesData: ChatMessage[] = [];
@@ -22,9 +23,9 @@ export class ChatComponent implements OnInit {
   isUserSelected: boolean = false;
   isChatEnabled: boolean = true;
 
-  constructor(private route: ActivatedRoute, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService) { 
-    this.route.params.subscribe(params => {
-      this.userId = params["userId"];
+  constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService) {
+    this.authService.user.subscribe((x: any) => {
+      this.userId = x.usersInfo.userId;
     });
   }
 
@@ -64,15 +65,23 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  talkToThisUser(uid: number = 1) {
-    this.userId = uid;
-    this.isUserSelected = this.userId === uid ? true : false;
+  talkToThisUser(event: Event, uid: number = 1) {
+    event.preventDefault();
+    this.targetUserId = uid;
+    this.chatMessageForm.patchValue({
+      description: "@" + this.usersList[this.targetUserId-1].username + " "
+    });
   }
 
   deleteAll() {
     this.chatMessagesService.deleteAllChatMessages().subscribe({
-      next: (v) => { 
-        this.alertsService.openAlert(`Deleted all messages!`, 1, "success");
+      next: (v) => {
+        if(this.chatMessagesData.length > 0) {
+          this.alertsService.openAlert(`Deleted all messages!`, 1, "success");
+        } else {
+          this.alertsService.openAlert(`Theres no messages to be deleted!`, 1, "info");
+        }
+
         window.location.reload();
       },
       error: (err) => { 
@@ -102,7 +111,8 @@ export class ChatComponent implements OnInit {
       reactionId: 0,
       shareId: 0,
       attachmentId: 0,
-      userId: parseInt(this.userId!.toString(), 0) ?? 1
+      userId: this.userId ?? 1,
+      targetUserId: this.targetUserId ?? 2
     };
 
     this.chatMessagesService.createChatMessages(chatmsgval).subscribe({

@@ -3,12 +3,19 @@
     flex-direction: row;
     background: white;
     color: black;
+    border-radius: 15px;
 
     .muserslistblk {
         display: block;
+        border-radius: inherit;
+        padding: 15px;
 
         .userslistblk {
             display: block;
+
+            .userslistitem {
+                cursor: pointer;
+            }
 
             ul, ol {
                 list-style-position: inside;
@@ -28,6 +35,8 @@
 
     .mchatmsgsblk {
         display: block;
+        border-radius: inherit;
+        padding: 15px;
 
         .chatmsgsblk {
             display: block;

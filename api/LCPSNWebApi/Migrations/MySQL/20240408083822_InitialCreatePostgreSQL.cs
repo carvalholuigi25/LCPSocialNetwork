@@ -242,6 +242,7 @@ namespace LCPSNWebApi.Migrations.MySQL
                     CommentId = table.Column<int>(type: "int", nullable: true),
                     ReplyId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: true),
+                    TargetUserId = table.Column<int>(type: "int", nullable: true),
                     ReactionId = table.Column<int>(type: "int", nullable: true),
                     ShareId = table.Column<int>(type: "int", nullable: true),
                     AttachmentId = table.Column<int>(type: "int", nullable: true)
@@ -360,8 +361,8 @@ namespace LCPSNWebApi.Migrations.MySQL
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "PhoneNumber", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
                 values: new object[,]
                 {
-                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 3, 23, 11, 53, 29, 326, DateTimeKind.Utc).AddTicks(4185), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$bY3HMpK9T0HzkK8BXCVM9.79usGulEmFBbVzXylHZWZ96rugC1eWW", "123456789", null, new DateTime(2024, 3, 23, 11, 53, 29, 326, DateTimeKind.Utc).AddTicks(4198), "Administrator", "public", "admin" },
-                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 3, 23, 11, 53, 29, 653, DateTimeKind.Utc).AddTicks(1923), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$W65AaUM1G.ZAiL3/yI2G2.JamrHnNTXoX3RpEC9tL0L4V7PHu42ee", "123456789", null, new DateTime(2024, 3, 23, 11, 53, 29, 653, DateTimeKind.Utc).AddTicks(1934), "Guest", "public", "guest" }
+                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 8, 8, 38, 21, 672, DateTimeKind.Utc).AddTicks(2685), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$mewLhurjwo11lMKrIsJDa.7skdXGRWigD4v4dGfq7fYbL1rQ.oWYi", "123456789", null, new DateTime(2024, 4, 8, 8, 38, 21, 672, DateTimeKind.Utc).AddTicks(2693), "Administrator", "public", "admin" },
+                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 8, 8, 38, 22, 3, DateTimeKind.Utc).AddTicks(4489), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$4sYfBcXackUQ6HSo.01WKeSDbA5z5dnxXcuwh8TNUP1iUfO2V27vq", "123456789", null, new DateTime(2024, 4, 8, 8, 38, 22, 3, DateTimeKind.Utc).AddTicks(4500), "Guest", "public", "guest" }
                 });
 
             migrationBuilder.CreateIndex(

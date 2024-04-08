@@ -199,9 +199,9 @@ app.UseSwaggerUI(options =>
 
 if (app.Environment.IsDevelopment())
 {
-    var isMigServiceScopeEnabled = false;
+    var isApplyMigAtRuntime = false;
 
-    if(isMigServiceScopeEnabled)
+    if(isApplyMigAtRuntime)
     {
         using (var serviceScope = app.Services.CreateScope())
         {

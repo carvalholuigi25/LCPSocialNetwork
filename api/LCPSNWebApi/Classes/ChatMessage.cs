@@ -20,6 +20,7 @@ public class ChatMessage
     public int? CommentId { get; set; } = 1;
     public int? ReplyId { get; set; } = 1;
     public int? UserId { get; set; } = 1;
+    public int? TargetUserId { get; set; } = 1;
     public int? ReactionId { get; set; } = 1;
     public int? ShareId { get; set; } = 1;
     public int? AttachmentId { get; set; } = 1;

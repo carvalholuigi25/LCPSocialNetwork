@@ -39,6 +39,25 @@
         color: $color;
     }
 
+    .mchatblk {
+        -webkit-backdrop-filter: $backDropFilter;
+        backdrop-filter: $backDropFilter;
+        background-color: $bkgColorPrimary;
+        border: $border;
+        color: $color;
+    }
+
+    .muserslistblk, .mchatmsgsblk {
+        background-color: $bkgColorSecondary;
+        border-color: $color;
+        color: $color;
+
+        #description, #description::placeholder {
+            color: $color !important;
+            border-color: $color !important;
+        }
+    }
+
     .postlist {
         .post_avatar_blk {
             img {
@@ -93,6 +112,10 @@
         }
     }
 
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder {
+        color: inherit;
+    }
+
     .mat-mdc-tab-group {
         --mat-tab-header-active-label-text-color: $color;
         --mat-tab-header-inactive-label-text-color: $color;
@@ -114,8 +137,9 @@
 
     form {
         * {
-            color: $color !important;
-            border-color: $color !important;
+            color: inherit;
+            border-color: inherit;
+            caret-color: inherit;
         }
 
         .form-control:focus {
