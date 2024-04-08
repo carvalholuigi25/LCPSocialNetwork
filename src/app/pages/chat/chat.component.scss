@@ -17,6 +17,21 @@
                 cursor: pointer;
             }
 
+            .userstitle {
+                flex-wrap: wrap;
+                font-size: 1rem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                max-width: 100px;
+
+                &:hover {
+                    text-overflow: clip;
+                    white-space: normal;
+                    max-width: 100%;
+                }
+            }
+
             ul, ol {
                 list-style-position: inside;
 

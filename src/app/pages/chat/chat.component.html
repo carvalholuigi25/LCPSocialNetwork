@@ -7,8 +7,8 @@
                         <mat-card class="userslistitem" *ngFor="let usersx of usersList" class="mt-3">
                             <mat-card-header class="p-3" (click)="talkToThisUser($event, usersx.userId)">
                               <mat-card-title-group class="align-items-center">
-                                <mat-card-title>{{usersx.firstName + " " + usersx.lastName}}</mat-card-title>
-                                <img mat-card-sm-image src="assets/{{usersx.avatarUrl}}" class="img-fluid img-rounded img-avatar" width="50" height="50" />
+                                <mat-card-title class="userstitle">{{usersx.firstName + " " + usersx.lastName}}</mat-card-title>
+                                <img src="assets/{{usersx.avatarUrl}}" class="img-fluid img-rounded img-avatar" width="50" height="50" />
                               </mat-card-title-group>
                             </mat-card-header>
                         </mat-card>
