@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChatMessage, User } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { AlertsService, AuthService, ChatMessagesService, UsersService } from '@app/services';
-import * as signalR from '@microsoft/signalr';
 
 @Component({
   selector: 'app-chat',
@@ -33,32 +32,10 @@ export class ChatComponent implements OnInit {
     this.loadChatMessagesForm();
     this.getUsersList();
     this.getChatMessages();
-    this.loadSignalRHub();
+    this.chatMessagesService.loadSignalRStuff();
   }
 
   get f() { return this.chatMessageForm.controls; }
-
-  loadSignalRHub() {
-    const connection = new signalR.HubConnectionBuilder()  
-      .configureLogging(signalR.LogLevel.Debug)
-      .withUrl('http://localhost:5001/chathub')
-      .withAutomaticReconnect()
-      .build();  
-  
-    connection.start().then(function () {  
-      console.log('SignalR Connected!');  
-    }).catch(function (err) {  
-      return console.error(err.toString());  
-    });  
-  
-    connection.on("SendMessage", () => {  
-      this.getChatMessages();  
-    });
-
-    connection.onreconnected(() => {
-      this.getChatMessages();
-    })
-  }
 
   loadChatMessagesForm() {
     this.chatMessageForm = new FormGroup({
@@ -107,6 +84,7 @@ export class ChatComponent implements OnInit {
 
         this.chatMessageForm.reset();
         this.getChatMessages();
+        location.reload();
       },
       error: (err) => { 
         console.log(err); 
@@ -145,7 +123,7 @@ export class ChatComponent implements OnInit {
         this.alertsService.openAlert(`Created new message!`, 1, "success");
         this.chatMessageForm.reset();
         this.getChatMessages();
-        // location.reload();
+        location.reload();
       },
       error: (err) => { 
         console.log(err); 

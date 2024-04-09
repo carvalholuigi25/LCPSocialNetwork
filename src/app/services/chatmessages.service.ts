@@ -4,9 +4,12 @@ import { environment } from '@environments/environment';
 import { ChatMessage } from '../models';
 import { DOCUMENT } from '@angular/common';
 import { catchError, throwError } from 'rxjs';
+import * as signalR from '@microsoft/signalr';
 
 @Injectable({ providedIn: 'root' })
 export class ChatMessagesService {
+    private hubConnection!: signalR.HubConnection;
+
     private ls: Storage | undefined;
 
     constructor(
@@ -49,6 +52,28 @@ export class ChatMessagesService {
 
     deleteAllChatMessages() {
         return this.http.delete<ChatMessage>(`${environment.apiUrl}/chatmessage/all`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    loadSignalRStuff() {
+        this.hubConnection = new signalR.HubConnectionBuilder()
+            .configureLogging(environment.production ? signalR.LogLevel.Information : signalR.LogLevel.Debug)
+            .withUrl('http://localhost:5001/chathub')
+            .withAutomaticReconnect()
+            .build();
+
+        this.hubConnection.start().then(function () {  
+            console.log('ChatHub Connected!');
+        }).catch(function (err) {  
+            return console.error(err.toString());  
+        });
+
+        this.hubConnection.on("SendMessage", () => {
+            this.getAll();
+        });
+
+        this.hubConnection.onreconnected(() => {
+            this.getAll();
+        });
     }
 
     /* istanbul ignore next */

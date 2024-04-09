@@ -239,6 +239,5 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.MapControllers();
 app.MapHub<ChatHub>("/chathub");
-app.MapHub<DataSendHub>("/datasendhub");
 
 app.Run();
