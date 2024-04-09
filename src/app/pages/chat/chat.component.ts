@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { ChatMessage, User } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { AlertsService, AuthService, ChatMessagesService, UsersService } from '@app/services';
-import { SignalRService } from '@app/services/signalrservice.service';
+import * as signalR from '@microsoft/signalr';
 
 @Component({
   selector: 'app-chat',
@@ -24,34 +23,41 @@ export class ChatComponent implements OnInit {
   isUserSelected: boolean = false;
   isChatEnabled: boolean = true;
 
-  constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService, private signalRService: SignalRService) {
+  constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService) {
     this.authService.user.subscribe((x: any) => {
       this.userId = x.usersInfo.userId;
     });
   }
 
   ngOnInit(): void {
-    this.loadSignalRHub();
     this.loadChatMessagesForm();
     this.getUsersList();
     this.getChatMessages();
+    this.loadSignalRHub();
   }
 
   get f() { return this.chatMessageForm.controls; }
 
   loadSignalRHub() {
-    this.signalRService.closeConnection();
-    this.signalRService.startConnection();
-    this.getDataSignalR();
-  }
-
-  getDataSignalR() {
-    this.signalRService.addMessageListener();
-
-    this.signalRService.hubConnection.onreconnected((connectionId) => {
-      console.log(connectionId);
-      this.getChatMessages();
+    const connection = new signalR.HubConnectionBuilder()  
+      .configureLogging(signalR.LogLevel.Debug)
+      .withUrl('http://localhost:5001/chathub')
+      .withAutomaticReconnect()
+      .build();  
+  
+    connection.start().then(function () {  
+      console.log('SignalR Connected!');  
+    }).catch(function (err) {  
+      return console.error(err.toString());  
+    });  
+  
+    connection.on("SendMessage", () => {  
+      this.getChatMessages();  
     });
+
+    connection.onreconnected(() => {
+      this.getChatMessages();
+    })
   }
 
   loadChatMessagesForm() {
@@ -132,8 +138,6 @@ export class ChatComponent implements OnInit {
       userId: this.userId ?? 1,
       targetUserId: this.targetUserId ?? 2
     };
-
-    this.signalRService.sendMessage('SendMessage', this.usersList[chatmsgval.userId!-1].username, chatmsgval.description);
 
     this.chatMessagesService.createChatMessages(chatmsgval).subscribe({
       next: (v) => { 

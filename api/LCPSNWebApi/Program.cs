@@ -155,10 +155,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsAllowAll", builder =>
     {
-        builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true);
+        builder.WithOrigins("http://localhost:4200")
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials();
     });
 });
 

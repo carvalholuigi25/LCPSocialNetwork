@@ -13,6 +13,8 @@ using LCPSNWebApi.Library.Resources;
 using Microsoft.Data.Sqlite;
 using MySqlConnector;
 using Npgsql;
+using LCPSNWebApi.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace LCPSNWebApi.Services
 {
@@ -21,12 +23,14 @@ namespace LCPSNWebApi.Services
         private readonly IStringLocalizer<MyResources> _localizer;
         private readonly DBContext _context;
         private IConfiguration _configuration;
+         private readonly IHubContext<ChatHub, IChatHub> _hubContext;
 
-        public ChatMessageService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> localizer)
+        public ChatMessageService(DBContext context, IConfiguration configuration, IStringLocalizer<MyResources> localizer, IHubContext<ChatHub, IChatHub> hubContext)
         {
             _context = context;
             _configuration = configuration;
             _localizer = localizer;
+            _hubContext = hubContext;
         }
 
         public async Task<ActionResult<IEnumerable<ChatMessage>>> GetChatMessages()
@@ -73,6 +77,7 @@ namespace LCPSNWebApi.Services
             try
             {
                 await _context.SaveChangesAsync();
+                await _hubContext.Clients.All.SendMessage();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -98,6 +103,7 @@ namespace LCPSNWebApi.Services
 
             _context.ChatMessages.Add(ChatMessagesData);
             await _context.SaveChangesAsync();
+            await _hubContext.Clients.All.SendMessage();
 
             return await GetChatMessages();
             // return CreatedAtAction("GetChatMessagesById", new { id = ChatMessagesData.ChatMessageId }, ChatMessagesData);
@@ -119,6 +125,7 @@ namespace LCPSNWebApi.Services
             _context.ChatMessages.Remove(ChatMessages);
             await _context.SaveChangesAsync();
             await ResetIdSeed(_context.ChatMessages.Count());
+            await _hubContext.Clients.All.SendMessage();
 
             return NoContent();
         }
@@ -139,6 +146,7 @@ namespace LCPSNWebApi.Services
             _context.ChatMessages.RemoveRange(ChatMessages);
             await _context.SaveChangesAsync();
             await ResetIdSeed(_context.ChatMessages.Count());
+            await _hubContext.Clients.All.SendMessage();
 
             return NoContent();
         }
