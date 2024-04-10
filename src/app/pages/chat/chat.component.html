@@ -88,8 +88,7 @@
                     <div class="form-group mt-3">
                         <button type="button" mat-flat-button color="warn" (click)="deleteAll()">Delete all</button>
                         <button type="reset" mat-flat-button color="primary" class="ms-3">Clear</button>
-                        <button type="button" mat-flat-button color="accent" class="ms-3"
-                            (click)="reload()">Reload</button>
+                        <button type="button" mat-flat-button color="accent" class="ms-3" (click)="reload()" [disabled]="!enableForceReload">Reload</button>
                     </div>
                 </form>
             </div>

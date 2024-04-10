@@ -4,8 +4,9 @@ import { ChatMessage, User } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { AlertsService, AuthService, ChatMessagesService, UsersService } from '@app/services';
 import { environment } from '@environments/environment';
-import { Observable, filter, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import * as signalR from '@microsoft/signalr';
+
 @Component({
   selector: 'app-chat',
   standalone: true,
@@ -21,9 +22,10 @@ export class ChatComponent implements OnInit {
   chatMessageForm!: FormGroup;
   isUserSelected: boolean = false;
   isChatEnabled: boolean = true;
+  enableForceReload: boolean = true;
+  hubConnection!: signalR.HubConnection;
   usersList$: Observable<User[] | any> = new Observable<User[] | any>();
   chatMessagesData$: Observable<ChatMessage[]> = new Observable<ChatMessage[]>();
-  hubConnection!: signalR.HubConnection;
 
   constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService) {
     this.authService.user.subscribe((x: any) => {
@@ -122,23 +124,32 @@ export class ChatComponent implements OnInit {
         .withUrl('http://localhost:5001/chathub')
         .withAutomaticReconnect()
         .build();
+    
+    this.hubConnection.start().then(() => { 
+      console.log('ChatHub Connected!');
+      console.log('Connection ID: ' + this.hubConnection.connectionId);
+      console.log('Connection State: ' + this.hubConnection.state);
 
-    this.hubConnection.start().then(function () {  
-        console.log('ChatHub Connected!');
-    }).catch(function (err) {  
-        return console.error(err.toString());  
-    });
+      this.hubConnection.on("ReceiveMessage", () => {
+        this.getChatMessages();
+      });
+  
+      this.hubConnection.onreconnected(() => {
+        console.log("Reconnected!");
+        this.getChatMessages();
+      });
 
-    this.hubConnection.on("ReceiveMessage", () => {
-      this.getChatMessages();
-    });
-
-    this.hubConnection.onreconnected(() => {
-      this.getChatMessages();
+      this.hubConnection.onclose(() => {
+        console.log("Disconnected!");
+      });
+    }).catch((err) => {  
+      return console.error(err.toString());  
     });
   }
 
   reload() {
-    location.reload();
+    if(this.enableForceReload == true) {
+      location.reload();
+    }
   }
 }
