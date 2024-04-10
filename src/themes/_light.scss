@@ -5,6 +5,14 @@
     $color: black;
     $colorSecondary: white;
 
+    ::ng-deep .errblk {
+        color: $color;
+    }
+
+    .mat-mdc-card-subtitle~.mat-mdc-card-title, .mat-mdc-card-title~.mat-mdc-card-subtitle, .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-title, .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-subtitle, .mat-mdc-card-title-group .mat-mdc-card-title, .mat-mdc-card-title-group .mat-mdc-card-subtitle {
+        color: $color;
+    }
+
     .colhome {
         background-color: $bkgColorPrimary;
         color: $color;
@@ -38,12 +46,20 @@
             border-color: $color !important;
             box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
         }
+
+        .chatmsgsblk {
+            background-color: rgb(225 225 225) !important;
+        }
     }
 
     .muserslistblk, .mchatmsgsblk {
         background-color: $bkgColorSecondary;
         border-color: $color;
         color: $color;
+
+        .mat-mdc-text-field-wrapper {
+            background-color: rgb(225 225 225);
+        }
 
         #description, #description::placeholder {
             color: $color !important;

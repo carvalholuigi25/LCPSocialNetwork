@@ -135,7 +135,7 @@ export class ChatComponent implements OnInit {
         return console.error(err.toString());  
     });
 
-    hubConnection.on("SendMessage", () => {
+    hubConnection.on("ReceiveChanges", () => {
       this.getChatMessages();
     });
 

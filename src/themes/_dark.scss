@@ -3,6 +3,14 @@
     $bkgColorSecondary: rgba(20, 20, 20, .5);
     $bkgColorSecondaryFullOp: rgba(20, 20, 20, 1);
     $color: white;
+
+    ::ng-deep .errblk {
+        color: $color;
+    }
+
+    .mat-mdc-card-subtitle~.mat-mdc-card-title, .mat-mdc-card-title~.mat-mdc-card-subtitle, .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-title, .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-subtitle, .mat-mdc-card-title-group .mat-mdc-card-title, .mat-mdc-card-title-group .mat-mdc-card-subtitle {
+        color: $color;
+    }
     
     .colhome {
         background-color: $bkgColorSecondary;
@@ -37,12 +45,20 @@
             border-color: $color !important;
             box-shadow: 0px 2px 1px -1px rgba(255, 255, 255, 0.2), 0px 1px 1px 0px rgba(255, 255, 255, 0.14), 0px 1px 3px 0px rgba(255, 255, 255, 0.12);
         }
+
+        .chatmsgsblk {
+            background-color: $bkgColorPrimary !important;
+        }
     }
 
     .muserslistblk, .mchatmsgsblk {
         background-color: $bkgColorSecondaryFullOp;
         border-color: $color;
         color: $color;
+
+        .mat-mdc-text-field-wrapper {
+            background-color: $bkgColorPrimary;
+        }
 
         #description, #description::placeholder {
             color: $color !important;

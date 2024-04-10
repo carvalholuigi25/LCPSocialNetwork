@@ -62,6 +62,7 @@ builder.Services.AddScoped<IPost, PostService>();
 builder.Services.AddScoped<IComment, CommentService>();
 builder.Services.AddScoped<IAttachment, AttachmentService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddTransient<IChatHub, ChatHub>();
 
 builder.Services.AddAuthentication(opt => {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

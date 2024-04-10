@@ -1,5 +1,6 @@
 @mixin setContentGlass {
     $bkgColorPrimary: rgba(17, 25, 40, 0.75);
+    $bkgColorPrimaryOp: rgba(17, 25, 40, .5);
     $bkgColorSecondary: transparent;
     $backDropFilter: blur(16px) saturate(180%);
     $border: 1px solid rgba(255, 255, 255, 0.125);
@@ -9,6 +10,14 @@
     $bkgPosition: center center;
     $bkgRepeat: no-repeat;
     $bkgSize: cover;
+
+    ::ng-deep .errblk {
+        color: $color;
+    }
+
+    .mat-mdc-card-subtitle~.mat-mdc-card-title, .mat-mdc-card-title~.mat-mdc-card-subtitle, .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-title, .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-subtitle, .mat-mdc-card-title-group .mat-mdc-card-title, .mat-mdc-card-title-group .mat-mdc-card-subtitle {
+        color: $color;
+    }
 
     .colhome {
         background-color: $bkgColorSecondary;
@@ -45,12 +54,20 @@
         background-color: $bkgColorPrimary;
         border: $border;
         color: $color;
+
+        .chatmsgsblk {
+            background-color: $bkgColorPrimaryOp !important;
+        }
     }
 
     .muserslistblk, .mchatmsgsblk {
         background-color: $bkgColorSecondary;
         border-color: $color;
         color: $color;
+
+        .mat-mdc-text-field-wrapper {
+            background-color: $bkgColorPrimary;
+        }
 
         #description, #description::placeholder {
             color: $color !important;

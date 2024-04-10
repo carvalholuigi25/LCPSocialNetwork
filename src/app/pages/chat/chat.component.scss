@@ -55,6 +55,11 @@
 
         .chatmsgsblk {
             display: block;
+            background-color: #3f51b5;
+            border-radius: inherit;
+            padding: 15px;
+            max-height: 600px;
+            overflow: auto;
         }
 
         .chatmsgform {
