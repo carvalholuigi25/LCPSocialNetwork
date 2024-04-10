@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ChatMessage, User } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { AlertsService, AuthService, ChatMessagesService, UsersService } from '@app/services';
 import { environment } from '@environments/environment';
+import { Observable, filter, map } from 'rxjs';
 import * as signalR from '@microsoft/signalr';
-import { Observable } from 'rxjs';
-
 @Component({
   selector: 'app-chat',
   standalone: true,
@@ -20,13 +18,14 @@ export class ChatComponent implements OnInit {
   targetUserId?: number = 1;
   submitted!: boolean;
   chatMessage: ChatMessage | any;
-  chatMessagesData$: Observable<ChatMessage[]> = new Observable<ChatMessage[]>();
-  usersList: User[] | any = [];
   chatMessageForm!: FormGroup;
   isUserSelected: boolean = false;
   isChatEnabled: boolean = true;
+  usersList$: Observable<User[] | any> = new Observable<User[] | any>();
+  chatMessagesData$: Observable<ChatMessage[]> = new Observable<ChatMessage[]>();
+  hubConnection!: signalR.HubConnection;
 
-  constructor(private router: Router, private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService) {
+  constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService) {
     this.authService.user.subscribe((x: any) => {
       this.userId = x.usersInfo.userId;
     });
@@ -48,25 +47,18 @@ export class ChatComponent implements OnInit {
   }
 
   getUsersList() {
-    this.usersService.getAll().subscribe({
-      next: (r) => {
-        this.usersList = r;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+    this.usersList$ = this.usersService.getAll();
   }
 
   getChatMessages() {
     this.chatMessagesData$ = this.chatMessagesService.getAll();
   }
 
-  talkToThisUser(event: Event, uid: number = 1) {
+  talkToThisUser(event: Event, uid: number = 1, username: string) {
     event.preventDefault();
     this.targetUserId = uid;
     this.chatMessageForm.patchValue({
-      description: "@" + this.usersList[this.targetUserId-1].username + " "
+      description: `@${username} `
     });
   }
 
@@ -76,6 +68,7 @@ export class ChatComponent implements OnInit {
         this.alertsService.openAlert(`Deleted all messages!`, 1, "success");
         this.chatMessageForm.reset();
         this.getChatMessages();
+        this.reload();
       },
       error: (err) => { 
         console.log(err); 
@@ -114,6 +107,7 @@ export class ChatComponent implements OnInit {
         this.alertsService.openAlert(`Created new message!`, 1, "success");
         this.chatMessageForm.reset();
         this.getChatMessages();
+        this.reload();
       },
       error: (err) => { 
         console.log(err); 
@@ -123,23 +117,23 @@ export class ChatComponent implements OnInit {
   }
 
   loadSignalRStuff() {
-    const hubConnection = new signalR.HubConnectionBuilder()
+    this.hubConnection = new signalR.HubConnectionBuilder()
         .configureLogging(environment.production ? signalR.LogLevel.Information : signalR.LogLevel.Debug)
         .withUrl('http://localhost:5001/chathub')
         .withAutomaticReconnect()
         .build();
 
-    hubConnection.start().then(function () {  
+    this.hubConnection.start().then(function () {  
         console.log('ChatHub Connected!');
     }).catch(function (err) {  
         return console.error(err.toString());  
     });
 
-    hubConnection.on("ReceiveChanges", () => {
+    this.hubConnection.on("ReceiveMessage", () => {
       this.getChatMessages();
     });
 
-    hubConnection.onreconnected(() => {
+    this.hubConnection.onreconnected(() => {
       this.getChatMessages();
     });
   }
