@@ -6,6 +6,7 @@ import { AlertsService, AuthService, ChatMessagesService, UsersService } from '@
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 import * as signalR from '@microsoft/signalr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chat',
@@ -26,8 +27,9 @@ export class ChatComponent implements OnInit {
   hubConnection!: signalR.HubConnection;
   usersList$: Observable<User[] | any> = new Observable<User[] | any>();
   chatMessagesData$: Observable<ChatMessage[]> = new Observable<ChatMessage[]>();
+  today: string = new Date().toISOString();
 
-  constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService) {
+  constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService, public translateService: TranslateService) {
     this.authService.user.subscribe((x: any) => {
       this.userId = x.usersInfo.userId;
     });

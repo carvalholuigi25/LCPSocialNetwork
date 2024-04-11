@@ -2,7 +2,7 @@
     <div class="row">
         @if(!!isChatEnabled) {
         <div class="col-12 mchatblk p-3">
-            <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 muserslistblk">
+            <div class="col-12 col-md-12 col-lg-3 col-xl-3 col-xxl-3 muserslistblk">
                 <div class="userslistblk" *ngIf="(usersList$ | async) as myuserslistm">
                     <div *ngIf="myuserslistm.length > 0">
                         <mat-card class="userslistitem" *ngFor="let usersx of myuserslistm" class="mt-3">
@@ -26,30 +26,33 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-9 col-xl-9 col-xxl-9 mchatmsgsblk">
+            <div class="col-12 col-md-12 col-lg-9 col-xl-9 col-xxl-9 mchatmsgsblk">
                 <div class="chatmsgsblk" *ngIf="(chatMessagesData$ | async) as mychtmsg">
                     <div *ngIf="(usersList$ | async) as myuserslist">
                         <div *ngIf="myuserslist.length > 0">
                             <div *ngIf="mychtmsg.length > 0">
                                 <div *ngFor="let chmsgs of mychtmsg">
                                     <div *ngFor="let chusers of myuserslist">
-                                        <div *ngIf="chusers.userId == chmsgs.userId">
-                                            <mat-card class="mt-3 mb-3">
-                                                <mat-card-header class="align-items-center">
-                                                    <img src="assets/{{chusers.avatarUrl}}"
-                                                        class="img-fluid img-rounded img-avatar" width="50" height="50"
-                                                        mat-card-avatar class="m-0" />
-                                                    <mat-card-title>
-                                                        {{chusers.firstName + ' ' + chusers.lastName}}
-                                                    </mat-card-title>
-                                                    <mat-card-subtitle>
-                                                        {{chmsgs.dateChatMessageCreated | date: 'long'}}
-                                                    </mat-card-subtitle>
-                                                </mat-card-header>
-                                                <mat-card-content class="mt-3">
-                                                    {{chmsgs.description}}
-                                                </mat-card-content>
-                                            </mat-card>
+                                        <div *ngIf="chusers.userId == chmsgs.userId" class="subchatmsgsblk">
+                                            <div [classList]="chmsgs.chatMessageId! % 2 == 0 ? 'sender': 'receiver'">
+                                                <img src="assets/{{chusers.avatarUrl}}" class="img-fluid img-rounded img-avatar" width="50" height="50" mat-card-avatar class="m-0" />
+
+                                                <mat-card class="mt-3 mb-3">
+                                                    <mat-card-header class="align-items-center">
+                                                        <mat-card-title>
+                                                            {{chusers.firstName + ' ' + chusers.lastName}}
+                                                        </mat-card-title>
+                                                    </mat-card-header>
+                                                    <mat-card-content class="mt-3">
+                                                        {{chmsgs.description}}
+                                                    </mat-card-content>
+                                                    <mat-card-footer class="mt-3 ps-3 pe-3 pb-3">
+                                                        <mat-card-subtitle>
+                                                            {{chmsgs.dateChatMessageCreated | date: 'full' : '' : translateService.currentLang }}
+                                                        </mat-card-subtitle>
+                                                    </mat-card-footer>
+                                                </mat-card>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

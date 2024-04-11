@@ -60,6 +60,54 @@
             padding: 15px;
             max-height: 600px;
             overflow: auto;
+
+            .subchatmsgsblk {
+                display: flex;
+                flex-direction: row;
+                justify-content: stretch;
+                align-items: stretch;
+            
+                .mat-mdc-card-avatar, .img-avatar, img {
+                    position: relative;
+                }
+        
+                .mat-mdc-card {
+                    width: 100%;
+                    border-radius: 25px;
+                    border-top-left-radius: 0px;
+                    margin: 7px;
+                }
+
+                .sender {
+                    display: inherit;
+                    width: 100%;
+
+                    .mat-mdc-card-avatar, .img-avatar, img {
+                        order: 0 !important;
+                    }
+            
+                    .mat-mdc-card {
+                        order: 1 !important;
+                        border-top-left-radius: 0px;
+                        border-top-right-radius: 25px;
+                    }
+                }
+
+                .receiver {
+                    display: inherit;
+                    width: 100%;
+
+                    .mat-mdc-card-avatar, .img-avatar, img {
+                        order: 1 !important;
+                    }
+            
+                    .mat-mdc-card {
+                        order: 0 !important;
+                        border-top-right-radius: 0px;
+                        border-top-left-radius: 25px;
+                    }
+                }
+            }
         }
 
         .chatmsgform {
@@ -70,7 +118,7 @@
     }
 }
 
-@media all and (width <= 768px) {
+@media all and (width <= 992px) {
     .mchatblk {
         flex-direction: column;
     }

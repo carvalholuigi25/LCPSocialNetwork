@@ -9,6 +9,7 @@ import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 import {NgcCookieConsentConfig, provideNgcCookieConsent} from 'ngx-cookieconsent';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import './locales';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

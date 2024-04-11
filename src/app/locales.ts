@@ -1,0 +1,11 @@
+import '@angular/common/locales/global/de';
+import '@angular/common/locales/global/en';
+import '@angular/common/locales/global/en-GB';
+import '@angular/common/locales/global/es';
+import '@angular/common/locales/global/fr';
+import '@angular/common/locales/global/haw';
+import '@angular/common/locales/global/it';
+import '@angular/common/locales/global/ja';
+import '@angular/common/locales/global/pt-PT';
+import '@angular/common/locales/global/ru';
+import '@angular/common/locales/global/uk';
