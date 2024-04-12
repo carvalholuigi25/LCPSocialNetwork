@@ -78,22 +78,7 @@
                     margin: 7px;
                 }
 
-                .sender {
-                    display: inherit;
-                    width: 100%;
-
-                    .mat-mdc-card-avatar, .img-avatar, img {
-                        order: 0 !important;
-                    }
-            
-                    .mat-mdc-card {
-                        order: 1 !important;
-                        border-top-left-radius: 0px;
-                        border-top-right-radius: 25px;
-                    }
-                }
-
-                .receiver {
+                .sent {
                     display: inherit;
                     width: 100%;
 
@@ -105,6 +90,21 @@
                         order: 0 !important;
                         border-top-right-radius: 0px;
                         border-top-left-radius: 25px;
+                    }
+                }
+
+                .received {
+                    display: inherit;
+                    width: 100%;
+
+                    .mat-mdc-card-avatar, .img-avatar, img {
+                        order: 0 !important;
+                    }
+            
+                    .mat-mdc-card {
+                        order: 1 !important;
+                        border-top-left-radius: 0px;
+                        border-top-right-radius: 25px;
                     }
                 }
             }

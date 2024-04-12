@@ -102,6 +102,9 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                     b.Property<int?>("CommentId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("ConnectionId")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("DateChatMessageCreated")
                         .HasColumnType("timestamp without time zone");
 
@@ -135,6 +138,9 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
                     b.Property<int?>("TargetUserId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("TypeMsg")
+                        .HasColumnType("text");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
@@ -627,14 +633,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 4, 8, 8, 37, 59, 254, DateTimeKind.Utc).AddTicks(7650),
+                            DateAccountCreated = new DateTime(2024, 4, 12, 9, 29, 18, 925, DateTimeKind.Utc).AddTicks(5532),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$Es8r2Ei.fN5ZstQxI9w2B.PK0cUpTKBvv6hl9MTlvl3DG.YEPhp0e",
+                            Password = "$2a$12$izaQjiUY106stD8gbGjefOACncF.aWWkjBpsdwof7Duh1RGzizahi",
                             PhoneNumber = "123456789",
-                            RefreshTokenExpiryTime = new DateTime(2024, 4, 8, 8, 37, 59, 254, DateTimeKind.Utc).AddTicks(7657),
+                            RefreshTokenExpiryTime = new DateTime(2024, 4, 12, 9, 29, 18, 925, DateTimeKind.Utc).AddTicks(5542),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
@@ -645,14 +651,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             AvatarUrl = "images/users/avatars/guest.png",
                             Biography = "Hello, I'm Guest.",
                             CoverUrl = "images/users/covers/guest_cover.jpeg",
-                            DateAccountCreated = new DateTime(2024, 4, 8, 8, 37, 59, 568, DateTimeKind.Utc).AddTicks(1077),
+                            DateAccountCreated = new DateTime(2024, 4, 12, 9, 29, 19, 302, DateTimeKind.Utc).AddTicks(5613),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "guest@localhost.loc",
                             FirstName = "Guest",
                             LastName = "Convidado",
-                            Password = "$2a$12$FoBm1o6x6v1M/RArxsiBdOR.VirKgXcf6afZouvRHsChmmltoh0Ze",
+                            Password = "$2a$12$gYL1v2EH.IPW0Zwpd450Oe56oIe0r0WLHJhijmHHeUTpwb5l5JxOO",
                             PhoneNumber = "123456789",
-                            RefreshTokenExpiryTime = new DateTime(2024, 4, 8, 8, 37, 59, 568, DateTimeKind.Utc).AddTicks(1087),
+                            RefreshTokenExpiryTime = new DateTime(2024, 4, 12, 9, 29, 19, 302, DateTimeKind.Utc).AddTicks(5621),
                             Role = "Guest",
                             Status = "public",
                             Username = "guest"
