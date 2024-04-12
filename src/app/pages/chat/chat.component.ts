@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
   hubConnection!: signalR.HubConnection;
   usersList$: Observable<User[] | any> = new Observable<User[] | any>();
   chatMessagesData$: Observable<ChatMessage[]> = new Observable<ChatMessage[]>();
+  typeMsg: string = "sent";
 
   constructor(private authService: AuthService, private chatMessagesService: ChatMessagesService, private usersService: UsersService, private alertsService: AlertsService, public translateService: TranslateService) {
     this.authService.user.subscribe((x: any) => {
@@ -55,6 +56,19 @@ export class ChatComponent implements OnInit {
 
   getChatMessages() {
     this.chatMessagesData$ = this.chatMessagesService.getAll();
+
+    this.chatMessagesData$.subscribe({
+      next: (msg: ChatMessage[]) => {
+        msg.forEach(element => {
+          if(new Date(element.dateChatMessageCreated!.toString()).getUTCSeconds() !== new Date().getUTCSeconds()) {
+            this.typeMsg = "received";
+          } else {
+            this.typeMsg = "sent";
+          }
+        });
+      },
+      error: (err) => console.log(err)
+    });
   }
 
   talkToThisUser(event: Event, uid: number = 1, username: string) {
@@ -91,7 +105,7 @@ export class ChatComponent implements OnInit {
       description: this.f["description"].value!.toString(),
       status: 'public',
       isRead: false,
-      typeMsg: 'sent',
+      typeMsg: this.typeMsg,
       dateChatMessageCreated: new Date().toISOString(),
       dateChatMessageUpdated: new Date().toISOString(),
       dateChatMessageDeleted: new Date().toISOString(),
