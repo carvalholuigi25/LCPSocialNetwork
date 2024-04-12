@@ -90,6 +90,17 @@
                         order: 0 !important;
                         border-top-right-radius: 0px;
                         border-top-left-radius: 25px;
+
+                        ::after {
+                            content: '';
+                            position: absolute;
+                            top: 0px;
+                            right: -7px;
+                            width: 10px;
+                            height: 10px;
+                            background: linear-gradient(-225deg, #fff 0%, #fff 50%, transparent 50%, transparent);
+                            border: 0;
+                        }
                     }
                 }
 
@@ -105,6 +116,17 @@
                         order: 1 !important;
                         border-top-left-radius: 0px;
                         border-top-right-radius: 25px;
+
+                        ::after {
+                            content: '';
+                            position: absolute;
+                            top: 0px;
+                            left: -7px;
+                            width: 10px;
+                            height: 10px;
+                            background: linear-gradient(225deg, #fff 0%, #fff 50%, transparent 50%, transparent);
+                            border: 0;
+                        }
                     }
                 }
             }

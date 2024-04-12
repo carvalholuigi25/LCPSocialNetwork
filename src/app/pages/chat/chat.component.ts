@@ -54,17 +54,30 @@ export class ChatComponent implements OnInit {
     this.usersList$ = this.usersService.getAll();
   }
 
+  isOdd(x: number = 1) {
+    return x % 2;
+  }
+
+  isEven(x: number = 1) {
+    return !(x % 2);
+  }
+
+  setModeChatMessage(mode: number, element: ChatMessage) {
+    // 1 = id (order by odd, default), 2 = id (order by even), 3 = time (by seconds)
+    return mode == 1 ? this.isOdd(element.chatMessageId!) : 
+           mode == 2 ? this.isEven(element.chatMessageId!) : 
+           mode == 3 ? new Date(element.dateChatMessageCreated!.toString()).getUTCSeconds() !== new Date().getUTCSeconds() : 
+           this.isOdd(element.chatMessageId!);
+  }
+
   getChatMessages() {
     this.chatMessagesData$ = this.chatMessagesService.getAll();
 
     this.chatMessagesData$.subscribe({
       next: (msg: ChatMessage[]) => {
         msg.forEach(element => {
-          if(new Date(element.dateChatMessageCreated!.toString()).getUTCSeconds() !== new Date().getUTCSeconds()) {
-            this.typeMsg = "received";
-          } else {
-            this.typeMsg = "sent";
-          }
+          const modeval = this.setModeChatMessage(1, element);
+          this.typeMsg = modeval == true ? "received" : "sent";
         });
       },
       error: (err) => console.log(err)
