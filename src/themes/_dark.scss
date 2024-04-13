@@ -11,6 +11,10 @@
     .mat-mdc-card-subtitle~.mat-mdc-card-title, .mat-mdc-card-title~.mat-mdc-card-subtitle, .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-title, .mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-subtitle, .mat-mdc-card-title-group .mat-mdc-card-title, .mat-mdc-card-title-group .mat-mdc-card-subtitle {
         color: $color;
     }
+
+    .mat-mdc-card-subtitle {
+        color: $color;
+    }
     
     .colhome {
         background-color: $bkgColorSecondary;
@@ -107,6 +111,24 @@
 
         * {
             color: inherit;
+        }
+    }
+
+    .subchatmsgsblk {
+        .received {
+            .mat-mdc-card {
+                ::after {
+                    background: linear-gradient(-225deg, $bkgColorSecondary 0%, $bkgColorSecondary 50%, transparent 50%, transparent) !important;
+                }
+            }
+        }
+
+        .sent {
+            .mat-mdc-card {
+                ::after {
+                    background: linear-gradient(225deg, $bkgColorSecondary 0%, $bkgColorSecondary 50%, transparent 50%, transparent) !important;
+                }
+            }
         }
     }
 

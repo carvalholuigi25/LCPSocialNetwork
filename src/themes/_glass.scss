@@ -19,6 +19,10 @@
         color: $color;
     }
 
+    .mat-mdc-card-subtitle {
+        color: $color;
+    }
+
     .colhome {
         background-color: $bkgColorSecondary;
     }
@@ -126,6 +130,24 @@
 
         * {
             color: inherit;
+        }
+    }
+
+    .subchatmsgsblk {
+        .received {
+            .mat-mdc-card {
+                ::after {
+                    background: linear-gradient(-225deg, rgba(17, 25, 40, 0.75) 0%, rgba(17, 25, 40, 0.75) 50%, transparent 50%, transparent) !important;
+                }
+            }
+        }
+
+        .sent {
+            .mat-mdc-card {                
+                ::after {
+                    background: linear-gradient(225deg, rgba(17, 25, 40, 0.75) 0%, rgba(17, 25, 40, 0.75) 50%, transparent 50%, transparent) !important;
+                }
+            }
         }
     }
 
