@@ -18,6 +18,34 @@ namespace LCPSNWebApi.Migrations.MySQL
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Feedbacks",
+                columns: table => new
+                {
+                    FeedbackId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IsLocked = table.Column<bool>(type: "tinyint(1)", nullable: true),
+                    IsFeatured = table.Column<bool>(type: "tinyint(1)", nullable: true),
+                    TypeFeedback = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    StatusFeedback = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DateFeedbackCreated = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    DateFeedbackUpdated = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    DateFeedbackDeleted = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Counter = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedbacks", x => x.FeedbackId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "FilesData",
                 columns: table => new
                 {
@@ -365,8 +393,8 @@ namespace LCPSNWebApi.Migrations.MySQL
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "PhoneNumber", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
                 values: new object[,]
                 {
-                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 12, 9, 29, 43, 557, DateTimeKind.Utc).AddTicks(1686), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$.r8ezsBpD.bRpFNntljc2OSxLLKMQMptDtDLLXd/r9XabLuiT/9JC", "123456789", null, new DateTime(2024, 4, 12, 9, 29, 43, 557, DateTimeKind.Utc).AddTicks(1695), "Administrator", "public", "admin" },
-                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 12, 9, 29, 43, 953, DateTimeKind.Utc).AddTicks(9245), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$nLq4eTfjNE2U25Jl/rEwquPfbYog54fgBxPrCapDGy5k6zwP/Ht1y", "123456789", null, new DateTime(2024, 4, 12, 9, 29, 43, 953, DateTimeKind.Utc).AddTicks(9255), "Guest", "public", "guest" }
+                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 13, 15, 47, 45, 944, DateTimeKind.Utc).AddTicks(8925), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$dTc4mUGbHACChVxaMOYL2eQ6x4ZBBc1nEqKNNasF.pqpzE/SVlcH6", "123456789", null, new DateTime(2024, 4, 13, 15, 47, 45, 944, DateTimeKind.Utc).AddTicks(8935), "Administrator", "public", "admin" },
+                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 13, 15, 47, 46, 316, DateTimeKind.Utc).AddTicks(4191), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$dRBFURymepdJGFnfV/FDgePaSP7c2HiVJ84UZm.uGFOlFa3ZO2ZkC", "123456789", null, new DateTime(2024, 4, 13, 15, 47, 46, 316, DateTimeKind.Utc).AddTicks(4202), "Guest", "public", "guest" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -406,6 +434,9 @@ namespace LCPSNWebApi.Migrations.MySQL
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "FilesData");

@@ -7,5 +7,6 @@ export * from '../services/users.service';
 export * from '../services/friendsrequests.service';
 export * from '../services/chatmessages.service';
 export * from '../services/notifications.service';
+export * from '../services/feedbacks.service';
 export * from '../services/themes.service';
 export * from '../services/languages.service';

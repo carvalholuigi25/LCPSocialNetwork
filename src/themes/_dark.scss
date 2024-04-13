@@ -34,9 +34,10 @@
     }
 
     .colhomeinfo, .settings,
-    .mat-mdc-card, .postsForm,
-    .postsCreateForm, .postsUpdateForm,
-    .postsDeleteForm, .errblk {
+    .mfeedbacks, .mat-mdc-card, 
+    .postsForm, .postsCreateForm, 
+    .postsUpdateForm, .postsDeleteForm, 
+    .errblk {
         background-color: $bkgColorSecondaryFullOp;
         color: $color;
     }

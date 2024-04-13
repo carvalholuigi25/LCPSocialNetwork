@@ -47,6 +47,9 @@
         "themeswitchtitle": "Изменение темы",
         "langswitchtitle": "Изменение языка"
     },
+    "feedback": {
+        "title": "Обратная связь"
+    },
     "features": {
         "title": "Функции",
         "languageswitch": {
@@ -89,7 +92,8 @@
         "linkLogout": "Выйти",
         "linkLogin": "Авторизоваться",
         "linkNewsfeed": "Новостная лента",
-        "linkHome": "Дом"
+        "linkHome": "Дом",
+        "linkFeedback": "Обратная связь"
     },
     "forms": {
         "login": {

@@ -15,6 +15,29 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Feedbacks",
+                columns: table => new
+                {
+                    FeedbackId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    IsLocked = table.Column<bool>(type: "boolean", nullable: true),
+                    IsFeatured = table.Column<bool>(type: "boolean", nullable: true),
+                    TypeFeedback = table.Column<string>(type: "text", nullable: true),
+                    StatusFeedback = table.Column<string>(type: "text", nullable: true),
+                    DateFeedbackCreated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DateFeedbackUpdated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DateFeedbackDeleted = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Counter = table.Column<int>(type: "integer", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedbacks", x => x.FeedbackId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FilesData",
                 columns: table => new
                 {
@@ -309,8 +332,8 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "PhoneNumber", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
                 values: new object[,]
                 {
-                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 12, 9, 29, 18, 925, DateTimeKind.Utc).AddTicks(5532), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$izaQjiUY106stD8gbGjefOACncF.aWWkjBpsdwof7Duh1RGzizahi", "123456789", null, new DateTime(2024, 4, 12, 9, 29, 18, 925, DateTimeKind.Utc).AddTicks(5542), "Administrator", "public", "admin" },
-                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 12, 9, 29, 19, 302, DateTimeKind.Utc).AddTicks(5613), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$gYL1v2EH.IPW0Zwpd450Oe56oIe0r0WLHJhijmHHeUTpwb5l5JxOO", "123456789", null, new DateTime(2024, 4, 12, 9, 29, 19, 302, DateTimeKind.Utc).AddTicks(5621), "Guest", "public", "guest" }
+                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 13, 15, 47, 15, 11, DateTimeKind.Utc).AddTicks(6267), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$s7UT25/MoqVaXhzlKFtz6e166NC/P2NZH7MrRYxCz5YkfeNkwWUUy", "123456789", null, new DateTime(2024, 4, 13, 15, 47, 15, 11, DateTimeKind.Utc).AddTicks(6274), "Administrator", "public", "admin" },
+                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 13, 15, 47, 15, 392, DateTimeKind.Utc).AddTicks(6695), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$3zgwEn/2izMP4qh7.hteY.g0LlfuQKOtdZ5KR7Ho35cAsYyoYq3gu", "123456789", null, new DateTime(2024, 4, 13, 15, 47, 15, 392, DateTimeKind.Utc).AddTicks(6701), "Guest", "public", "guest" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -350,6 +373,9 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "FilesData");

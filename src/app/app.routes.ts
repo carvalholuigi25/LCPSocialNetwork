@@ -31,6 +31,11 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/admin/admin.routing').then(m => m.ADMIN_ROUTES),
         canActivate: [StaffGuard]
     },
+    {
+        path: 'feedback',
+        loadComponent: () => import('./pages/feedback/feedback.component').then(m => m.FeedbackComponent),
+        canActivate: [AuthGuard]
+    },
     { path: 'settings', loadComponent: () => import('./pages/settings/settings.component').then(m => m.SettingsComponent), canActivate: [AuthGuard] },
     { path: 'tos', loadComponent: () => import('./pages/infopublic/tos/tos.component').then(m => m.TosComponent) },
     { path: 'privacypolicy', loadComponent: () => import('./pages/infopublic/privacypolicy/privacypolicy.component').then(m => m.PrivacyPolicyComponent) },

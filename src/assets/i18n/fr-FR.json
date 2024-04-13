@@ -47,6 +47,9 @@
         "themeswitchtitle": "Changement de thème",
         "langswitchtitle": "Changement de langue"
     },
+    "feedback": {
+        "title": "Retour d'information"
+    },
     "features": {
         "title": "Caractéristiques",
         "languageswitch": {
@@ -89,7 +92,8 @@
         "linkLogout": "Se déconnecter",
         "linkLogin": "Se connecter",
         "linkNewsfeed": "Fil d'actualité",
-        "linkHome": "Maison"
+        "linkHome": "Maison",
+        "linkFeedback": "Retour d'information"
     },
     "forms": {
         "login": {

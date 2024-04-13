@@ -21,6 +21,7 @@ public class DBContext : DbContext
     public DbSet<Reaction> Reactions { get; set; }
     public DbSet<Reply> Replies { get; set; }
     public DbSet<Share> Shares { get; set; }
+    public DbSet<Feedback> Feedbacks { get; set; }
 
     public DBContext(IConfiguration config, IHostEnvironment environment) : base()
     {

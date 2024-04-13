@@ -42,9 +42,10 @@
     }
 
     .colhomeinfo, .settings,
-    .mat-mdc-card, .postsForm,
-    .postsCreateForm, .postsUpdateForm,
-    .postsDeleteForm, .errblk {
+    .mfeedbacks, .mat-mdc-card, 
+    .postsForm, .postsCreateForm, 
+    .postsUpdateForm, .postsDeleteForm, 
+    .errblk {
         -webkit-backdrop-filter: $backDropFilter;
         backdrop-filter: $backDropFilter;
         background-color: $bkgColorPrimary;

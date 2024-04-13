@@ -47,6 +47,9 @@
         "themeswitchtitle": "Cambio di tema",
         "langswitchtitle": "Cambio di lingua"
     },
+    "feedback": {
+        "title": "Riscontro"
+    },
     "features": {
         "title": "Caratteristiche",
         "languageswitch": {
@@ -89,7 +92,8 @@
         "linkLogout": "Disconnettersi",
         "linkLogin": "Login",
         "linkNewsfeed": "Feed di notizie",
-        "linkHome": "Casa"
+        "linkHome": "Casa",
+        "linkFeedback": "Riscontro"
     },
     "forms": {
         "login": {

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LCPSNWebApi.Migrations.SQLServer
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20240412093023_InitialCreateSQLServer")]
+    [Migration("20240413154830_InitialCreateSQLServer")]
     partial class InitialCreateSQLServer
     {
         /// <inheritdoc />
@@ -221,6 +221,57 @@ namespace LCPSNWebApi.Migrations.SQLServer
                     b.ToTable("Comments", t =>
                         {
                             t.HasTrigger("Comments_Trigger");
+                        });
+
+                    b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
+                });
+
+            modelBuilder.Entity("LCPSNWebApi.Classes.Feedback", b =>
+                {
+                    b.Property<int?>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("FeedbackId"));
+
+                    b.Property<int?>("Counter")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateFeedbackCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateFeedbackDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateFeedbackUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsLocked")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("StatusFeedback")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeFeedback")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FeedbackId");
+
+                    b.ToTable("Feedbacks", t =>
+                        {
+                            t.HasTrigger("Feedbacks_Trigger");
                         });
 
                     b.HasAnnotation("SqlServer:UseSqlOutputClause", false);
@@ -658,14 +709,14 @@ namespace LCPSNWebApi.Migrations.SQLServer
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 4, 12, 9, 30, 21, 836, DateTimeKind.Utc).AddTicks(7305),
+                            DateAccountCreated = new DateTime(2024, 4, 13, 15, 48, 28, 726, DateTimeKind.Utc).AddTicks(9504),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$TeO464DHlIzAMAYoG46QheFwIFv9fqOfMwaT7hjy2Cj/GdF6Vnq.2",
+                            Password = "$2a$12$IEq.z/zzUjvE77TMLP243e5EKJW1/j.2m8gVRz6vh7OuSaJpzUMAW",
                             PhoneNumber = "123456789",
-                            RefreshTokenExpiryTime = new DateTime(2024, 4, 12, 9, 30, 21, 836, DateTimeKind.Utc).AddTicks(7313),
+                            RefreshTokenExpiryTime = new DateTime(2024, 4, 13, 15, 48, 28, 726, DateTimeKind.Utc).AddTicks(9517),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
@@ -676,14 +727,14 @@ namespace LCPSNWebApi.Migrations.SQLServer
                             AvatarUrl = "images/users/avatars/guest.png",
                             Biography = "Hello, I'm Guest.",
                             CoverUrl = "images/users/covers/guest_cover.jpeg",
-                            DateAccountCreated = new DateTime(2024, 4, 12, 9, 30, 22, 195, DateTimeKind.Utc).AddTicks(5914),
+                            DateAccountCreated = new DateTime(2024, 4, 13, 15, 48, 29, 90, DateTimeKind.Utc).AddTicks(3195),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "guest@localhost.loc",
                             FirstName = "Guest",
                             LastName = "Convidado",
-                            Password = "$2a$12$.bO/K3BzOgZ6kzlAPraA.uG.Mx1CPFBhdQxAueetmz8/7DmPIf5Su",
+                            Password = "$2a$12$7pGQNU3Csmmo1pXs0ieq3ubk6mRNBH7x2ZC4A4jVxgxX6iRGIfbfW",
                             PhoneNumber = "123456789",
-                            RefreshTokenExpiryTime = new DateTime(2024, 4, 12, 9, 30, 22, 195, DateTimeKind.Utc).AddTicks(5921),
+                            RefreshTokenExpiryTime = new DateTime(2024, 4, 13, 15, 48, 29, 90, DateTimeKind.Utc).AddTicks(3208),
                             Role = "Guest",
                             Status = "public",
                             Username = "guest"

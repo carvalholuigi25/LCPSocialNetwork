@@ -1,0 +1,64 @@
+<div class="container-fluid mfeedbacks">
+    <div class="row">
+        <h2 class="title">
+            <mat-icon>feedback</mat-icon>
+            {{ 'feedback.title' | translate }}
+        </h2>
+
+        <div class="col-12 feedbacks mt-3">
+            <form [formGroup]="frmFeedback" (ngSubmit)="onSubmit()" class="feedbackform">
+                <mat-form-field class="d-block mt-3">
+                    <mat-label for="Title">Title</mat-label>
+                    <input type="text" class="form-control title" formControlName="Title"
+                        placeholder="Write the title here..." required matInput />
+                </mat-form-field>
+                <mat-form-field class="d-block mt-3">
+                    <mat-label for="Description">Description</mat-label>
+                    <textarea class="form-control description" formControlName="Description"
+                        placeholder="Suggest something here..." cols="1" rows="10" required matInput></textarea>
+                </mat-form-field>
+                <div class="form-group mt-3">
+                    <button type="button" mat-flat-button color="primary" (click)="onReset()">Reset</button>
+                    <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!frmFeedback.valid">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-12 feedbackslist mt-3" *ngIf="(this.feedbacksList$ | async) as myfeedbacks">
+            <div *ngIf="myfeedbacks.length > 0">
+                <mat-card *ngFor="let myfbs of myfeedbacks" class="feedbackslistitem mt-3">
+                    <mat-card-content>
+                        <div class="d-flex flex-row justify-content-stretch align-items-start w-100">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <button class="btn btncountup" (click)="countUp(myfbs.feedbackId)">
+                                    <mat-icon>arrow_drop_up</mat-icon>
+                                </button>
+                                <p class="feedbackupcount {{this.counter >= 0 ? ((this.counter == 0 ? '' : 'upvote')) : 'downvote'}}">
+                                    {{this.counter}}
+                                </p>
+                                <button class="btn btncountdown" (click)="countDown(myfbs.feedbackId)">
+                                    <mat-icon>arrow_drop_down</mat-icon>
+                                </button>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-start p-3">
+                                <mat-card-title>{{myfbs.title}}</mat-card-title>
+                                <p class="feedbackid">Id: {{myfbs.feedbackId}}</p>
+                                <p class="feedbackdesc">{{myfbs.description}}</p>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div *ngIf="myfeedbacks.length == 0">
+                <div class="d-flex flex-column justify-content-center align-items-center errblk p-3">
+                    <mat-icon>error</mat-icon>
+                    <h2 class="text-center mt-3 mb-0">No feedback data!</h2>
+                    <button routerLink="/newsfeed" type="button" class="mt-3" mat-flat-button color="primary">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

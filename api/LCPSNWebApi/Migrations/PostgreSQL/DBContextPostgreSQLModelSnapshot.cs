@@ -217,6 +217,55 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                         });
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.Feedback", b =>
+                {
+                    b.Property<int?>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("FeedbackId"));
+
+                    b.Property<int?>("Counter")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DateFeedbackCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateFeedbackDeleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DateFeedbackUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("IsLocked")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("StatusFeedback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TypeFeedback")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("FeedbackId");
+
+                    b.ToTable("Feedbacks", t =>
+                        {
+                            t.HasTrigger("Feedbacks_Trigger");
+                        });
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Files.FileData", b =>
                 {
                     b.Property<int>("Id")
@@ -633,14 +682,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 4, 12, 9, 29, 18, 925, DateTimeKind.Utc).AddTicks(5532),
+                            DateAccountCreated = new DateTime(2024, 4, 13, 15, 47, 15, 11, DateTimeKind.Utc).AddTicks(6267),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$izaQjiUY106stD8gbGjefOACncF.aWWkjBpsdwof7Duh1RGzizahi",
+                            Password = "$2a$12$s7UT25/MoqVaXhzlKFtz6e166NC/P2NZH7MrRYxCz5YkfeNkwWUUy",
                             PhoneNumber = "123456789",
-                            RefreshTokenExpiryTime = new DateTime(2024, 4, 12, 9, 29, 18, 925, DateTimeKind.Utc).AddTicks(5542),
+                            RefreshTokenExpiryTime = new DateTime(2024, 4, 13, 15, 47, 15, 11, DateTimeKind.Utc).AddTicks(6274),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
@@ -651,14 +700,14 @@ namespace LCPSNWebApi.Migrations.PostgreSQL
                             AvatarUrl = "images/users/avatars/guest.png",
                             Biography = "Hello, I'm Guest.",
                             CoverUrl = "images/users/covers/guest_cover.jpeg",
-                            DateAccountCreated = new DateTime(2024, 4, 12, 9, 29, 19, 302, DateTimeKind.Utc).AddTicks(5613),
+                            DateAccountCreated = new DateTime(2024, 4, 13, 15, 47, 15, 392, DateTimeKind.Utc).AddTicks(6695),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "guest@localhost.loc",
                             FirstName = "Guest",
                             LastName = "Convidado",
-                            Password = "$2a$12$gYL1v2EH.IPW0Zwpd450Oe56oIe0r0WLHJhijmHHeUTpwb5l5JxOO",
+                            Password = "$2a$12$3zgwEn/2izMP4qh7.hteY.g0LlfuQKOtdZ5KR7Ho35cAsYyoYq3gu",
                             PhoneNumber = "123456789",
-                            RefreshTokenExpiryTime = new DateTime(2024, 4, 12, 9, 29, 19, 302, DateTimeKind.Utc).AddTicks(5621),
+                            RefreshTokenExpiryTime = new DateTime(2024, 4, 13, 15, 47, 15, 392, DateTimeKind.Utc).AddTicks(6701),
                             Role = "Guest",
                             Status = "public",
                             Username = "guest"

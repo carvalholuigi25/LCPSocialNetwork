@@ -14,6 +14,29 @@ namespace LCPSNWebApi.Migrations.SQLite
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Feedbacks",
+                columns: table => new
+                {
+                    FeedbackId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    IsLocked = table.Column<bool>(type: "INTEGER", nullable: true),
+                    IsFeatured = table.Column<bool>(type: "INTEGER", nullable: true),
+                    TypeFeedback = table.Column<string>(type: "TEXT", nullable: true),
+                    StatusFeedback = table.Column<string>(type: "TEXT", nullable: true),
+                    DateFeedbackCreated = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DateFeedbackUpdated = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DateFeedbackDeleted = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Counter = table.Column<int>(type: "INTEGER", nullable: true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedbacks", x => x.FeedbackId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FilesData",
                 columns: table => new
                 {
@@ -308,8 +331,8 @@ namespace LCPSNWebApi.Migrations.SQLite
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "PhoneNumber", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
                 values: new object[,]
                 {
-                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 12, 9, 28, 55, 609, DateTimeKind.Utc).AddTicks(5278), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$fUHwnjc5mcDf8ihJoUlhtuhC1t.VV7xcBCj9LVtKUt1KSH.6y3pla", "123456789", null, new DateTime(2024, 4, 12, 9, 28, 55, 609, DateTimeKind.Utc).AddTicks(5291), "Administrator", "public", "admin" },
-                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 12, 9, 28, 56, 71, DateTimeKind.Utc).AddTicks(9180), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$ZvHyZW60rm3eyqKrVlKBfO9jg5jH/rRLPazK/7QuGSS1kYcgUs2My", "123456789", null, new DateTime(2024, 4, 12, 9, 28, 56, 71, DateTimeKind.Utc).AddTicks(9191), "Guest", "public", "guest" }
+                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 13, 15, 46, 46, 894, DateTimeKind.Utc).AddTicks(8968), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$XeUhZQ4sU184ZkrIwHWBN.JSOElI/l2G.cLATIK25A.uLnDl/haMa", "123456789", null, new DateTime(2024, 4, 13, 15, 46, 46, 894, DateTimeKind.Utc).AddTicks(8978), "Administrator", "public", "admin" },
+                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 13, 15, 46, 47, 289, DateTimeKind.Utc).AddTicks(6076), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$G/o1dYq9pErEq2yqX7thEO8AvOZkr2mwmPi14HIcm4LcwhZDNmC12", "123456789", null, new DateTime(2024, 4, 13, 15, 46, 47, 289, DateTimeKind.Utc).AddTicks(6085), "Guest", "public", "guest" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -349,6 +372,9 @@ namespace LCPSNWebApi.Migrations.SQLite
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "FilesData");

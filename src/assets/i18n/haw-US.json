@@ -47,6 +47,9 @@
         "themeswitchtitle": "Hoʻololi kumuhana",
         "langswitchtitle": "Hoʻololi ʻōlelo"
     },
+    "feedback": {
+        "title": "Manaʻo manaʻo"
+    },
     "features": {
         "title": "Nā hiʻohiʻona",
         "languageswitch": {
@@ -89,7 +92,8 @@
         "linkLogout": "Lele",
         "linkLogin": "E komo",
         "linkNewsfeed": "Nupepa",
-        "linkHome": "Home"
+        "linkHome": "Home",
+        "linkFeedback": "Manaʻo manaʻo"
     },
     "forms": {
         "login": {

@@ -10,3 +10,4 @@ export * from '../models/reaction';
 export * from '../models/share';
 export * from '../models/reply';
 export * from '../models/languages';
+export * from '../models/feedback';

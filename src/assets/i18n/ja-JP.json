@@ -47,6 +47,9 @@
         "themeswitchtitle": "テーマの変更",
         "langswitchtitle": "言語の変更"
     },
+    "feedback": {
+        "title": "フィードバック"
+    },
     "features": {
         "title": "特徴",
         "languageswitch": {
@@ -89,7 +92,8 @@
         "linkLogout": "ログアウト",
         "linkLogin": "ログイン",
         "linkNewsfeed": "ニュースフィード",
-        "linkHome": "家"
+        "linkHome": "家",
+        "linkFeedback": "フィードバック"
     },
     "forms": {
         "login": {

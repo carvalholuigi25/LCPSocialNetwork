@@ -61,6 +61,7 @@ builder.Services.AddScoped<IShare, ShareService>();
 builder.Services.AddScoped<IPost, PostService>();
 builder.Services.AddScoped<IComment, CommentService>();
 builder.Services.AddScoped<IAttachment, AttachmentService>();
+builder.Services.AddScoped<IFeedback, FeedbackService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddTransient<IChatHub, ChatHub>();
 

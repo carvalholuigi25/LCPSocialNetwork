@@ -8,4 +8,5 @@ export * from '../pages/newsfeed/newsfeed.component';
 export * from '../pages/users/users.component';
 export * from '../pages/chat/chat.component';
 export * from '../pages/settings/settings.component';
+export * from '../pages/feedback/feedback.component';
 export * from '../pages/notfound/notfound.component';

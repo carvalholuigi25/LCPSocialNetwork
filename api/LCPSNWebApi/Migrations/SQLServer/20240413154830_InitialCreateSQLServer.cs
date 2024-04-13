@@ -14,6 +14,29 @@ namespace LCPSNWebApi.Migrations.SQLServer
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Feedbacks",
+                columns: table => new
+                {
+                    FeedbackId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsLocked = table.Column<bool>(type: "bit", nullable: true),
+                    IsFeatured = table.Column<bool>(type: "bit", nullable: true),
+                    TypeFeedback = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StatusFeedback = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateFeedbackCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateFeedbackUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateFeedbackDeleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Counter = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedbacks", x => x.FeedbackId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FilesData",
                 columns: table => new
                 {
@@ -308,8 +331,8 @@ namespace LCPSNWebApi.Migrations.SQLServer
                 columns: new[] { "UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "PhoneNumber", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username" },
                 values: new object[,]
                 {
-                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 12, 9, 30, 21, 836, DateTimeKind.Utc).AddTicks(7305), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$TeO464DHlIzAMAYoG46QheFwIFv9fqOfMwaT7hjy2Cj/GdF6Vnq.2", "123456789", null, new DateTime(2024, 4, 12, 9, 30, 21, 836, DateTimeKind.Utc).AddTicks(7313), "Administrator", "public", "admin" },
-                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 12, 9, 30, 22, 195, DateTimeKind.Utc).AddTicks(5914), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$.bO/K3BzOgZ6kzlAPraA.uG.Mx1CPFBhdQxAueetmz8/7DmPIf5Su", "123456789", null, new DateTime(2024, 4, 12, 9, 30, 22, 195, DateTimeKind.Utc).AddTicks(5921), "Guest", "public", "guest" }
+                    { 1, "images/users/avatars/luis.jpg", "Hello, I'm Luis Carvalho.", "images/users/covers/luis_cover.jpg", null, new DateTime(2024, 4, 13, 15, 48, 28, 726, DateTimeKind.Utc).AddTicks(9504), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "luiscarvalho239@gmail.com", "Luis", "Carvalho", "$2a$12$IEq.z/zzUjvE77TMLP243e5EKJW1/j.2m8gVRz6vh7OuSaJpzUMAW", "123456789", null, new DateTime(2024, 4, 13, 15, 48, 28, 726, DateTimeKind.Utc).AddTicks(9517), "Administrator", "public", "admin" },
+                    { 2, "images/users/avatars/guest.png", "Hello, I'm Guest.", "images/users/covers/guest_cover.jpeg", null, new DateTime(2024, 4, 13, 15, 48, 29, 90, DateTimeKind.Utc).AddTicks(3195), new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc), "guest@localhost.loc", "Guest", "Convidado", "$2a$12$7pGQNU3Csmmo1pXs0ieq3ubk6mRNBH7x2ZC4A4jVxgxX6iRGIfbfW", "123456789", null, new DateTime(2024, 4, 13, 15, 48, 29, 90, DateTimeKind.Utc).AddTicks(3208), "Guest", "public", "guest" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -349,6 +372,9 @@ namespace LCPSNWebApi.Migrations.SQLServer
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "FilesData");

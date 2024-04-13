@@ -1,0 +1,41 @@
+.mfeedbacks {
+    display: block;
+    padding: 15px;
+
+    form {
+        input:not([type=button]):not([type=submit]):not([type=reset]), textarea {
+            padding: 15px !important;
+        }
+    }
+
+    .feedbacks {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .feedbackslist {
+        display: block;
+
+        .feedbackupcount {
+            font-size: 1.5rem;
+            margin: 15px auto;
+        }
+
+        .upvote { color: green !important; }
+        .downvote { color: red !important; }
+
+        .btncountup, .btncountdown {
+            .mat-icon {
+                font-size: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .errblk {
+            color: black;
+        }
+    }
+}

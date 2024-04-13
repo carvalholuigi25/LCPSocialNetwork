@@ -47,6 +47,9 @@
         "themeswitchtitle": "Cambio de tema",
         "langswitchtitle": "Cambio de idioma"
     },
+    "feedback": {
+        "title": "Comentario"
+    },
     "features": {
         "title": "Características",
         "languageswitch": {
@@ -89,7 +92,8 @@
         "linkLogout": "Cerrar sesión",
         "linkLogin": "Acceso",
         "linkNewsfeed": "Noticias",
-        "linkHome": "Hogar"
+        "linkHome": "Hogar",
+        "linkFeedback": "Comentario"
     },
     "forms": {
         "login": {

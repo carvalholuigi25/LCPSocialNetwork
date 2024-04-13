@@ -208,6 +208,53 @@ namespace LCPSNWebApi.Migrations.MySQL
                         });
                 });
 
+            modelBuilder.Entity("LCPSNWebApi.Classes.Feedback", b =>
+                {
+                    b.Property<int?>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Counter")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateFeedbackCreated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateFeedbackDeleted")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateFeedbackUpdated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool?>("IsFeatured")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("IsLocked")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("StatusFeedback")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TypeFeedback")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FeedbackId");
+
+                    b.ToTable("Feedbacks", t =>
+                        {
+                            t.HasTrigger("Feedbacks_Trigger");
+                        });
+                });
+
             modelBuilder.Entity("LCPSNWebApi.Classes.Files.FileData", b =>
                 {
                     b.Property<int>("Id")
@@ -608,14 +655,14 @@ namespace LCPSNWebApi.Migrations.MySQL
                             AvatarUrl = "images/users/avatars/luis.jpg",
                             Biography = "Hello, I'm Luis Carvalho.",
                             CoverUrl = "images/users/covers/luis_cover.jpg",
-                            DateAccountCreated = new DateTime(2024, 4, 12, 9, 29, 43, 557, DateTimeKind.Utc).AddTicks(1686),
+                            DateAccountCreated = new DateTime(2024, 4, 13, 15, 47, 45, 944, DateTimeKind.Utc).AddTicks(8925),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "luiscarvalho239@gmail.com",
                             FirstName = "Luis",
                             LastName = "Carvalho",
-                            Password = "$2a$12$.r8ezsBpD.bRpFNntljc2OSxLLKMQMptDtDLLXd/r9XabLuiT/9JC",
+                            Password = "$2a$12$dTc4mUGbHACChVxaMOYL2eQ6x4ZBBc1nEqKNNasF.pqpzE/SVlcH6",
                             PhoneNumber = "123456789",
-                            RefreshTokenExpiryTime = new DateTime(2024, 4, 12, 9, 29, 43, 557, DateTimeKind.Utc).AddTicks(1695),
+                            RefreshTokenExpiryTime = new DateTime(2024, 4, 13, 15, 47, 45, 944, DateTimeKind.Utc).AddTicks(8935),
                             Role = "Administrator",
                             Status = "public",
                             Username = "admin"
@@ -626,14 +673,14 @@ namespace LCPSNWebApi.Migrations.MySQL
                             AvatarUrl = "images/users/avatars/guest.png",
                             Biography = "Hello, I'm Guest.",
                             CoverUrl = "images/users/covers/guest_cover.jpeg",
-                            DateAccountCreated = new DateTime(2024, 4, 12, 9, 29, 43, 953, DateTimeKind.Utc).AddTicks(9245),
+                            DateAccountCreated = new DateTime(2024, 4, 13, 15, 47, 46, 316, DateTimeKind.Utc).AddTicks(4191),
                             DateBirthday = new DateTime(1996, 6, 3, 23, 0, 0, 0, DateTimeKind.Utc),
                             Email = "guest@localhost.loc",
                             FirstName = "Guest",
                             LastName = "Convidado",
-                            Password = "$2a$12$nLq4eTfjNE2U25Jl/rEwquPfbYog54fgBxPrCapDGy5k6zwP/Ht1y",
+                            Password = "$2a$12$dRBFURymepdJGFnfV/FDgePaSP7c2HiVJ84UZm.uGFOlFa3ZO2ZkC",
                             PhoneNumber = "123456789",
-                            RefreshTokenExpiryTime = new DateTime(2024, 4, 12, 9, 29, 43, 953, DateTimeKind.Utc).AddTicks(9255),
+                            RefreshTokenExpiryTime = new DateTime(2024, 4, 13, 15, 47, 46, 316, DateTimeKind.Utc).AddTicks(4202),
                             Role = "Guest",
                             Status = "public",
                             Username = "guest"

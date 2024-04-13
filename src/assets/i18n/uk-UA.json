@@ -47,6 +47,9 @@
         "themeswitchtitle": "Зміна теми",
         "langswitchtitle": "Зміна мови"
     },
+    "feedback": {
+        "title": "Зворотній зв'язок"
+    },
     "features": {
         "title": "особливості",
         "languageswitch": {
@@ -89,7 +92,8 @@
         "linkLogout": "Вийти",
         "linkLogin": "Логін",
         "linkNewsfeed": "Стрічка новин",
-        "linkHome": "додому"
+        "linkHome": "додому",
+        "linkFeedback": "Зворотній зв'язок"
     },
     "forms": {
         "login": {

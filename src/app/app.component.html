@@ -85,6 +85,13 @@
               <span *ngIf="!isCollapsed">{{ 'navbar.linkNewsfeed' | translate }}</span>
             </span>
           </a>
+
+          <a mat-list-item routerLink="/feedback" routerLinkActive="active">
+            <span class="entry">
+              <mat-icon>feedback</mat-icon>
+              <span *ngIf="!isCollapsed">{{ 'navbar.linkFeedback' | translate }}</span>
+            </span>
+          </a>
         } @else {
           <a mat-list-item routerLink="/home" routerLinkActive="active">
             <span class="entry">

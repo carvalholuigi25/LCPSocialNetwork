@@ -47,6 +47,9 @@
         "themeswitchtitle": "Themenwechsel",
         "langswitchtitle": "Sprachwechsel"
     },
+    "feedback": {
+        "title": "Rückmeldung"
+    },
     "features": {
         "title": "Merkmale",
         "languageswitch": {
@@ -89,7 +92,8 @@
         "linkLogout": "Ausloggen",
         "linkLogin": "Anmeldung",
         "linkNewsfeed": "Neuigkeiten",
-        "linkHome": "Heim"
+        "linkHome": "Heim",
+        "linkFeedback": "Rückmeldung"
     },
     "forms": {
         "login": {
