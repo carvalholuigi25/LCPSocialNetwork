@@ -118,6 +118,26 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
+        public async Task<IActionResult> DeleteAllFeedback()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
+            }
+
+            var Feedbacks = await _context.Feedbacks.ToListAsync();
+            if (Feedbacks == null)
+            {
+                return NotFound(_localizer.GetString("DataNotFound").Value);
+            }
+
+            _context.Feedbacks.RemoveRange(Feedbacks);
+            await _context.SaveChangesAsync();
+            await ResetIdSeed(_context.Feedbacks.Count());
+
+            return NoContent();
+        }
+
         public async Task<IActionResult> SearchData([FromQuery] QueryParams qryp)
         {
             try

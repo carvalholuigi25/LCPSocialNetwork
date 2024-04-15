@@ -43,6 +43,10 @@ export class FeedbackService {
         return this.http.delete<Feedback>(`${environment.apiUrl}/feedback/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    deleteAllFeedbacks() {
+        return this.http.delete<Feedback>(`${environment.apiUrl}/feedback/all`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     /* istanbul ignore next */
     handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

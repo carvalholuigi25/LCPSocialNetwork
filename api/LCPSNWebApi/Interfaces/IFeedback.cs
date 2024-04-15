@@ -12,6 +12,7 @@ namespace LCPSNWebApi.Interfaces
         Task<IActionResult> PutFeedback(int? id, Feedback FeedbackData);
         Task<ActionResult<IEnumerable<Feedback>>> CreateFeedback(Feedback FeedbackData);
         Task<IActionResult> DeleteFeedback(int? id);
+        Task<IActionResult> DeleteAllFeedback();
         Task<IActionResult> ResetIdSeed(int rsid = 1);
         Task<IActionResult> SearchData([FromQuery] QueryParams qryp);
         Task<IActionResult> GetLastId();

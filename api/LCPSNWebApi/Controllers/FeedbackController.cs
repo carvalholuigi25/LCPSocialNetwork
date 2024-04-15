@@ -94,6 +94,16 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint deletes all Feedbacks.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("all")]
+        public async Task<IActionResult> DeleteAllFeedbacks()
+        {
+            return await _Feedbacks.DeleteAllFeedback();
+        }
+
+        /// <summary>
         /// This endpoint resets a auto increment seed by id for table Feedbacks.
         /// </summary>
         /// <param name="rsid"></param>

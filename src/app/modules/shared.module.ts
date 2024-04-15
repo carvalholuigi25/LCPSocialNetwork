@@ -25,6 +25,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { TranslateModule } from '@ngx-translate/core';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 
 const declarationsAry: any[] = [];
 
@@ -45,7 +46,8 @@ const materialModules = [
   MatSelectModule,
   MatTabsModule,
   MatCheckboxModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatDialogModule
 ];
 
 const ngxModules = [
@@ -64,6 +66,7 @@ const modulesAry = [
 
 const providersAry = [
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
+  { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} },
   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   fakeBackendProvider,

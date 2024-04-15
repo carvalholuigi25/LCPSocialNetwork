@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { SharedModule } from '@app/modules';
 import { Feedback, FeedbackStatusEnum, FeedbackTypeEnum } from '@app/models';
 import { AlertsService, AuthService, FeedbackService } from '@app/services';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteFeedbacksDialog } from '@app/dialogs';
 
 @Component({
   selector: 'app-feedback',
@@ -19,7 +21,7 @@ export class FeedbackComponent implements OnInit {
   frmFeedback!: FormGroup;
   feedbacksList$: Observable<Feedback[] | any> = new Observable<Feedback[] | any>();
 
-  constructor(private feedbackService: FeedbackService, private alertsService: AlertsService, private authService: AuthService) {
+  constructor(private feedbackService: FeedbackService, private alertsService: AlertsService, private authService: AuthService, public dialog: MatDialog) {
     this.authService.user.subscribe((x: any) => {
       this.userId = x.usersInfo.userId;
     });
@@ -60,13 +62,17 @@ export class FeedbackComponent implements OnInit {
     this.feedbackService.updateFeedbacks(fbid, feedbackdata).subscribe({
       next: (v) => {
         this.alertsService.openAlert(`Updated feedback! (id: ${fbid})`, 1, "success");
-        // location.reload();
+        location.reload();
       },
       error: (err) => {
         console.error(err);
         this.alertsService.openAlert(`Error: ${err}`, 1, "error");
       }
     });
+  }
+
+  onDelete() {
+    this.dialog.open(DeleteFeedbacksDialog);
   }
 
   onReset() {
