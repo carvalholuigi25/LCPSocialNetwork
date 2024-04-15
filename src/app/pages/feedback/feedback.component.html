@@ -32,13 +32,13 @@
                     <mat-card-content>
                         <div class="d-flex flex-row justify-content-stretch align-items-start w-100">
                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                <button class="btn btncountup" (click)="countUp(myfbs.feedbackId)">
+                                <button class="btn btncountup" (click)="countUp(myfbs.feedbackId, myfbs)">
                                     <mat-icon>arrow_drop_up</mat-icon>
                                 </button>
-                                <p class="feedbackupcount {{this.counter >= 0 ? ((this.counter == 0 ? '' : 'upvote')) : 'downvote'}}">
-                                    {{this.counter}}
+                                <p class="feedbackupcount {{myfbs.counter >= 0 ? ((myfbs.counter == 0 ? '' : 'upvote')) : 'downvote'}}">
+                                    {{myfbs.counter}}
                                 </p>
-                                <button class="btn btncountdown" (click)="countDown(myfbs.feedbackId)">
+                                <button class="btn btncountdown" (click)="countDown(myfbs.feedbackId, myfbs)">
                                     <mat-icon>arrow_drop_down</mat-icon>
                                 </button>
                             </div>

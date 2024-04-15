@@ -15,9 +15,7 @@ import { AlertsService, AuthService, FeedbackService } from '@app/services';
 export class FeedbackComponent implements OnInit {
   counter: number = 0;
   userId: number = 1;
-  feedbackId: number = 1;
   submitted: boolean = false;
-  feedbackData!: Feedback;
   frmFeedback!: FormGroup;
   feedbacksList$: Observable<Feedback[] | any> = new Observable<Feedback[] | any>();
 
@@ -43,50 +41,26 @@ export class FeedbackComponent implements OnInit {
 
   getFeedbacksList() {
     this.feedbacksList$ = this.feedbackService.getAll();
-    this.feedbacksList$.subscribe({
-      next: (r: any) => {
-        if(r) {
-          this.counter = r[0].counter! ?? 0;
-          this.feedbackData = {
-            FeedbackId: r[0].feedbackId,
-            Title: r[0].title,
-            Description: r[0].description,
-            IsFeatured: r[0].isFeatured,
-            IsLocked: r[0].isLocked,
-            TypeFeedback: r[0].typeFeedback,
-            StatusFeedback: r[0].statusFeedback,
-            DateFeedbackCreated: r[0].dateFeedbackCreated,
-            DateFeedbackUpdated: r[0].dateFeedbackUpdated,
-            DateFeedbackDeleted: r[0].dateFeedbackDeleted,
-            Counter: this.counter,
-            UserId: r[0].userId
-          };
-        }
-      },
-      error: (err) => {
-        this.counter = 0;
-        console.error(err);
-      }
-    });
   }
 
-  countUp(fbid: number) {
+  countUp(fbid: number, feedbackdata: any) {
+    this.counter = feedbackdata.counter;
     this.counter++;
-    this.updateFeedback(fbid, this.counter);
+    this.updateFeedback(fbid, this.counter, feedbackdata);
   }
 
-  countDown(fbid: number) {
+  countDown(fbid: number, feedbackdata: any) {
+    this.counter = feedbackdata.counter;
     this.counter--;
-    this.updateFeedback(fbid, this.counter);
+    this.updateFeedback(fbid, this.counter, feedbackdata);
   }
 
-  updateFeedback(fbid: number, counter: number = 0) {
-    this.feedbackData.Counter = counter;
-    this.feedbackService.updateFeedbacks(fbid, this.feedbackData).subscribe({
+  updateFeedback(fbid: number, counter: number = 0, feedbackdata: any) {
+    feedbackdata.counter = counter;
+    this.feedbackService.updateFeedbacks(fbid, feedbackdata).subscribe({
       next: (v) => {
-        console.log(v);
         this.alertsService.openAlert(`Updated feedback! (id: ${fbid})`, 1, "success");
-        location.reload();
+        // location.reload();
       },
       error: (err) => {
         console.error(err);
