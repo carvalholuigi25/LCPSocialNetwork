@@ -36,9 +36,19 @@
     </mat-form-field>
     <mat-form-field class="d-block mt-3">
         <mat-label for="DateFeedbackUpdated">Date Feedback Updated</mat-label>
-        <input id="DateFeedbackUpdated" formControlName="DateFeedbackUpdated" class="text-start mt-3" title="Select the date of feedback updated" matInput [matDatepicker]="picker" />
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mtx-datetimepicker 
+            #datetimePicker
+            [type]="'datetime'"
+            [mode]="'auto'"
+            [multiYearSelector]="false"
+            [startView]="'month'"
+            [twelvehour]="false"
+            [timeInterval]="1"
+            [touchUi]="false"
+            [timeInput]="true" 
+        />
+        <input type="datetime-local" step="1" id="DateFeedbackUpdated" formControlName="DateFeedbackUpdated" class="text-start mt-3" title="Select the date of feedback updated" [mtxDatetimepicker]="datetimePicker" matInput  />
+        <mtx-datetimepicker-toggle [for]="datetimePicker" matSuffix></mtx-datetimepicker-toggle>
     </mat-form-field>
     <div class="form-group mt-3">
         <button type="button" class="ms-3" mat-flat-button color="primary" (click)="onReset()">Reset</button>

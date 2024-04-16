@@ -80,6 +80,8 @@ export class EditFeedbacksDialog implements OnInit {
       UserId: this.data.dataOldFeedback.userId
     };
 
+    console.log(this.dataFeedback);
+
     this.feedbackService.updateFeedbacks(this.data.id, this.dataFeedback).subscribe({
       next: (v) => {
         this.alertsService.openAlert(`Edited feedback with id: ${this.data.id}!`, 1, "success");

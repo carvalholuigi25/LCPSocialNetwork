@@ -22,11 +22,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { TranslateModule } from '@ngx-translate/core';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MTX_DATETIME_FORMATS } from '@ng-matero/extensions/core';
+import { MtxDatetimepickerModule } from '@ng-matero/extensions/datetimepicker';
+import { MtxMomentDatetimeModule } from '@ng-matero/extensions-moment-adapter';
 
 const declarationsAry: any[] = [];
 
@@ -48,7 +51,9 @@ const materialModules = [
   MatTabsModule,
   MatCheckboxModule,
   MatDatepickerModule,
-  MatDialogModule
+  MatDialogModule,
+  MtxDatetimepickerModule,
+  MtxMomentDatetimeModule
 ];
 
 const ngxModules = [
@@ -77,9 +82,31 @@ const MY_DATE_FORMAT = {
   }
 };
 
+const MY_DATE_FORMAT2 = {
+  parse: {
+    dateInput: 'YYYY-MM-DD',
+    monthInput: 'MMMM',
+    yearInput: 'YYYY',
+    timeInput: 'HH:mm:ss',
+    datetimeInput: 'YYYY-MM-DD HH:mm:ss',
+  },
+  display: {
+    dateInput: 'YYYY-MM-DD',
+    monthInput: 'MMMM',
+    yearInput: 'YYYY',
+    timeInput: 'HH:mm:ss',
+    datetimeInput: 'YYYY-MM-DD HH:mm:ss',
+    monthYearLabel: 'YYYY MMMM',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+    popupHeaderDateLabel: 'MMM DD, ddd',
+  }
+};
+
 const providersAry = [
   { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
   { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
+  { provide: MTX_DATETIME_FORMATS, useValue: MY_DATE_FORMAT2 },
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
   { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} },
   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

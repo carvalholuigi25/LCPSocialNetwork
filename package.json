@@ -39,6 +39,8 @@
     "@angular/router": "^17.2.0",
     "@angular/ssr": "^17.2.1",
     "@microsoft/signalr": "^8.0.0",
+    "@ng-matero/extensions": "^17.2.1",
+    "@ng-matero/extensions-moment-adapter": "^17.1.2",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@popperjs/core": "^2.11.8",
