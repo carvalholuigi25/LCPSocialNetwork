@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Feedback } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { AlertsService, FeedbackService } from '@app/services';
+import moment from 'moment';
 
 export interface EditDialogData {
   id: number;
@@ -27,7 +28,12 @@ export class EditFeedbacksDialog implements OnInit {
   ngOnInit(): void {
     this.feedbackEditFrm = new FormGroup({
       Title: new FormControl(this.data.dataOldFeedback.title, Validators.required),
-      Description: new FormControl(this.data.dataOldFeedback.description, Validators.required)
+      Description: new FormControl(this.data.dataOldFeedback.description, Validators.required),
+      IsLocked: new FormControl(this.data.dataOldFeedback.isLocked),
+      IsFeatured: new FormControl(this.data.dataOldFeedback.isFeatured),
+      TypeFeedback: new FormControl(this.data.dataOldFeedback.typeFeedback),
+      StatusFeedback: new FormControl(this.data.dataOldFeedback.statusFeedback),
+      DateFeedbackUpdated: new FormControl(this.data.dataOldFeedback.dateFeedbackUpdated)
     });
   }
 
@@ -43,7 +49,12 @@ export class EditFeedbacksDialog implements OnInit {
     this.onReset();
     this.feedbackEditFrm.patchValue({
       Title: this.data.dataOldFeedback.title,
-      Description: this.data.dataOldFeedback.description
+      Description: this.data.dataOldFeedback.description,
+      IsLocked: this.data.dataOldFeedback.isLocked,
+      IsFeatured: this.data.dataOldFeedback.isFeatured,
+      TypeFeedback: this.data.dataOldFeedback.typeFeedback,
+      StatusFeedback: this.data.dataOldFeedback.statusFeedback,
+      DateFeedbackUpdated: this.data.dataOldFeedback.dateFeedbackUpdated
     });
   }
 
@@ -58,12 +69,12 @@ export class EditFeedbacksDialog implements OnInit {
       FeedbackId: this.data.id,
       Title: this.f["Title"].value,
       Description: this.f["Description"].value,
-      IsFeatured: this.data.dataOldFeedback.isFeatured,
-      IsLocked: this.data.dataOldFeedback.isLocked,
-      StatusFeedback: this.data.dataOldFeedback.statusFeedback,
-      TypeFeedback: this.data.dataOldFeedback.typeFeedback,
+      IsFeatured: this.f["IsFeatured"].value,
+      IsLocked: this.f["IsLocked"].value,
+      StatusFeedback: this.f["StatusFeedback"].value,
+      TypeFeedback: this.f["TypeFeedback"].value,
+      DateFeedbackUpdated: moment(this.f["DateFeedbackUpdated"].value).format("YYYY-MM-DDTHH:mm:ss.SSS").toString(),
       DateFeedbackCreated: this.data.dataOldFeedback.dateFeedbackCreated,
-      DateFeedbackUpdated: this.data.dataOldFeedback.dateFeedbackDeleted,
       DateFeedbackDeleted: this.data.dataOldFeedback.dateFeedbackDeleted,
       Counter: this.data.dataOldFeedback.counter,
       UserId: this.data.dataOldFeedback.userId

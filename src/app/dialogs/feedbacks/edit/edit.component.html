@@ -9,6 +9,37 @@
         <mat-label for="Description">Description</mat-label>
         <textarea class="form-control description" formControlName="Description" placeholder="Suggest something here..." cols="1" rows="10" required matInput></textarea>
     </mat-form-field>
+    <mat-form-field class="d-block mt-3">
+        <input hidden=true matInput />
+        <mat-checkbox class="islocked" formControlName="IsLocked">Is Locked</mat-checkbox>
+    </mat-form-field>
+    <mat-form-field class="d-block mt-3">
+        <input hidden=true matInput />
+        <mat-checkbox class="isfeatured" formControlName="IsFeatured">Is Featured</mat-checkbox>
+    </mat-form-field>
+    <mat-form-field class="d-block mt-3">
+        <mat-label for="TypeFeedback">Type Feedback</mat-label>
+        <mat-select id="TypeFeedback" formControlName="TypeFeedback" class="text-start mt-3" title="Select the type of feedback">
+            <mat-option value="pending">Pending</mat-option>
+            <mat-option value="approved">Approved</mat-option>
+            <mat-option value="rejected">Rejected</mat-option>
+            <mat-option value="draft">Draft</mat-option>
+            <mat-option value="deleted">Deleted</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="d-block mt-3">
+        <mat-label for="StatusFeedback">Status Feedback</mat-label>
+        <mat-select id="StatusFeedback" formControlName="StatusFeedback" class="text-start mt-3" title="Select the status of feedback">
+            <mat-option value="public">Public</mat-option>
+            <mat-option value="private">Private</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="d-block mt-3">
+        <mat-label for="DateFeedbackUpdated">Date Feedback Updated</mat-label>
+        <input id="DateFeedbackUpdated" formControlName="DateFeedbackUpdated" class="text-start mt-3" title="Select the date of feedback updated" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
     <div class="form-group mt-3">
         <button type="button" class="ms-3" mat-flat-button color="primary" (click)="onReset()">Reset</button>
         <button type="button" class="ms-3" mat-flat-button color="primary" (click)="onResetToDefValues()">Reset to Default Values</button>

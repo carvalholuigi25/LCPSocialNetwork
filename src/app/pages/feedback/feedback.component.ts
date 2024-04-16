@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { SharedModule } from '@app/modules';
 import { Feedback, FeedbackStatusEnum, FeedbackTypeEnum } from '@app/models';
 import { AlertsService, AuthService, FeedbackService } from '@app/services';
-import { MatDialog } from '@angular/material/dialog';
 import { DeleteFeedbacksDialog, EditFeedbacksDialog } from '@app/dialogs';
 
 @Component({
@@ -21,7 +22,7 @@ export class FeedbackComponent implements OnInit {
   frmFeedback!: FormGroup;
   feedbacksList$: Observable<Feedback[] | any> = new Observable<Feedback[] | any>();
 
-  constructor(private feedbackService: FeedbackService, private alertsService: AlertsService, private authService: AuthService, public dialog: MatDialog) {
+  constructor(private feedbackService: FeedbackService, private alertsService: AlertsService, private authService: AuthService, public dialog: MatDialog, public translateService: TranslateService) {
     this.authService.user.subscribe((x: any) => {
       this.userId = x.usersInfo.userId;
     });
