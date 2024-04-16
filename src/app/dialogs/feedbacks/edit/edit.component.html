@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Edit feedback (Id: {{this.data.id}})</h2>
+<mat-dialog-content>
+  <form [formGroup]="feedbackEditFrm" (ngSubmit)="sendEdit()" class="feedbackeditformdialog">
+    <mat-form-field class="d-block mt-3">
+        <mat-label for="Title">Title</mat-label>
+        <input type="text" class="form-control title" formControlName="Title" placeholder="Write the title here..." required matInput />
+    </mat-form-field>
+    <mat-form-field class="d-block mt-3">
+        <mat-label for="Description">Description</mat-label>
+        <textarea class="form-control description" formControlName="Description" placeholder="Suggest something here..." cols="1" rows="10" required matInput></textarea>
+    </mat-form-field>
+    <div class="form-group mt-3">
+        <button type="button" class="ms-3" mat-flat-button color="primary" (click)="onReset()">Reset</button>
+        <button type="button" class="ms-3" mat-flat-button color="primary" (click)="onResetToDefValues()">Reset to Default Values</button>
+        <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!feedbackEditFrm.valid">
+            Submit
+        </button>
+    </div>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button color="primary" class="btn btncancel" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

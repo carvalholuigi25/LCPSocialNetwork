@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteFeedbacksDialog } from './deletefeedbacks.component';
+import { DeleteFeedbacksDialog } from './delete.component';
 
-describe('DeletefeedbacksComponent', () => {
+describe('DeleteFeedbacksDialog', () => {
   let component: DeleteFeedbacksDialog;
   let fixture: ComponentFixture<DeleteFeedbacksDialog>;
 

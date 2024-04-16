@@ -5,7 +5,7 @@ import { SharedModule } from '@app/modules';
 import { Feedback, FeedbackStatusEnum, FeedbackTypeEnum } from '@app/models';
 import { AlertsService, AuthService, FeedbackService } from '@app/services';
 import { MatDialog } from '@angular/material/dialog';
-import { DeleteFeedbacksDialog } from '@app/dialogs';
+import { DeleteFeedbacksDialog, EditFeedbacksDialog } from '@app/dialogs';
 
 @Component({
   selector: 'app-feedback',
@@ -71,8 +71,12 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  onDelete() {
-    this.dialog.open(DeleteFeedbacksDialog);
+  onEdit(id: number, dataOldFeedback: Feedback) {
+    this.dialog.open(EditFeedbacksDialog, { data: { id: id, dataOldFeedback: dataOldFeedback } });
+  }
+
+  onDelete(id: number = 0, mode: string = "all") {
+    this.dialog.open(DeleteFeedbacksDialog, { data: { id: id, mode: mode } });
   }
 
   onReset() {

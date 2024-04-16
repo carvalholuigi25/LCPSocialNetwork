@@ -1,0 +1,11 @@
+.mat-mdc-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.feedbackeditformdialog {
+    input:not([type=button]):not([type=submit]):not([type=reset]), textarea {
+        padding: 15px !important;
+    }
+}
