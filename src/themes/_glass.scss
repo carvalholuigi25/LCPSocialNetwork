@@ -41,8 +41,7 @@
         }
     }
 
-    .colhomeinfo, .settings,
-    .mfeedbacks, .mat-mdc-card, 
+    .colhomeinfo, .settings, .mat-mdc-card, 
     .postsForm, .postsCreateForm, 
     .postsUpdateForm, .postsDeleteForm, 
     .errblk {
@@ -51,6 +50,81 @@
         background-color: $bkgColorPrimary;
         border: $border;
         color: $color;
+    }
+
+    .mfeedbacks {
+        -webkit-backdrop-filter: $backDropFilter;
+        backdrop-filter: $backDropFilter;
+        background-color: $bkgColorPrimary;
+        border: $border;
+        color: $color;
+    }
+
+    .feedbackform {
+        color: $color;
+
+        .mdc-floating-label, mat-label {
+            color: $color;
+        }
+
+        .mat-mdc-text-field-wrapper {
+            background-color: $bkgColorPrimary;
+            border: $border;
+            color: $color;
+
+            ::placeholder {
+                color: $color;
+            }
+        }
+
+        .mdc-text-field__input {
+            color: $color;
+        }
+
+        input:not([type="button"]):not([type="submit"]):not([type="reset"]), textarea {
+            color: $color;
+
+            ::placeholder {
+                color: $color;
+            }
+        }
+    }
+
+    .feedbackslist {
+        .btncountup, .btncountdown {
+            color: $color;
+        }
+    }
+
+    .mdc-dialog__container {
+        .mat-mdc-dialog-title {
+            border-color: $color;
+        }
+
+        .mat-mdc-dialog-actions {
+            border-color: $color;
+        }
+
+        .mat-mdc-dialog-surface.mdc-dialog__surface {
+            -webkit-backdrop-filter: $backDropFilter;
+            backdrop-filter: $backDropFilter;
+            background-color: $bkgColorPrimary;
+            border: $border;
+            color: $color;
+
+            .mat-mdc-text-field-wrapper {
+                border-color: $color;
+            }
+
+           * {
+                color: $color;
+                border-color: $color;
+
+                :hover {
+                    border-color: $color;
+                }
+           }
+        }
     }
 
     .mchatblk {

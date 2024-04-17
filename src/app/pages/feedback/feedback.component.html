@@ -18,7 +18,7 @@
                         placeholder="Suggest something here..." cols="1" rows="10" required matInput></textarea>
                 </mat-form-field>
                 <div class="form-group mt-3">
-                    <button type="button" mat-flat-button color="primary" (click)="onDelete()" [disabled]="(this.feedbacksList$ | async)?.length === 0">Delete</button>
+                    <button type="button" mat-flat-button color="primary" (click)="onDelete()" [disabled]="(this.feedbacksList$ | async)?.length === 0">Delete all</button>
                     <button type="button" class="ms-3" mat-flat-button color="primary" (click)="onReset()">Reset</button>
                     <button type="submit" class="ms-3" mat-flat-button color="accent" [disabled]="!frmFeedback.valid">
                         Submit
