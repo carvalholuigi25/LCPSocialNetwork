@@ -1,4 +1,4 @@
-<div class="container-fluid mfeedbacks">
+<div class="container mfeedbacks">
     <div class="row">
         <h2 class="title">
             <mat-icon>feedback</mat-icon>
@@ -29,7 +29,7 @@
 
         <div class="col-12 feedbackslist mt-3" *ngIf="(this.feedbacksList$ | async) as myfeedbacks">
             <div *ngIf="myfeedbacks.length > 0">
-                <mat-card *ngFor="let myfbs of myfeedbacks" class="feedbackslistitem mt-3">
+                <mat-card *ngFor="let myfbs of myfeedbacks" class="feedbackslistitem mt-3 {{ myfbs.statusFeedback + ' ' + myfbs.typeFeedback }}">
                     <mat-card-content>
                         <div class="d-flex flex-row justify-content-between align-items-start w-100">
                             <div class="d-flex flex-row justify-content-start align-items-start">
@@ -47,13 +47,29 @@
                                 
                                 <div class="d-flex flex-column justify-content-start align-items-start ms-3 mt-3">
                                     <mat-card-title>{{myfbs.title}} (Id: {{myfbs.feedbackId}})</mat-card-title>
-                                    <div class="d-flex justify-content-center align-items-center feedbackdateupdated mt-3">
-                                        <mat-icon>schedule</mat-icon>
-                                        <span class="ms-1" [title]="myfbs.dateFeedbackUpdated | date: 'full' : '' : translateService.currentLang">
-                                            {{ myfbs.dateFeedbackUpdated | date: 'short' : '' : translateService.currentLang }}
-                                        </span>
-                                    </div>
                                     <p class="feedbackdesc mt-3">{{myfbs.description}}</p>
+                                    <div class="d-flex flex-row justify-content-start align-items-center mt-3">
+                                        <div class="d-flex flex-wrap justify-content-center align-items-center feedbackdateupdated" [title]="myfbs.dateFeedbackUpdated | date: 'full' : '' : translateService.currentLang">
+                                            <mat-icon class="myico">schedule</mat-icon>
+                                            <span class="ms-1">
+                                                {{ myfbs.dateFeedbackUpdated | date: 'short' : '' : translateService.currentLang }}
+                                            </span>
+                                        </div>
+                                        <div class="d-flex flex-wrap justify-content-center align-items-center feedbackstatus ms-3" [title]="capitalizeFirstLetter(myfbs.statusFeedback)">
+                                            <mat-icon class="myico">
+                                                {{myfbs.statusFeedback == 'public' ? 'public': 'lock'}}
+                                            </mat-icon>
+                                            <span class="ms-1">
+                                                {{capitalizeFirstLetter(myfbs.statusFeedback)}}
+                                            </span>
+                                        </div>
+                                        <div class="d-flex flex-wrap justify-content-center align-items-center feedbacktype ms-3" [title]="capitalizeFirstLetter(myfbs.typeFeedback)">
+                                            <i class="icotype me-1"></i>
+                                            <span class="ms-1">
+                                                {{capitalizeFirstLetter(myfbs.typeFeedback)}}
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-flex flex-column justify-content-start align-items-end">

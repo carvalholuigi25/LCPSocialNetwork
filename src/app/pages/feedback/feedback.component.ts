@@ -86,6 +86,10 @@ export class FeedbackComponent implements OnInit {
     this.frmFeedback.updateValueAndValidity();
   }
 
+  capitalizeFirstLetter(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   onSubmit() {
     this.submitted = true;
 
@@ -98,8 +102,8 @@ export class FeedbackComponent implements OnInit {
       Description: this.f["Description"].value!.toString(),
       IsLocked: false,
       IsFeatured: false,
-      TypeFeedback: FeedbackTypeEnum.pending.toString(),
-      StatusFeedback: FeedbackStatusEnum.public.toString(),
+      TypeFeedback: "pending",
+      StatusFeedback: "public",
       DateFeedbackCreated: new Date().toISOString(),
       DateFeedbackUpdated: new Date().toISOString(),
       DateFeedbackDeleted: new Date().toISOString(),

@@ -14,11 +14,11 @@ export interface Feedback {
 }
 
 export enum FeedbackTypeEnum {
-    pending,
-    approved,
-    rejected,
-    draft,
-    deleted
+    pending = "pending",
+    approved = "approved",
+    rejected = "rejected",
+    draft = "draft",
+    deleted = "deleted"
 }
 
 export enum FeedbackStatusEnum {

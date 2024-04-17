@@ -1,3 +1,10 @@
+@mixin setMyColorToIcon($colorico: orange) {
+    border: 1px solid $colorico; 
+    box-shadow: 3px 3px 6px $colorico;
+    
+    .icotype { background-color: $colorico; } 
+}
+
 .mfeedbacks {
     display: block;
     padding: 15px;
@@ -40,6 +47,54 @@
 
         .errblk {
             color: black;
+        }
+    }
+
+    .tcapitalize { text-transform: capitalize; }
+
+    .feedbackslistitem {
+        $colorico: orange;
+
+        .icotype {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .myico {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            font-size: 1.25rem;
+            line-height: 1.25rem;
+            border-radius: 50%;
+        }
+
+        &.pending { 
+            $colorico: orange;
+            @include setMyColorToIcon($colorico);
+        }
+        
+        &.approved { 
+            $colorico: green;
+            @include setMyColorToIcon($colorico);
+        }
+        
+        &.rejected { 
+            $colorico: red;
+            @include setMyColorToIcon($colorico);
+        }
+        
+        &.deleted { 
+            $colorico: rgb(131, 1, 1);
+            @include setMyColorToIcon($colorico);
+        }
+
+        &.draft { 
+            $colorico: blue;
+            @include setMyColorToIcon($colorico);
         }
     }
 }
