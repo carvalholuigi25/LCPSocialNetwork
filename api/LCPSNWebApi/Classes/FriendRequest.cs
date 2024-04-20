@@ -14,7 +14,7 @@ public class FriendRequest
     public string Description { get; set; } = null!;
     
     [DataType(DataType.Text)] public string? Status { get; set; } = "public";
-    [DataType(DataType.Text)] public FriendRequestTypeEnum? FriendRequestType { get; set; } = FriendRequestTypeEnum.unknown;
+    [DataType(DataType.Text)] public FriendRequestTypeEnum? FriendRequestType { get; set; } = FriendRequestTypeEnum.pending;
     [DataType(DataType.Text)] public bool? IsAccepted { get; set; } = false;
     [DataType(DataType.DateTime)] public DateTime? DateFriendRequestCreated { get; set; } = DateTime.UtcNow;
     [DataType(DataType.DateTime)] public DateTime? DateFriendRequestAccepted { get; set; } = DateTime.UtcNow;
@@ -24,6 +24,7 @@ public class FriendRequest
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum FriendRequestTypeEnum {
-   [Description("friend")] friend,
-   [Description("unknown")] unknown
+    [Description("pending")] pending,
+    [Description("accepted")] accepted,
+    [Description("rejected")]  rejected
 }

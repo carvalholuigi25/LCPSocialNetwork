@@ -19,6 +19,20 @@
                                         <p>Role: {{user.role}}</p>
                                         <p>Date Account Created: {{user.dateAccountCreated}}</p>
                                         <p>Email: {{user.email ?? 'N/A'}}</p>
+
+                                        <div *ngIf="(friendRequestsData$ | async) as myfreq">
+                                            @if(myfreq != null && myfreq.length > 0) {
+                                                @if(myfreq[0].friendRequestType == "accepted") {
+                                                    <button mat-flat-button color="primary" class="btn btnrejectfriend mt-3" (click)="OnRejectFriend(user)">
+                                                        Reject this friend
+                                                    </button>
+                                                }
+                                            } @else {
+                                                <button mat-flat-button color="primary" class="btn btnaddfriend mt-3" (click)="OnAddFriend(user)">
+                                                    Add this friend
+                                                </button>
+                                            }
+                                        </div>
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="Posts">

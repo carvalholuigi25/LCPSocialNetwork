@@ -4,7 +4,7 @@ import { SharedModule } from './modules';
 import { AuthService } from './services/auth.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { CookieConsentComponent, NotificationsComponent } from './features';
+import { CookieConsentComponent, FriendsrequestsComponent, NotificationsComponent } from './features';
 import { AlertsService, ChatMessagesService, FriendsRequestsService, NotificationsService, ThemesService } from './services';
 import { Observable, filter } from 'rxjs';
 import { LanguagesService } from '@app/services';
@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CookieConsentComponent, NotificationsComponent, SharedModule],
+  imports: [RouterOutlet, CookieConsentComponent, NotificationsComponent, FriendsrequestsComponent, SharedModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

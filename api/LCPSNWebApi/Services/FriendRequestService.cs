@@ -182,7 +182,7 @@ namespace LCPSNWebApi.Services
             {
                 StringComparison strcomp = StringComparison.OrdinalIgnoreCase;
                 string connectionString = GetConnectionStr();
-                string queryString = $@"DBCC CHECKIDENT('dbo.FriendsRequests', RESEED, @rsid)";
+                string queryString = $@"DBCC CHECKIDENT('dbo.FriendRequests', RESEED, @rsid)";
                 int result;
 
                 using (var connection = GetConnectionType(connectionString, strcomp))

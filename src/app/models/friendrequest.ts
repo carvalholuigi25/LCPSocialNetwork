@@ -2,7 +2,7 @@ export interface FriendRequest {
     friendRequestId: number | null;
     description: string | null;
     status: string | null;
-    friendRequestType: FriendRequestTypeEnum | null;
+    friendRequestType: FriendRequestTypeEnum | string;
     isAccepted: boolean | null;
     dateFriendRequestCreated: string | null;
     dateFriendRequestAccepted: string | null;
@@ -11,6 +11,7 @@ export interface FriendRequest {
 }
 
 export enum FriendRequestTypeEnum {
-    friend,
-    unknown
+    pending = 0,
+    accepted = 1,
+    rejected = 2
 }

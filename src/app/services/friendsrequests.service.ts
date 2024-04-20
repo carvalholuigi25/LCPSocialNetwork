@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { FriendRequest } from '../models';
+import { FriendRequest, User } from '../models';
 import { DOCUMENT } from '@angular/common';
-import { catchError, throwError } from 'rxjs';
+import { catchError, forkJoin, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class FriendsRequestsService {
@@ -29,6 +29,12 @@ export class FriendsRequestsService {
 
     getAllById(id: number) {
         return this.http.get<FriendRequest>(`${environment.apiUrl}/friendrequest/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    getAllWithUsers() {
+        let friendreq = this.http.get<FriendRequest[]>(`${environment.apiUrl}/friendrequest`, { headers: this.setHeadersObj() });
+        let user = this.http.get<User[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });
+        return forkJoin([friendreq, user]);
     }
 
     getCount() {

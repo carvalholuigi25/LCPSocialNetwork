@@ -6,3 +6,4 @@ export * from '../features/posts/delete/delete.component';
 export * from '../features/themeswitch/themeswitch.component';
 export * from '../features/languageswitch/languageswitch.component';
 export * from '../features/notifications/notifications.component';
+export * from '../features/friendsrequests/friendsrequests.component';
