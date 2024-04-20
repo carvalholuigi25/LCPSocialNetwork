@@ -22,7 +22,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<FriendRequest>>> GetFriendRequests()
         {
             return await _FriendRequests.GetFriendRequests();
@@ -34,7 +34,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<FriendRequest>>> GetFriendRequestsById(int? id)
         {
             return await _FriendRequests.GetFriendRequestsById(id);
@@ -45,7 +45,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("enumslist")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetFriendRequestsAsEnumList()
         {
             return _FriendRequests.GetFriendRequestsAsEnumList();
@@ -67,7 +67,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("fopenumslist")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetFilterOperationEnumList()
         {
             return Ok(Enum.GetNames(typeof(FilterOperatorEnum)));
@@ -80,7 +80,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="FriendRequests"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> PutFriendRequests(int? id, FriendRequest FriendRequests)
         {
             return await _FriendRequests.PutFriendRequests(id, FriendRequests);
@@ -104,7 +104,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> DeleteFriendRequests(int? id)
         {
             return await _FriendRequests.DeleteFriendRequests(id);
@@ -116,7 +116,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="rsid"></param>
         /// <returns></returns>
         [HttpPost("{rsid}")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> ResetIdSeed(int rsid = 1)
         {
             return await _FriendRequests.ResetIdSeed(rsid);
@@ -128,7 +128,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="qryp"></param>
         /// <returns></returns>
         [HttpGet("filter")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> SearchFriendRequests([FromQuery] QueryParams qryp)
         {
             return await _FriendRequests.SearchData(qryp);
@@ -139,7 +139,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("lastid")]
-        [Authorize(Roles = "Administrator,Moderator,User")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> GetLastId()
         {
             return await _FriendRequests.GetLastId();

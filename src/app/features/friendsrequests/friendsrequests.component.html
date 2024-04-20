@@ -11,16 +11,14 @@
                         @if(freq.friendRequestType == "pending") {
                             <p class="longdesc">{{frusers.firstName + ' ' + frusers.lastName}}</p>
                             
-                            <button mat-flat-button color="primary" class="btn btnreject" (click)="OnReject(freq.friendRequestId!)">
+                            <button mat-icon-button color="primary" class="btn btnrejectfr" (click)="OnReject(freq.friendRequestId!)">
                                 <mat-icon>cancel</mat-icon>
                             </button>
-                            <button mat-flat-button color="accent" class="btn btnaccept" (click)="OnAccept(freq.friendRequestId!)">
+                            <button mat-icon-button color="accent" class="btn btnacceptfr ms-3" (click)="OnAccept(freq.friendRequestId!)">
                                 <mat-icon>check_circle</mat-icon>
                             </button>
-                        } @else if(freq.friendRequestType == "accepted") {
-                            <p class="longdesc">{{frusers.firstName + ' ' + frusers.lastName}} has accepted your friend request and is now friends with you!</p>
                         } @else {
-                            <p class="longdesc">{{frusers.firstName + ' ' + frusers.lastName}} has rejected your friend request!</p>
+                            <p class="longdesc">{{freq.description}}</p>
                         }
                     </div>
                 </div>

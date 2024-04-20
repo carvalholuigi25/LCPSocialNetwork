@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendRequest, FriendRequestTypeEnum, User } from '@app/models';
 import { SharedModule } from '@app/modules';
-import { AlertsService, FriendsRequestsService } from '@app/services';
+import { AlertsService, AuthService, FriendsRequestsService } from '@app/services';
 
 @Component({
   selector: 'app-friendsrequests',
@@ -13,8 +13,11 @@ import { AlertsService, FriendsRequestsService } from '@app/services';
 export class FriendsrequestsComponent implements OnInit {
   friendsRequests: FriendRequest[] = [];
   users: User[] | any;
+  authUserInfo: any;
 
-  constructor(private friendsRequestsService: FriendsRequestsService, private alertsService: AlertsService) {}
+  constructor(private friendsRequestsService: FriendsRequestsService, private alertsService: AlertsService, private authService: AuthService) {
+    this.authUserInfo = this.authService.getCurUserInfoAuth();
+  }
 
   ngOnInit(): void {
     this.getFriendsRequests();
@@ -23,17 +26,23 @@ export class FriendsrequestsComponent implements OnInit {
   getFriendsRequests() {
     this.friendsRequestsService.getAllWithUsers().subscribe({
       next: (r) => {
-        this.friendsRequests = r[0];   
-        this.users = r[1]; 
+        if(r) {
+          // r[0] = r[0].filter(x => x.userId !== this.authUserInfo.userId);
+
+          this.friendsRequests = r[0];   
+          this.users = r[1];
+        }
       },
-      error: (err) => console.log(err.Message)
+      error: (err) => {
+        console.error(err);
+      }
     });
   }
 
   OnAccept(friendRequestId: number) {
     const friendRequestData: FriendRequest = {
       friendRequestId: friendRequestId,
-      description: this.friendsRequests[0].description,
+      description: `${this.users[0].firstName} ${this.users[0].lastName} has accepted of friend request to user ${this.users[friendRequestId].firstName} ${this.users[friendRequestId].lastName}!`,
       status: this.friendsRequests[0].status,
       friendRequestType: FriendRequestTypeEnum.accepted, 
       isAccepted: true,
@@ -45,7 +54,7 @@ export class FriendsrequestsComponent implements OnInit {
 
     this.friendsRequestsService.updateFriendsRequests(friendRequestId, friendRequestData).subscribe({
       next: (v) => {
-        this.alertsService.openAlert(`Accepted friend request!`, 1, "success");
+        this.alertsService.openAlert(friendRequestData.description!, 1, "success");
         this.getFriendsRequests();
         location.reload();
       },

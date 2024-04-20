@@ -4,7 +4,7 @@ import { SharedModule } from '../../modules';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '@app/services/users.service';
 import { ReadPostsComponent } from '@app/features';
-import { AlertsService, FriendsRequestsService } from '@app/services';
+import { AlertsService, AuthService, FriendsRequestsService } from '@app/services';
 import { FriendRequest, FriendRequestTypeEnum, User } from '@app/models';
 import { Observable } from 'rxjs';
 
@@ -16,16 +16,20 @@ import { Observable } from 'rxjs';
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
+  authUserInfo: any;
   userId: number = -1;
   usersData!: any;
-  friendRequestsData$: Observable<FriendRequest[]> = new Observable<FriendRequest[]>();
+  friendRequestsData$: Observable<any> = new Observable<any>();
 
   constructor(
     private route: ActivatedRoute, 
     private usersSrv: UsersService, 
     private friendsRequestsService: FriendsRequestsService, 
-    private alertsService: AlertsService
+    private alertsService: AlertsService,
+    private authService: AuthService
   ) {
+    this.authUserInfo = this.authService.getCurUserInfoAuth();
+
     this.route.params.subscribe(params => {
       this.userId = params["userId"];
     });
@@ -58,11 +62,13 @@ export class UsersComponent implements OnInit {
     this.friendRequestsData$ = this.friendsRequestsService.getAll();
   }
 
-  OnRejectFriend(user: User | any) {
-    if(this.userId !== user.userId) {
-      this.friendsRequestsService.deleteFriendsRequests(user.userId > 1 ? user.userId - 1 : user.userId).subscribe({
+  OnRejectFriend() {
+    if(this.userId !== this.authUserInfo.userId) {
+      const uidreq = this.authUserInfo.userId > 1 ? this.authUserInfo.userId-1 : this.authUserInfo.userId;
+      this.friendsRequestsService.deleteFriendsRequests(uidreq).subscribe({
         next: (v) => {
-          this.alertsService.openAlert(`Friend request rejected!`, 1, "success");
+          const fulluname = this.authUserInfo.firstName + ' ' + this.authUserInfo.lastName;
+          this.alertsService.openAlert(`Friend request rejected by ${fulluname}!`, 1, "success");
           this.GetFriendRequestsData();
           location.reload();
         },
@@ -76,10 +82,12 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  OnAddFriend(user: User | any) {
-    if(this.userId !== user.userId) {
+  OnAddFriend(user: any) {
+    if(this.userId !== this.authUserInfo.userId) {
+      const fulluname = user.firstName + " " + user.lastName;
+      const fulluaname = this.authUserInfo.firstName + " " + this.authUserInfo.lastName;
       const friendRequestData: FriendRequest | any = {
-        description: `${user.firstName + " " + user.lastName} has sent you a friend request`,
+        description: `${fulluaname} has sent a friend request to ${fulluname}!`,
         status: "private",
         friendRequestType: FriendRequestTypeEnum.pending,
         dateFriendRequestCreated: new Date().toISOString(),
@@ -91,7 +99,7 @@ export class UsersComponent implements OnInit {
   
       this.friendsRequestsService.createFriendsRequests(friendRequestData).subscribe({
         next: (data) => {
-          this.alertsService.openAlert(`Friend request sent to ${user.username}!`, 1, "success");
+          this.alertsService.openAlert(friendRequestData.description, 1, "success");
           location.reload();
         },
         error: (err) => console.log(err.Message)

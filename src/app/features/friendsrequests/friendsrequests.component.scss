@@ -1,0 +1,37 @@
+.btnrejectfr {
+    background-color: red;
+    border: 0;
+    color: transparent;
+
+    * {
+        color: red;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0 auto;
+        font-size: 2rem;
+        border: 0;
+        border-radius: inherit;
+    }
+}
+
+.btnacceptfr {
+    background-color: green;
+    border: 0;
+    color: transparent;
+
+    * {
+        color: green;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0 auto;
+        font-size: 2rem;
+        border: 0;
+        border-radius: inherit;
+    }
+}

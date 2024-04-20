@@ -27,6 +27,14 @@ export class AuthService {
         return this.userSubject.value;
     }
 
+    getCurUserIdAuth() {
+        return this.userValue?.usersInfo.userId ?? 1;
+    }
+
+    getCurUserInfoAuth() {
+        return this.userValue?.usersInfo;
+    }
+
     login(users: UserAuth) {
         return this.http.post<any>(`${environment.apiUrl}/auth/login`, { Username: users.Username, Password: users.Password })
             .pipe(map(user => {
