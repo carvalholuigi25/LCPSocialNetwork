@@ -12,7 +12,7 @@
 
     @if(user) {
       <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
-        <button mat-icon-button [matMenuTriggerFor]="menusearch" aria-label="Search menu">
+        <button mat-icon-button aria-label="Search menu" (click)="toggleSearch()">
           <mat-icon aria-hidden="false">search</mat-icon>
           <span class="cdk-visually-hidden">
             {{ 'navbar.btnSearch' | translate }}
@@ -42,12 +42,6 @@
         </button>
       </div>
 
-      <mat-menu class="p-3" #menusearch="matMenu">
-        <mat-form-field class="searchblk" appearance="fill" color="accent" (click)="DoPreventMenuCloseAfterClicked($event);">
-          <input class="searchinp" matInput placeholder="{{ 'navbar.phSearch' | translate }}">
-          <mat-icon matSuffix aria-hidden="false">search</mat-icon>
-        </mat-form-field>
-      </mat-menu>
       <mat-menu class="p-3 mymenufriendrequests" #menufriendrequests="matMenu">
         <app-friendsrequests></app-friendsrequests>
       </mat-menu>

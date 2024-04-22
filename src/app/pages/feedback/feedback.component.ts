@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedModule } from '@app/modules';
-import { Feedback, FeedbackStatusEnum, FeedbackTypeEnum } from '@app/models';
+import { Feedback } from '@app/models';
 import { AlertsService, AuthService, FeedbackService } from '@app/services';
 import { DeleteFeedbacksDialog, EditFeedbacksDialog } from '@app/dialogs';
 

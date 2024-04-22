@@ -9,6 +9,8 @@ import { AlertsService, ChatMessagesService, FriendsRequestsService, Notificatio
 import { Observable, filter } from 'rxjs';
 import { LanguagesService } from '@app/services';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchComponentDialog } from './dialogs';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +42,8 @@ export class AppComponent implements OnInit {
     private friendRequestsService: FriendsRequestsService,
     private notificationsService: NotificationsService,
     private chatMessagesService: ChatMessagesService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public dialog: MatDialog
   ) { 
     this.translate.use(this.languagesService.getLanguage()! ?? "en");
     this.DoRouterStuff();
@@ -55,12 +58,6 @@ export class AppComponent implements OnInit {
   logout() {
     this.alertsService.openAlert(`Logged out!`, 1, "success");
     this.authService.logout();
-  }
-
-  DoPreventMenuCloseAfterClicked($event:any){
-    if($event) {
-      $event.stopPropagation();
-    }
   }
 
   toggleMenu() {
@@ -102,5 +99,9 @@ export class AppComponent implements OnInit {
     this.authService.user.subscribe(x => {
       this.user = x;
     });
+  }
+
+  toggleSearch() {
+    this.dialog.open(SearchComponentDialog);
   }
 }

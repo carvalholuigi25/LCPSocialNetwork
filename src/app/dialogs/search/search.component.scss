@@ -1,0 +1,24 @@
+.searchdialog {
+    min-width: 500px;
+    max-width: 100%;
+
+    .searchblk {
+        width: 100%;
+        max-width: 100%;
+
+        .searchinp {
+            padding: 15px;
+        }
+    }
+
+    pre.searchdatablk {
+        display: block;
+        white-space: pre;
+        max-height: 300px;
+        overflow: auto;
+    }
+
+    .errblk {
+        color: black;
+    }
+}

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Post, User } from '../models';
+import { Post, QueryParams, User } from '../models';
 import { DOCUMENT } from '@angular/common';
 import { catchError, forkJoin, throwError } from 'rxjs';
 
@@ -57,6 +57,19 @@ export class PostsService {
 
     deletePosts(id: number) {
         return this.http.delete<Post>(`${environment.apiUrl}/post/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    searchPosts(qryp: QueryParams) {
+        let qparams = new HttpParams().appendAll({
+            "Page": qryp.page,
+            "PageSize": qryp.pageSize,
+            "SortOrder": qryp.sortOrder,
+            "SortBy": qryp.sortBy,
+            "Search": qryp.search,
+            "Operator": qryp.operator
+        });
+
+        return this.http.get<Post[]>(`${environment.apiUrl}/post/filter`, { headers: this.setHeadersObj(), params: qparams }).pipe(catchError(this.handleError));
     }
 
     /* istanbul ignore next */
