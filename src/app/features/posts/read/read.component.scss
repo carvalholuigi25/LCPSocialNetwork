@@ -102,7 +102,7 @@
             margin-top: 15px;
         }
 
-        .collikes, .colcomments, .colshares {
+        .colreactions, .colcomments, .colshares {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -111,7 +111,7 @@
             text-align: center;
         }
 
-        .btnlikes, .btncomments, .btnshares {
+        .btnreactions, .btnreact, .btncomments, .btnshares {
             padding: 0;
             margin: auto auto;
             width: 100%;
@@ -129,6 +129,48 @@
     .ctxtjustify {
         text-align: justify;
         line-height: 2rem;
+    }
+
+    .reactlike { color: blue; }
+    .reactdislike { color: gray; }
+    .reactlove { color: red; }
+    .reactcourage { color: rgb(143, 10, 0); }
+    .reactlaugh { color: orange; }
+    .reactsurprised { color: green; }
+    .reactsad { color: rgb(8, 145, 190); }
+    .reactangry { color: purple; }
+}
+
+::ng-deep .myreactionmenu {
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 24px;
+
+    .mat-mdc-menu-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+
+        .mat-mdc-menu-item:has(.material-icons,mat-icon,[matButtonIcon]), button {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .mat-icon {
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .btnreactlike:hover .mat-icon { color: blue; }
+        .btnreactdislike:hover .mat-icon { color: gray; }
+        .btnreactlove:hover .mat-icon { color: red; }
+        .btnreactcourage:hover .mat-icon { color: rgb(143, 10, 0); }
+        .btnreactlaugh:hover .mat-icon { color: orange; }
+        .btnreactsurprised:hover .mat-icon { color: green; }
+        .btnreactsad:hover .mat-icon { color: rgb(8, 145, 190); }
+        .btnreactangry:hover .mat-icon { color: purple; }
     }
 }
 

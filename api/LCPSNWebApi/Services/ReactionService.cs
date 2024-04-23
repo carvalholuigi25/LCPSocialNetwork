@@ -51,6 +51,11 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(Reaction).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
+        public async Task<ActionResult<int>> GetReactionsCount()
+        {
+            return (await _context.Reactions.ToListAsync()).Count;
+        }
+
         public async Task<IActionResult> PutReactions(int? id, Reaction Reactions)
         {
             if(!ModelState.IsValid)

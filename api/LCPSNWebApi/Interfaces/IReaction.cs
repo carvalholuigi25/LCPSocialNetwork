@@ -9,6 +9,7 @@ namespace LCPSNWebApi.Interfaces
         Task<ActionResult<IEnumerable<Reaction>>> GetReactions();
         Task<ActionResult<IEnumerable<Reaction>>> GetReactionsById(int? id);
         IActionResult GetReactionsAsEnumList();
+        Task<ActionResult<int>> GetReactionsCount();
         Task<IActionResult> PutReactions(int? id, Reaction Reactions);
         Task<ActionResult<IEnumerable<Reaction>>> PostReactions(Reaction ReactionsData);
         Task<IActionResult> DeleteReactions(int? id);

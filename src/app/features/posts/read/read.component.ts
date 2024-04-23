@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Post, User } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { SafePipe } from '@app/pipes';
-import { AlertsService, AuthService, PostsService } from '@app/services';
+import { AlertsService, AuthService, CommentService, PostsService } from '@app/services';
+import { ReactionsService } from '@app/services/reactions.service';
+import { SharesService } from '@app/services/shares.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-readposts',
@@ -13,19 +16,20 @@ import { AlertsService, AuthService, PostsService } from '@app/services';
   styleUrl: './read.component.scss'
 })
 export class ReadPostsComponent implements OnInit {
-
   dataPosts?: Post[] | any;
   dataUsers?: User[] | any;
   avatarId: number = 1;
   avatarRole: string = "User";
-  ctLikes: number = 0;
-  ctComments: number = 0;
-  ctShares: number = 0;
-
+  reactionTypeName: string = "like";
+  reactionTypeValue: string = "thumb_up";
   postId: number = -1;
   userId: number = -1;
+  ctReactions$: Observable<number> = new Observable<number>();
+  ctComments$: Observable<number> = new Observable<number>();
+  ctShares$: Observable<number> = new Observable<number>();
+  reactionsData$: Observable<any> = new Observable<any>();
 
-  constructor(private postsService: PostsService, private alertsService: AlertsService, private route: ActivatedRoute, private authService: AuthService) { 
+  constructor(private postsService: PostsService, private reactionsService: ReactionsService, private commentsService: CommentService, private sharesService: SharesService, private alertsService: AlertsService, private route: ActivatedRoute, private authService: AuthService) { 
     this.route.params.subscribe(params => {
       this.postId = params["postId"];
       this.userId = params["userId"];
@@ -39,6 +43,10 @@ export class ReadPostsComponent implements OnInit {
   getPosts() {
     this.avatarId = this.authService.userValue != null ? this.authService.userValue["usersInfo"]["userId"] : 1;
     this.avatarRole = this.authService.userValue != null ? this.authService.userValue["usersInfo"]["role"] : "user";
+    this.reactionsData$ = this.reactionsService.getDataLocal();
+    this.ctReactions$ = this.reactionsService.getCount();
+    this.ctComments$ = this.commentsService.getCount();
+    this.ctShares$ = this.sharesService.getCount();
 
     this.postsService.getAllWithUsers(-1, -1).subscribe({
       next: (r) => {
@@ -60,15 +68,16 @@ export class ReadPostsComponent implements OnInit {
     });
   }
 
-  ClickLikes() {
-    this.ctLikes!++;
-  }
-
-  ClickComments() {
-    this.ctComments!++;
-  }
-
-  ClickShares() {
-    this.ctShares!++;
+  setReactionType(reactionType: string) {
+    this.reactionTypeName = reactionType;
+    this.reactionTypeValue = this.reactionTypeName == 'like' ? "thumb_up" : 
+    reactionType == 'dislike' ? "thumb_down" : 
+    reactionType == 'love' ? "favorite" : 
+    reactionType == 'courage' ? "cheer" : 
+    reactionType == 'laugh' ? "mood" : 
+    reactionType == 'surprised' ? "sentiment_excited" : 
+    reactionType == 'sad' ? "sentiment_sad" : 
+    reactionType == 'angry' ? "mood_bad" : 
+    "thumb_up";
   }
 }

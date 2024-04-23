@@ -31,6 +31,10 @@ export class SharesService {
         return this.http.get<Share>(`${environment.apiUrl}/share/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getCount() {
+        return this.http.get<number>(`${environment.apiUrl}/share/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createShares(Shares: Share) {
         return this.http.post<Share>(`${environment.apiUrl}/share`, Shares, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }

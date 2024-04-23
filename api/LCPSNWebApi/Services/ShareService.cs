@@ -51,6 +51,11 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(Share).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
+        public async Task<ActionResult<int>> GetSharesCount()
+        {
+            return (await _context.Shares.ToListAsync()).Count;
+        }
+
         public async Task<IActionResult> PutShares(int? id, Share Share)
         {
             if(!ModelState.IsValid)

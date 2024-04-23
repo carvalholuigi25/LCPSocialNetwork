@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "like",
+        "value": "thumb_up"
+    },
+    {
+        "id": 2,
+        "name": "dislike",
+        "value": "thumb_down"
+    },
+    {
+        "id": 3,
+        "name": "love",
+        "value": "favorite"
+    },
+    {
+        "id": 4,
+        "name": "courage",
+        "value": "cheer"
+    },
+    {
+        "id": 5,
+        "name": "laugh",
+        "value": "mood"
+    },
+    {
+        "id": 6,
+        "name": "surprised",
+        "value": "sentiment_excited"
+    },
+    {
+        "id": 7,
+        "name": "sad",
+        "value": "sentiment_sad"
+    },
+    {
+        "id": 8,
+        "name": "angry",
+        "value": "mood_bad"
+    }
+]

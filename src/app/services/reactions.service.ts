@@ -23,12 +23,20 @@ export class ReactionsService {
         });
     }
 
+    getDataLocal() {
+        return this.http.get<any>('../assets/data/reactions.json').pipe(catchError(this.handleError));
+    }
+
     getAll() {
         return this.http.get<Reaction[]>(`${environment.apiUrl}/reaction`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     getAllById(id: number) {
         return this.http.get<Reaction>(`${environment.apiUrl}/reaction/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    getCount() {
+        return this.http.get<number>(`${environment.apiUrl}/reaction/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     createReactions(Reaction: Reaction) {

@@ -51,6 +51,11 @@ namespace LCPSNWebApi.Services
             return Ok(typeof(Comment).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
         }
 
+        public async Task<ActionResult<int>> GetCommentCount()
+        {
+            return (await _context.Comments.ToListAsync()).Count;
+        }
+
         public async Task<IActionResult> PutComment(int? id, Comment Comments)
         {
             if(!ModelState.IsValid)

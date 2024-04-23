@@ -31,6 +31,10 @@ export class CommentService {
         return this.http.get<Comment>(`${environment.apiUrl}/comment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getCount() {
+        return this.http.get<number>(`${environment.apiUrl}/comment/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createComments(comment: Comment) {
         return this.http.post<Comment>(`${environment.apiUrl}/comment`, comment, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }

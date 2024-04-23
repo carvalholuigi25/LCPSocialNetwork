@@ -50,6 +50,17 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint retrives all Comments length.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("count")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
+        public async Task<ActionResult<int>> GetCommentsCount()
+        {
+            return await _Comments.GetCommentCount();
+        }
+
+        /// <summary>
         /// This endpoint retrives list of enums of filter operation for search feature
         /// </summary>
         /// <returns></returns>

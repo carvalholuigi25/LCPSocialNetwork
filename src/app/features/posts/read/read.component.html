@@ -59,22 +59,30 @@
                                 <mat-card-actions>
                                     <mat-card-content class="padcardfooter w-100">
                                         <div class="socialcounters">
-                                            <div class="collikes">
-                                                <button class="btnlikes" mat-icon-button aria-label="Likes" (click)="ClickLikes()">
-                                                    <mat-icon>thumb_up</mat-icon>
-                                                    <span>{{ctLikes}}</span>
+                                            <div class="colreactions" *ngIf="(reactionsData$ | async)">
+                                                <button class="btnreactions" mat-icon-button aria-label="Reactions" [matMenuTriggerFor]="reactionMenu">
+                                                    <mat-icon class="material-symbols-outlined react{{this.reactionTypeName}}">
+                                                        {{this.reactionTypeValue}}
+                                                    </mat-icon>
+                                                    <span>{{ctReactions$ | async}}</span>
                                                 </button>
+
+                                                <mat-menu class="myreactionmenu" #reactionMenu="matMenu" yPosition="above">
+                                                    <button *ngFor="let x of (reactionsData$ | async)" class="btnreact{{x.name}}" mat-menu-item (click)="setReactionType(x.name)">
+                                                        <mat-icon class="material-symbols-outlined">{{x.value}}</mat-icon>
+                                                    </button>
+                                                </mat-menu>
                                             </div>
                                             <div class="colcomments">
-                                                <button class="btncomments" mat-icon-button aria-label="Comments" (click)="ClickComments()">
+                                                <button class="btncomments" mat-icon-button aria-label="Comments">
                                                     <mat-icon>comments</mat-icon>
-                                                    <span>{{ctComments}}</span>
+                                                    <span>{{ctComments$ | async}}</span>
                                                 </button>
                                             </div>
                                             <div class="colshares">
-                                                <button class="btnshares" mat-icon-button aria-label="Shares" (click)="ClickShares()">
+                                                <button class="btnshares" mat-icon-button aria-label="Shares">
                                                     <mat-icon>shares</mat-icon>
-                                                    <span>{{ctShares}}</span>
+                                                    <span>{{ctShares$ | async}}</span>
                                                 </button>
                                             </div>
                                         </div>
