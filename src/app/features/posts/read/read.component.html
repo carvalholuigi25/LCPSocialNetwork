@@ -59,17 +59,25 @@
                                 <mat-card-actions>
                                     <mat-card-content class="padcardfooter w-100">
                                         <div class="socialcounters">
-                                            <div class="colreactions" *ngIf="(reactionsData$ | async)">
-                                                <button class="btnreactions" mat-icon-button aria-label="Reactions" [matMenuTriggerFor]="reactionMenu">
-                                                    <mat-icon class="material-symbols-outlined react{{this.reactionTypeName}}">
-                                                        {{this.reactionTypeValue}}
-                                                    </mat-icon>
-                                                    <span>{{ctReactions$ | async}}</span>
-                                                </button>
+                                            <div class="colreactions" *ngIf="(reactionsData$ | async) as myreactionsdata">
+                                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                                    <button class="btnreactions btnreactions{{y.postId}}" id="btnreactions{{y.postId}}" mat-icon-button aria-label="Reactions" [matMenuTriggerFor]="reactionMenu">
+                                                        <mat-icon class="material-symbols-outlined react{{reactionTypeName}}" *ngIf="y.postId == reactionId">
+                                                            {{reactionTypeValue}}
+                                                        </mat-icon>
+                                                        <mat-icon class="material-symbols-outlined reactlike" *ngIf="y.postId !== reactionId">
+                                                            thumb_up
+                                                        </mat-icon>
+                                                    </button>
+                                                    <span class="ms-1" (click)="openReactionMenu()">
+                                                        {{ctReactions$ | async}}
+                                                    </span>
+                                                </div>
+
 
                                                 <mat-menu class="myreactionmenu" #reactionMenu="matMenu" yPosition="above">
-                                                    <button *ngFor="let x of (reactionsData$ | async)" class="btnreact{{x.name}}" mat-menu-item (click)="setReactionType(x.name)">
-                                                        <mat-icon class="material-symbols-outlined">{{x.value}}</mat-icon>
+                                                    <button (click)="setReactionType(xmrd, y.postId)" *ngFor="let xmrd of myreactionsdata; let xi = index;" class="btnreact{{xmrd.name}}" mat-menu-item>
+                                                        <mat-icon class="material-symbols-outlined">{{xmrd.value}}</mat-icon>
                                                     </button>
                                                 </mat-menu>
                                             </div>

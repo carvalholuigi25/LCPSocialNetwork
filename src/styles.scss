@@ -7,6 +7,7 @@
     white-space: normal;
     word-wrap: break-word;
 }
+
 html, body { height: 100%; }
 body { 
     margin: 0; 
@@ -312,6 +313,17 @@ form {
     .mat-mdc-dialog-actions {
         border-top: 1px solid white;
     }
+}
+
+
+table.table-layout-auto {
+    table-layout: auto !important;
+    overflow: auto;
+}
+
+table.table-layout-fixed {
+    table-layout: fixed !important;
+    overflow: auto;
 }
 
 @media all and (width >= 769px) and (width <= 992px) {

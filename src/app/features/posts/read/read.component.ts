@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ReactionsDialogComponent } from '@app/dialogs';
 import { Post, User } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { SafePipe } from '@app/pipes';
@@ -24,12 +26,13 @@ export class ReadPostsComponent implements OnInit {
   reactionTypeValue: string = "thumb_up";
   postId: number = -1;
   userId: number = -1;
+  reactionId: number = 0;
   ctReactions$: Observable<number> = new Observable<number>();
   ctComments$: Observable<number> = new Observable<number>();
   ctShares$: Observable<number> = new Observable<number>();
   reactionsData$: Observable<any> = new Observable<any>();
 
-  constructor(private postsService: PostsService, private reactionsService: ReactionsService, private commentsService: CommentService, private sharesService: SharesService, private alertsService: AlertsService, private route: ActivatedRoute, private authService: AuthService) { 
+  constructor(private postsService: PostsService, private reactionsService: ReactionsService, private commentsService: CommentService, private sharesService: SharesService, private alertsService: AlertsService, private route: ActivatedRoute, private authService: AuthService, public dialog: MatDialog) { 
     this.route.params.subscribe(params => {
       this.postId = params["postId"];
       this.userId = params["userId"];
@@ -68,16 +71,15 @@ export class ReadPostsComponent implements OnInit {
     });
   }
 
-  setReactionType(reactionType: string) {
-    this.reactionTypeName = reactionType;
-    this.reactionTypeValue = this.reactionTypeName == 'like' ? "thumb_up" : 
-    reactionType == 'dislike' ? "thumb_down" : 
-    reactionType == 'love' ? "favorite" : 
-    reactionType == 'courage' ? "cheer" : 
-    reactionType == 'laugh' ? "mood" : 
-    reactionType == 'surprised' ? "sentiment_excited" : 
-    reactionType == 'sad' ? "sentiment_sad" : 
-    reactionType == 'angry' ? "mood_bad" : 
-    "thumb_up";
+  setReactionType(reactionData: any, ind: number) {
+    this.reactionId = ind;
+    this.reactionTypeName = reactionData.name;
+    this.reactionsData$.subscribe(xrd => {
+      this.reactionTypeValue = xrd.filter((y: any) => y.name == reactionData.name)[0].value.toString();
+    });
+  }
+
+  openReactionMenu() {
+    this.dialog.open(ReactionsDialogComponent);
   }
 }
