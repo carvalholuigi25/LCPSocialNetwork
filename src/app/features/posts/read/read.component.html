@@ -58,41 +58,7 @@
                             <mat-card-footer>
                                 <mat-card-actions>
                                     <mat-card-content class="padcardfooter w-100">
-                                        <div class="socialcounters">
-                                            <div class="colreactions" *ngIf="(reactionsData$ | async) as myreactionsdata">
-                                                <div class="d-flex flex-row justify-content-center align-items-center">
-                                                    <button class="btnreactions btnreactions{{y.postId}}" id="btnreactions{{y.postId}}" mat-icon-button aria-label="Reactions" [matMenuTriggerFor]="reactionMenu">
-                                                        <mat-icon class="material-symbols-outlined react{{reactionTypeName}}" *ngIf="y.postId == reactionId">
-                                                            {{reactionTypeValue}}
-                                                        </mat-icon>
-                                                        <mat-icon class="material-symbols-outlined reactlike" *ngIf="y.postId !== reactionId">
-                                                            thumb_up
-                                                        </mat-icon>
-                                                    </button>
-                                                    <span class="ms-1 numreactions" (click)="openReactionMenu()">
-                                                        {{numReactions$ | async}}
-                                                    </span>
-                                                </div>
-
-                                                <mat-menu class="myreactionmenu" #reactionMenu="matMenu" yPosition="above">
-                                                    <button (click)="setReactionType(xmrd, y.postId)" *ngFor="let xmrd of myreactionsdata" class="btnreact{{xmrd.name}}" mat-menu-item>
-                                                        <mat-icon class="material-symbols-outlined">{{xmrd.value}}</mat-icon>
-                                                    </button>
-                                                </mat-menu>
-                                            </div>
-                                            <div class="colcomments">
-                                                <button class="btncomments" mat-icon-button aria-label="Comments">
-                                                    <mat-icon>comments</mat-icon>
-                                                    <span>{{numComments$ | async}}</span>
-                                                </button>
-                                            </div>
-                                            <div class="colshares">
-                                                <button class="btnshares" mat-icon-button aria-label="Shares">
-                                                    <mat-icon>shares</mat-icon>
-                                                    <span>{{numShares$ | async}}</span>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <app-socialcounters [AvatarId]="avatarId" [UserId]="userId" [PostId]="y.postId" [DataPosts]="dataPosts" />
                                     </mat-card-content>
                                 </mat-card-actions>
                             </mat-card-footer>

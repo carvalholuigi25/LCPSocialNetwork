@@ -1,0 +1,46 @@
+.socialcounters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.colreactions, .colcomments, .colshares {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btnreactions, .btnreact, .btncomments, .btnshares {
+    padding: 0;
+    margin: auto auto;
+    width: 100%;
+    max-width: 100%;
+
+    .mat-icon, span {
+        display: inline-flex;
+        padding: 0;
+        margin: auto auto;
+        font-size: 1rem;
+    }
+}
+
+.ctxtjustify {
+text-align: justify;
+line-height: 2rem;
+}
+
+.reactlike { color: blue; }
+.reactdislike { color: gray; }
+.reactlove { color: red; }
+.reactcourage { color: rgb(143, 10, 0); }
+.reactlaugh { color: orange; }
+.reactsurprised { color: green; }
+.reactsad { color: rgb(8, 145, 190); }
+.reactangry { color: purple; }
