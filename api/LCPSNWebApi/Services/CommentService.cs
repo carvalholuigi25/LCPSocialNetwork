@@ -123,6 +123,26 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
+        public async Task<IActionResult> DeleteAllComments()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
+            }
+
+            var Comments = await _context.Comments.ToListAsync();
+            if (Comments == null)
+            {
+                return NotFound(_localizer.GetString("DataNotFound").Value);
+            }
+
+            _context.Comments.RemoveRange(Comments);
+            await _context.SaveChangesAsync();
+            await ResetIdSeed(_context.Comments.Count());
+
+            return NoContent();
+        }
+
         public async Task<IActionResult> SearchData([FromQuery] QueryParams qryp)
         {
             try

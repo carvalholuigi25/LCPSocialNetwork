@@ -69,14 +69,13 @@
                                                             thumb_up
                                                         </mat-icon>
                                                     </button>
-                                                    <span class="ms-1" (click)="openReactionMenu()">
-                                                        {{ctReactions$ | async}}
+                                                    <span class="ms-1 numreactions" (click)="openReactionMenu()">
+                                                        {{numReactions$ | async}}
                                                     </span>
                                                 </div>
 
-
                                                 <mat-menu class="myreactionmenu" #reactionMenu="matMenu" yPosition="above">
-                                                    <button (click)="setReactionType(xmrd, y.postId)" *ngFor="let xmrd of myreactionsdata; let xi = index;" class="btnreact{{xmrd.name}}" mat-menu-item>
+                                                    <button (click)="setReactionType(xmrd, y.postId)" *ngFor="let xmrd of myreactionsdata" class="btnreact{{xmrd.name}}" mat-menu-item>
                                                         <mat-icon class="material-symbols-outlined">{{xmrd.value}}</mat-icon>
                                                     </button>
                                                 </mat-menu>
@@ -84,13 +83,13 @@
                                             <div class="colcomments">
                                                 <button class="btncomments" mat-icon-button aria-label="Comments">
                                                     <mat-icon>comments</mat-icon>
-                                                    <span>{{ctComments$ | async}}</span>
+                                                    <span>{{numComments$ | async}}</span>
                                                 </button>
                                             </div>
                                             <div class="colshares">
                                                 <button class="btnshares" mat-icon-button aria-label="Shares">
                                                     <mat-icon>shares</mat-icon>
-                                                    <span>{{ctShares$ | async}}</span>
+                                                    <span>{{numShares$ | async}}</span>
                                                 </button>
                                             </div>
                                         </div>

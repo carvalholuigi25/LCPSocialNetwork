@@ -1,13 +1,13 @@
-export interface Reaction {
-    reactionId: number | null;
-    reactionType: ReactionTypeEnum | null;
-    dateReacted: string | null;
-    reactionCounter: number | null;
-    attachmentId: number | null;
-    postId: number | null;
-    commentId: number | null;
-    replyId: number | null;
-    userId: number | null;
+export class Reaction {
+    reactionId?: number;
+    reactionType!: ReactionTypeEnum | string;
+    reactionCounter!: number;
+    dateReacted?: string;
+    attachmentId?: number;
+    postId?: number;
+    commentId?: number;
+    replyId?: number;
+    userId?: number;
 }
 
 export enum ReactionTypeEnum {

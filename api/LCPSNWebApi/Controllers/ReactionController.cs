@@ -63,6 +63,17 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint retrives all Reactions length by post id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("count/{postId}")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
+        public async Task<ActionResult<int>> GetReactionsCountByPostId(int postId = 1)
+        {
+            return await _Reactions.GetReactionsCountByPostId(postId);
+        }
+
+        /// <summary>
         /// This endpoint retrives list of enums of filter operation for search feature
         /// </summary>
         /// <returns></returns>
@@ -108,6 +119,16 @@ namespace LCPSNWebApi.Controllers
         public async Task<IActionResult> DeleteReactions(int? id)
         {
             return await _Reactions.DeleteReactions(id);
+        }
+
+        /// <summary>
+        /// This endpoint deletes all Reactions.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("all")]
+        public async Task<IActionResult> DeleteAllReactions()
+        {
+            return await _Reactions.DeleteAllReactions();
         }
 
         /// <summary>

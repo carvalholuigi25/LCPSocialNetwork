@@ -13,6 +13,7 @@ namespace LCPSNWebApi.Interfaces
         Task<IActionResult> PutShares(int? id, Share Shares);
         Task<ActionResult<IEnumerable<Share>>> PostShares(Share SharesData);
         Task<IActionResult> DeleteShares(int? id);
+        Task<IActionResult> DeleteAllShares();
         Task<IActionResult> ResetIdSeed(int rsid = 1);
         Task<IActionResult> SearchData([FromQuery] QueryParams qryp);
         Task<IActionResult> GetLastId();

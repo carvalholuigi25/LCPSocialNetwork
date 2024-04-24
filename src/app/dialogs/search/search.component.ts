@@ -12,15 +12,16 @@ import { PostsService } from '@app/services';
   styleUrl: './search.component.scss'
 })
 export class SearchComponentDialog implements OnInit {
-  frmSearch: FormGroup = new FormGroup({
-    search: new FormControl('', Validators.required)
-  });
-
+  frmSearch!: FormGroup;
   searchData: any;
 
   constructor(private postService: PostsService) {}
 
   ngOnInit(): void {
+    this.frmSearch = new FormGroup({
+      search: new FormControl('', Validators.required)
+    });
+
     this.DoSearch();
   }
 
@@ -32,16 +33,15 @@ export class SearchComponentDialog implements OnInit {
       pageSize: 10,
       sortOrder: "ASC",
       sortBy: "Title",
-      search: this.f['search'].value ?? "",
+      search: this.f['search'].value,
       operator: "Contains"
     };
 
     this.postService.searchPosts(myparams).subscribe({
       next: (r: any) => {
-      console.log(r);
        this.searchData = r.data;
       },
-      error: (err) => console.log(err)
+      error: (err: any) => console.log(err)
     });
   }
 }

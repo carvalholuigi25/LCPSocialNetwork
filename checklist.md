@@ -63,36 +63,43 @@
     - [x]  Avatar
     - [x]  Biography
     - [x]  Pinned posts
-    - [ ]  Lock & unlock posts, replies and etc
-    - [ ]  Update & Add & Remove single or many posts
-    - [ ]  Set status posts, replies, covers, attachments (Private, public, etc)
-    - [ ]  Datetime for posts & replies & others
-    - [ ]  Add & Remove Friends.
+    - [ ]  Lock & unlock posts
+    - [ ]  Lock & unlock replies
+    - [x]  Update & Add & Remove for posts and others
+    - [x]  Set status posts (Private, public, etc)
+    - [ ]  Set status replies (Private, public, etc)
+    - [ ]  Set status covers (Private, public, etc)
+    - [ ]  Set status attachments (Private, public, etc)
+    - [x]  Date time for posts
+    - [ ]  Date time for replies
+    - [x]  Add & Remove Friends.
     - [ ]  Hide Friends
     - [ ]  Hobbies
-    - [ ]  Post & reply status
+    - [x]  Post status
+    - [ ]  Reply status
     - [ ]  Collections and Favorites
-    - [ ]  Public posts in newsfeed
+    - [x]  Public posts in newsfeed
     - [ ]  Pages
     - [ ]  Threads
-    - [ ]  Search
-    - [ ]  Chat discussion
-    - [ ]  Notifications
+    - [x]  Search
+    - [x]  Chat discussion
+    - [x]  Notifications
     - [x]  Settings
     - [x]  Privacy
     - [x]  Navmenu of user logged
     - [ ]  Custom roles & reactions
-    - [ ]  Counters (likes, comments, replies, reactions, shares, etc)
-    - [ ]  Realtime data with signalr
+    - [x]  Counters (likes, comments, replies, reactions, shares, etc)
+    - [x]  Realtime data with signalr
     - [ ]  Lazy load / Optimize any multimedia type
     - [ ]  Update, publish & unpublish for pages
     - [ ]  Moderation for pages, users & groups
     - [ ]  Report Page
-    - [ ]  Feedback Page
-    - [ ]  Upvote & Downvote counters and buttons with form & data for feedback & report pages
+    - [x]  Feedback Page
+    - [x]  Upvote & Downvote counters and buttons with form & data for feedback page
+    - [ ]  Upvote & Downvote counters and buttons with form & data for report page
     - [ ]  Contacts Page
     - [ ]  Social Links for profile page
-    - [ ]  Pagination & Filteration & Search for data
+    - [x]  Pagination & Filteration & Search for data
     - [ ]  Query builder’n’runner & page builder for admin
     - [ ]  Infinite Scroll
     - [ ]  Smooth Scroll

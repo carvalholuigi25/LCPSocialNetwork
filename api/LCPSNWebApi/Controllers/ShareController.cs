@@ -111,6 +111,16 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint deletes all Shares.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("all")]
+        public async Task<IActionResult> DeleteAllShares()
+        {
+            return await _Shares.DeleteAllShares();
+        }
+
+        /// <summary>
         /// This endpoint resets a auto increment seed by id for table Shares.
         /// </summary>
         /// <param name="rsid"></param>

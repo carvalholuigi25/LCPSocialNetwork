@@ -105,6 +105,16 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint deletes all Comments.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("all")]
+        public async Task<IActionResult> DeleteAllComments()
+        {
+            return await _Comments.DeleteAllComments();
+        }
+
+        /// <summary>
         /// This endpoint resets a auto increment seed by id for table Comments.
         /// </summary>
         /// <param name="rsid"></param>

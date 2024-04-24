@@ -10,3 +10,5 @@ export * from '../services/notifications.service';
 export * from '../services/feedbacks.service';
 export * from '../services/themes.service';
 export * from '../services/languages.service';
+export * from '../services/reactions.service';
+export * from '../services/shares.service';

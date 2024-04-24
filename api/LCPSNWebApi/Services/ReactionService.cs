@@ -56,6 +56,11 @@ namespace LCPSNWebApi.Services
             return (await _context.Reactions.ToListAsync()).Count;
         }
 
+        public async Task<ActionResult<int>> GetReactionsCountByPostId(int postId = 1) 
+        {
+            return await _context.Reactions.Where(x => x.PostId == postId).CountAsync();
+        }
+
         public async Task<IActionResult> PutReactions(int? id, Reaction Reactions)
         {
             if(!ModelState.IsValid)
@@ -117,6 +122,26 @@ namespace LCPSNWebApi.Services
             }
 
             _context.Reactions.Remove(Reactions);
+            await _context.SaveChangesAsync();
+            await ResetIdSeed(_context.Reactions.Count());
+
+            return NoContent();
+        }
+
+        public async Task<IActionResult> DeleteAllReactions()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
+            }
+
+            var Reactions = await _context.Reactions.ToListAsync();
+            if (Reactions == null)
+            {
+                return NotFound(_localizer.GetString("DataNotFound").Value);
+            }
+
+            _context.Reactions.RemoveRange(Reactions);
             await _context.SaveChangesAsync();
             await ResetIdSeed(_context.Reactions.Count());
 

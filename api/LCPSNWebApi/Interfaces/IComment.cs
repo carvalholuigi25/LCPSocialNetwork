@@ -13,6 +13,7 @@ namespace LCPSNWebApi.Interfaces
         Task<IActionResult> PutComment(int? id, Comment CommentData);
         Task<ActionResult<IEnumerable<Comment>>> CreateComment(Comment CommentData);
         Task<IActionResult> DeleteComment(int? id);
+        Task<IActionResult> DeleteAllComments();
         Task<IActionResult> ResetIdSeed(int rsid = 1);
         Task<IActionResult> SearchData([FromQuery] QueryParams qryp);
         Task<IActionResult> GetLastId();

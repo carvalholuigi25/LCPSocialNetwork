@@ -39,6 +39,10 @@ export class ReactionsService {
         return this.http.get<number>(`${environment.apiUrl}/reaction/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getCountByPostId(postId: number) {
+        return this.http.get<number>(`${environment.apiUrl}/reaction/count/${postId}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createReactions(Reaction: Reaction) {
         return this.http.post<Reaction>(`${environment.apiUrl}/reaction`, Reaction, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
