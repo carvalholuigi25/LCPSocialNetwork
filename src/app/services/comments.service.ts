@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Comment } from '../models';
+import { Comment, User } from '../models';
 import { DOCUMENT } from '@angular/common';
-import { catchError, throwError } from 'rxjs';
+import { catchError, forkJoin, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CommentService {
@@ -31,8 +31,23 @@ export class CommentService {
         return this.http.get<Comment>(`${environment.apiUrl}/comment/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getAllByPostId(postId: number) {
+        return this.http.get<Comment>(`${environment.apiUrl}/comment/post/${postId}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    getAllWithUsers(userId: number = -1) {
+        let uid = userId !== -1 ? `/${userId}` : "";
+        let user = this.http.get<User[]>(`${environment.apiUrl}/user${uid}`, { headers: this.setHeadersObj() });
+        let comment = this.http.get<Comment[]>(`${environment.apiUrl}/comment`, { headers: this.setHeadersObj() });
+        return forkJoin([user, comment]);
+    }
+
     getCount() {
         return this.http.get<number>(`${environment.apiUrl}/comment/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    getCountByPostId(postId: number) {
+        return this.http.get<number>(`${environment.apiUrl}/comment/count/${postId}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     createComments(comment: Comment) {

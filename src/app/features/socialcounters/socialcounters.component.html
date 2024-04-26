@@ -21,7 +21,7 @@
         </mat-menu>
     </div>
     <div class="colcomments">
-        <button class="btncomments" mat-icon-button aria-label="Comments">
+        <button class="btncomments" mat-icon-button aria-label="Comments" (click)="toggleComments()">
             <mat-icon>comments</mat-icon>
             <span>{{numComments$ | async}}</span>
         </button>
@@ -33,3 +33,53 @@
         </button>
     </div>
 </div>
+
+@if(isCommentsShown) {
+    <form [formGroup]="commentsFrm" (ngSubmit)="SendComments()" class="commentsForm mt-3">
+        <div class="d-flex flex-row align-items-start me-0">
+            <div class="d-flex align-items-center">
+                <img src="assets/{{this.avatarUrl}}" class="img-avatar img-rounded img-fluid align-items-flex-start" width="50" height="50" />
+            </div>
+
+            <div class="d-flex align-items-start w-100 ms-1 me-1">
+                <mat-form-field class="w-100">
+                    <textarea matInput type="text" placeholder="Write a comment here..." formControlName="comment" required="required" class="w-100 p-3" cols="1" rows="5"></textarea>
+                </mat-form-field>
+            </div>
+           
+            <div class="d-flex align-items-start ms-0">
+                <button type="submit" class="btnsend" mat-icon-button aria-label="Send" [disabled]="!commentsFrm.valid">
+                    <mat-icon>send</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div *ngIf="(commentsData$ | async)!.length > 0">
+        <div class="commentsresdata d-block mt-3">
+            <div *ngFor="let userc of (commentsUsersData$ | async);">
+                <div *ngFor="let comment of (commentsData$ | async);">
+                    <div *ngIf="comment.userId == userc.userId && comment.postId == postId" class="mt-3">
+                        <mat-card class="d-flex flex-row flex-wrap justify-flex-start align-items-center commentsritem p-3">
+                            <mat-card-header class="p-0">
+                                <img src="assets/{{userc.avatarUrl}}" class="img-avatar img-rounded img-fluid" width="50" height="50" />
+                            </mat-card-header>
+                            <mat-card-content class="p-0 ms-3">
+                                <p>{{comment.description}}</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="(commentsData$ | async)!.length == 0">
+        <div class="commentsresdata d-block mt-3">
+            <div class="d-flex flex-column justify-content-center align-items-center errblk p-3 mt-3">
+                <mat-icon>error</mat-icon>
+                <h2 class="tjustify mt-3">0 comments.</h2>
+            </div>
+        </div>
+    </div>
+}

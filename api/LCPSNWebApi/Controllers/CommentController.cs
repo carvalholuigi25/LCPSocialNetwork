@@ -40,6 +40,17 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint retrives specific Comment by post id.
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        [HttpGet("post/{postId}")]
+        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByPostId(int? postId)
+        {
+            return await _Comments.GetCommentByPostId(postId);
+        }
+
+        /// <summary>
         /// This endpoint retrives list of enums of Comments for search feature
         /// </summary>
         /// <returns></returns>
@@ -54,10 +65,19 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("count")]
-        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<int>> GetCommentsCount()
         {
             return await _Comments.GetCommentCount();
+        }
+
+        /// <summary>
+        /// This endpoint retrives all Comments length by post id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("count/{postId}")]
+        public async Task<ActionResult<int>> GetCommentsCountByPostId(int postId = 1)
+        {
+            return await _Comments.GetCommentCountByPostId(postId);
         }
 
         /// <summary>
@@ -65,6 +85,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("fopenumslist")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public IActionResult GetFilterOperationEnumList()
         {
             return Ok(Enum.GetNames(typeof(FilterOperatorEnum)));
@@ -77,6 +98,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="Comments"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> PutComments(int? id, Comment Comments)
         {
             return await _Comments.PutComment(id, Comments);
@@ -88,6 +110,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="Comments"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<ActionResult<IEnumerable<Comment>>> CreateComments(Comment Comments)
         {
             return await _Comments.CreateComment(Comments);
@@ -99,6 +122,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> DeleteComments(int? id)
         {
             return await _Comments.DeleteComment(id);
@@ -109,6 +133,7 @@ namespace LCPSNWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("all")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> DeleteAllComments()
         {
             return await _Comments.DeleteAllComments();
@@ -120,6 +145,7 @@ namespace LCPSNWebApi.Controllers
         /// <param name="rsid"></param>
         /// <returns></returns>
         [HttpPost("{rsid}")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
         public async Task<IActionResult> ResetIdSeed(int rsid = 1)
         {
             return await _Comments.ResetIdSeed(rsid);

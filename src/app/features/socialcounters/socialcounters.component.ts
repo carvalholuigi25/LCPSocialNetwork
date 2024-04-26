@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReactionsDialogComponent } from '@app/dialogs';
-import { Post, User } from '@app/models';
+import { Post, User, Comment } from '@app/models';
 import { SharedModule } from '@app/modules';
-import { Observable } from 'rxjs';
-import { AlertsService, CommentService, PostsService, ReactionsService, SharesService } from '@app/services';
+import { Observable, of } from 'rxjs';
+import { AlertsService, AuthService, CommentService, PostsService, ReactionsService, SharesService } from '@app/services';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-socialcounters',
@@ -24,6 +25,12 @@ export class SocialcountersComponent implements OnInit {
   numComments$: Observable<number> = new Observable<number>();
   numShares$: Observable<number> = new Observable<number>();
   reactionsData$: Observable<any> = new Observable<any>();
+  commentsData$: Observable<any> = new Observable<any>();
+  commentsUsersData$: Observable<any> = new Observable<any>();
+  isCommentsShown: boolean = false;
+  isCommentsSubmitted: boolean = false;
+  commentsFrm!: FormGroup;
+  avatarUrl: string = "";
   
   @Input("AvatarId") avatarId: number = 1;
   @Input("PostId") postId: number = -1;
@@ -32,17 +39,30 @@ export class SocialcountersComponent implements OnInit {
 
   constructor(
     private commentsService: CommentService, private reactionsService: ReactionsService, private sharesService: SharesService, 
-    private alertsService: AlertsService, private postsService: PostsService, public dialog: MatDialog
+    private alertsService: AlertsService, private postsService: PostsService, private authService: AuthService, 
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.avatarUrl = this.authService.getCurUserInfoAuth().avatarUrl ?? "";
     this.reactionsData$ = this.reactionsService.getDataLocal();
     this.getCounters();
+    this.getComments();
+  }
+
+  getComments() {
+    this.commentsService.getAllWithUsers(this.userId).subscribe({
+      next: (data) => {
+        this.commentsUsersData$ = of(data[0]);
+        this.commentsData$ = of(data[1]);
+      },
+      error: (em) => console.log(em)
+    });
   }
 
   getCounters() {
     this.numReactions$ = this.postId ? this.reactionsService.getCountByPostId(this.postId) : this.reactionsService.getCount();
-    this.numComments$ = this.commentsService.getCount();
+    this.numComments$ = this.postId ? this.commentsService.getCountByPostId(this.postId) : this.commentsService.getCount();
     this.numShares$ = this.sharesService.getCount();
   }
 
@@ -113,5 +133,53 @@ export class SocialcountersComponent implements OnInit {
 
   openReactionMenu() {
     this.dialog.open(ReactionsDialogComponent);
+  }
+
+  toggleComments() {
+    this.isCommentsShown = !this.isCommentsShown;
+
+    if(this.isCommentsShown) {
+      this.commentsFrm = new FormGroup({
+        comment: new FormControl("", [Validators.required])
+      });
+    }
+  }
+
+  SendComments() {
+    this.isCommentsSubmitted = true;
+
+    if(this.isCommentsSubmitted && this.commentsFrm.invalid) {
+      return;
+    }
+
+    const commentsdata: any = {
+      title: `The user (id: ${this.avatarId}) commented on the post (id: ${this.postId})`,
+      description: this.commentsFrm.value.comment,
+      imgUrl: "images/bkg.jpeg",
+      status: "public",
+      dateCommentCreated: new Date().toISOString(),
+      dateCommentUpdated: new Date().toISOString(),
+      dateCommentDeleted: new Date().toISOString(),
+      isFeatured: false,
+      userId: this.avatarId,
+      postId: this.postId,
+      replyId: 0,
+      shareId: 0,
+      reactionId: 0,
+      attachmentId: 0
+    };
+
+    this.commentsService.createComments(commentsdata).subscribe({
+      next: (r) => {
+        this.alertsService.openAlert(`Created comment for post ${this.postId}!`, 1, "success");
+        this.getComments();
+        this.commentsFrm.reset();
+        location.reload();
+      },
+      error: (em) => {
+        this.alertsService.openAlert(`Error: ${em.message}`, 1, "error");
+        console.log(em);
+      }
+    });
   }
 }

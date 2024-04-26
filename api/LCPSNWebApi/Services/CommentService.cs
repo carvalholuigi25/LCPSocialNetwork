@@ -46,6 +46,18 @@ namespace LCPSNWebApi.Services
             return Comments;
         }
 
+        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentByPostId(int? postId)
+        {
+            var Comments = await _context.Comments.Where(x => x.PostId == postId).ToListAsync();
+
+            if (Comments == null)
+            {
+                return NotFound(_localizer.GetString("DataNotFound").Value);
+            }
+
+            return Comments;
+        }
+
         public IActionResult GetCommentAsEnumList()
         {
             return Ok(typeof(Comment).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => x.Name).ToList());
@@ -54,6 +66,11 @@ namespace LCPSNWebApi.Services
         public async Task<ActionResult<int>> GetCommentCount()
         {
             return (await _context.Comments.ToListAsync()).Count;
+        }
+
+        public async Task<ActionResult<int>> GetCommentCountByPostId(int postId = 1) 
+        {
+            return await _context.Comments.Where(x => x.PostId == postId).CountAsync();
         }
 
         public async Task<IActionResult> PutComment(int? id, Comment Comments)
