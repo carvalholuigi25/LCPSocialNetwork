@@ -122,6 +122,18 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint deletes a specific Share by post id.
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        [HttpDelete("post/{postId}")]
+        [Authorize(Roles = "Administrator,Moderator,User")]
+        public async Task<IActionResult> DeleteSharesByPostId(int? postId)
+        {
+            return await _Shares.DeleteSharesByPostId(postId);
+        }
+
+        /// <summary>
         /// This endpoint deletes all Shares.
         /// </summary>
         /// <returns></returns>

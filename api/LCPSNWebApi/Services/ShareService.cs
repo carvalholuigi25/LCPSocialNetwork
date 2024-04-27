@@ -128,6 +128,26 @@ namespace LCPSNWebApi.Services
             return NoContent();
         }
 
+        public async Task<IActionResult> DeleteSharesByPostId(int? postId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(string.Format(_localizer.GetString("ModelInvalid").Value, ModelState));
+            }
+
+            var Share = await _context.Shares.Where(x => x.PostId == postId).ToListAsync();
+            if (Share == null)
+            {
+                return NotFound(_localizer.GetString("DataNotFound").Value);
+            }
+
+            _context.Shares.RemoveRange(Share);
+            await _context.SaveChangesAsync();
+            await ResetIdSeed(_context.Shares.Count());
+
+            return NoContent();
+        }
+
         public async Task<IActionResult> DeleteAllShares()
         {
             if (!ModelState.IsValid)

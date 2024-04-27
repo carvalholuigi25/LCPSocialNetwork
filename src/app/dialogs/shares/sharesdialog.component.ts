@@ -18,8 +18,8 @@ export interface DialogData {
   styleUrl: './sharesdialog.component.scss'
 })
 export class SharesDialogComponent implements OnInit {
-  dataPosts: Post[] | any = [];
   shareCounter: number = 0;
+  dataPosts: Post[] | any = [];
   numShares$: Observable<any> = new Observable<any>();
 
   constructor(private postsService: PostsService, private sharesService: SharesService, private alertsService: AlertsService, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
@@ -62,9 +62,9 @@ export class SharesDialogComponent implements OnInit {
   }
 
   removeThisShare() {
-    this.sharesService.deleteAllShares().subscribe({
+    this.sharesService.deleteSharesByPostId(this.data.postId).subscribe({
       next: (data) => {
-        this.alertsService.openAlert(`Removed all shared posts`, 1, "success");
+        this.alertsService.openAlert(`Removed this shared post (id: ${this.data.postId})!`, 1, "success");
         location.reload();
       },
       error: (em) => console.log(em)

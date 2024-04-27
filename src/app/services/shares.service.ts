@@ -51,6 +51,10 @@ export class SharesService {
         return this.http.delete<Share>(`${environment.apiUrl}/share/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    deleteSharesByPostId(id: number) {
+        return this.http.delete<Share>(`${environment.apiUrl}/share/post/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     deleteAllShares() {
         return this.http.delete<Share>(`${environment.apiUrl}/share/all`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
