@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Reaction } from '../models';
+import { Reaction, User } from '../models';
 import { DOCUMENT } from '@angular/common';
-import { catchError, throwError } from 'rxjs';
+import { catchError, forkJoin, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ReactionsService {
@@ -33,6 +33,12 @@ export class ReactionsService {
 
     getAllById(id: number) {
         return this.http.get<Reaction>(`${environment.apiUrl}/reaction/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    getAllWithUsers() {
+        let reaction = this.http.get<Reaction[]>(`${environment.apiUrl}/reaction`, { headers: this.setHeadersObj() });
+        let user = this.http.get<User[]>(`${environment.apiUrl}/user`, { headers: this.setHeadersObj() });
+        return forkJoin([reaction, user]);
     }
 
     getCount() {

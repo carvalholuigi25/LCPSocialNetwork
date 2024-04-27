@@ -138,7 +138,7 @@ export class SocialcountersComponent implements OnInit {
   }
 
   openReactionMenu() {
-    this.dialog.open(ReactionsDialogComponent);
+    this.dialog.open(ReactionsDialogComponent, { data: { postId: this.postId } });
   }
 
   toggleComments() {
