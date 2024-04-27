@@ -1,10 +1,10 @@
-export interface Share {
-    shareId: number | null;
-    shareCounter: number | null;
-    dateShared: string | null;
-    attachmentId: number | null;
-    postId: number | null;
-    commentId: number | null;
-    replyId: number | null;
-    userId: number | null;
+export class Share {
+    shareId?: number;
+    shareCounter!: number;
+    postId!: number;
+    dateShared?: string | Date;
+    attachmentId?: number;
+    commentId?: number;
+    replyId?: number;
+    userId?: number;
 }

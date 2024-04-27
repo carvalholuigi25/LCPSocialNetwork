@@ -27,7 +27,7 @@
         </button>
     </div>
     <div class="colshares">
-        <button class="btnshares" mat-icon-button aria-label="Shares">
+        <button class="btnshares" mat-icon-button aria-label="Shares" (click)="openShareDialog(postId)">
             <mat-icon>shares</mat-icon>
             <span>{{numShares$ | async}}</span>
         </button>

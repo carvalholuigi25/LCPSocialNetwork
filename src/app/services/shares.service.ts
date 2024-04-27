@@ -35,6 +35,10 @@ export class SharesService {
         return this.http.get<number>(`${environment.apiUrl}/share/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getCountByPostId(postId: number) {
+        return this.http.get<number>(`${environment.apiUrl}/share/count/${postId}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createShares(Shares: Share) {
         return this.http.post<Share>(`${environment.apiUrl}/share`, Shares, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
@@ -45,6 +49,10 @@ export class SharesService {
 
     deleteShares(id: number) {
         return this.http.delete<Share>(`${environment.apiUrl}/share/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    deleteAllShares() {
+        return this.http.delete<Share>(`${environment.apiUrl}/share/all`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
     /* istanbul ignore next */

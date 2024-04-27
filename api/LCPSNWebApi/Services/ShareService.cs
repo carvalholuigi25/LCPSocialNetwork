@@ -56,6 +56,11 @@ namespace LCPSNWebApi.Services
             return (await _context.Shares.ToListAsync()).Count;
         }
 
+        public async Task<ActionResult<int>> GetSharesCountByPostId(int postId = 1) 
+        {
+            return await _context.Shares.Where(x => x.PostId == postId).CountAsync();
+        }
+
         public async Task<IActionResult> PutShares(int? id, Share Share)
         {
             if(!ModelState.IsValid)

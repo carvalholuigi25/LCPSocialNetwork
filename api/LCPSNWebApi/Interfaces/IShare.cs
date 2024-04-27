@@ -10,6 +10,7 @@ namespace LCPSNWebApi.Interfaces
         Task<ActionResult<IEnumerable<Share>>> GetSharesById(int? id);
         IActionResult GetSharesAsEnumList();
         Task<ActionResult<int>> GetSharesCount();
+        Task<ActionResult<int>> GetSharesCountByPostId(int postId = 1);
         Task<IActionResult> PutShares(int? id, Share Shares);
         Task<ActionResult<IEnumerable<Share>>> PostShares(Share SharesData);
         Task<IActionResult> DeleteShares(int? id);

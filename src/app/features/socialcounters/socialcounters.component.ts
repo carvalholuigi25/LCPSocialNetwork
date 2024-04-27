@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReactionsDialogComponent } from '@app/dialogs';
+import { ReactionsDialogComponent, SharesDialogComponent } from '@app/dialogs';
 import { Post, User, Comment } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { Observable, of } from 'rxjs';
@@ -45,9 +45,13 @@ export class SocialcountersComponent implements OnInit {
 
   ngOnInit(): void {
     this.avatarUrl = this.authService.getCurUserInfoAuth().avatarUrl ?? "";
-    this.reactionsData$ = this.reactionsService.getDataLocal();
     this.getCounters();
+    this.getReactions();
     this.getComments();
+  }
+
+  getReactions() {
+    this.reactionsData$ = this.reactionsService.getDataLocal();
   }
 
   getComments() {
@@ -63,7 +67,7 @@ export class SocialcountersComponent implements OnInit {
   getCounters() {
     this.numReactions$ = this.postId ? this.reactionsService.getCountByPostId(this.postId) : this.reactionsService.getCount();
     this.numComments$ = this.postId ? this.commentsService.getCountByPostId(this.postId) : this.commentsService.getCount();
-    this.numShares$ = this.sharesService.getCount();
+    this.numShares$ = this.postId ? this.sharesService.getCountByPostId(this.postId) : this.sharesService.getCount();
   }
 
   setReactionType(reactionData: any, ind: number) {
@@ -122,6 +126,8 @@ export class SocialcountersComponent implements OnInit {
     this.postsService.updatePosts(id, postsdata).subscribe({
       next: (r) => {
         this.alertsService.openAlert(`Updated post with id: ${id}!`, 1, "success");
+        this.getReactions();
+        this.getCounters();
         location.reload();
       },
       error: (em) => {
@@ -172,8 +178,9 @@ export class SocialcountersComponent implements OnInit {
     this.commentsService.createComments(commentsdata).subscribe({
       next: (r) => {
         this.alertsService.openAlert(`Created comment for post ${this.postId}!`, 1, "success");
-        this.getComments();
         this.commentsFrm.reset();
+        this.getComments();
+        this.getCounters();
         location.reload();
       },
       error: (em) => {
@@ -181,5 +188,9 @@ export class SocialcountersComponent implements OnInit {
         console.log(em);
       }
     });
+  }
+
+  openShareDialog(postId: number) {
+    this.dialog.open(SharesDialogComponent, {data: { postId: postId }});
   }
 }

@@ -63,6 +63,17 @@ namespace LCPSNWebApi.Controllers
         }
 
         /// <summary>
+        /// This endpoint retrives all Shares length by post id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("count/{postId}")]
+        [Authorize(Roles = "Administrator,Moderator,User,Guest")]
+        public async Task<ActionResult<int>> GetSharesCountByPostId(int postId = 1)
+        {
+            return await _Shares.GetSharesCountByPostId(postId);
+        }
+
+        /// <summary>
         /// This endpoint retrives list of enums of filter operation for search feature
         /// </summary>
         /// <returns></returns>
