@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReactionsDialogComponent, SharesDialogComponent } from '@app/dialogs';
+import { DeletecommentDialogComponent, EditcommentDialogComponent, ReactionsDialogComponent, SharesDialogComponent } from '@app/dialogs';
 import { Post, User, Comment } from '@app/models';
 import { SharedModule } from '@app/modules';
 import { Observable, of } from 'rxjs';
@@ -192,5 +192,13 @@ export class SocialcountersComponent implements OnInit {
 
   openShareDialog(postId: number) {
     this.dialog.open(SharesDialogComponent, {data: { postId: postId }});
+  }
+
+  openEditCommentDialog(comment: Comment) {
+    this.dialog.open(EditcommentDialogComponent, {data: { comment: comment }});
+  }
+
+  openDeleteCommentDialog(commentId: number) {
+    this.dialog.open(DeletecommentDialogComponent, {data: { commentId: commentId }});
   }
 }

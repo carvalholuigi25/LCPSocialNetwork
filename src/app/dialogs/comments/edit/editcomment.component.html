@@ -1,0 +1,21 @@
+<mat-dialog-content>
+    <mat-card class="w-100 mw-100">
+        <mat-card-header>
+            <mat-card-title>Edit comment</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="frmEdit">
+                <mat-form-field class="d-block mt-3">
+                    <mat-label for="Description">Description</mat-label>
+                    <textarea class="form-control description p-3" formControlName="description" placeholder="Suggest something here..." cols="1" rows="10" required matInput></textarea>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <mat-card-actions class="d-flex justify-content-between align-items-center">
+            <button mat-flat-button color="primary" class="btn btncancel" mat-dialog-close>Cancel</button>
+            <button mat-flat-button color="accent" class="btn btnedit" (click)="sendEdit()">Edit</button>
+        </mat-card-actions>
+    </mat-card>
+</mat-dialog-content>
