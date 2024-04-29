@@ -4,7 +4,17 @@
     </mat-card-header>
     <mat-card-content class="mt-3">
         <mat-tab-group (selectedIndexChange)="setReactionTypeValue($event)">
-            <mat-tab *ngFor="let rlocal of (reactionsDataLocal$ | async) as myreactionslocal" [label]="rlocal.name">
+            <mat-tab *ngFor="let rlocal of (reactionsDataLocal$ | async) as myreactionslocal; let xri = index">
+                <ng-template mat-tab-label>
+                    @if(!!isReactionIconEnabled) {
+                        <mat-icon [innerHtml]="rlocal.value | safe: 'html'" class="material-symbols-outlined react{{rlocal.name}}"></mat-icon>
+                    } @else {
+                        <span>{{rlocal.name}}</span>
+                    }
+
+                    <span [class]="xri !== myindex ? 'ms-2 hidden' : 'ms-2'">{{reactionTypeAryLen}}</span>
+                </ng-template>
+
                 <div class="table-responsive mt-3" *ngIf="reactionTypeAryLen > 0">
                     <table class="table table-bordered align-middle text-center">
                         <thead>

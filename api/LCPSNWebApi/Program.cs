@@ -23,6 +23,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using LCPSNWebApi.Functions;
+using LCPSNWebApi.Classes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -149,7 +150,6 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
     options.SchemaFilter<EnumSchemaFilter>();
-    options.ParameterFilter<ParameterFilter>();
     options.UseInlineDefinitionsForEnums();
 });
 

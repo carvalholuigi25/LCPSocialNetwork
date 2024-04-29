@@ -13,6 +13,7 @@ using LCPSNWebApi.Library.Resources;
 using Microsoft.Data.Sqlite;
 using MySqlConnector;
 using Npgsql;
+using NuGet.Protocol;
 
 namespace LCPSNWebApi.Services
 {
@@ -292,19 +293,27 @@ namespace LCPSNWebApi.Services
         {
             Expression<Func<Reaction, bool>> newexp;
 
-            newexp = qryp.Operator!.Value == FilterOperatorEnum.Equals ? (x => x.ReactionId! == int.Parse(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.DoesntEqual ? (x => x.ReactionId! != int.Parse(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.GreaterThan ? (x => x.ReactionId! > int.Parse(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.GreaterThanOrEqual ? (x => x.ReactionId! >= int.Parse(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.LessThan ? (x => x.ReactionId! < int.Parse(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.LessThanOrEqual ? (x => x.ReactionId! <= int.Parse(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.Contains ? (x => x.ReactionId!.ToString()!.Contains(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.NotContains ? (x => !x.ReactionId!.ToString()!.Contains(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.StartsWith ? (x => x.ReactionId!.ToString()!.StartsWith(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.EndsWith ? (x => x.ReactionId!.ToString()!.EndsWith(qryp.Search!)) :
-            qryp.Operator!.Value == FilterOperatorEnum.IsEmpty ? (x => x.ReactionId!.ToString()!.Length == 0) :
-            qryp.Operator!.Value == FilterOperatorEnum.IsNotEmpty ? (x => x.ReactionId!.ToString()!.Length > 0) : (x => x.ReactionId! == int.Parse(qryp.Search!));
+            if(qryp.SortBy!.Contains(nameof(Reaction.ReactionType), StringComparison.OrdinalIgnoreCase)) {
+                var qsrch = Enum.Parse(typeof(ReactionTypeEnum), qryp.Search!, true); 
 
+                newexp = qryp.Operator!.Value == FilterOperatorEnum.Equals ? (x => x.ReactionType!.Equals(qsrch)) : 
+                qryp.Operator!.Value == FilterOperatorEnum.DoesntEqual ? (x => !x.ReactionType!.Equals(qsrch)) : 
+                (x => x.ReactionType!.Equals(qsrch));
+            } else {
+                newexp = qryp.Operator!.Value == FilterOperatorEnum.Equals ? (x => x.ReactionId! == int.Parse(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.DoesntEqual ? (x => x.ReactionId! != int.Parse(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.GreaterThan ? (x => x.ReactionId! > int.Parse(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.GreaterThanOrEqual ? (x => x.ReactionId! >= int.Parse(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.LessThan ? (x => x.ReactionId! < int.Parse(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.LessThanOrEqual ? (x => x.ReactionId! <= int.Parse(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.Contains ? (x => x.ReactionId!.ToString()!.Contains(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.NotContains ? (x => !x.ReactionId!.ToString()!.Contains(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.StartsWith ? (x => x.ReactionId!.ToString()!.StartsWith(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.EndsWith ? (x => x.ReactionId!.ToString()!.EndsWith(qryp.Search!)) :
+                qryp.Operator!.Value == FilterOperatorEnum.IsEmpty ? (x => x.ReactionId!.ToString()!.Length == 0) :
+                qryp.Operator!.Value == FilterOperatorEnum.IsNotEmpty ? (x => x.ReactionId!.ToString()!.Length > 0) : (x => x.ReactionId! == int.Parse(qryp.Search!));
+            }
+            
             return queryable.Where(newexp);
         }
     }

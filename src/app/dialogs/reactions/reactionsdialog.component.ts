@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SharedModule } from '@app/modules';
+import { SafePipe } from '@app/pipes';
 import { ReactionsService } from '@app/services';
 import { Observable, of } from 'rxjs';
 
@@ -11,7 +12,7 @@ export interface ReactionsDialogData {
 @Component({
   selector: 'app-reactions-dialog',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, SafePipe],
   templateUrl: './reactionsdialog.component.html',
   styleUrl: './reactionsdialog.component.scss'
 })
@@ -22,6 +23,8 @@ export class ReactionsDialogComponent implements OnInit {
   reactionTypeValue: string = "like";
   reactionTypeAry: string[] = [];
   reactionTypeAryLen: number = 0;
+  myindex: number = 0;
+  isReactionIconEnabled: boolean = true;
 
   constructor(private reactionsService: ReactionsService, @Inject(MAT_DIALOG_DATA) public data: ReactionsDialogData) { }
 
@@ -56,6 +59,7 @@ export class ReactionsDialogComponent implements OnInit {
   }
 
   setReactionTypeValue(value: number) {
+    this.myindex = value;
     this.reactionTypeValue = this.reactionTypeAry[value];
     this.getReactionsWithUsers();
   }
