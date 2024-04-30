@@ -15,4 +15,74 @@
 .reactsad { color: rgb(8, 145, 190); }
 .reactangry { color: purple; }
 
+::ng-deep .tabreactlike {
+    .mdc-tab-indicator .mdc-tab-indicator__content {
+        border-color: blue !important;
+    } 
+}
+
+::ng-deep .tabreactdislike {
+    .mdc-tab-indicator .mdc-tab-indicator__content {
+        border-color: gray !important;
+    }
+}
+
+::ng-deep .tabreactlove {
+    .mdc-tab-indicator .mdc-tab-indicator__content {
+        border-color: red !important;
+    }
+}
+
+::ng-deep .tabreactcourage {
+    .mdc-tab-indicator .mdc-tab-indicator__content {
+        border-color: rgb(143, 10, 0) !important;
+    }
+}
+
+::ng-deep .tabreactlaugh {
+    .mdc-tab-indicator .mdc-tab-indicator__content {
+        border-color: orange !important;
+    }
+}
+
+::ng-deep .tabreactsurprised {
+    .mdc-tab-indicator .mdc-tab-indicator__content {
+        border-color: green !important;
+    }
+}
+
+::ng-deep .tabreactsad {
+    .mdc-tab-indicator .mdc-tab-indicator__content {
+        border-color: rgb(8, 145, 190) !important;
+    }
+}
+
+::ng-deep .tabreactangry {
+    .mdc-tab-indicator .mdc-tab-indicator__content {
+        border-color: purple !important;
+    }
+}
+
 .hidden { display: none; }
+
+.mtblreactionsdialog {
+    border: 1px solid black;
+    border-radius: 20px;
+    max-height: 450px;
+    overflow: auto;
+}
+
+.table.tblreactionsdialog {
+    vertical-align: middle;
+    text-align: center;
+    border: 0;
+    margin-bottom: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border-style: hidden;
+
+    td, th {
+        border: 1px solid black;
+        padding: 10px;
+    }
+}

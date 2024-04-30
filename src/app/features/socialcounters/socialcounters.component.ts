@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeletecommentDialogComponent, EditcommentDialogComponent, ReactionsDialogComponent, SharesDialogComponent } from '@app/dialogs';
 import { Post, User, Comment } from '@app/models';
 import { SharedModule } from '@app/modules';
-import { Observable, of } from 'rxjs';
+import { Observable, Subscription, filter, of } from 'rxjs';
 import { AlertsService, AuthService, CommentService, PostsService, ReactionsService, SharesService } from '@app/services';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -14,7 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './socialcounters.component.html',
   styleUrl: './socialcounters.component.scss'
 })
-export class SocialcountersComponent implements OnInit {
+export class SocialcountersComponent implements OnInit, OnDestroy {
   dataPosts?: Post[] | any;
   dataUsers?: User[] | any;
   reactionId: number = 0;
@@ -31,6 +31,8 @@ export class SocialcountersComponent implements OnInit {
   isCommentsSubmitted: boolean = false;
   commentsFrm!: FormGroup;
   avatarUrl: string = "";
+
+  private mysub: Subscription = new Subscription();
   
   @Input("AvatarId") avatarId: number = 1;
   @Input("PostId") postId: number = -1;
@@ -50,8 +52,20 @@ export class SocialcountersComponent implements OnInit {
     this.getComments();
   }
 
+  ngOnDestroy(): void {
+    if(this.mysub) {
+      this.mysub.unsubscribe();
+    }
+  }
+
   getReactions() {
-    this.reactionsData$ = this.reactionsService.getDataLocal();
+    this.mysub = this.reactionsService.getDataLocal().subscribe({
+      next: (data) => {
+        data = data.filter((x: any) => !["all"].includes(x.name));
+        this.reactionsData$ = of(data);
+      },
+      error: (em) => console.log(em)
+    });
   }
 
   getComments() {
