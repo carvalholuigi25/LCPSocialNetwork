@@ -58,6 +58,7 @@ CREATE TABLE `Posts` (
 CREATE TABLE `Reactions` (
     `ReactionId` int NOT NULL AUTO_INCREMENT,
     `ReactionType` int NULL,
+    `ReactionIcon` longtext CHARACTER SET utf8mb4 NULL,
     `DateReacted` datetime(6) NULL,
     `ReactionCounter` int NULL,
     `AttachmentId` int NULL,
@@ -218,8 +219,8 @@ CREATE TABLE `Notifications` (
 ) CHARACTER SET=utf8mb4;
 
 INSERT INTO `Users` (`UserId`, `AvatarUrl`, `Biography`, `CoverUrl`, `CurrentToken`, `DateAccountCreated`, `DateBirthday`, `Email`, `FirstName`, `LastName`, `Password`, `PhoneNumber`, `RefreshToken`, `RefreshTokenExpiryTime`, `Role`, `Status`, `Username`)
-VALUES (1, 'images/users/avatars/luis.jpg', 'Hello, I''m Luis Carvalho.', 'images/users/covers/luis_cover.jpg', NULL, TIMESTAMP '2024-04-13 15:47:45', TIMESTAMP '1996-06-03 23:00:00', 'luiscarvalho239@gmail.com', 'Luis', 'Carvalho', '$2a$12$dTc4mUGbHACChVxaMOYL2eQ6x4ZBBc1nEqKNNasF.pqpzE/SVlcH6', '123456789', NULL, TIMESTAMP '2024-04-13 15:47:45', 'Administrator', 'public', 'admin'),
-(2, 'images/users/avatars/guest.png', 'Hello, I''m Guest.', 'images/users/covers/guest_cover.jpeg', NULL, TIMESTAMP '2024-04-13 15:47:46', TIMESTAMP '1996-06-03 23:00:00', 'guest@localhost.loc', 'Guest', 'Convidado', '$2a$12$dRBFURymepdJGFnfV/FDgePaSP7c2HiVJ84UZm.uGFOlFa3ZO2ZkC', '123456789', NULL, TIMESTAMP '2024-04-13 15:47:46', 'Guest', 'public', 'guest');
+VALUES (1, 'images/users/avatars/luis.jpg', 'Hello, I''m Luis Carvalho.', 'images/users/covers/luis_cover.jpg', NULL, TIMESTAMP '2024-04-30 17:45:24', TIMESTAMP '1996-06-03 23:00:00', 'luiscarvalho239@gmail.com', 'Luis', 'Carvalho', '$2a$12$Gpn2sqcp76RjOyEUun7bt.W9Qb0.k3QOmHO5kb.LvJ8u2t6jvR6iS', '123456789', NULL, TIMESTAMP '2024-04-30 17:45:24', 'Administrator', 'public', 'admin'),
+(2, 'images/users/avatars/guest.png', 'Hello, I''m Guest.', 'images/users/covers/guest_cover.jpeg', NULL, TIMESTAMP '2024-04-30 17:45:24', TIMESTAMP '1996-06-03 23:00:00', 'guest@localhost.loc', 'Guest', 'Convidado', '$2a$12$Tqt/OTrHthWeOuQ27eZfkupLapZ8GBSgDy0m0eFLbSAuCj4bQnv42', '123456789', NULL, TIMESTAMP '2024-04-30 17:45:24', 'Guest', 'public', 'guest');
 
 CREATE INDEX `IX_Attachments_UserId` ON `Attachments` (`UserId`);
 
@@ -232,7 +233,7 @@ CREATE INDEX `IX_FriendRequests_UserId` ON `FriendRequests` (`UserId`);
 CREATE INDEX `IX_Notifications_UserId` ON `Notifications` (`UserId`);
 
 INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-VALUES ('20240413154747_InitialCreatePostgreSQL', '8.0.2');
+VALUES ('20240430174525_InitialCreatePostgreSQL', '8.0.2');
 
 COMMIT;
 

@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SharedModule } from '@app/modules';
 import { SafePipe } from '@app/pipes';
 import { ReactionsService } from '@app/services';
-import { Observable, Subscription, of } from 'rxjs';
+import { Observable, Subscription, map, of } from 'rxjs';
 
 export interface ReactionsDialogData {
   postId?: number;
@@ -20,6 +20,7 @@ export class ReactionsDialogComponent implements OnInit, OnDestroy {
   isReactionIconEnabled: boolean = true;
   reactionsDataLocal$: Observable<any> = new Observable<any>();
   reactionsData$: Observable<any> = new Observable<any>();
+  reactionTypeIcon: string = "thumb-up";
   reactionTypeValue: string = "like";
   reactionTypeAry: string[] = [];
   reactionTypeAryLen: number = 0;

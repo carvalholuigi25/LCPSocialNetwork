@@ -1,10 +1,10 @@
 export interface QueryParams {
-    page: number;
-    pageSize: number;
-    sortOrder: SortEnum | string;
-    sortBy: string;
+    page?: number;
+    pageSize?: number;
+    sortOrder?: SortEnum | string;
+    sortBy?: string;
     search: string;
-    operator: FilterOperatorEnum | string;
+    operator?: FilterOperatorEnum | string;
 }
 
 export interface QueryParamsRes<T> {

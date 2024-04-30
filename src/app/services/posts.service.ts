@@ -61,12 +61,12 @@ export class PostsService {
 
     searchPosts(qryp: QueryParams) {
         let qparams = new HttpParams().appendAll({
-            "Page": qryp.page,
-            "PageSize": qryp.pageSize,
-            "SortOrder": qryp.sortOrder,
-            "SortBy": qryp.sortBy,
-            "Search": qryp.search,
-            "Operator": qryp.operator
+            "Page": qryp.page!,
+            "PageSize": qryp.pageSize!,
+            "SortOrder": qryp.sortOrder!,
+            "SortBy": qryp.sortBy!,
+            "Search": qryp.search!,
+            "Operator": qryp.operator!
         });
 
         return this.http.get<Post[]>(`${environment.apiUrl}/post/filter`, { headers: this.setHeadersObj(), params: qparams }).pipe(catchError(this.handleError));

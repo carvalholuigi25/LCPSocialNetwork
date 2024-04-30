@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { Reaction, User } from '../models';
+import { FilterOperatorEnum, QueryParams, Reaction, User } from '../models';
 import { DOCUMENT } from '@angular/common';
 import { catchError, forkJoin, throwError } from 'rxjs';
 
@@ -55,6 +55,19 @@ export class ReactionsService {
 
     updateReactions(id: number, Reaction: Reaction) {
         return this.http.put<Reaction>(`${environment.apiUrl}/reaction/${id}`, Reaction, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
+    searchReactions(qryp: QueryParams) {
+        let qparams = new HttpParams().appendAll({
+            "Page": qryp.page ?? 1,
+            "PageSize": qryp.pageSize ?? 30,
+            "SortOrder": qryp.sortOrder ?? "asc",
+            "SortBy": qryp.sortBy ?? "ReactionType",
+            "Search": qryp.search,
+            "Operator": qryp.operator ?? FilterOperatorEnum.Equals
+        });
+        
+        return this.http.get<Reaction[]>(`${environment.apiUrl}/reaction/filter`, { headers: this.setHeadersObj(), params: qparams }).pipe(catchError(this.handleError));
     }
 
     deleteReactions(id: number) {

@@ -9,6 +9,7 @@ public class Reaction
 {
     [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int? ReactionId { get; set; }
     public ReactionTypeEnum? ReactionType { get; set; } = ReactionTypeEnum.like;
+    public string? ReactionIcon { get; set; }
     [DataType(DataType.DateTime)] public DateTime? DateReacted { get; set; } = DateTime.UtcNow;
     public int? ReactionCounter { get; set; } = 0;
     public int? AttachmentId { get; set; } = 1;

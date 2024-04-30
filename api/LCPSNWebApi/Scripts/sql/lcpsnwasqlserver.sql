@@ -64,6 +64,7 @@ GO
 CREATE TABLE [Reactions] (
     [ReactionId] int NOT NULL IDENTITY,
     [ReactionType] int NULL,
+    [ReactionIcon] nvarchar(max) NULL,
     [DateReacted] datetime2 NULL,
     [ReactionCounter] int NULL,
     [AttachmentId] int NULL,
@@ -235,8 +236,8 @@ GO
 IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'UserId', N'AvatarUrl', N'Biography', N'CoverUrl', N'CurrentToken', N'DateAccountCreated', N'DateBirthday', N'Email', N'FirstName', N'LastName', N'Password', N'PhoneNumber', N'RefreshToken', N'RefreshTokenExpiryTime', N'Role', N'Status', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
     SET IDENTITY_INSERT [Users] ON;
 INSERT INTO [Users] ([UserId], [AvatarUrl], [Biography], [CoverUrl], [CurrentToken], [DateAccountCreated], [DateBirthday], [Email], [FirstName], [LastName], [Password], [PhoneNumber], [RefreshToken], [RefreshTokenExpiryTime], [Role], [Status], [Username])
-VALUES (1, N'images/users/avatars/luis.jpg', N'Hello, I''m Luis Carvalho.', N'images/users/covers/luis_cover.jpg', NULL, '2024-04-13T15:48:28.7269504Z', '1996-06-03T23:00:00.0000000Z', N'luiscarvalho239@gmail.com', N'Luis', N'Carvalho', N'$2a$12$IEq.z/zzUjvE77TMLP243e5EKJW1/j.2m8gVRz6vh7OuSaJpzUMAW', N'123456789', NULL, '2024-04-13T15:48:28.7269517Z', N'Administrator', N'public', N'admin'),
-(2, N'images/users/avatars/guest.png', N'Hello, I''m Guest.', N'images/users/covers/guest_cover.jpeg', NULL, '2024-04-13T15:48:29.0903195Z', '1996-06-03T23:00:00.0000000Z', N'guest@localhost.loc', N'Guest', N'Convidado', N'$2a$12$7pGQNU3Csmmo1pXs0ieq3ubk6mRNBH7x2ZC4A4jVxgxX6iRGIfbfW', N'123456789', NULL, '2024-04-13T15:48:29.0903208Z', N'Guest', N'public', N'guest');
+VALUES (1, N'images/users/avatars/luis.jpg', N'Hello, I''m Luis Carvalho.', N'images/users/covers/luis_cover.jpg', NULL, '2024-04-30T17:45:55.7057448Z', '1996-06-03T23:00:00.0000000Z', N'luiscarvalho239@gmail.com', N'Luis', N'Carvalho', N'$2a$12$iMd0HOeY0SXc0oSZQRWA9.eTG0wE4ryOcHTP0E41lomBNpgFOeAte', N'123456789', NULL, '2024-04-30T17:45:55.7057455Z', N'Administrator', N'public', N'admin'),
+(2, N'images/users/avatars/guest.png', N'Hello, I''m Guest.', N'images/users/covers/guest_cover.jpeg', NULL, '2024-04-30T17:45:56.0642707Z', '1996-06-03T23:00:00.0000000Z', N'guest@localhost.loc', N'Guest', N'Convidado', N'$2a$12$XbEjcZn2UhUpvHhvenyoSOATnJpLxwSsSxBBaH2nruqX0oZ6FlJse', N'123456789', NULL, '2024-04-30T17:45:56.0642718Z', N'Guest', N'public', N'guest');
 IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'UserId', N'AvatarUrl', N'Biography', N'CoverUrl', N'CurrentToken', N'DateAccountCreated', N'DateBirthday', N'Email', N'FirstName', N'LastName', N'Password', N'PhoneNumber', N'RefreshToken', N'RefreshTokenExpiryTime', N'Role', N'Status', N'Username') AND [object_id] = OBJECT_ID(N'[Users]'))
     SET IDENTITY_INSERT [Users] OFF;
 GO
@@ -257,7 +258,7 @@ CREATE INDEX [IX_Notifications_UserId] ON [Notifications] ([UserId]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20240413154830_InitialCreateSQLServer', N'8.0.2');
+VALUES (N'20240430174556_InitialCreateSQLServer', N'8.0.2');
 GO
 
 COMMIT;

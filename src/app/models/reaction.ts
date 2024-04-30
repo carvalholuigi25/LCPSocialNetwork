@@ -1,6 +1,7 @@
 export class Reaction {
     reactionId?: number;
     reactionType!: ReactionTypeEnum | string;
+    reactionIcon?: string;
     reactionCounter!: number;
     dateReacted?: string;
     attachmentId?: number;

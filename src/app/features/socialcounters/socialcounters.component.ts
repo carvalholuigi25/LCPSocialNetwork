@@ -87,6 +87,7 @@ export class SocialcountersComponent implements OnInit, OnDestroy {
   setReactionType(reactionData: any, ind: number) {
     this.reactionId = ind;
     this.reactionTypeName = reactionData.name;
+    
     this.reactionsData$.subscribe(xrd => {
       this.reactionTypeValue = xrd.filter((y: any) => y.name == reactionData.name)[0].value.toString();
     });
@@ -97,11 +98,12 @@ export class SocialcountersComponent implements OnInit, OnDestroy {
     }
   }
 
-  createReactions(reactionTypeName: string, pId: number) {
+  createReactions(reactionTypeName: string, pId: number = 1) {
     this.ctReactions++;
 
     this.reactionsService.createReactions({
       reactionType: reactionTypeName,
+      reactionIcon: this.reactionTypeValue,
       reactionCounter: this.ctReactions,
       dateReacted: new Date().toISOString(),
       userId: this.avatarId,

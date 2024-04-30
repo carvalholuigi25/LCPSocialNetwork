@@ -52,6 +52,7 @@ CREATE TABLE "Posts" (
 CREATE TABLE "Reactions" (
     "ReactionId" INTEGER NOT NULL CONSTRAINT "PK_Reactions" PRIMARY KEY AUTOINCREMENT,
     "ReactionType" INTEGER NULL,
+    "ReactionIcon" TEXT NULL,
     "DateReacted" TEXT NULL,
     "ReactionCounter" INTEGER NULL,
     "AttachmentId" INTEGER NULL,
@@ -203,11 +204,11 @@ CREATE TABLE "Notifications" (
 );
 
 INSERT INTO "Users" ("UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "PhoneNumber", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username")
-VALUES (1, 'images/users/avatars/luis.jpg', 'Hello, I''m Luis Carvalho.', 'images/users/covers/luis_cover.jpg', NULL, '2024-04-13 15:46:46.8948968', '1996-06-03 23:00:00', 'luiscarvalho239@gmail.com', 'Luis', 'Carvalho', '$2a$12$XeUhZQ4sU184ZkrIwHWBN.JSOElI/l2G.cLATIK25A.uLnDl/haMa', '123456789', NULL, '2024-04-13 15:46:46.8948978', 'Administrator', 'public', 'admin');
+VALUES (1, 'images/users/avatars/luis.jpg', 'Hello, I''m Luis Carvalho.', 'images/users/covers/luis_cover.jpg', NULL, '2024-04-30 17:44:44.9801887', '1996-06-03 23:00:00', 'luiscarvalho239@gmail.com', 'Luis', 'Carvalho', '$2a$12$p6tN9nuIz6dr729hTf00ZuAfcuAuNluJeG6KZL4O6XUyO8KzA0OWe', '123456789', NULL, '2024-04-30 17:44:44.9801897', 'Administrator', 'public', 'admin');
 SELECT changes();
 
 INSERT INTO "Users" ("UserId", "AvatarUrl", "Biography", "CoverUrl", "CurrentToken", "DateAccountCreated", "DateBirthday", "Email", "FirstName", "LastName", "Password", "PhoneNumber", "RefreshToken", "RefreshTokenExpiryTime", "Role", "Status", "Username")
-VALUES (2, 'images/users/avatars/guest.png', 'Hello, I''m Guest.', 'images/users/covers/guest_cover.jpeg', NULL, '2024-04-13 15:46:47.2896076', '1996-06-03 23:00:00', 'guest@localhost.loc', 'Guest', 'Convidado', '$2a$12$G/o1dYq9pErEq2yqX7thEO8AvOZkr2mwmPi14HIcm4LcwhZDNmC12', '123456789', NULL, '2024-04-13 15:46:47.2896085', 'Guest', 'public', 'guest');
+VALUES (2, 'images/users/avatars/guest.png', 'Hello, I''m Guest.', 'images/users/covers/guest_cover.jpeg', NULL, '2024-04-30 17:44:45.3339553', '1996-06-03 23:00:00', 'guest@localhost.loc', 'Guest', 'Convidado', '$2a$12$D1aHEier7CLok3pxU24uK.gf6YyZTyle5S2W7LvQ9W.KcB.0Wn7mC', '123456789', NULL, '2024-04-30 17:44:45.3339569', 'Guest', 'public', 'guest');
 SELECT changes();
 
 
@@ -222,7 +223,7 @@ CREATE INDEX "IX_FriendRequests_UserId" ON "FriendRequests" ("UserId");
 CREATE INDEX "IX_Notifications_UserId" ON "Notifications" ("UserId");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20240413154649_InitialCreateSQLite', '8.0.2');
+VALUES ('20240430174446_InitialCreateSQLite', '8.0.2');
 
 COMMIT;
 

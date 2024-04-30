@@ -33,7 +33,7 @@
                                 <td>{{reaction.reactionId}}</td>
                                 <td>
                                     <mat-icon [innerHTML]="rlocal.value | safe: 'html'" class="material-symbols-outlined react{{rlocal.name}}" [title]="rlocal.name" *ngIf="reactionTypeValue !== 'all'" />
-                                    <mat-icon [innerHTML]="reaction.reactionType | safe: 'html'" class="material-symbols-outlined react{{reaction.reactionType}}" [title]="reaction.reactionType" *ngIf="reactionTypeValue == 'all'" />
+                                    <mat-icon [innerHTML]="reaction.reactionIcon | safe: 'html'" class="material-symbols-outlined react{{reaction.reactionType}}" [title]="reaction.reactionType" *ngIf="reactionTypeValue == 'all'" />
                                 </td>
                                 <td>{{reaction.userId}}</td>
                                 <td>{{reaction.reactionCounter}}</td>
