@@ -193,6 +193,15 @@
         }
     }
 
+    .myreactionmenu {
+        background-color: $bkgColorSecondaryFullOp !important;
+        color: $color;
+
+        * {
+            color: $color;
+        }
+    }
+
     .mat-stepper-vertical, .mat-stepper-horizontal {
         --mat-stepper-container-color: $color;
         background-color: transparent;

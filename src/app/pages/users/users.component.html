@@ -7,8 +7,8 @@
                 @if(usersData) {
                     <mat-card *ngFor="let user of usersData">
                         <mat-card-header class="headercard">
-                            <img src="assets/{{user.coverUrl}}" class="img-fluid img-cover" />
-                            <img src="assets/{{user.avatarUrl}}" class="img-fluid img-avatar" />
+                            <myimg [imgObj]="{ url: user.coverUrl, alt: user.coverUrl, class: 'img-fluid img-cover', width: '1920', height: '1200' }" />
+                            <myimg [imgObj]="{ url: user.avatarUrl, alt: user.avatarUrl, class: 'img-fluid img-avatar img-avatar-udetails', width: '150', height: '150' }" />
                         </mat-card-header>
                         <mat-card-content class="contentcard">
                             <h2>{{user.username}}</h2>
@@ -67,8 +67,8 @@
                     <a href="users/{{usersAll.userId}}">
                         <mat-card>
                             <mat-card-header class="headercard">
-                                <img src="assets/{{usersAll.coverUrl}}" class="img-fluid img-cover" />
-                                <img src="assets/{{usersAll.avatarUrl}}" class="img-fluid img-avatar" />
+                                <myimg [imgObj]="{ url: usersAll.coverUrl, alt: usersAll.coverUrl, class: 'img-fluid img-cover', width: '1920', height: '1200' }" />
+                                <myimg [imgObj]="{ url: usersAll.avatarUrl, alt: usersAll.avatarUrl, class: 'img-fluid img-avatar img-avatar-udetails', width: '150', height: '150', isPriority: false }" />
                             </mat-card-header>
                             <mat-card-content class="contentcard">
                                 <h2>{{usersAll.username}}</h2>

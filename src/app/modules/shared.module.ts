@@ -30,6 +30,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MTX_DATETIME_FORMATS } from '@ng-matero/extensions/core';
 import { MtxDatetimepickerModule } from '@ng-matero/extensions/datetimepicker';
 import { MtxMomentDatetimeModule } from '@ng-matero/extensions-moment-adapter';
+import { MyImageComponent } from '@app/directives';
 
 const declarationsAry: any[] = [];
 
@@ -67,6 +68,7 @@ const modulesAry = [
   ReactiveFormsModule,
   materialModules,
   ngxModules,
+  MyImageComponent,
   TranslateModule
 ];
 

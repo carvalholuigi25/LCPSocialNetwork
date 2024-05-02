@@ -37,8 +37,7 @@
           </span>
         </button>
         <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menuuseroptions" aria-label="User control menu">
-          <img src="assets/{{user.usersInfo.avatarUrl ?? 'images/bkg.jpeg'}}" alt="{{user.usersInfo.username}}"
-            class="img-fluid img-avatar" />
+          <myimg [imgObj]="{ url: user.usersInfo.avatarUrl, alt: user.usersInfo.username, class: 'img-fluid img-savatar img-rounded', width: '50', height: '50', isPriority: true }" />
         </button>
       </div>
 

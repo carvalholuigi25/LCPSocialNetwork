@@ -56,6 +56,15 @@
         }
     }
 
+    .myreactionmenu {
+        background-color: $bkgColorSecondaryFullOp !important;
+        color: $color;
+
+        * {
+            color: $color;
+        }
+    }
+
     .feedbackform {
         color: $color;
 

@@ -8,7 +8,7 @@
                             <mat-card-header>
                                 <div class="post_avatar_blk" mat-card-avatar>
                                     <a routerLink="/users/{{x.userId}}">
-                                        <img src="/assets/{{x.avatarUrl ?? 'images/bkg.jpeg'}}" title="{{x.username}}'s Avatar" />
+                                        <myimg [imgObj]="{ url: x.avatarUrl, alt: '', title: x.username + '\'s Avatar', class: 'img-avatar img-fluid img-rounded', width: '50', height: '50' }" />
                                     </a>
                                 </div>
                                 <mat-card-title class="post_avatar_title">
@@ -51,7 +51,8 @@
                                 </div>
                             </mat-card-header>
                             <mat-card-content>
-                                <img src="{{y.imgUrl ?? '/assets/images/bkg.jpeg'}}" mat-card-image title="{{y.title}}" class="img-fluid w-100 mw-100" />
+                                <myimg [imgObj]="{ url: y.imgUrl, alt: y.title, title: y.title, class: 'img-fluid w-100 mw-100', width: '2560', height: '1337' }" />
+                                
                                 <h4 class="mt-3 text-center">{{y.title}}</h4>
                                 <div class="mt-3 ctxtjustify" [innerHtml]="y.description | safe: (y.typeTxtPost ?? 'html')"></div>
                             </mat-card-content>

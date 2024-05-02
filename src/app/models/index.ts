@@ -12,3 +12,4 @@ export * from '../models/reply';
 export * from '../models/languages';
 export * from '../models/feedback';
 export * from '../models/queryparams';
+export * from '../models/myimage';

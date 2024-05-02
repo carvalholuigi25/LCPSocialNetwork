@@ -9,7 +9,7 @@
                             <mat-card-header class="p-3" (click)="talkToThisUser($event, usersx.userId, usersx.username)">
                                 <mat-card-title-group class="align-items-center">
                                     <mat-card-title class="userstitle">{{usersx.firstName + " " + usersx.lastName}}</mat-card-title>
-                                    <img src="assets/{{usersx.avatarUrl}}" class="img-fluid img-rounded img-avatar" width="50" height="50" />
+                                    <myimg [imgObj]="{ url: usersx.avatarUrl, alt: usersx.avatarUrl, class: 'img-fluid img-avatar img-rounded', width: '50', height: '50' }" />
                                 </mat-card-title-group>
                             </mat-card-header>
                         </mat-card>
@@ -32,7 +32,7 @@
                                     <div *ngFor="let chusers of myuserslist">
                                         <div *ngIf="chusers.userId == chmsgs.userId" class="subchatmsgsblk">
                                             <div [classList]="chmsgs.typeMsg">
-                                                <img src="assets/{{chusers.avatarUrl}}" class="img-fluid img-rounded img-avatar" width="50" height="50" mat-card-avatar class="m-0" />
+                                                <myimg [imgObj]="{ url: chusers.avatarUrl, alt: chusers.avatarUrl, class: 'img-fluid img-avatar img-rounded m-0', width: '50', height: '50' }" mat-card-avatar />
 
                                                 <mat-card class="mt-3 mb-3">
                                                     <mat-card-header class="align-items-center">

@@ -64,6 +64,18 @@
         }
     }
 
+    .myreactionmenu {
+        -webkit-backdrop-filter: $backDropFilter;
+        backdrop-filter: $backDropFilter;
+        background-color: $bkgColorPrimary;
+        border: $border;
+        color: $color;
+
+        * {
+            color: $color;
+        }
+    }
+
     .mfeedbacks {
         -webkit-backdrop-filter: $backDropFilter;
         backdrop-filter: $backDropFilter;
