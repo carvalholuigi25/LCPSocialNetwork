@@ -81,6 +81,17 @@
         }
     }
 
+    .table {
+        background-color: $bkgColorSecondary !important;
+        color: $color;
+        border-color: inherit;
+
+        td, th {
+            background-color: inherit;
+            color: inherit;
+        }
+    }
+
     .mdc-dialog__container {
         .mat-mdc-dialog-title {
             border-color: $color;
@@ -98,7 +109,18 @@
                 border-color: $color;
             }
 
-           * {
+            .table {
+                background-color: $bkgColorSecondary !important;
+                color: $color;
+                border-color: inherit;
+
+                td, th {
+                    background-color: inherit;
+                    color: inherit;
+                }
+            }
+
+           *:not(.table):not(.reactlike):not(.reactdislike):not(.reactlove):not(.reactcourage):not(.reactlaugh):not(.reactsurprised):not(.reactsad):not(.reactangry) {
                 color: $color;
                 border-color: $color;
 
@@ -160,6 +182,15 @@
     .mynavbar, .myfooter, .footer {
         background-color: $bkgColorSecondaryFullOp !important;
         color: $color;
+    }
+
+    .mymenuuseroptions {
+        background-color: $bkgColorSecondaryFullOp !important;
+        color: $color;
+
+        * {
+            color: $color;
+        }
     }
 
     .mat-stepper-vertical, .mat-stepper-horizontal {

@@ -36,7 +36,7 @@
             {{ 'navbar.btnNotifications' | translate }}
           </span>
         </button>
-        <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User control menu">
+        <button class="ms-1" mat-icon-button [matMenuTriggerFor]="menuuseroptions" aria-label="User control menu">
           <img src="assets/{{user.usersInfo.avatarUrl ?? 'images/bkg.jpeg'}}" alt="{{user.usersInfo.username}}"
             class="img-fluid img-avatar" />
         </button>
@@ -48,7 +48,7 @@
       <mat-menu class="p-3 mymenunotifications" #menunotifications="matMenu">
         <app-notifications></app-notifications>
       </mat-menu>
-      <mat-menu #menu="matMenu">
+      <mat-menu class="mymenuuseroptions" #menuuseroptions="matMenu">
         <a class="text-center" href="users/{{user.usersInfo.userId}}" mat-menu-item>
           <span>{{user.usersInfo.username}}</span>
         </a>

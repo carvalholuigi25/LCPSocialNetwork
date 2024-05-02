@@ -52,6 +52,18 @@
         color: $color;
     }
 
+    .mymenuuseroptions {
+        -webkit-backdrop-filter: $backDropFilter;
+        backdrop-filter: $backDropFilter;
+        background-color: $bkgColorPrimary;
+        border: $border;
+        color: $color;
+
+        * {
+            color: $color;
+        }
+    }
+
     .mfeedbacks {
         -webkit-backdrop-filter: $backDropFilter;
         backdrop-filter: $backDropFilter;
@@ -96,6 +108,19 @@
         }
     }
 
+    .table {
+        -webkit-backdrop-filter: $backDropFilter !important;
+        backdrop-filter: $backDropFilter !important;
+        background-color: $bkgColorPrimary !important;
+        color: $color;
+        border-color: inherit;
+
+        td, th {
+            background-color: inherit;
+            color: inherit;
+        }
+    }
+
     .mdc-dialog__container {
         .mat-mdc-dialog-title {
             border-color: $color;
@@ -115,8 +140,21 @@
             .mat-mdc-text-field-wrapper {
                 border-color: $color;
             }
+            
+            .table {
+                -webkit-backdrop-filter: $backDropFilter !important;
+                backdrop-filter: $backDropFilter !important;
+                background-color: $bkgColorPrimary !important;
+                color: $color;
+                border-color: inherit;
 
-           * {
+                td, th {
+                    background-color: inherit;
+                    color: inherit;
+                }
+            }
+
+           *:not(.table):not(.reactlike):not(.reactdislike):not(.reactlove):not(.reactcourage):not(.reactlaugh):not(.reactsurprised):not(.reactsad):not(.reactangry) {
                 color: $color;
                 border-color: $color;
 
