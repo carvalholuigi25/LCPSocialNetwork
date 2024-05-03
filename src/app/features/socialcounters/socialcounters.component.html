@@ -21,16 +21,24 @@
         </mat-menu>
     </div>
     <div class="colcomments">
-        <button class="btncomments" mat-icon-button aria-label="Comments" (click)="toggleComments()">
-            <mat-icon>comments</mat-icon>
-            <span>{{numComments$ | async}}</span>
-        </button>
+        <div class="d-flex flex-row justify-content-center align-items-center">
+            <button class="btncomments" mat-icon-button aria-label="Comments" (click)="toggleComments()">
+                <mat-icon>comments</mat-icon>
+            </button>
+            <span class="ms-1 numcomments" (click)="toggleComments()">
+                {{numComments$ | async}}
+            </span>
+        </div>
     </div>
     <div class="colshares">
-        <button class="btnshares" mat-icon-button aria-label="Shares" (click)="openShareDialog(postId)">
-            <mat-icon>shares</mat-icon>
-            <span>{{numShares$ | async}}</span>
-        </button>
+        <div class="d-flex flex-row justify-content-center align-items-center">
+            <button class="btnshares" mat-icon-button aria-label="Shares" (click)="openShareDialog(postId)">
+                <mat-icon>shares</mat-icon>
+            </button>
+            <span class="ms-1 numshares" (click)="openShareDialog(postId)">
+                {{numShares$ | async}}
+            </span>
+        </div>
     </div>
 </div>
 
