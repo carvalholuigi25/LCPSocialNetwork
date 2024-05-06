@@ -93,7 +93,8 @@
         "linkLogin": "Acceso",
         "linkNewsfeed": "Noticias",
         "linkHome": "Hogar",
-        "linkFeedback": "Comentario"
+        "linkFeedback": "Comentario",
+        "linkAdminDashboard": "Panel de administración"
     },
     "forms": {
         "login": {

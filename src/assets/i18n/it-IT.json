@@ -93,7 +93,8 @@
         "linkLogin": "Login",
         "linkNewsfeed": "Feed di notizie",
         "linkHome": "Casa",
-        "linkFeedback": "Riscontro"
+        "linkFeedback": "Riscontro",
+        "linkAdminDashboard": "Pannello di amministrazione"
     },
     "forms": {
         "login": {

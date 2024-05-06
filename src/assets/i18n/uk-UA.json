@@ -93,7 +93,8 @@
         "linkLogin": "Логін",
         "linkNewsfeed": "Стрічка новин",
         "linkHome": "додому",
-        "linkFeedback": "Зворотній зв'язок"
+        "linkFeedback": "Зворотній зв'язок",
+        "linkAdminDashboard": "Адміністраторська панель"
     },
     "forms": {
         "login": {

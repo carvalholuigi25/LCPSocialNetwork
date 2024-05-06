@@ -93,7 +93,8 @@
         "linkLogin": "Login",
         "linkNewsfeed": "Newsfeed",
         "linkHome": "Home",
-        "linkFeedback": "Feedback"
+        "linkFeedback": "Feedback",
+        "linkAdminDashboard": "Admin Dashboard"
     },
     "forms": {
         "login": {

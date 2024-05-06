@@ -93,7 +93,8 @@
         "linkLogin": "E komo",
         "linkNewsfeed": "Nupepa",
         "linkHome": "Home",
-        "linkFeedback": "Manaʻo manaʻo"
+        "linkFeedback": "Manaʻo manaʻo",
+        "linkAdminDashboard": "Papa Papa kuhikuhi"
     },
     "forms": {
         "login": {

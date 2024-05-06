@@ -93,7 +93,8 @@
         "linkLogin": "ログイン",
         "linkNewsfeed": "ニュースフィード",
         "linkHome": "家",
-        "linkFeedback": "フィードバック"
+        "linkFeedback": "フィードバック",
+        "linkAdminDashboard": "管理者ダッシュボード"
     },
     "forms": {
         "login": {

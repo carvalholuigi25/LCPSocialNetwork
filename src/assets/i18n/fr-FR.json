@@ -93,7 +93,8 @@
         "linkLogin": "Se connecter",
         "linkNewsfeed": "Fil d'actualité",
         "linkHome": "Maison",
-        "linkFeedback": "Retour d'information"
+        "linkFeedback": "Retour d'information",
+        "linkAdminDashboard": "Tableau de bord d'administration"
     },
     "forms": {
         "login": {

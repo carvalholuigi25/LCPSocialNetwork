@@ -93,7 +93,8 @@
         "linkLogin": "Anmeldung",
         "linkNewsfeed": "Neuigkeiten",
         "linkHome": "Heim",
-        "linkFeedback": "Rückmeldung"
+        "linkFeedback": "Rückmeldung",
+        "linkAdminDashboard": "Verwaltungs-Dashboard"
     },
     "forms": {
         "login": {

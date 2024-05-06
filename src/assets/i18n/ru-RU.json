@@ -93,7 +93,8 @@
         "linkLogin": "Авторизоваться",
         "linkNewsfeed": "Новостная лента",
         "linkHome": "Дом",
-        "linkFeedback": "Обратная связь"
+        "linkFeedback": "Обратная связь",
+        "linkAdminDashboard": "Панель администратора"
     },
     "forms": {
         "login": {
