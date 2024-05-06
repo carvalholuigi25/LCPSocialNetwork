@@ -31,6 +31,10 @@ export class UsersService {
         return this.http.get<User>(`${environment.apiUrl}/user/${id}`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }
 
+    getCount() {
+        return this.http.get<number>(`${environment.apiUrl}/user/count`, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
+    }
+
     createUser(users: User) {
         return this.http.post<User>(`${environment.apiUrl}/user`, users, { headers: this.setHeadersObj() }).pipe(catchError(this.handleError));
     }

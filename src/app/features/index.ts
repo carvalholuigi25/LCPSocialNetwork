@@ -8,3 +8,4 @@ export * from '../features/languageswitch/languageswitch.component';
 export * from '../features/notifications/notifications.component';
 export * from '../features/friendsrequests/friendsrequests.component';
 export * from '../features/socialcounters/socialcounters.component';
+export * from '../features/graph/graph.component';

@@ -11,9 +11,9 @@ export class StaffGuard {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authService.userValue;
-        const aryroles = ["Administrator", "administrator", "Admin", "admin", "Moderator", "moderator", "Mod", "mod"];
+        const aryroles = ["Administrator"];
 
-        if (user && aryroles.includes(user.Role?.toString()!)) {
+        if (user && aryroles.includes(user.usersInfo.role?.toString())) {
             // logged as admin in so return true
             return true;
         }

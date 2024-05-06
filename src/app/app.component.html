@@ -85,6 +85,15 @@
               <span *ngIf="!isCollapsed">{{ 'navbar.linkFeedback' | translate }}</span>
             </span>
           </a>
+
+          @if(user.usersInfo.role == "Administrator") {
+            <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">
+              <span class="entry">
+                <mat-icon>dashboard</mat-icon>
+                <span *ngIf="!isCollapsed">{{ 'navbar.linkAdminDashboard' | translate }}</span>
+              </span>
+            </a>
+          }
         } @else {
           <a mat-list-item routerLink="/home" routerLinkActive="active">
             <span class="entry">

@@ -76,6 +76,16 @@
         }
     }
 
+    .admindashboard {
+        #mychart {
+            -webkit-backdrop-filter: $backDropFilter;
+            backdrop-filter: $backDropFilter;
+            background-color: $bkgColorPrimary;
+            border: $border;
+            color: $color;
+        }
+    }
+
     .mfeedbacks {
         -webkit-backdrop-filter: $backDropFilter;
         backdrop-filter: $backDropFilter;

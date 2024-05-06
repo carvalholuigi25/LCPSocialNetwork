@@ -202,6 +202,13 @@
         }
     }
 
+    .admindashboard {
+        #mychart {
+            background-color: $bkgColorSecondaryFullOp;
+            color: $color;
+        }
+    }
+
     .mat-stepper-vertical, .mat-stepper-horizontal {
         --mat-stepper-container-color: $color;
         background-color: transparent;
