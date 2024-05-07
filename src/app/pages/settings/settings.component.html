@@ -3,14 +3,18 @@
         <div class="col-12 p-3 settings">
             <h1><mat-icon>settings</mat-icon> {{ 'settings.title' | translate }}</h1>
 
-            <div class="d-block mt-3 settheme">
-                <h3><mat-icon>contrast</mat-icon> {{ 'settings.themeswitchtitle' | translate }}</h3>
-                <app-themeswitch></app-themeswitch>
-            </div>
-            
-            <div class="d-block mt-3 setlang">
-                <h3><mat-icon>language</mat-icon> {{ 'settings.langswitchtitle' | translate }}</h3>
-                <app-languageswitch></app-languageswitch>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 d-block mt-3 settheme">
+                        <h3><mat-icon>contrast</mat-icon> {{ 'settings.themeswitchtitle' | translate }}</h3>
+                        <app-themeswitch></app-themeswitch>
+                    </div>
+                    
+                    <div class="col-12 col-md-6 col-lg-4 d-block mt-3 setlang">
+                        <h3><mat-icon>language</mat-icon> {{ 'settings.langswitchtitle' | translate }}</h3>
+                        <app-languageswitch></app-languageswitch>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

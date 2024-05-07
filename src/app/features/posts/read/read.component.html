@@ -1,74 +1,83 @@
 <div class="container">
     <div class="row">
         <div class="postlist">
-            @if(dataPosts && dataUsers) {
-                <div *ngFor="let x of dataUsers;">
-                    <div *ngFor="let y of dataPosts; let i = index">
-                        <mat-card class="post mt-3" *ngIf="x.userId == y.userId">
-                            <mat-card-header>
-                                <div class="post_avatar_blk" mat-card-avatar>
-                                    <a routerLink="/users/{{x.userId}}">
-                                        <myimg [imgObj]="{ url: x.avatarUrl, alt: '', title: x.username + '\'s Avatar', class: 'img-avatar img-fluid img-rounded', width: '50', height: '50' }" />
-                                    </a>
-                                </div>
-                                <mat-card-title class="post_avatar_title">
-                                    <h4>
+            @if(dataLength > 0) {
+                @if(dataUsers && dataPosts) {
+                    <div *ngFor="let x of dataUsers;">
+                        <div *ngFor="let y of dataPosts; let i = index">
+                            <mat-card class="post mt-3" *ngIf="x.userId == y.userId">
+                                <mat-card-header>
+                                    <div class="post_avatar_blk" mat-card-avatar>
                                         <a routerLink="/users/{{x.userId}}">
-                                            {{(x.firstName + ' ' + x.lastName) || x.username}}
+                                            <myimg [imgObj]="{ url: x.avatarUrl, alt: '', title: x.username + '\'s Avatar', class: 'img-avatar img-fluid img-rounded', width: '50', height: '50' }" />
                                         </a>
-                                    </h4>
-                                </mat-card-title>
-                                <mat-card-subtitle class="post_avatar_subtitle">
-                                    <div class="subpost_avatar_subtitle">
-                                        <span class="date_avatar_subpost">
-                                            <a routerLink="/post/{{x.userId}}/{{y.postId}}">
-                                                {{y.datePostCreated | date: 'dd/MM/YYYY HH:mm:ss' }}                                    
-                                            </a>
-                                        </span>
-                                        <mat-icon class="icon_avatar_subpost" fontIcon="{{y.status == 'private' ? 'lock' : 'public'}}"></mat-icon>
                                     </div>
-                                </mat-card-subtitle>
-                                <span class="example-spacer"></span>
-                                <div *ngIf="y.isFeatured">
-                                    <button mat-icon-button aria-label="Post featured">
-                                        <mat-icon>star</mat-icon>
-                                    </button>
-                                </div>
-                                <div *ngIf="x.userId == this.avatarId && x.role.includes(this.avatarRole)">
-                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Post menu actions">
-                                        <mat-icon>more_horiz</mat-icon>
-                                    </button>
-                                    <mat-menu #menu="matMenu">
-                                        <a href="/post/update/{{y.userId}}/{{y.postId}}" mat-menu-item>
-                                            <mat-icon>edit</mat-icon>
-                                            <span>Edit</span>
-                                        </a>
-                                        <a href="/post/delete/{{y.userId}}/{{y.postId}}" mat-menu-item>
-                                            <mat-icon>delete</mat-icon>
-                                            <span>Delete</span>
-                                        </a>
-                                    </mat-menu>
-                                </div>
-                            </mat-card-header>
-                            <mat-card-content>
-                                <myimg [imgObj]="{ url: y.imgUrl, alt: y.title, title: y.title, class: 'img-fluid w-100 mw-100', width: '2560', height: '1337' }" />
-                                
-                                <h4 class="mt-3 text-center">{{y.title}}</h4>
-                                <div class="mt-3 ctxtjustify" [innerHtml]="y.description | safe: (y.typeTxtPost ?? 'html')"></div>
-                            </mat-card-content>
-                            <mat-card-footer>
-                                <mat-card-actions>
-                                    <mat-card-content class="padcardfooter w-100">
-                                        <app-socialcounters [AvatarId]="avatarId" [UserId]="userId" [PostId]="y.postId" [DataPosts]="dataPosts" />
-                                    </mat-card-content>
-                                </mat-card-actions>
-                            </mat-card-footer>
-                        </mat-card>
+                                    <mat-card-title class="post_avatar_title">
+                                        <h4>
+                                            <a routerLink="/users/{{x.userId}}">
+                                                {{(x.firstName + ' ' + x.lastName) || x.username}}
+                                            </a>
+                                        </h4>
+                                    </mat-card-title>
+                                    <mat-card-subtitle class="post_avatar_subtitle">
+                                        <div class="subpost_avatar_subtitle">
+                                            <span class="date_avatar_subpost">
+                                                <a routerLink="/post/{{x.userId}}/{{y.postId}}">
+                                                    {{y.datePostCreated | date: 'dd/MM/YYYY HH:mm:ss' }}                                    
+                                                </a>
+                                            </span>
+                                            <mat-icon class="icon_avatar_subpost" fontIcon="{{y.status == 'private' ? 'lock' : 'public'}}"></mat-icon>
+                                        </div>
+                                    </mat-card-subtitle>
+                                    <span class="example-spacer"></span>
+                                    <div *ngIf="y.isFeatured">
+                                        <button mat-icon-button aria-label="Post featured">
+                                            <mat-icon>star</mat-icon>
+                                        </button>
+                                    </div>
+                                    <div *ngIf="x.userId == this.avatarId && x.role.includes(this.avatarRole)">
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Post menu actions">
+                                            <mat-icon>more_horiz</mat-icon>
+                                        </button>
+                                        <mat-menu #menu="matMenu">
+                                            <a href="/post/update/{{y.userId}}/{{y.postId}}" mat-menu-item>
+                                                <mat-icon>edit</mat-icon>
+                                                <span>Edit</span>
+                                            </a>
+                                            <a href="/post/delete/{{y.userId}}/{{y.postId}}" mat-menu-item>
+                                                <mat-icon>delete</mat-icon>
+                                                <span>Delete</span>
+                                            </a>
+                                        </mat-menu>
+                                    </div>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <myimg [imgObj]="{ url: y.imgUrl, alt: y.title, title: y.title, class: 'img-fluid w-100 mw-100', width: '2560', height: '1337' }" />
+                                    
+                                    <h4 class="mt-3 text-center">{{y.title}}</h4>
+                                    <div class="mt-3 ctxtjustify" [innerHtml]="y.description | safe: (y.typeTxtPost ?? 'html')"></div>
+                                </mat-card-content>
+                                <mat-card-footer>
+                                    <mat-card-actions>
+                                        <mat-card-content class="padcardfooter w-100">
+                                            <app-socialcounters [AvatarId]="avatarId" [UserId]="userId" [PostId]="y.postId" [DataPosts]="dataPosts" />
+                                        </mat-card-content>
+                                    </mat-card-actions>
+                                </mat-card-footer>
+                            </mat-card>
+                        </div>
                     </div>
-                </div>
 
-                @if(userId >= 0 && postId >= 0) {
-                    <a mat-flat-button class="mt-3" [routerLink]="['/newsfeed']" color="primary">Back</a>
+                    @if(userId >= 0 && postId >= 0) {
+                        <a mat-flat-button class="mt-3" [routerLink]="['/newsfeed']" color="primary">Back</a>
+                    }
+                } @else {
+                    <div class="d-flex flex-column justify-content-center align-items-center errblk p-3 mt-3">
+                        <mat-icon>error</mat-icon>
+                        <h2 class="tjustify mt-3">
+                            0 posts data
+                        </h2>
+                    </div>
                 }
             } @else {
                 <div class="d-flex flex-column justify-content-center align-items-center errblk p-3 mt-3">
@@ -76,7 +85,6 @@
                     <h2 class="tjustify mt-3">
                         0 posts data
                     </h2>
-                    <a mat-flat-button class="mt-3" [routerLink]="['/newsfeed']" color="primary">Back</a>
                 </div>
             }
         </div>

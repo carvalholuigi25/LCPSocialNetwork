@@ -11,9 +11,9 @@ export class AuthGuard {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authService.userValue;
-        const aryroles = ["User", "user", "Guest", "guest"];
+        const aryroles = ["User", "Guest"];
 
-        if (user || (user && aryroles.includes(user.Role?.toString()!))) {
+        if (user || (user && aryroles.includes(user.usersInfo.role?.toString()!))) {
             // logged in so return true
             return true;
         }

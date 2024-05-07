@@ -17,6 +17,7 @@ import { AlertsService, AuthService, PostsService } from '@app/services';
 export class ReadPostsComponent implements OnInit {
   dataPosts?: Post[] | any;
   dataUsers?: User[] | any;
+  dataLength: number = 0;
   avatarRole: string = "User";
   avatarId: number = 1;
   postId: number = -1;
@@ -41,7 +42,7 @@ export class ReadPostsComponent implements OnInit {
 
   getPosts() {
     this.avatarId = this.authService.userValue != null ? this.authService.userValue["usersInfo"]["userId"] : 1;
-    this.avatarRole = this.authService.userValue != null ? this.authService.userValue["usersInfo"]["role"] : "user";
+    this.avatarRole = this.authService.userValue != null ? this.authService.userValue["usersInfo"]["role"] : "User";
     
     this.postsService.getAllWithUsers(-1, -1).subscribe({
       next: (r) => {
@@ -55,6 +56,8 @@ export class ReadPostsComponent implements OnInit {
         if(this.userId >= 0) {
           this.dataPosts = this.dataPosts.filter((x: any) => x.userId == this.userId);
         }
+
+        this.dataLength = this.dataPosts.length;
       },
       error: (em) => {
         this.alertsService.openAlert(`Error: ${em.message}`, 1, "error");
